@@ -32,4 +32,34 @@ terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tf
 
 4. Use output variables for configuring Github Actions workflow: `.github/workflows/tech-tests.yml` 
 
-5. Install and configure `pre-commit`
+5. Install and configure `pre-commit`<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
+
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.4.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 4.63.0 |
+
+## Providers
+
+No providers.
+
+## Modules
+
+No modules.
+
+## Resources
+
+No resources.
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
+| <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
+
+## Outputs
+
+No outputs.
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

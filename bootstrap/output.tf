@@ -8,6 +8,6 @@ output "terraform_state_bucket" {
 }
 
 output "terraform_service_account" {
-  value = google_service_account.tbd-terraform.email
+  value       = google_service_account.tbd-terraform.email
   description = "Terraform service account"
 }
