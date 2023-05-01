@@ -15,7 +15,12 @@ resource "google_project" "tbd_project" {
 resource "google_project_service" "tbd-service" {
   project                    = google_project.tbd_project.project_id
   disable_dependent_services = true
-  for_each                   = toset(["cloudresourcemanager.googleapis.com", "iam.googleapis.com", "serviceusage.googleapis.com"])
+  for_each                   = toset([
+    "cloudresourcemanager.googleapis.com",
+    "iam.googleapis.com",
+    "iamcredentials.googleapis.com",
+    "serviceusage.googleapis.com",
+    "sts.googleapis.com"])
   service                    = each.value
 }
 

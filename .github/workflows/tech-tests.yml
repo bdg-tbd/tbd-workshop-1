@@ -23,7 +23,6 @@ jobs:
       with:
         workload_identity_provider: 'projects/171578482470/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
         service_account: 'tbd-2023l-2001-lab@tbd-2023l-2001.iam.gserviceaccount.com'
-
     - name: Terraform fmt
       id: fmt
       run: terraform fmt -check
