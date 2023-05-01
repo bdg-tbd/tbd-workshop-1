@@ -33,3 +33,12 @@ jobs:
       id: init
       run: terraform init -backend-config=env/backend.tfvars
 
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color -var-file env/project.tfvars
+      continue-on-error: false
+
