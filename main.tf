@@ -5,8 +5,8 @@ resource "google_project_service" "notebooks" {
 }
 
 module "vpc" {
-  source  = "terraform-google-modules/network/google"
-  version = "~> 7.0"
+  source       = "terraform-google-modules/network/google"
+  version      = "~> 7.0"
   project_id   = var.project_name
   network_name = "main-vpc"
   routing_mode = "GLOBAL"

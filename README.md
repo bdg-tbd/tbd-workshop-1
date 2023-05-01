@@ -48,7 +48,9 @@ terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tf
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-google-modules/network/google | ~> 7.0 |
 
 ## Resources
 
