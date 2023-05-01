@@ -14,6 +14,9 @@ jobs:
 
     steps:
     - uses: 'actions/checkout@v3'
+    - uses: hadolint/hadolint-action@v3.1.0
+      with:
+        recursive: true
     - uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.4.2
@@ -40,4 +43,5 @@ jobs:
       id: plan
       run: terraform plan -no-color -var-file env/project.tfvars
       continue-on-error: false
+
 
