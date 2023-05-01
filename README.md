@@ -44,11 +44,13 @@ terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tf
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | ~> 4.63.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.63.1 |
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-google-modules/network/google | ~> 7.0 |
 
 ## Resources
 
