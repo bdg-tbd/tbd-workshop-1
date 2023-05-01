@@ -9,3 +9,4 @@ repos:
           - --hook-config=--add-to-existing-file=true     # Boolean. true or false
           - --hook-config=--create-file-if-not-exist=true
     - id: terraform_tflint
+    - id: terraform_checkov

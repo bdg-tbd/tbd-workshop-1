@@ -6,8 +6,24 @@ resource "google_project" "tbd_project" {
   name            = "TBD ${local.project} project"
   project_id      = local.project
   billing_account = var.billing_account
+  # start with true
+  auto_create_network = false
   lifecycle {
     prevent_destroy = true
+  }
+}
+
+resource "google_project_iam_audit_config" "tbd_project_audit" {
+  project = google_project.tbd_project.id
+  service = "allServices"
+  audit_log_config {
+    log_type = "ADMIN_READ"
+  }
+  audit_log_config {
+    log_type = "DATA_READ"
+  }
+  audit_log_config {
+    log_type = "DATA_WRITE"
   }
 }
 
@@ -31,6 +47,8 @@ resource "google_service_account" "tbd-terraform" {
 
 
 resource "google_project_iam_member" "tbd-editor-supervisors" {
+  #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
+  # This is only used for workshops!!!
   for_each = toset([
     "user:marek.wiewiorka@gmail.com",
     "user:tgambin@gmail.com"
@@ -42,17 +60,11 @@ resource "google_project_iam_member" "tbd-editor-supervisors" {
 
 
 resource "google_project_iam_member" "tbd-editor-member" {
+  #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
+  # This is only used for workshops!!!
   project = google_project.tbd_project.project_id
   role    = "roles/editor"
   member  = "serviceAccount:${google_service_account.tbd-terraform.email}"
-}
-
-resource "google_project_iam_member" "tbd-terraform-sa-member" {
-  depends_on = [google_service_account.tbd-terraform]
-  project    = google_project.tbd_project.project_id
-  for_each   = toset(["roles/iam.securityAdmin", "roles/container.admin", "roles/storage.admin"])
-  role       = each.value
-  member     = "serviceAccount:${google_service_account.tbd-terraform.email}"
 }
 
 
