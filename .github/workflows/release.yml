@@ -17,11 +17,6 @@ jobs:
       uses: cycjimmy/semantic-release-action@v3
       with:
         branch: 'master'
-        extra_plugins: |
-          '@semantic-release/commit-analyzer'
-          '@semantic-release/git'
-          '@semantic-release/release-notes-generator'
-          '@semantic-release/github'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: 'actions/checkout@v3'
