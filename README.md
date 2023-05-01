@@ -44,7 +44,7 @@ terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tf
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | ~> 4.63.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 4.63.1 |
 
 ## Modules
 
