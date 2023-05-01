@@ -14,6 +14,8 @@ resource "google_iam_workload_identity_pool_provider" "tbd-workload-identity-pro
   attribute_mapping = {
     "google.subject" : "assertion.sub"
     "attribute.repository" : "assertion.repository"
+    "attribute.owner" = "assertion.repository_owner"
+    "attribute.refs"  = "assertion.ref"
   }
   oidc {
     issuer_uri = "https://token.actions.githubusercontent.com"

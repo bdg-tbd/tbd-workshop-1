@@ -21,8 +21,8 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
-        workload_identity_provider: 'projects/171578482470/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
-        service_account: 'tbd-2023l-2001-lab@tbd-2023l-2001.iam.gserviceaccount.com'
+        workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
+        service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
     - name: Terraform fmt
       id: fmt
       run: terraform fmt -check
