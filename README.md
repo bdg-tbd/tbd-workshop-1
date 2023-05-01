@@ -42,7 +42,9 @@ terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tf
 
 ## Providers
 
-No providers.
+| Name | Version |
+|------|---------|
+| <a name="provider_google"></a> [google](#provider\_google) | ~> 4.63.0 |
 
 ## Modules
 
@@ -50,7 +52,9 @@ No modules.
 
 ## Resources
 
-No resources.
+| Name | Type |
+|------|------|
+| [google_project_service.notebooks](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
 
 ## Inputs
 
