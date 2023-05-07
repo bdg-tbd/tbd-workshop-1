@@ -41,6 +41,7 @@ resource "google_notebooks_instance" "tbd_notebook" {
     repository = "gcr.io/deeplearning-platform-release/base-cpu.py310"
     tag        = "m108"
   }
-  network = module.vpc.network_id
-  subnet  = module.vpc.subnets[local.notebook_subnet_id].id
+  network      = module.vpc.network_id
+  subnet       = module.vpc.subnets[local.notebook_subnet_id].id
+  no_public_ip = false
 }

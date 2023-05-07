@@ -48,6 +48,7 @@ resource "google_service_account" "tbd-terraform" {
 
 resource "google_project_iam_member" "tbd-editor-supervisors" {
   #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
+  #checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
   # This is only used for workshops!!!
   for_each = toset([
     "user:marek.wiewiorka@gmail.com",
@@ -61,6 +62,7 @@ resource "google_project_iam_member" "tbd-editor-supervisors" {
 
 resource "google_project_iam_member" "tbd-editor-member" {
   #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
+  #checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
   # This is only used for workshops!!!
   project = google_project.tbd_project.project_id
   role    = "roles/editor"
@@ -78,6 +80,9 @@ resource "google_storage_bucket" "tbd-state-bucket" {
   lifecycle {
     prevent_destroy = true
   }
+
   #checkov:skip=CKV_GCP_62: "Bucket should log access"
   #checkov:skip=CKV_GCP_29: "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
+  #checkov:skip=CKV_GCP_78: "Ensure Cloud storage has versioning enabled"
+  public_access_prevention = "enforced"
 }

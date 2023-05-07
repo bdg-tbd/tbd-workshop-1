@@ -3,6 +3,7 @@ on:
   pull_request:
     types: [closed]
 
+permissions: read-all
 jobs:
   delete-branch:
     runs-on: ubuntu-latest
