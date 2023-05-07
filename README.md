@@ -56,6 +56,7 @@ terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tf
 
 | Name | Type |
 |------|------|
+| [google_notebooks_instance.tbd_notebook](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/notebooks_instance) | resource |
 | [google_project_service.notebooks](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
 
 ## Inputs
