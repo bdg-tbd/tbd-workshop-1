@@ -51,7 +51,8 @@ resource "google_project_iam_member" "tbd-editor-supervisors" {
   # This is only used for workshops!!!
   for_each = toset([
     "user:marek.wiewiorka@gmail.com",
-    "user:tgambin@gmail.com"
+    "user:tgambin@gmail.com",
+    "user:sitekwb@gmail.com"
   ])
   project = google_project.tbd_project.project_id
   role    = "roles/editor"
