@@ -1,2 +1,2 @@
-project_name        = "tbd-2023l-2001"
-iac_service_account = "tbd-2023l-2001-lab@tbd-2023l-2001.iam.gserviceaccount.com"
+project_name        = "tbd-2022z-20063"
+iac_service_account = "tbd-2022z-20063-lab@tbd-2022z-20063.iam.gserviceaccount.com"
