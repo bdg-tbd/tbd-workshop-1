@@ -43,6 +43,6 @@ resource "google_notebooks_instance" "tbd_notebook" {
   }
   network = module.vpc.network_id
   subnet  = module.vpc.subnets[local.notebook_subnet_id].id
-  ## change it to break the checkov
+  ## change it to break the checkov during the labs
   no_public_ip = true
 }

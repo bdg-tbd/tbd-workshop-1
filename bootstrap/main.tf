@@ -6,7 +6,7 @@ resource "google_project" "tbd_project" {
   name            = "TBD ${local.project} project"
   project_id      = local.project
   billing_account = var.billing_account
-  # start with true
+  ## change it to break the checkov during the labs
   auto_create_network = false
   lifecycle {
     prevent_destroy = true
