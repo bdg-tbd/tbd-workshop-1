@@ -42,22 +42,17 @@ terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tf
 
 ## Providers
 
-| Name | Version |
-|------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.63.1 |
+No providers.
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-google-modules/network/google | ~> 7.0 |
+| <a name="module_vertex_ai_workbench"></a> [vertex\_ai\_workbench](#module\_vertex\_ai\_workbench) | ./modules/vertex-ai-workbench | n/a |
 
 ## Resources
 
-| Name | Type |
-|------|------|
-| [google_notebooks_instance.tbd_notebook](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/notebooks_instance) | resource |
-| [google_project_service.notebooks](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
+No resources.
 
 ## Inputs
 
