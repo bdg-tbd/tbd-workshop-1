@@ -18,9 +18,10 @@ module "vpc" {
   routing_mode = "GLOBAL"
   subnets = [
     {
-      subnet_name   = local.notebook_subnet_name
-      subnet_ip     = "10.10.10.0/24"
-      subnet_region = var.region
+      subnet_name           = local.notebook_subnet_name
+      subnet_ip             = "10.10.10.0/24"
+      subnet_region         = var.region
+      subnet_private_access = "true"
     },
   ]
   routes = [
