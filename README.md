@@ -27,6 +27,8 @@ terraform init -backend-config=../env/backend.tfvars
 ```
 * Apply
 ```bash
+gcloud auth configure-docker
+
 terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tfvars -compact-warnings
 ```
 
@@ -38,6 +40,7 @@ terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tf
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.4.0 |
+| <a name="requirement_docker"></a> [docker](#requirement\_docker) | 3.0.2 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | ~> 4.63.0 |
 
 ## Providers
@@ -49,6 +52,7 @@ No providers.
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_gcr"></a> [gcr](#module\_gcr) | ./modules/gcr | n/a |
+| <a name="module_jupyter_docker_image"></a> [jupyter\_docker\_image](#module\_jupyter\_docker\_image) | ./modules/docker_image | n/a |
 | <a name="module_vertex_ai_workbench"></a> [vertex\_ai\_workbench](#module\_vertex\_ai\_workbench) | ./modules/vertex-ai-workbench | n/a |
 
 ## Resources

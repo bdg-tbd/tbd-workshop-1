@@ -65,8 +65,8 @@ resource "google_notebooks_instance" "tbd_notebook" {
   machine_type = "e2-standard-2"
   name         = "${var.project_name}-notebook"
   container_image {
-    repository = "gcr.io/deeplearning-platform-release/base-cpu.py310"
-    tag        = "m108"
+    repository = var.ai_notebook_image_repository
+    tag        = var.ai_notebook_image_tag
   }
   network = module.vpc.network_id
   subnet  = module.vpc.subnets[local.notebook_subnet_id].id
