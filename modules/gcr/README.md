@@ -30,7 +30,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_location"></a> [location](#input\_location) | GCR location | `string` | `"EU"` | no |
-| <a name="input_project"></a> [project](#input\_project) | GCP project name | `string` | n/a | yes |
+| <a name="input_project_name"></a> [project\_name](#input\_project\_name) | GCP project name | `string` | n/a | yes |
 
 ## Outputs
 

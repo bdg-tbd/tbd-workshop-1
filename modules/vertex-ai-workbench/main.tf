@@ -1,6 +1,7 @@
 locals {
   notebook_subnet_name = "subnet-01"
   notebook_subnet_id   = "${var.region}/${local.notebook_subnet_name}"
+  zone                 = "${var.region}-b"
 }
 
 resource "google_project_service" "notebooks" {
@@ -27,14 +28,40 @@ module "vpc" {
       name              = "egress-internet"
       description       = "route through IGW to access internet"
       destination_range = "0.0.0.0/0"
-      tags              = "egress-inet"
       next_hop_internet = "true"
     }
   ]
 }
+module "cloud-router" {
+  source  = "terraform-google-modules/cloud-router/google"
+  version = "~> 5.0.0"
+  project = var.project_name
+  region  = var.region
+  network = module.vpc.network_id
+  name    = "nat-router"
+  nats = [{
+    name = "nat-gateway"
+  }]
+}
+#Enables IAP tunneling
+resource "google_compute_firewall" "fw-allow-ingress-from-iap" {
+  name          = "fw-allow-ingress-iap"
+  network       = module.vpc.network_id
+  priority      = 1000
+  direction     = "INGRESS"
+  source_ranges = ["35.235.240.0/20"]
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22", "8443", "443", "80", "8000"]
+  }
+
+}
+
 
 resource "google_notebooks_instance" "tbd_notebook" {
-  location     = "${var.region}-b"
+  depends_on   = [module.cloud-router]
+  location     = local.zone
   machine_type = "e2-standard-2"
   name         = "${var.project_name}-notebook"
   container_image {
@@ -44,5 +71,7 @@ resource "google_notebooks_instance" "tbd_notebook" {
   network = module.vpc.network_id
   subnet  = module.vpc.subnets[local.notebook_subnet_id].id
   ## change it to break the checkov during the labs
-  no_public_ip = true
+  no_public_ip    = true
+  no_proxy_access = true
+  instance_owners = [var.ai_notebook_instance_owner]
 }

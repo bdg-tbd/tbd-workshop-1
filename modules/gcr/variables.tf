@@ -1,4 +1,4 @@
-variable "project" {
+variable "project_name" {
   type        = string
   description = "GCP project name"
 }
