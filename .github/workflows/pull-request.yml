@@ -25,8 +25,17 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
+        token_format: 'access_token'
         workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
         service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+    - uses: 'docker/login-action@v2'
+      with:
+        registry: 'eu.gcr.io'
+        username: 'oauth2accesstoken'
+        password: '${{ steps.auth.outputs.access_token }}'
+
     - name: Terraform fmt
       id: fmt
       run: terraform fmt -check

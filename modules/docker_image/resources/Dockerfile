@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM gcr.io/deeplearning-platform-release/base-cpu.py310:m108
 ARG JUPYTERLAB_VERSION
 #checkov:skip=CKV_DOCKER_2: "Ensure that HEALTHCHECK instructions have been added to container images"
 # to remove to make this image run as non-root user
@@ -15,7 +15,3 @@ RUN apt-get -y update && \
 
 RUN pip3 install --no-cache-dir \
         jupyterlab==$JUPYTERLAB_VERSION
-
-# Create a link that points to the right python bin directory
-RUN ln -s /usr/bin/python3.10 /usr/bin/python
-EXPOSE 8080

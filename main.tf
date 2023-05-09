@@ -16,4 +16,5 @@ module "vertex_ai_workbench" {
   region                       = var.region
   ai_notebook_instance_owner   = var.ai_notebook_instance_owner
   ai_notebook_image_repository = element(split(":", module.jupyter_docker_image.jupyter_image_name), 0)
+  ai_notebook_image_tag        = element(split(":", module.jupyter_docker_image.jupyter_image_name), 1)
 }
