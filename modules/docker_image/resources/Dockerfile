@@ -14,6 +14,6 @@ RUN apt-get -y update && \
     rm -rf /var/lib/apt/lists/*
 
 ## use JUPYTERLAB_VERSION to pin jupyterlab version
-#fixme:pin version
+#FIXME:unpin jupyterlab version
 RUN pip3 install --no-cache-dir \
         jupyterlab==$JUPYTERLAB_VERSION
