@@ -1,3 +1,10 @@
 ignored:
   - DL3008
   - DL3059
+
+# to remove for workshop, pining pip version
+override:
+  info:
+    - DL3013
+failure-threshold: warning
+# end remove section
