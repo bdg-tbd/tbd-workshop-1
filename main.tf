@@ -1,29 +1,20 @@
-resource "google_project_service" "notebooks" {
-  provider           = google
-  service            = "notebooks.googleapis.com"
-  disable_on_destroy = true
+module "gcr" {
+  source       = "./modules/gcr"
+  project_name = var.project_name
 }
 
-module "vpc" {
-  source       = "terraform-google-modules/network/google"
-  version      = "~> 7.0"
-  project_id   = var.project_name
-  network_name = "main-vpc"
-  routing_mode = "GLOBAL"
-  subnets = [
-    {
-      subnet_name   = "subnet-01"
-      subnet_ip     = "10.10.10.0/24"
-      subnet_region = var.region
-    },
-  ]
-  routes = [
-    {
-      name              = "egress-internet"
-      description       = "route through IGW to access internet"
-      destination_range = "0.0.0.0/0"
-      tags              = "egress-inet"
-      next_hop_internet = "true"
-    }
-  ]
+module "jupyter_docker_image" {
+  depends_on         = [module.gcr]
+  source             = "./modules/docker_image"
+  registry_hostname  = module.gcr.registry_hostname
+  registry_repo_name = coalesce(var.project_name)
+}
+module "vertex_ai_workbench" {
+  depends_on                   = [module.jupyter_docker_image]
+  source                       = "./modules/vertex-ai-workbench"
+  project_name                 = var.project_name
+  region                       = var.region
+  ai_notebook_instance_owner   = var.ai_notebook_instance_owner
+  ai_notebook_image_repository = element(split(":", module.jupyter_docker_image.jupyter_image_name), 0)
+  ai_notebook_image_tag        = element(split(":", module.jupyter_docker_image.jupyter_image_name), 1)
 }
