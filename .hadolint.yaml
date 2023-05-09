@@ -3,6 +3,7 @@ ignored:
   - DL3059
 
 # to remove for workshop, pining pip version
+# FIXME:remove
 override:
   info:
     - DL3013

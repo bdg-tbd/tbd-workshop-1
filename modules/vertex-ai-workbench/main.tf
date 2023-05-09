@@ -71,7 +71,9 @@ resource "google_notebooks_instance" "tbd_notebook" {
   network = module.vpc.network_id
   subnet  = module.vpc.subnets[local.notebook_subnet_id].id
   ## change it to break the checkov during the labs
+  # FIXME:remove
   no_public_ip    = true
   no_proxy_access = true
+  # end
   instance_owners = [var.ai_notebook_instance_owner]
 }
