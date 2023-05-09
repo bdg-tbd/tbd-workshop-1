@@ -12,12 +12,32 @@ jobs:
       contents: 'read'
       id-token: 'write'
       pull-requests: write
+      security-events: write
 
     steps:
     - uses: 'actions/checkout@v3'
     - uses: hadolint/hadolint-action@v3.1.0
       with:
         recursive: true
+        verbose: true
+    - name: Update Pull Request with hadolint
+      uses: actions/github-script@v6
+      if: github.event_name == 'pull_request'
+      with:
+        script: |
+          const output = `
+          #### Hadolint: \`${{ steps.hadolint.outcome }}\`
+          \`\`\`
+          ${process.env.HADOLINT_RESULTS}
+          \`\`\`
+          `;
+
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: output
+          })
     - uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.4.2
