@@ -1,0 +1,4 @@
+quiet: true
+download-external-modules: true
+skip-check:
+  - CKV_GCP_74 #silencing due to the bug for checking private_ip_google_access in vpc module
