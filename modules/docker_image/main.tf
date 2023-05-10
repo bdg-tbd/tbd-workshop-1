@@ -16,4 +16,7 @@ resource "docker_image" "jupyter" {
 resource "docker_registry_image" "jupyterlab" {
   name          = docker_image.jupyter.name
   keep_remotely = true
+  triggers = {
+    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/*") : filesha1(f)]))
+  }
 }
