@@ -59,12 +59,16 @@ cd ..
 ![img.png](doc/figures/workload-identity.png)
 Please do not edit and hardcode these values in a YAML but set the Github Actions secrets instead
 while preserving the secret names, i.e. `GCP_WORKLOAD_IDENTITY_PROVIDER_NAME` and `GCP_WORKLOAD_IDENTITY_SA_EMAIL`.
-
+![img.png](doc/figures/secrets.png)
 5. Install and configure `pre-commit`
 ```bash
 pre-commit install
 ```
 
+6. Commit changes, push to a branch and open a PR to **YOUR** repository main/master branch.
+If you see a warning like this -- please enable the workflows:
+![img.png](doc/figures/workflow.png)
+   ...and repush your changes!
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
