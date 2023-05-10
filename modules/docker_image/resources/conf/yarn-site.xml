@@ -136,11 +136,11 @@
   </property>
   <property>
     <name>yarn.timeline-service.http-cross-origin.enabled</name>
-    <value>true</value>
+    <value>false</value>
   </property>
   <property>
     <name>yarn.timeline-service.enabled</name>
-    <value>true</value>
+    <value>false</value>
   </property>
   <property>
     <name>yarn.timeline-service.hostname</name>

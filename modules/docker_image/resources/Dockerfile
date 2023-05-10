@@ -23,4 +23,5 @@ RUN pip3 install --no-cache-dir \
 RUN mkdir -p $HADOOP_CONF_DIR
 COPY conf/* $HADOOP_CONF_DIR
 ENV HADOOP_CONF_DIR=$HADOOP_CONF_DIR
+ENV PYSPARK_SUBMIT_ARGS="--conf spark.driver.port=16384 --conf spark.driver.blockManager.port=16385 --conf spark.driver.bindAddress=127.0.0.1 --conf spark.driver.host=$HOSTNAME pyspark-shell"
 EXPOSE 8080 16384 16385
