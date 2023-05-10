@@ -61,7 +61,7 @@ resource "google_compute_firewall" "fw-allow-ingress-from-iap" {
 
 
 resource "google_notebooks_instance" "tbd_notebook" {
-  depends_on   = [module.cloud-router]
+  depends_on   = [module.cloud-router, google_project_service.notebooks]
   location     = local.zone
   machine_type = "e2-standard-2"
   name         = "${var.project_name}-notebook"
