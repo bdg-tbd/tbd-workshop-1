@@ -73,8 +73,24 @@ If you see a warning like this -- please enable the workflows:
 the instructions
 ![img.png](doc/figures/workbench.png)
 
+8. In your Jupyterlab enviroment add Python3.8 kernel:
+```bash
+python3.8 -m ipykernel install --user --name pyspark
+```
+9. Run a `Hello-world` PySpark application in a YARN-client mode:
+![img.png](doc/figures/pyspark.png)
+
+10. Additional tasks using Terraform:
+<ol type="a">
+ <li>Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance</li>
+ <li>Add support for preemptible/spot instances in a Dataproc cluster</li>
+ <li>Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot</li>
+ <li>(Optional) Get access to Apache Spark WebUI</li>
+</ol>
+
 **IMPORTANT**
 :exclamation: :exclamation: :exclamation: Please remember to destroy all the resources after the workshop:
+
 ```bash
 terraform destroy -no-color -var-file env/project.tfvars 
 ```
