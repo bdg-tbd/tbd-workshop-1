@@ -13,3 +13,8 @@ variable "jupyterlab_version" {
   description = "Jupyterlab version"
   default     = "3.6.3"
 }
+
+variable "project_name" {
+  type        = string
+  description = "Project name"
+}
