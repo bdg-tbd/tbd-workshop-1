@@ -15,13 +15,15 @@ RUN apt-get -y update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+ENV PATH=/usr/bin:/usr/local/bin:$PATH
 ## use JUPYTERLAB_VERSION to pin jupyterlab version
 #FIXME:unpin jupyterlab version
+RUN wget https://bootstrap.pypa.io/get-pip.py && python3.8 get-pip.py
 RUN pip3 install --no-cache-dir \
         jupyterlab==$JUPYTERLAB_VERSION \
         pyspark==3.3.2
 RUN mkdir -p $HADOOP_CONF_DIR
 COPY conf/* $HADOOP_CONF_DIR
 ENV HADOOP_CONF_DIR=$HADOOP_CONF_DIR
-ENV PYSPARK_SUBMIT_ARGS="--conf spark.driver.port=16384 --conf spark.driver.blockManager.port=16385 --conf spark.driver.bindAddress=127.0.0.1 --conf spark.driver.host=$HOSTNAME pyspark-shell"
+ENV PYSPARK_SUBMIT_ARGS="--conf spark.driver.port=16384 --conf spark.driver.blockManager.port=16385 --conf spark.driver.bindAddress=$HOSTNAME --conf spark.driver.host=tbd-2023l-2001-notebook pyspark-shell"
 EXPOSE 8080 16384 16385
