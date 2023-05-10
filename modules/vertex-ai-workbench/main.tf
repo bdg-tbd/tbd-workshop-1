@@ -8,6 +8,17 @@ resource "google_project_service" "notebooks" {
   disable_on_destroy = true
 }
 
+
+
+
+resource "google_storage_bucket_object" "post" {
+  name   = "scripts/notebook_post_startup_script.sh"
+  source = "resources/notebook_post_startup_script.sh"
+  bucket = "image-store"
+}
+
+
+
 resource "google_notebooks_instance" "tbd_notebook" {
   depends_on   = [google_project_service.notebooks]
   location     = local.zone
@@ -25,4 +36,6 @@ resource "google_notebooks_instance" "tbd_notebook" {
   no_proxy_access = true
   # end
   instance_owners = [var.ai_notebook_instance_owner]
+  #  post_startup_script =
 }
+
