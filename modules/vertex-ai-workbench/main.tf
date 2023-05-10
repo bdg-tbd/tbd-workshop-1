@@ -1,5 +1,10 @@
+data "google_project" "project" {
+  project_id = var.project_name
+}
+
 locals {
-  zone = "${var.region}-b"
+  zone                = "${var.region}-b"
+  gce_service_account = "${data.google_project.project.number}-compute@developer.gserviceaccount.com"
 }
 
 resource "google_project_service" "notebooks" {
@@ -9,12 +14,33 @@ resource "google_project_service" "notebooks" {
 }
 
 
+resource "google_storage_bucket" "notebook-conf-bucket" {
+  #checkov:skip=CKV_GCP_62: "Bucket should log access"
+  name          = "${var.project_name}-conf"
+  location      = var.region
+  force_destroy = true
+
+  public_access_prevention    = "enforced"
+  uniform_bucket_level_access = true
+  versioning {
+    enabled = true
+  }
+}
 
 
-resource "google_storage_bucket_object" "post" {
+resource "google_storage_bucket_iam_binding" "binding" {
+  bucket = google_storage_bucket.notebook-conf-bucket.name
+  role   = "roles/storage.objectViewer"
+  members = [
+    "serviceAccount:${local.gce_service_account}"
+  ]
+}
+
+
+resource "google_storage_bucket_object" "post-startup" {
   name   = "scripts/notebook_post_startup_script.sh"
-  source = "resources/notebook_post_startup_script.sh"
-  bucket = "image-store"
+  source = "${path.module}/resources/notebook_post_startup_script.sh"
+  bucket = google_storage_bucket.notebook-conf-bucket.name
 }
 
 
@@ -35,7 +61,7 @@ resource "google_notebooks_instance" "tbd_notebook" {
   no_public_ip    = true
   no_proxy_access = true
   # end
-  instance_owners = [var.ai_notebook_instance_owner]
-  #  post_startup_script =
+  instance_owners     = [var.ai_notebook_instance_owner]
+  post_startup_script = "gs://${google_storage_bucket_object.post-startup.bucket}/${google_storage_bucket_object.post-startup.name}"
 }
 

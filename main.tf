@@ -23,6 +23,7 @@ module "jupyter_docker_image" {
   source             = "./modules/docker_image"
   registry_hostname  = module.gcr.registry_hostname
   registry_repo_name = coalesce(var.project_name)
+  project_name       = var.project_name
 }
 
 module "vertex_ai_workbench" {
