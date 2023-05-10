@@ -11,6 +11,8 @@ repos:
         - --hook-config=--create-file-if-not-exist=true
     - id: terraform_tflint
     - id: terraform_checkov
+      args:
+        - --args=---show-config
 - repo: https://github.com/hadolint/hadolint
   rev: v2.12.0
   hooks:
