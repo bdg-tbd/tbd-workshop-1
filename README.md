@@ -69,6 +69,16 @@ pre-commit install
 If you see a warning like this -- please enable the workflows:
 ![img.png](doc/figures/workflow.png)
    ...and repush your changes!
+7. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
+the instructions
+![img.png](doc/figures/workbench.png)
+
+**IMPORTANT**
+:white_check_mark: Please remember to destroy all the resources after the workshop:
+```bash
+terraform destroy -no-color -var-file env/project.tfvars 
+```
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
