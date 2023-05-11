@@ -1,11 +1,25 @@
-# tbd-workshop-1
-TBD workshop 1
+# TBD Workshop 1.
+
+## Workshop goals
+1. Learn how to provision computing resources for running Big Data analyses using the Infrastructure as Code (IaC) approach.
+2. Learn how to set up opinionated CI/CD pipelines to deploy cloud infrastructure. 
+3. Learn how to utilize linters for detecting security vulnerabilities in cloud infrastructure.
+4. Learn how to run Apache Spark code in a distributed way on Hadoop cluster using
+Vertex AI notebooks and Dataproc services on GCP.
+5. Learn how to use Workload Identity Federation for a secure authentication from GitHub Actions
+to Google Cloud.
+![img.png](doc/figures/workload_id_federation.png)
+## High level architecture
+![img.png](doc/figures/hla.png)
 ## Prerequisites
 ### Software
-* Google Cloud SDK ~424.0.0
-* gsutil ~5.21
-* pre-commit ~2.15.0
-* Terraform ~1.4.0
+* Google Cloud SDK ~>424.0.0
+* gsutil ~>5.21
+* pre-commit ~>2.15.0
+* Terraform ~>1.4.0
+* Python ~>3.8
+* Linux/MacOS
+* [pre-commit-terraform dependencies](https://github.com/antonbabenko/pre-commit-terraform)
 
 ### GCP
 * Redeem a GCP coupon to create a billing account
@@ -20,8 +34,9 @@ gcloud auth application-default login
 1. Export shared environment variables
 ```bash
 export TF_VAR_tbd_semester=2023L
-# format: 20xx for teachers, 30xx for students 
+# format: 20xx for teachers, student ID number for students 
 export TF_VAR_user_id=2002
+# use your own billing account id
 export TF_VAR_billing_account=016F99-F0B167-9A895D
 
 ```
@@ -69,6 +84,8 @@ pre-commit install
 If you see a warning like this -- please enable the workflows:
 ![img.png](doc/figures/workflow.png)
    ...and repush your changes!
+If pre-commit linters report any issues please try to **fix** them :hammer_and_wrench:.
+Once all Pull Requests checks **have passed** please merge your PR and wait until your release job finishes.
 7. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
 the instructions
 ![img.png](doc/figures/workbench.png)
@@ -88,8 +105,8 @@ python3.8 -m ipykernel install --user --name pyspark
  <li>(Optional) Get access to Apache Spark WebUI</li>
 </ol>
 
-**IMPORTANT**
-:exclamation: :exclamation: :exclamation: Please remember to destroy all the resources after the workshop:
+11. **IMPORTANT**
+:exclamation: :exclamation: :exclamation: Please remember to **destroy all** the resources after the workshop:
 
 ```bash
 terraform destroy -no-color -var-file env/project.tfvars 
