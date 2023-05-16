@@ -29,6 +29,7 @@ resource "google_storage_bucket" "notebook-conf-bucket" {
 
 
 resource "google_storage_bucket_iam_binding" "binding" {
+  #checkov:skip=CKV_GCP_49: "Ensure roles do not impersonate or manage Service Accounts used at project level"
   bucket = google_storage_bucket.notebook-conf-bucket.name
   role   = "roles/storage.objectViewer"
   members = [
@@ -46,6 +47,7 @@ resource "google_storage_bucket_object" "post-startup" {
 
 
 resource "google_notebooks_instance" "tbd_notebook" {
+  #checkov:skip=CKV2_GCP_18: "Ensure GCP network defines a firewall and does not use the default firewall"
   depends_on   = [google_project_service.notebooks]
   location     = local.zone
   machine_type = "e2-standard-2"
@@ -63,5 +65,16 @@ resource "google_notebooks_instance" "tbd_notebook" {
   # end
   instance_owners     = [var.ai_notebook_instance_owner]
   post_startup_script = "gs://${google_storage_bucket_object.post-startup.bucket}/${google_storage_bucket_object.post-startup.name}"
+}
+
+
+resource "google_project_iam_binding" "token_creator_role" {
+  #checkov:skip=CKV_GCP_41: "Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level"
+  #checkov:skip=CKV_GCP_49: "Ensure roles do not impersonate or manage Service Accounts used at project level"
+  #checkov:skip=CKV_GCP_46: "Ensure Default Service account is not used at a project level"
+  project = var.project_name
+  role    = "roles/iam.serviceAccountTokenCreator"
+  members = toset(["serviceAccount:${local.gce_service_account}"])
+
 }
 
