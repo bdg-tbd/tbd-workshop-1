@@ -19,4 +19,7 @@ resource "docker_image" "mlflow" {
 resource "docker_registry_image" "mlflow" {
   name          = docker_image.mlflow.name
   keep_remotely = true
+  triggers = {
+    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/*") : filesha1(f)]))
+  }
 }

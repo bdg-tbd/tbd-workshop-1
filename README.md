@@ -105,7 +105,14 @@ python3.8 -m ipykernel install --user --name pyspark
  <li>(Optional) Get access to Apache Spark WebUI</li>
 </ol>
 
-11. **IMPORTANT**
+
+11. In the Jupyterlab terminal get OIDC token
+```bash
+export IAP_CLIENT_ID="171578482470-oqdpdqi6rc8ma8i6redoso4hsq7tg4k7.apps.googleusercontent.com"
+export OIDC_TOKEN=$(curl -s -X POST -H "content-type: application/json" -H "Authorization: Bearer $(gcloud auth print-access-token)" -d "{\"audience\": \"${IAP_CLIENT_ID}\", \"includeEmail\": true }" "https://iamcredentials.googleapis.com/v1/projects/-/serviceAccounts/$(gcloud auth list --filter=status:ACTIVE --format='value(account)'):generateIdToken"  | jq -r '.token')
+```
+
+5**IMPORTANT**
 :exclamation: :exclamation: :exclamation: Please remember to **destroy all** the resources after the workshop:
 
 ```bash

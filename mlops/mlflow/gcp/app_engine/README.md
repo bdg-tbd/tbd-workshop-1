@@ -52,7 +52,7 @@ No modules.
 | <a name="input_env"></a> [env](#input\_env) | n/a | `string` | n/a | yes |
 | <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | n/a | `string` | `"db-g1-small"` | no |
 | <a name="input_mlflow_docker_image_uri"></a> [mlflow\_docker\_image\_uri](#input\_mlflow\_docker\_image\_uri) | TBD | `string` | n/a | yes |
-| <a name="input_network"></a> [network](#input\_network) | TBD | `map(any)` | n/a | yes |
+| <a name="input_network"></a> [network](#input\_network) | TBD | <pre>object({ network_id = string<br>  network_name = string })</pre> | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | n/a | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | n/a | `string` | n/a | yes |
 | <a name="input_project_number"></a> [project\_number](#input\_project\_number) | n/a | `string` | n/a | yes |

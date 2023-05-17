@@ -35,7 +35,8 @@ variable "mlflow_docker_image_uri" {
 }
 
 variable "network" {
-  type        = map(any)
+  type = object({ network_id = string
+  network_name = string })
   description = "TBD"
 }
 
