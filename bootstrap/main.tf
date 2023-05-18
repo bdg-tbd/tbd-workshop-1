@@ -66,7 +66,7 @@ resource "google_project_iam_member" "tbd-editor-member" {
   #checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
   # This is only used for workshops!!!
   project = google_project.tbd_project.project_id
-  role    = "roles/editor"
+  role    = "roles/owner"
   member  = "serviceAccount:${google_service_account.tbd-terraform.email}"
 }
 
