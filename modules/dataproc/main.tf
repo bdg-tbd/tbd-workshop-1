@@ -17,7 +17,15 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
     gce_cluster_config {
       subnetwork       = var.subnet
       internal_ip_only = true
+      metadata = {
+        "PIP_PACKAGES" = "pandas<2 mlflow==2.3.1 google-cloud-storage==2.9.0"
+      }
     }
+    initialization_action {
+      script      = "gs://goog-dataproc-initialization-actions-${var.region}/python/pip-install.sh"
+      timeout_sec = "600"
+    }
+
     master_config {
       num_instances = 1
       machine_type  = var.machine_type
