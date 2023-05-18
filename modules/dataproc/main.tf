@@ -18,8 +18,7 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
       subnetwork       = var.subnet
       internal_ip_only = true
       metadata = {
-        "PIP_PACKAGES"   = "pandas<2 mlflow==2.3.1 google-cloud-storage==2.9.0"
-        "CONDA_PACKAGES" = "pandas<2 mlflow==2.3.1 google-cloud-storage==2.9.0"
+        "PIP_PACKAGES" = "pandas<2 mlflow==2.3.1 google-cloud-storage==2.9.0"
       }
     }
     initialization_action {
