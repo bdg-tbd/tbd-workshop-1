@@ -4,7 +4,7 @@ on:
 
 permissions: read-all
 jobs:
-  release:
+  destroy-release:
     runs-on: ubuntu-latest
   # Add "id-token" with the intended permissions.
     permissions:
