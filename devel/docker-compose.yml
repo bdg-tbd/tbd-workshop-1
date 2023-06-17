@@ -11,6 +11,7 @@ services:
     restart: unless-stopped
     volumes:
       - home-workspace-volume:/home/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
 volumes:
     home-workspace-volume:
         external: false
