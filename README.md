@@ -35,9 +35,9 @@ gcloud auth application-default login
 ```bash
 export TF_VAR_tbd_semester=2023L
 # format: 20xx for teachers, student ID number for students 
-export TF_VAR_user_id=2002
+export TF_VAR_user_id=9900
 # use your own billing account id
-export TF_VAR_billing_account=016F99-F0B167-9A895D
+export TF_VAR_billing_account=01E498-FCE608-11EF17
 
 ```
 2. Enter `bootstrap` folder then init project and Terraform state bucket
@@ -83,8 +83,8 @@ pre-commit install
 6. Commit changes, push to a branch and open a PR to **YOUR** repository main/master branch.
 If you see a warning like this -- please enable the workflows:
 ![img.png](doc/figures/workflow.png)
-   ...and repush your changes!
-If pre-commit linters report any issues please try to **fix** them :hammer_and_wrench:.
+...and repush your changes!
+
 Once all Pull Requests checks **have passed** please merge your PR and wait until your release job finishes.
 7. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
 the instructions
@@ -113,9 +113,10 @@ python3.8 -m ipykernel install --user --name pyspark
 :exclamation: :exclamation: :exclamation: Please remember to **destroy all** the resources after the workshop:
 
 ```bash
+terraform init -backend-config=env/backend.tfvars
 terraform destroy -no-color -var-file env/project.tfvars 
 ```
-
+q
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
