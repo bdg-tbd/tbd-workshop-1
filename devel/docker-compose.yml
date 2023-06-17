@@ -1,0 +1,17 @@
+---
+version: "2.1"
+services:
+  code-server:
+    image: biodatageeks/openvscode-server:latest
+    build: ./docker
+    environment:
+      - TZ=Europe/Warsaw
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    volumes:
+      - home-workspace-volume:/home/workspace
+      - /var/run/docker.sock:/var/run/docker.sock
+volumes:
+    home-workspace-volume:
+        external: false

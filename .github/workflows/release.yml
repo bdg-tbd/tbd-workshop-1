@@ -24,7 +24,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: 1.4.2
+        terraform_version: 1.5.0
     - id: 'auth'
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
