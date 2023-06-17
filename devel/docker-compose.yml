@@ -2,8 +2,7 @@
 version: "2.1"
 services:
   code-server:
-    image: biodatageeks/openvscode-server:latest
-    build: ./docker
+    image: biodatageeks/openvscode-server:pr-36
     environment:
       - TZ=Europe/Warsaw
     ports:
