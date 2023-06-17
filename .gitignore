@@ -34,3 +34,5 @@ terraform.rc
 .idea
 
 .external_modules/
+
+.DS_Store
