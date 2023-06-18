@@ -13,10 +13,10 @@ to Google Cloud.
 ![img.png](doc/figures/hla.png)
 ## Prerequisites
 ### Software
-* Google Cloud SDK ~>424.0.0
-* gsutil ~>5.21
-* pre-commit ~>2.15.0
-* Terraform ~>1.4.0
+* Google Cloud SDK
+* gsutil
+* pre-commit
+* Terraform ( [Requirements](#Requirements) )
 * Python ~>3.8
 * Linux/MacOS
 * [pre-commit-terraform dependencies](https://github.com/antonbabenko/pre-commit-terraform)
@@ -116,7 +116,6 @@ python3.8 -m ipykernel install --user --name pyspark
 terraform init -backend-config=env/backend.tfvars
 terraform destroy -no-color -var-file env/project.tfvars 
 ```
-q
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
