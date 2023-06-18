@@ -6,9 +6,11 @@ on:
   pull_request:
     branches:
       - master
+    paths: ['devel/docker/**']
   push:
     branches:
       - master
+    paths: ['devel/docker/**']
 
 jobs:
   push_to_registry:
