@@ -16,7 +16,7 @@ RUN apt-get update && \
     apt-get update && apt-get install -y terraform  && \
     rm -rf /var/lib/apt/lists/*
 
-#gcloud
+# gcloud
 RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | \
     tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | \
     apt-key --keyring /usr/share/keyrings/cloud.google.gpg  add - && \
@@ -24,7 +24,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
     apt-get install google-cloud-cli -y && \
     rm -rf /var/lib/apt/lists/*
 
-#miniconda 3.10
+# miniconda 3.10
 RUN mkdir -p $MINICONDA_ROOT && \
     wget  https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh -O $MINICONDA_ROOT/miniconda.sh && \
     bash $MINICONDA_ROOT/miniconda.sh -b -u -p $MINICONDA_ROOT && \
@@ -34,10 +34,10 @@ RUN mkdir -p $MINICONDA_ROOT && \
 
 ENV PATH=$PATH:$MINICONDA_ROOT/bin
 
-#install gsutil
+# gsutil
 RUN pip3 install --no-cache-dir gsutil==5.24
 
-#install pre-commit deps
+# pre-commit deps
 RUN pip3 install --no-cache-dir pre-commit==3.3.3 checkov==2.3.294
 
 RUN apt-get update -y && apt-get install unzip -y
@@ -49,12 +49,12 @@ RUN apt-get update -y && apt-get install -y jq && \
     curl -L "$(curl -s https://api.github.com/repos/minamijoyo/tfupdate/releases/latest | grep -o -E -m 1 "https://.+?_linux_amd64.tar.gz")" > tfupdate.tar.gz && tar -xzf tfupdate.tar.gz tfupdate && rm tfupdate.tar.gz && mv tfupdate /usr/bin/ && \
     curl -L "$(curl -s https://api.github.com/repos/minamijoyo/hcledit/releases/latest | grep -o -E -m 1 "https://.+?_linux_amd64.tar.gz")" > hcledit.tar.gz && tar -xzf hcledit.tar.gz hcledit && rm hcledit.tar.gz && mv hcledit /usr/bin/
 
-#install hadolint
+# hadolint
 RUN wget https://github.com/hadolint/hadolint/releases/download/v2.12.1-beta/hadolint-Linux-x86_64 && \
     mv hadolint-Linux-x86_64 /usr/bin/hadolint && \
     chmod +x /usr/bin/hadolint
 
-#install docker
+# docker
 RUN install -m 0755 -d /etc/apt/keyrings && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg && \
     chmod a+r /etc/apt/keyrings/docker.gpg && \

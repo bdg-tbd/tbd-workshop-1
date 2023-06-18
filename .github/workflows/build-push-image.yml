@@ -1,15 +1,16 @@
-#checkov:skip=CKV2_GHA_1: "Ensure top-level permissions are not set to write-all"
-
 name: Publish Docker image
 
 on:
   pull_request:
     branches:
       - master
+    paths: ['devel/docker/**']
   push:
     branches:
       - master
+    paths: ['devel/docker/**']
 
+permissions: read-all
 jobs:
   push_to_registry:
     name: Push Docker image to Docker Hub
