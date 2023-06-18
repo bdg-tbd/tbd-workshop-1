@@ -3,6 +3,8 @@ version: "2.1"
 services:
   code-server:
     image: biodatageeks/openvscode-server:pr-36
+    security_opt:
+      - seccomp:unconfined
     environment:
       - TZ=Europe/Warsaw
     ports:
