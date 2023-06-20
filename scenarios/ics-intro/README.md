@@ -55,7 +55,7 @@ gcloud auth application-default revoke
 # login and get the new application credentials
 gcloud auth application-default login
 ```
-* Copy ssh-key to your clipboard and follow the instruction to put your ssh-key in github:
+* Copy ssh-key to your clipboard and follow the instruction to add your ssh-key to your github account:
 * [https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui]
   
 
