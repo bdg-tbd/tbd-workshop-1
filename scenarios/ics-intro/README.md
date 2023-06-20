@@ -9,9 +9,9 @@
 Vertex AI notebooks and Dataproc services on GCP.
 5. Learn how to use Workload Identity Federation for a secure authentication from GitHub Actions
 to Google Cloud.
-![img.png](../doc/figures/workload_id_federation.png)
+![img.png](../..//doc/figures/workload_id_federation.png)
 ## High level architecture
-![img.png](../doc/figures/hla.png)
+![img.png](../../doc/figures/hla.png)
 ## Prerequisites
 ### Software
 * Google Cloud SDK
