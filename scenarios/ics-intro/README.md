@@ -70,11 +70,13 @@ gcloud auth application-default login
   
 
 ## Project setup
-1. Export shared environment variables
+1. Export shared environment variables. IMPORTANT:
+   - Replace 'Tomasz Gambin' with your name.
+   - Replace 01E498-FCE608-11EF17 with your billing account
 ```bash
 export TF_VAR_tbd_semester=2023L
-# format: 20xx for teachers, student ID number for students 
-export TF_VAR_user_id=9900
+# replace Tomasz Gambin with your name
+export TF_VAR_user_id=$(echo -n "Tomasz Gambin" | tr '[:upper:]' '[:lower:]' | grep -o . | LC_ALL=C sort | tr -d '\n' | cksum | awk '{printf "%05d\n", $1 % 100000}')  
 # use your own billing account id
 export TF_VAR_billing_account=01E498-FCE608-11EF17
 
@@ -92,7 +94,7 @@ cd ..
 ![img.png](doc/figures/bootstrap-output.png)
 * Edit `cicd_bootstrap/conf/github_actions.tfvars` to set `github_org` and `github_repo`, e.g.:
 ```text
-  github_org  = "mwiewior"
+  github_org  = "tgambin"
   github_repo = "tbd-workshop-1"
 ```
 * Init state file and set env variables
