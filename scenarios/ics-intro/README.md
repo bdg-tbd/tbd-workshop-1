@@ -47,6 +47,18 @@ docker-compose up --build
  # generate ssh-key (change to your email address)
  ssh-keygen -t ed25519 -C tgambin@gmail.com 
 ```
+* Copy ssh-key to your clipboard and follow the instruction to add your ssh-key to your github account:
+* [https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui]
+* Run in OpenVsCode terminal. Change your name and email:
+```bash
+git config --global user.name "Tomasz Gambin" 
+git config --global user.email tgambin@gmail.com 
+```
+* Clone once again your fork of this repo (this time in OpenVsCode terminal):
+```bash
+cd ~
+git clone git@github.com:<user_name>/tbd-workshop-1.git 
+```
 ## GCP setup
 * Authenticate to GCP to obtain the default credentials used for running the code
 ```bash
@@ -55,8 +67,6 @@ gcloud auth application-default revoke
 # login and get the new application credentials
 gcloud auth application-default login
 ```
-* Copy ssh-key to your clipboard and follow the instruction to add your ssh-key to your github account:
-* [https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account?tool=webui]
   
 
 ## Project setup
