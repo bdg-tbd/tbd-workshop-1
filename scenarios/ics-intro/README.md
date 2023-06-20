@@ -1,29 +1,40 @@
 # Introduction to Cloud Computing 
 
 ## Workshop goals
-1. 
-1. Learn how to provision computing resources for running Big Data analyses using the Infrastructure as Code (IaC) approach.
-2. Learn how to set up opinionated CI/CD pipelines to deploy cloud infrastructure. 
-3. Learn how to utilize linters for detecting security vulnerabilities in cloud infrastructure.
-4. Learn how to run Apache Spark code in a distributed way on Hadoop cluster using
-Vertex AI notebooks and Dataproc services on GCP.
-5. Learn how to use Workload Identity Federation for a secure authentication from GitHub Actions
+1. Learn how to obtain cloud credits (GCP, Azzure, AWS, Academic clouds)
+2. Learn how to use GCP console (IAM, Compute engine, cloud storage, k8s, vertexAI, budgets)
+3. Learn how to provision computing resources for running Big Data analyses using the Infrastructure as Code (IaC) approach.
+4. Learn how to set up opinionated CI/CD pipelines to deploy cloud infrastructure. 
+5. Learn how to utilize linters for detecting security vulnerabilities in cloud infrastructure.
+6. Learn how to run Apache Spark code in a distributed way on Hadoop cluster using Vertex AI notebooks and Dataproc services on GCP.
+7. Learn how to use Workload Identity Federation for a secure authentication from GitHub Actions
 to Google Cloud.
 ![img.png](../..//doc/figures/workload_id_federation.png)
 ## High level architecture
 ![img.png](../../doc/figures/hla.png)
 ## Prerequisites
-### Software
-* Google Cloud SDK
-* gsutil
-* pre-commit
-* Terraform ( [Requirements](#Requirements) )
-* Python ~>3.8
-* Linux/MacOS
-* [pre-commit-terraform dependencies](https://github.com/antonbabenko/pre-commit-terraform)
-
+### Docker
+* docker
+* docker-compose
 ### GCP
 * Redeem a GCP coupon to create a billing account
+
+## Docker setup
+* Clone this repo
+```bash
+cd ~ 
+git clone https://github.com/bdg-tbd/tbd-workshop-1.git 
+```
+* Run docker-compose
+```bash
+service docker start  # (optionally on thx) 
+cd tbd-workshop-1/devel/ 
+docker-compose up --build 
+```
+* Open web browser (e.g. google-chrome) and open the following link
+```bash
+ localhost:3000
+```
 * Authenticate to GCP to obtain the default credentials used for running the code
 ```bash
 # first remove the stored credentials if exist
@@ -31,6 +42,7 @@ gcloud auth application-default revoke
 # login and get the new application credentials
 gcloud auth application-default login
 ```
+
 ## Project setup
 1. Export shared environment variables
 ```bash
