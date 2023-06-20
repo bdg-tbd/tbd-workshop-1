@@ -91,7 +91,7 @@ cd ..
 3. CI/CD (Github Actions setup using [Workload Identity Federation](https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions))
 * Edit `env/backend.tfvars` file and set `bucket` variable with the Terraform state bucket
 * Edit `env/project.tfvars` file and set `project_name`, `iac_service_account` variables using the output from the `bootstrap` phase, e.g.:
-![img.png](doc/figures/bootstrap-output.png)
+![img.png](../../doc/figures/bootstrap-output.png)
 * Edit `cicd_bootstrap/conf/github_actions.tfvars` to set `github_org` and `github_repo`, e.g.:
 ```text
   github_org  = "tgambin"
@@ -112,10 +112,10 @@ cd ..
 ```
 
 4. Use output variables for configuring Github Actions workflow: `.github/workflows/pull-request.yml`,e.g. :
-![img.png](doc/figures/workload-identity.png)
+![img.png](../../doc/figures/workload-identity.png)
 Please do not edit and hardcode these values in a YAML but set the Github Actions secrets instead
 while preserving the secret names, i.e. `GCP_WORKLOAD_IDENTITY_PROVIDER_NAME` and `GCP_WORKLOAD_IDENTITY_SA_EMAIL`.
-![img.png](doc/figures/secrets.png)
+![img.png](../../doc/figures/secrets.png)
 5. Install and configure `pre-commit`
 ```bash
 pre-commit install
@@ -123,20 +123,20 @@ pre-commit install
 
 6. Commit changes, push to a branch and open a PR to **YOUR** repository main/master branch.
 If you see a warning like this -- please enable the workflows:
-![img.png](doc/figures/workflow.png)
+![img.png](../../doc/figures/workflow.png)
 ...and repush your changes!
 
 Once all Pull Requests checks **have passed** please merge your PR and wait until your release job finishes.
 7. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
 the instructions
-![img.png](doc/figures/workbench.png)
+![img.png](../../doc/figures/workbench.png)
 
 8. In your Jupyterlab enviroment add Python3.8 kernel:
 ```bash
 python3.8 -m ipykernel install --user --name pyspark
 ```
 9. Run a `Hello-world` PySpark application in a YARN-client mode:
-![img.png](doc/figures/pyspark.png)
+![img.png](../../doc/figures/pyspark.png)
 
 10. Additional tasks using Terraform:
 <ol type="a">
@@ -147,10 +147,9 @@ python3.8 -m ipykernel install --user --name pyspark
 </ol>
 
 
-11. **Workshop 2** exercises are described in [Jupyter notebook](notebooks/workshop_2_mlops.ipynb)
 
 
-12. **IMPORTANT**
+11. **IMPORTANT**
 :exclamation: :exclamation: :exclamation: Please remember to **destroy all** the resources after the workshop:
 
 ```bash
