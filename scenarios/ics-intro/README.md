@@ -20,10 +20,11 @@ to Google Cloud.
 * Redeem a GCP coupon to create a billing account
 
 ## Docker setup
-* Clone this repo
+* Fork this repo
+* Clone your fork of this repo. Replace <user_name> with your github login
 ```bash
 cd ~ 
-git clone https://github.com/bdg-tbd/tbd-workshop-1.git 
+git clone https://github.com/<user_name>/tbd-workshop-1.git 
 ```
 * Run docker-compose
 ```bash
@@ -35,6 +36,7 @@ docker-compose up --build
 ```bash
  localhost:3000
 ```
+## 
 * Authenticate to GCP to obtain the default credentials used for running the code
 ```bash
 # first remove the stored credentials if exist
