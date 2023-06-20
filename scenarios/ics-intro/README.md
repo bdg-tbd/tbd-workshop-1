@@ -19,8 +19,9 @@ to Google Cloud.
 ### GCP
 * Redeem a GCP coupon to create a billing account
 
-## Docker setup
+## OpenVsCode setup
 * Fork this repo
+![img.png](../../doc/figures/fork.png)
 * Clone your fork of this repo. Replace <user_name> with your github login
 ```bash
 cd ~ 
@@ -36,7 +37,17 @@ docker-compose up --build
 ```bash
  localhost:3000
 ```
-## 
+* You should see:
+![img.png](../../doc/figures/vscode.png)
+## Github setup
+* Open Terminal in OpenVsCode (left corner -> Terminal -> New terminal)
+* In the terminal run
+```bash
+ sudo apt-get install openssh-client 
+ # generate ssh-key (change to your email address)
+ ssh-keygen -t ed25519 -C tgambin@gmail.com 
+```
+## GCP setup
 * Authenticate to GCP to obtain the default credentials used for running the code
 ```bash
 # first remove the stored credentials if exist
