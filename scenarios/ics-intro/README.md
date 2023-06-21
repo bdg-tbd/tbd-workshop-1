@@ -31,7 +31,7 @@ git clone https://github.com/<user_name>/tbd-workshop-1.git
 ```bash
 service docker start  # (optionally on thx) 
 cd tbd-workshop-1/devel/ 
-docker-compose up --build 
+docker-compose up -d 
 ```
 * Open web browser (e.g. google-chrome) and open the following link
 ```bash
@@ -152,6 +152,10 @@ python3.8 -m ipykernel install --user --name pyspark
 11. **IMPORTANT**
 :exclamation: :exclamation: :exclamation: Please remember to **destroy all** the resources after the workshop:
 
+a) using a Github Action (preferred)
+![img.png](../../doc/figures/destroy-workflow.png)
+
+b) or running Terraform destroy command locally
 ```bash
 terraform init -backend-config=env/backend.tfvars
 terraform destroy -no-color -var-file env/project.tfvars 
