@@ -50,3 +50,11 @@ module "dataproc" {
   region       = var.region
   subnet       = module.vpc.subnets[local.notebook_subnet_id].id
 }
+
+module "composer" {
+  depends_on   = [module.vpc]
+  source       = "./modules/composer"
+  project_name = var.project_name
+  network      = module.vpc.network.network_name
+  subnet       = module.vpc.subnets[local.notebook_subnet_id].name
+}
