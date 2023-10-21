@@ -1,7 +1,7 @@
 
 module "vpc" {
   source       = "terraform-google-modules/network/google"
-  version      = "~> 7.0"
+  version      = "~> 7.4.0"
   project_id   = var.project_name
   network_name = var.network_name
   routing_mode = "GLOBAL"
@@ -24,7 +24,7 @@ module "vpc" {
 }
 module "cloud-router" {
   source  = "terraform-google-modules/cloud-router/google"
-  version = "~> 5.0.0"
+  version = "~> 6.0.1"
   project = var.project_name
   region  = var.region
   network = module.vpc.network_id
