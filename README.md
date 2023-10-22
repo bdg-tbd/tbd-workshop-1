@@ -61,7 +61,7 @@ cd ..
 cd cicd_bootstrap
 terraform init -backend-config=../env/backend.tfvars
 ```
-* <B> Task 1: </B> Using gsutil ls and gsutil cat commands find tfstate and check its content. Paste the screenshot of the output below.
+* <B> Task 1: </B> Using gsutil ls and gsutil cat commands find tfstate and check its content. Paste below the screenshot of output gsutil ls.
 
   
 * Apply
