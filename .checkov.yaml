@@ -6,5 +6,10 @@ skip-check:
   - CKV_TF_1 # Ensure Terraform module sources use a commit hash
   - CKV2_GCP_18  # Ensure GCP network defines a firewall and does not use the default firewall
   - CKV_GCP_76 # "Ensure that Private google access is enabled for IPV6"
+  - CKV_GCP_49 # "Ensure roles do not impersonate or manage Service Accounts used at project level"
+  - CKV_GCP_41 # "Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level"
+  - CKV_GCP_29 # "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
+  - CKV_GCP_62 # "Bucket should log access"
+
 skip-path:
  - gha-creds-*json

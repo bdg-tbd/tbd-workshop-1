@@ -24,6 +24,8 @@
 |------|------|
 | [google_compute_subnetwork.composer-subnet](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork) | resource |
 | [google_project_iam_member.composer-member](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.dataproc-editor-iam](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
+| [google_project_iam_member.dataproc-sa-user-iam](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_project_service.api](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
 | [google_service_account.tbd-composer-sa](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
 
@@ -33,6 +35,7 @@
 |------|-------------|------|---------|:--------:|
 | <a name="input_env_name"></a> [env\_name](#input\_env\_name) | Composer env name | `string` | `"demo-lab"` | no |
 | <a name="input_env_size"></a> [env\_size](#input\_env\_size) | Environment size | `string` | `"ENVIRONMENT_SIZE_SMALL"` | no |
+| <a name="input_env_variables"></a> [env\_variables](#input\_env\_variables) | Apache Airflow variables to set | `map(string)` | n/a | yes |
 | <a name="input_image_version"></a> [image\_version](#input\_image\_version) | n/a | `string` | `"composer-2.4.6-airflow-2.6.3"` | no |
 | <a name="input_network"></a> [network](#input\_network) | VPC to use for notebooks | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
@@ -42,5 +45,8 @@
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_data_service_account"></a> [data\_service\_account](#output\_data\_service\_account) | Apache Airflow service account |
+| <a name="output_gcs_bucket"></a> [gcs\_bucket](#output\_gcs\_bucket) | GCS bucket for storing Apache Airflow DAGs |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

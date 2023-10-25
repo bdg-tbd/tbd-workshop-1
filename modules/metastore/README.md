@@ -23,6 +23,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [google_dataproc_metastore_service.demo](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dataproc_metastore_service) | resource |
+| [google_project_service.api-metastore](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
 
 ## Inputs
 
@@ -35,5 +36,7 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_metastore_name"></a> [metastore\_name](#output\_metastore\_name) | Metastore server name |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

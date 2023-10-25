@@ -42,3 +42,8 @@ variable "env_size" {
   description = "Environment size"
   default     = "ENVIRONMENT_SIZE_SMALL"
 }
+
+variable "env_variables" {
+  type        = map(string)
+  description = "Apache Airflow variables to set"
+}

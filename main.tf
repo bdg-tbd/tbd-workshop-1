@@ -4,6 +4,8 @@ locals {
   notebook_subnet_name    = "subnet-01"
   notebook_subnet_id      = "${var.region}/${local.notebook_subnet_name}"
   composer_subnet_address = "10.11.0.0/16"
+  code_bucket_name        = "${var.project_name}-code"
+  data_bucket_name        = "${var.project_name}-data"
 }
 
 module "vpc" {
@@ -52,7 +54,16 @@ module "dataproc" {
   project_name = var.project_name
   region       = var.region
   subnet       = module.vpc.subnets[local.notebook_subnet_id].id
+  machine_type = "e2-standard-2"
 }
+
+## Uncomment for Dataproc batches (serverless)
+#module "metastore" {
+#  source = "./modules/metastore"
+#  project_name   = var.project_name
+#  region         = var.region
+#  network        = module.vpc.network.network_id
+#}
 
 module "composer" {
   depends_on     = [module.vpc]
@@ -60,4 +71,21 @@ module "composer" {
   project_name   = var.project_name
   network        = module.vpc.network.network_name
   subnet_address = local.composer_subnet_address
+  env_variables = {
+    "AIRFLOW_VAR_PROJECT_ID" : var.project_name,
+    "AIRFLOW_VAR_REGION_NAME" : var.region,
+    "AIRFLOW_VAR_BUCKET_NAME" : local.code_bucket_name
+    "AIRFLOW_VAR_PHS_CLUSTER" : module.dataproc.dataproc_cluster_name,
+  }
 }
+
+module "data-pipelines" {
+  source               = "./modules/data-pipeline"
+  project_name         = var.project_name
+  region               = var.region
+  bucket_name          = local.code_bucket_name
+  data_service_account = module.composer.data_service_account
+  dag_bucket_name      = module.composer.gcs_bucket
+  data_bucket_name     = local.data_bucket_name
+}
+
