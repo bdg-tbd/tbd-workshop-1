@@ -21,5 +21,5 @@ variable "subnet_name" {
 
 variable "subnet_address" {
   type    = string
-  default = "10.10.10.0"
+  default = "10.10.10.0/24"
 }

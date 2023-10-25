@@ -28,7 +28,7 @@ resource "google_compute_subnetwork" "composer-subnet" {
   ip_cidr_range              = var.subnet_address
   region                     = var.region
   network                    = var.network
-  private_ipv6_google_access = "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE"
+  private_ipv6_google_access = "DISABLE_GOOGLE_ACCESS"
   log_config {
     aggregation_interval = "INTERVAL_10_MIN"
     flow_sampling        = 0.5
@@ -46,7 +46,7 @@ module "composer" {
   region                    = var.region
   composer_env_name         = var.env_name
   network                   = var.network
-  subnetwork                = google_compute_subnetwork.composer-subnet.id
+  subnetwork                = google_compute_subnetwork.composer-subnet.name
   enable_private_endpoint   = false
   environment_size          = var.env_size
   image_version             = var.image_version

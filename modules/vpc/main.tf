@@ -54,7 +54,7 @@ resource "google_compute_firewall" "default-internal-allow-all" {
   network       = module.vpc.network_id
   priority      = 65534
   direction     = "INGRESS"
-  source_ranges = ["${var.subnet_address}/24"]
+  source_ranges = [var.subnet_address]
 
   allow {
     protocol = "all"
