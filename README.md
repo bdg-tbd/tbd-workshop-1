@@ -105,11 +105,27 @@ python3.8 -m ipykernel install --user --name pyspark
  <li>(Optional) Get access to Apache Spark WebUI</li>
 </ol>
 
+11. Create a BigQuery dataset and an external table (change storage location if needed)
 
-11. **Workshop 2** exercises are described in [Jupyter notebook](notebooks/workshop_2_mlops.ipynb)
+```sql
+CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
+
+CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
+  OPTIONS (
+  
+  format = 'ORC',
+  uris = ['gs://tbd-2023z-9900-data/data/shakespeare/*.orc']);
 
 
-12. **IMPORTANT**
+SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
+
+```
+
+
+12. **Workshop 2** exercises are described in [Jupyter notebook](notebooks/workshop_2_mlops.ipynb)
+
+
+13. **IMPORTANT**
 :exclamation: :exclamation: :exclamation: Please remember to **destroy all** the resources after the workshop:
 
 ```bash
