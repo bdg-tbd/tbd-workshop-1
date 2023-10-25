@@ -8,10 +8,10 @@ module "vpc" {
   subnets = [
     {
       subnet_name           = var.subnet_name
-      subnet_ip             = "${var.subnet_address}/24"
+      subnet_ip             = var.subnet_address
       subnet_region         = var.region
       subnet_private_access = "true"
-    },
+    }
   ]
   routes = [
     {

@@ -23,6 +23,20 @@ resource "google_project_service" "api" {
   disable_on_destroy = false
 }
 
+resource "google_compute_subnetwork" "composer-subnet" {
+  name                       = var.subnet_name
+  ip_cidr_range              = var.subnet_address
+  region                     = var.region
+  network                    = var.network
+  private_ipv6_google_access = "ENABLE_BIDIRECTIONAL_ACCESS_TO_GOOGLE"
+  log_config {
+    aggregation_interval = "INTERVAL_10_MIN"
+    flow_sampling        = 0.5
+    metadata             = "INCLUDE_ALL_METADATA"
+  }
+}
+
+
 module "composer" {
   depends_on = [google_project_service.api, google_project_iam_member.composer-member]
   source     = "terraform-google-modules/composer/google//modules/create_environment_v2"
@@ -32,7 +46,7 @@ module "composer" {
   region                    = var.region
   composer_env_name         = var.env_name
   network                   = var.network
-  subnetwork                = var.subnet
+  subnetwork                = google_compute_subnetwork.composer-subnet.id
   enable_private_endpoint   = false
   environment_size          = var.env_size
   image_version             = var.image_version

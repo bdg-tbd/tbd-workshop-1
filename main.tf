@@ -1,15 +1,18 @@
 locals {
-  notebook_vpc_name    = "main-vpc"
-  notebook_subnet_name = "subnet-01"
-  notebook_subnet_id   = "${var.region}/${local.notebook_subnet_name}"
+  main_subnet_address     = "10.10.10.0/24"
+  notebook_vpc_name       = "main-vpc"
+  notebook_subnet_name    = "subnet-01"
+  notebook_subnet_id      = "${var.region}/${local.notebook_subnet_name}"
+  composer_subnet_address = "10.11.0.0/16"
 }
 
 module "vpc" {
-  source       = "./modules/vpc"
-  project_name = var.project_name
-  region       = var.region
-  network_name = local.notebook_vpc_name
-  subnet_name  = local.notebook_subnet_name
+  source         = "./modules/vpc"
+  project_name   = var.project_name
+  region         = var.region
+  network_name   = local.notebook_vpc_name
+  subnet_name    = local.notebook_subnet_name
+  subnet_address = local.main_subnet_address
 }
 
 
@@ -52,9 +55,9 @@ module "dataproc" {
 }
 
 module "composer" {
-  depends_on   = [module.vpc]
-  source       = "./modules/composer"
-  project_name = var.project_name
-  network      = module.vpc.network.network_name
-  subnet       = module.vpc.subnets[local.notebook_subnet_id].name
+  depends_on     = [module.vpc]
+  source         = "./modules/composer"
+  project_name   = var.project_name
+  network        = module.vpc.network.network_name
+  subnet_address = local.composer_subnet_address
 }

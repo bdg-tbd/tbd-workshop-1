@@ -21,9 +21,15 @@ variable "network" {
   description = "VPC to use for notebooks"
 }
 
-variable "subnet" {
+variable "subnet_address" {
   type        = string
   description = "VPC subnet used for deployment"
+}
+
+variable "subnet_name" {
+  type        = string
+  description = "Composer subnet name"
+  default     = "composer-subnet-01"
 }
 
 variable "image_version" {

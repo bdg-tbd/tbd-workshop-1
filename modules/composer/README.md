@@ -22,6 +22,7 @@
 
 | Name | Type |
 |------|------|
+| [google_compute_subnetwork.composer-subnet](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_subnetwork) | resource |
 | [google_project_iam_member.composer-member](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
 | [google_project_service.api](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
 | [google_service_account.tbd-composer-sa](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/service_account) | resource |
@@ -36,7 +37,8 @@
 | <a name="input_network"></a> [network](#input\_network) | VPC to use for notebooks | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
-| <a name="input_subnet"></a> [subnet](#input\_subnet) | VPC subnet used for deployment | `string` | n/a | yes |
+| <a name="input_subnet_address"></a> [subnet\_address](#input\_subnet\_address) | VPC subnet used for deployment | `string` | n/a | yes |
+| <a name="input_subnet_name"></a> [subnet\_name](#input\_subnet\_name) | Composer subnet name | `string` | `"composer-subnet-01"` | no |
 
 ## Outputs
 
