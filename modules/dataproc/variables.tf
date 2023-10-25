@@ -22,5 +22,5 @@ variable "machine_type" {
 
 variable "image_version" {
   type    = string
-  default = "2.1.11-ubuntu20"
+  default = "2.1.27-ubuntu20"
 }

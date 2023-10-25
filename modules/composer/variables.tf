@@ -21,9 +21,15 @@ variable "network" {
   description = "VPC to use for notebooks"
 }
 
-variable "subnet" {
+variable "subnet_address" {
   type        = string
   description = "VPC subnet used for deployment"
+}
+
+variable "subnet_name" {
+  type        = string
+  description = "Composer subnet name"
+  default     = "composer-subnet-01"
 }
 
 variable "image_version" {
@@ -35,4 +41,9 @@ variable "env_size" {
   type        = string
   description = "Environment size"
   default     = "ENVIRONMENT_SIZE_SMALL"
+}
+
+variable "env_variables" {
+  type        = map(string)
+  description = "Apache Airflow variables to set"
 }

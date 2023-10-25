@@ -8,10 +8,10 @@ module "vpc" {
   subnets = [
     {
       subnet_name           = var.subnet_name
-      subnet_ip             = "${var.subnet_address}/24"
+      subnet_ip             = var.subnet_address
       subnet_region         = var.region
       subnet_private_access = "true"
-    },
+    }
   ]
   routes = [
     {
@@ -54,7 +54,7 @@ resource "google_compute_firewall" "default-internal-allow-all" {
   network       = module.vpc.network_id
   priority      = 65534
   direction     = "INGRESS"
-  source_ranges = ["${var.subnet_address}/24"]
+  source_ranges = [var.subnet_address]
 
   allow {
     protocol = "all"

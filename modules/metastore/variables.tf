@@ -9,17 +9,14 @@ variable "region" {
   description = "GCP region"
 }
 
-variable "network_name" {
+variable "network" {
   type        = string
-  description = "VPC name"
+  description = "VPC to use for notebooks"
 }
 
-variable "subnet_name" {
+variable "metastore_version" {
   type        = string
-  description = "VPC subnet name"
-}
+  description = "Hive Metastore version"
+  default     = "3.1.2"
 
-variable "subnet_address" {
-  type    = string
-  default = "10.10.10.0/24"
 }
