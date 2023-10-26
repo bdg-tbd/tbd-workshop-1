@@ -90,7 +90,7 @@ Once all Pull Requests checks **have passed** please merge your PR and wait unti
 the instructions
 ![img.png](doc/figures/workbench.png)
 
-8. In your Jupyterlab enviroment add Python3.8 kernel:
+8. Check if `pyspark` kernel exists - if not then in your Jupyterlab enviroment add Python3.8 kernel:
 ```bash
 python3.8 -m ipykernel install --user --name pyspark
 ```
