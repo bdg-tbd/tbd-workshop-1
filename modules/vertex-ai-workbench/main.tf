@@ -63,7 +63,10 @@ resource "google_notebooks_instance" "tbd_notebook" {
   no_public_ip    = true
   no_proxy_access = true
   # end
-  instance_owners     = [var.ai_notebook_instance_owner]
+  instance_owners = [var.ai_notebook_instance_owner]
+  metadata = {
+    vmDnsSetting : "GlobalDefault"
+  }
   post_startup_script = "gs://${google_storage_bucket_object.post-startup.bucket}/${google_storage_bucket_object.post-startup.name}"
 }
 

@@ -10,6 +10,7 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
   name       = "tbd-cluster"
   project    = var.project_name
   region     = var.region
+
   cluster_config {
     #    endpoint_config {
     #      enable_http_port_access = "true"
@@ -22,6 +23,7 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
       internal_ip_only = true
       metadata = {
         "PIP_PACKAGES" = "pandas<2 mlflow==2.3.1 google-cloud-storage==2.9.0"
+        "vmDnsSetting" = "GlobalDefault"
       }
     }
     initialization_action {
