@@ -4,7 +4,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after your wo
 
 1. Authors:
 
-   ***your group nr***
+   ***enter your group nr***
 
    ***link to forked repo***
    
@@ -30,7 +30,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after your wo
         * role   // follow the instruction above
         * member = "serviceAccount:${var.data_service_account}"
 
-    ***place the link to modified file and terraform snippet here***
+    ***insert the link to modified file and terraform snippet here***
 
     Create PR from this branch to **YOUR** master and merge it to make new release. 
     
