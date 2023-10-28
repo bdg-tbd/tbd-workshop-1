@@ -33,9 +33,9 @@
 
     ***describe one selected module and put the output of terraform graph for this module here***
    
-6. Reach YARN UI - on what port?
+6. Reach YARN UI
    
-   ***add your answer here***
+   ***place port  and the screenshot of YARN UI here***
    
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
