@@ -1,5 +1,6 @@
 IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after your work session
-
+  
+![img.png](doc/figures/destroy.png)
 
 1. Authors:
 
