@@ -21,7 +21,7 @@
         * role   // follow the instruction above
         * member = "serviceAccount:${var.data_service_account}"
 
-    ***place the terraform snippet here***
+    ***place the link to modified file and terraform snippet here***
 
     Create PR from this branch to **YOUR** master and merge it to make new release. 
     
@@ -35,7 +35,7 @@
    
 6. Reach YARN UI
    
-   ***place port  and the screenshot of YARN UI here***
+   ***place port and the screenshot of YARN UI here***
    
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
@@ -52,7 +52,6 @@
    ***place the screenshot from infracost output here***
 
 9. Create a BigQuery dataset and an external table
-    
     
     ***place the code and output here***
    
