@@ -15,7 +15,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
   ![img.png](doc/figures/discounts.png)
 
 5. From avaialble Github Actions select and run destroy on main branch.
-6. Create new git branch and two resources in ```/modules/data-pipeline/main.tf```:
+6. Create new git branch and add two resources in ```/modules/data-pipeline/main.tf```:
     1. resource "google_storage_bucket" "tbd-data-bucket" -> the bucket to store data. Set the following properties:
         * project  // look for variable in variables.tf
         * name  // look for variable in variables.tf
