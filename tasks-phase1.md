@@ -30,7 +30,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after your wo
         * role   // follow the instruction above
         * member = "serviceAccount:${var.data_service_account}"
 
-    ***insert the link to modified file and terraform snippet here***
+    ***insert the link to the modified file and terraform snippet here***
 
     Create PR from this branch to **YOUR** master and merge it to make new release. 
     
@@ -44,7 +44,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after your wo
    
 8. Reach YARN UI
    
-   ***place port and the screenshot of YARN UI here***
+   ***place the port and the screenshot of YARN UI here***
    
 9. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
@@ -78,16 +78,16 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after your wo
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
-    ***place link to the modified file and inserted terraform code***
+    ***place the link to the modified file and inserted terraform code***
     
     3. Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place link to the modified file and inserted terraform code***
+    ***place the link to the modified file and inserted terraform code***
     
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
     
-    ***place link to the modified file and inserted terraform code***
+    ***place the link to the modified file and inserted terraform code***
 
     4. (Optional) Get access to Apache Spark WebUI
 
-    ***place link to the modified file and inserted terraform code***
+    ***place the link to the modified file and inserted terraform code***
