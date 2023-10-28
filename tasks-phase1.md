@@ -28,18 +28,14 @@
 
    ***place the screenshot from infracost output here***
 
-8. Create sample objects in Big Query:
-    1. dataset
-   
-    ***place the screenshot here***
-   
-    2. external table in ORC
-
-    ***place the screenshot here***
+8. Create a BigQuery dataset and an external table
+    
+    
+    ***place the code and output here***
    
     ***why does ORC not require a table schema?***
   
-9. Starting a session session with Vertex AI workbench
+9. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
    
