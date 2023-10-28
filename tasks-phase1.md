@@ -56,7 +56,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after your wo
 
 10. Add costs by entering the expected consumption into Infracost
 
-   ***place the expected consuption you entered here***
+   ***place the expected consumption you entered here***
 
    ***place the screenshot from infracost output here***
 
