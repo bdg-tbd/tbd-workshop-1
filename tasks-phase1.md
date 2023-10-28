@@ -52,7 +52,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after your wo
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
-    ***place diagram here***
+    ***place your diagram here***
 
 10. Add costs by entering the expected consumption into Infracost
 
