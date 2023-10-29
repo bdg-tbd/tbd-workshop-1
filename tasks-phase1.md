@@ -44,7 +44,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 8. Reach YARN UI
    
-   ***place the port and the screenshot of YARN UI here***
+   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
    
 9. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
@@ -54,17 +54,20 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
   
     ***place your diagram here***
 
-10. Add costs by entering the expected consumption into Infracost
+10. Create a new PR and add costs by entering the expected consumption into Infracost
+For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
+create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
    ***place the expected consumption you entered here***
 
    ***place the screenshot from infracost output here***
 
-11. Create a BigQuery dataset and an external table
+11. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
    
     ***why does ORC not require a table schema?***
+
   
 12. Start an interactive session from Vertex AI workbench:
 
