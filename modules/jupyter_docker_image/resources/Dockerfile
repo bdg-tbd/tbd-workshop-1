@@ -2,6 +2,7 @@ FROM gcr.io/deeplearning-platform-release/base-cpu.py310:m108
 ARG JUPYTERLAB_VERSION
 ARG PROJECT_NAME
 ARG HADOOP_CONF_DIR=/etc/hadoop/conf
+ARG SPARK_VERSION
 #checkov:skip=CKV_DOCKER_2: "Ensure that HEALTHCHECK instructions have been added to container images"
 # to remove to make this image run as non-root user
 #checkov:skip=CKV_DOCKER_3: "Ensure that a user for the container has been created"
@@ -22,7 +23,7 @@ ENV PATH=/usr/bin:/usr/local/bin:$PATH
 RUN wget --quiet https://bootstrap.pypa.io/get-pip.py && python3.8 get-pip.py
 RUN pip3 install --no-cache-dir \
         jupyterlab==$JUPYTERLAB_VERSION \
-        pyspark==3.3.2 \
+        pyspark==$SPARK_VERSION \
         mlflow==2.3.0
 RUN mkdir -p $HADOOP_CONF_DIR
 COPY conf/* $HADOOP_CONF_DIR

@@ -6,6 +6,7 @@ locals {
   composer_subnet_address = "10.11.0.0/16"
   code_bucket_name        = "${var.project_name}-code"
   data_bucket_name        = "${var.project_name}-data"
+  spark_version           = "3.3.2"
 }
 
 module "vpc" {
@@ -25,10 +26,11 @@ module "gcr" {
 
 module "jupyter_docker_image" {
   depends_on         = [module.gcr]
-  source             = "./modules/docker_image"
+  source             = "./modules/jupyter_docker_image"
   registry_hostname  = module.gcr.registry_hostname
   registry_repo_name = coalesce(var.project_name)
   project_name       = var.project_name
+  spark_version      = local.spark_version
 }
 
 module "vertex_ai_workbench" {
@@ -87,5 +89,14 @@ module "data-pipelines" {
   data_service_account = module.composer.data_service_account
   dag_bucket_name      = module.composer.gcs_bucket
   data_bucket_name     = local.data_bucket_name
+}
+
+module "dbt_docker_image" {
+  depends_on         = [module.composer]
+  source             = "./modules/dbt_docker_image"
+  registry_hostname  = module.gcr.registry_hostname
+  registry_repo_name = coalesce(var.project_name)
+  project_name       = var.project_name
+  spark_version      = local.spark_version
 }
 

@@ -14,6 +14,12 @@ variable "jupyterlab_version" {
   default     = "3.6.3"
 }
 
+variable "spark_version" {
+  type        = string
+  description = "Apache Spark version"
+  default     = "3.3.2"
+}
+
 variable "project_name" {
   type        = string
   description = "Project name"
