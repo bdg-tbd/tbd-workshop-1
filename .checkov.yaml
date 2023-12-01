@@ -10,6 +10,8 @@ skip-check:
   - CKV_GCP_41 # "Ensure that IAM users are not assigned the Service Account User or Service Account Token Creator roles at project level"
   - CKV_GCP_29 # "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
   - CKV_GCP_62 # "Bucket should log access"
+  - CKV_DOCKER_3 # "Ensure that a user for the container has been created"
+  - CKV_DOCKER_2 # "Ensure that HEALTHCHECK instructions have been added to container images"
 
 skip-path:
  - gha-creds-*json

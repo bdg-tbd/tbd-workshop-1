@@ -4,6 +4,7 @@ resource "docker_image" "jupyter" {
     context = "${path.module}/resources"
     build_args = {
       JUPYTERLAB_VERSION : var.jupyterlab_version
+      SPARK_VERSION : var.spark_version
       PROJECT_NAME : var.project_name
     }
     tag = ["${var.registry_hostname}/${var.registry_repo_name}/jupyter:latest"]
