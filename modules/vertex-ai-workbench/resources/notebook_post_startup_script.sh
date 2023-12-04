@@ -5,8 +5,8 @@ export VERTEX_CONTAINER_NAME=`sudo docker ps --no-trunc --format='{{json .}}' | 
 export VERTEX_CONTAINER_ID=`sudo docker ps --no-trunc --format='{{json .}}' | jq -r '.ID'`
 export VERTEX_CONTAINER_HOSTNAME=`hostname -f`
 export VERTEX_CONTAINER_IP=`sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${VERTEX_CONTAINER_ID}`
-
-export PYSPARK_SUBMIT_ARGS="--conf spark.driver.port=16384 --conf spark.driver.blockManager.port=16385 --conf spark.driver.bindAddress=${VERTEX_CONTAINER_IP} --conf spark.driver.host=${VERTEX_CONTAINER_HOSTNAME} pyspark-shell"
+export GCS_CONNECTOR_VERSION=2.2.17
+export PYSPARK_SUBMIT_ARGS="--packages com.databricks:spark-xml_2.12:0.17.0 --conf spark.executor.instances=3 --conf spark.executor.memory=2g --conf spark.sql.legacy.timeParserPolicy=LEGACY --jars /home/jupyter/gcs-connector-hadoop3-${GCS_CONNECTOR_VERSION}-shaded.jar --master yarn --conf spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem --conf spark.hadoop.fs.AbstractFileSystem.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS --conf spark.driver.port=16384 --conf spark.driver.blockManager.port=16385 --conf spark.driver.bindAddress=${VERTEX_CONTAINER_IP} --conf spark.driver.host=${VERTEX_CONTAINER_HOSTNAME} pyspark-shell"
 export NOTEBOOK_IP=`sudo docker inspect --format '{{ .NetworkSettings.IPAddress }}' ${VERTEX_CONTAINER_ID}`
 sudo docker stop $VERTEX_CONTAINER_ID && sudo docker rm $VERTEX_CONTAINER_ID
 sudo docker run -d \

@@ -48,8 +48,10 @@ with models.DAG(
         name="dbt-task",
         # Entrypoint of the container, if not specified the Docker container's
         # entrypoint is used. The cmds parameter is templated.
-        cmds=["bash", "-cx"],
-        arguments=["dbt debug"],
+        image_pull_policy="Always",
+        cmds=["bash", "-c"],
+        arguments=["git clone https://github.com/mwiewior/tbd-tpc-di.git && cd tbd-tpc-di && git checkout feat/labs "
+                   "&& dbt debug"],
         # The namespace to run within Kubernetes. In Composer 2 environments
         # after December 2022, the default namespace is
         # `composer-user-workloads`.

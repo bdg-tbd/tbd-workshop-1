@@ -30,6 +30,5 @@ RUN mkdir -p $HADOOP_CONF_DIR
 COPY conf/* $HADOOP_CONF_DIR
 ENV HADOOP_CONF_DIR=$HADOOP_CONF_DIR
 RUN wget -q -O /home/jupyter/gcs-connector-hadoop3-${GCS_CONNECTOR_VERSION}-shaded.jar https://repo1.maven.org/maven2/com/google/cloud/bigdataoss/gcs-connector/hadoop3-${GCS_CONNECTOR_VERSION}/gcs-connector-hadoop3-${GCS_CONNECTOR_VERSION}-shaded.jar
-ENV PYSPARK_SUBMIT_ARGS="--packages com.databricks:spark-xml_2.12:0.17.0 --conf spark.executor.instances=3 --conf spark.executor.memory=2g --conf spark.sql.legacy.timeParserPolicy=LEGACY --jars /home/jupyter/gcs-connector-hadoop3-${GCS_CONNECTOR_VERSION} --master yarn --conf spark.hadoop.fs.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFileSystem --conf spark.hadoop.fs.AbstractFileSystem.gs.impl=com.google.cloud.hadoop.fs.gcs.GoogleHadoopFS --conf spark.driver.port=16384 --conf spark.driver.blockManager.port=16385 --conf spark.driver.bindAddress=172.17.0.2 --conf spark.driver.host=${PROJECT_NAME}-notebook pyspark-shell"
 ENV PYSPARK_DRIVER_PYTHON=/usr/bin/python3.8
 EXPOSE 8080 16384 16385 4040
