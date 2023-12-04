@@ -81,6 +81,15 @@ module "composer" {
   }
 }
 
+module "dbt_docker_image" {
+  depends_on         = [module.composer]
+  source             = "./modules/dbt_docker_image"
+  registry_hostname  = module.gcr.registry_hostname
+  registry_repo_name = coalesce(var.project_name)
+  project_name       = var.project_name
+  spark_version      = local.spark_version
+}
+
 module "data-pipelines" {
   source               = "./modules/data-pipeline"
   project_name         = var.project_name
@@ -91,12 +100,5 @@ module "data-pipelines" {
   data_bucket_name     = local.data_bucket_name
 }
 
-module "dbt_docker_image" {
-  depends_on         = [module.composer]
-  source             = "./modules/dbt_docker_image"
-  registry_hostname  = module.gcr.registry_hostname
-  registry_repo_name = coalesce(var.project_name)
-  project_name       = var.project_name
-  spark_version      = local.spark_version
-}
+
 

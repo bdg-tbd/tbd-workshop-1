@@ -3,6 +3,7 @@ ARG JUPYTERLAB_VERSION
 ARG PROJECT_NAME
 ARG HADOOP_CONF_DIR=/etc/hadoop/conf
 ARG SPARK_VERSION
+ARG GCS_CONNECTOR_VERSION
 #checkov:skip=CKV_DOCKER_2: "Ensure that HEALTHCHECK instructions have been added to container images"
 # to remove to make this image run as non-root user
 #checkov:skip=CKV_DOCKER_3: "Ensure that a user for the container has been created"
@@ -28,6 +29,6 @@ RUN pip3 install --no-cache-dir \
 RUN mkdir -p $HADOOP_CONF_DIR
 COPY conf/* $HADOOP_CONF_DIR
 ENV HADOOP_CONF_DIR=$HADOOP_CONF_DIR
-ENV PYSPARK_SUBMIT_ARGS="--conf spark.driver.port=16384 --conf spark.driver.blockManager.port=16385 --conf spark.driver.bindAddress=172.17.0.2 --conf spark.driver.host=${PROJECT_NAME}-notebook pyspark-shell"
+RUN wget -q -O /home/jupyter/gcs-connector-hadoop3-${GCS_CONNECTOR_VERSION}-shaded.jar https://repo1.maven.org/maven2/com/google/cloud/bigdataoss/gcs-connector/hadoop3-${GCS_CONNECTOR_VERSION}/gcs-connector-hadoop3-${GCS_CONNECTOR_VERSION}-shaded.jar
 ENV PYSPARK_DRIVER_PYTHON=/usr/bin/python3.8
 EXPOSE 8080 16384 16385 4040

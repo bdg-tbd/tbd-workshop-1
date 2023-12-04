@@ -18,6 +18,8 @@ RUN apt-get update \
   libsasl2-dev \
   gcc \
   unixodbc-dev \
+  openjdk-11-jdk \
+  procps \
   && apt-get clean \
   && rm -rf \
   /var/lib/apt/lists/* \
@@ -37,5 +39,6 @@ RUN pip install --upgrade pip setuptools wheel --no-cache-dir \
 RUN mkdir -p $HADOOP_CONF_DIR
 COPY conf/* $HADOOP_CONF_DIR
 ENV HADOOP_CONF_DIR=$HADOOP_CONF_DIR
-
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 WORKDIR /dbt
+COPY profiles.yml .

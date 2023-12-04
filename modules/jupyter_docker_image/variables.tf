@@ -20,6 +20,12 @@ variable "spark_version" {
   default     = "3.3.2"
 }
 
+variable "gcs_connector_version" {
+  type        = string
+  description = "GCS connector version"
+  default     = "2.2.17"
+}
+
 variable "project_name" {
   type        = string
   description = "Project name"

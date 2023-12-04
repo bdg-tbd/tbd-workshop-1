@@ -61,3 +61,10 @@ resource "google_storage_bucket_iam_member" "tbd-data-bucket-iam-editor" {
   role   = "roles/storage.objectUser"
   member = "serviceAccount:${var.data_service_account}"
 }
+
+resource "google_storage_bucket_object" "dbt-dag-code" {
+  for_each = toset(["dbt-dag.py"])
+  bucket   = local.dag_bucket_name
+  name     = "${local.dag_folder}/${each.value}"
+  source   = "${path.module}/resources/${each.value}"
+}
