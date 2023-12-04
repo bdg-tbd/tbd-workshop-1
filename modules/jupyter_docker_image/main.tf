@@ -6,11 +6,12 @@ resource "docker_image" "jupyter" {
       JUPYTERLAB_VERSION : var.jupyterlab_version
       SPARK_VERSION : var.spark_version
       PROJECT_NAME : var.project_name
+      GCS_CONNECTOR_VERSION : var.gcs_connector_version
     }
     tag = ["${var.registry_hostname}/${var.registry_repo_name}/jupyter:latest"]
   }
   triggers = {
-    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/*") : filesha1(f)]))
+    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/**") : filesha1(f)]))
   }
 }
 
@@ -19,6 +20,6 @@ resource "docker_registry_image" "jupyterlab" {
   name          = docker_image.jupyter.name
   keep_remotely = true
   triggers = {
-    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/*") : filesha1(f)]))
+    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/**") : filesha1(f)]))
   }
 }

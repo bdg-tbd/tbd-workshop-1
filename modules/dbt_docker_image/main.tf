@@ -11,7 +11,7 @@ resource "docker_image" "dbt" {
     tag = ["${var.registry_hostname}/${var.registry_repo_name}/dbt:latest"]
   }
   triggers = {
-    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/*") : filesha1(f)]))
+    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/**") : filesha1(f)]))
   }
 }
 
@@ -20,6 +20,6 @@ resource "docker_registry_image" "dbt" {
   name          = docker_image.dbt.name
   keep_remotely = true
   triggers = {
-    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/*") : filesha1(f)]))
+    dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/**") : filesha1(f)]))
   }
 }

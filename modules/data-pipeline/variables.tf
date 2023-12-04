@@ -28,4 +28,3 @@ variable "data_bucket_name" {
   type        = string
   description = "Apache Airflow bucket for storing and processing data"
 }
-
