@@ -22,8 +22,7 @@ Worth to read:
 
    ***Link to forked repo***
 
-3. Replace your `main.tf` (in the root module) from the phase 1 with [main.tf](https://github.com/bdg-tbd/tbd-workshop-1/blob/v1.0.32/main.tf)
-at the same time changing each module `source` reference from the repo relative path to a github repo tag `v1.0.33` , e.g.:
+3. In your `main.tf` (in the root module) from the phase 1 change each module `source` reference from the repo relative path to a github repo tag `v1.0.33` , e.g.:
 ```hcl
 module "dbt_docker_image" {
   depends_on = [module.composer]
