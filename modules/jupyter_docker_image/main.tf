@@ -7,6 +7,8 @@ resource "docker_image" "jupyter" {
       SPARK_VERSION : var.spark_version
       PROJECT_NAME : var.project_name
       GCS_CONNECTOR_VERSION : var.gcs_connector_version
+      DBT_VERSION : var.dbt_version
+      DBT_SPARK_VERSION : var.dbt_spark_version
     }
     tag = ["${var.registry_hostname}/${var.registry_repo_name}/jupyter:latest"]
   }

@@ -7,6 +7,8 @@ tbd_tpcdi:
       schema: demo
       host: NA                           # not used, but required by `dbt-core`
       server_side_parameters:
+        "spark.master": "yarn"
+        "spark.submit.deployMode": "client"
         "spark.driver.memory": "2g"
         "spark.executor.memory": "2g"
         "spark.executor.instances": "2"

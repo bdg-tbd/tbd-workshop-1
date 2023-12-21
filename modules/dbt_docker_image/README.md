@@ -29,8 +29,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_dbt_spark_version"></a> [dbt\_spark\_version](#input\_dbt\_spark\_version) | dbt-spark version | `string` | `"1.7.1"` | no |
-| <a name="input_dbt_version"></a> [dbt\_version](#input\_dbt\_version) | dbt core version | `string` | `"1.7.3"` | no |
+| <a name="input_dbt_spark_version"></a> [dbt\_spark\_version](#input\_dbt\_spark\_version) | dbt-spark version | `string` | n/a | yes |
+| <a name="input_dbt_version"></a> [dbt\_version](#input\_dbt\_version) | dbt core version | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_registry_hostname"></a> [registry\_hostname](#input\_registry\_hostname) | Image registry hostname | `string` | n/a | yes |
 | <a name="input_registry_repo_name"></a> [registry\_repo\_name](#input\_registry\_repo\_name) | Image registry repository name | `string` | n/a | yes |

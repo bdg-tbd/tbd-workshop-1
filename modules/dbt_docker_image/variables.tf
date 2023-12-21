@@ -11,13 +11,11 @@ variable "registry_repo_name" {
 variable "dbt_version" {
   type        = string
   description = "dbt core version"
-  default     = "1.7.3"
 }
 
 variable "dbt_spark_version" {
   type        = string
   description = "dbt-spark version"
-  default     = "1.7.1"
 }
 
 variable "spark_version" {

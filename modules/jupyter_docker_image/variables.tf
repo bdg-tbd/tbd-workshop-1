@@ -30,3 +30,13 @@ variable "project_name" {
   type        = string
   description = "Project name"
 }
+
+variable "dbt_version" {
+  type        = string
+  description = "dbt core version"
+}
+
+variable "dbt_spark_version" {
+  type        = string
+  description = "dbt-spark version"
+}
