@@ -46,16 +46,17 @@ with models.DAG(
         task_id="dbt-task",
         # Name of task you want to run, used to generate Pod ID.
         name="dbt-task",
+        labels={"app": "dbt-app"},
         # Entrypoint of the container, if not specified the Docker container's
         # entrypoint is used. The cmds parameter is templated.
         image_pull_policy="Always",
         cmds=["bash", "-c"],
-        arguments=["git clone https://github.com/mwiewior/tbd-tpc-di.git && cd tbd-tpc-di"
-                   "&& dbt debug"],
+        arguments=["git clone https://github.com/mwiewior/tbd-tpc-di.git && cd tbd-tpc-di && git checkout fix/dataproc" 
+                   "&& dbt deps && dbt run"],
         # The namespace to run within Kubernetes. In Composer 2 environments
         # after December 2022, the default namespace is
         # `composer-user-workloads`.
-        namespace="composer-user-workloads",
+        namespace="{{ var.value.wrk_namespace }}",
         # Docker image specified. Defaults to hub.docker.com, but any fully
         # qualified URLs will point to a custom repository. Supports private
         # gcr.io images if the Composer Environment is under the same
@@ -68,6 +69,7 @@ with models.DAG(
         config_file="/home/airflow/composer_kube_config",
         # Identifier of connection that should be used
         kubernetes_conn_id="kubernetes_default",
+        env_vars={"HADOOP_CONF_DIR": "/etc/hadoop/conf"},
         container_resources={
             'request_memory': '2048M',
             'limit_memory': '4096M',

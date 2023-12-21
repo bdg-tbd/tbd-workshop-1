@@ -4,9 +4,12 @@ locals {
   notebook_subnet_name    = "subnet-01"
   notebook_subnet_id      = "${var.region}/${local.notebook_subnet_name}"
   composer_subnet_address = "10.11.0.0/16"
+  composer_work_namespace = "composer-user-workloads"
   code_bucket_name        = "${var.project_name}-code"
   data_bucket_name        = "${var.project_name}-data"
   spark_version           = "3.3.2"
+  spark_driver_port       = 30000
+  spark_blockmgr_port     = 30001
 }
 
 module "vpc" {
@@ -78,6 +81,7 @@ module "composer" {
     "AIRFLOW_VAR_REGION_NAME" : var.region,
     "AIRFLOW_VAR_BUCKET_NAME" : local.code_bucket_name
     "AIRFLOW_VAR_PHS_CLUSTER" : module.dataproc.dataproc_cluster_name,
+    "AIRFLOW_VAR_WRK_NAMESPACE" : local.composer_work_namespace,
   }
 }
 
@@ -102,3 +106,46 @@ module "data-pipelines" {
 
 
 
+
+resource "kubernetes_service" "dbt-task-service" {
+  metadata {
+    name      = "dbt-task-service"
+    namespace = local.composer_work_namespace
+    labels = {
+      app = "dbt-app"
+    }
+  }
+
+  spec {
+    type = "NodePort"
+    selector = {
+      app = "dbt-app"
+    }
+    port {
+      name        = "spark-driver"
+      protocol    = "TCP"
+      port        = local.spark_driver_port
+      target_port = local.spark_driver_port
+      node_port   = local.spark_driver_port
+
+    }
+    port {
+      name        = "spark-block-mgr"
+      protocol    = "TCP"
+      port        = local.spark_blockmgr_port
+      target_port = local.spark_blockmgr_port
+      node_port   = local.spark_blockmgr_port
+    }
+
+  }
+}
+
+resource "google_compute_firewall" "allow-all-internal" {
+  name    = "allow-all-internal"
+  project = var.project_name
+  network = module.vpc.network.network_name
+  allow {
+    protocol = "all"
+  }
+  source_ranges = ["10.0.0.0/8"]
+}

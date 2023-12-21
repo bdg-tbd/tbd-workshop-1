@@ -49,4 +49,5 @@
 |------|-------------|
 | <a name="output_data_service_account"></a> [data\_service\_account](#output\_data\_service\_account) | Apache Airflow service account |
 | <a name="output_gcs_bucket"></a> [gcs\_bucket](#output\_gcs\_bucket) | GCS bucket for storing Apache Airflow DAGs |
+| <a name="output_gke_cluster"></a> [gke\_cluster](#output\_gke\_cluster) | Composer underlying GKE cluster |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

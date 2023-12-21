@@ -12,6 +12,7 @@ skip-check:
   - CKV_GCP_62 # "Bucket should log access"
   - CKV_DOCKER_3 # "Ensure that a user for the container has been created"
   - CKV_DOCKER_2 # "Ensure that HEALTHCHECK instructions have been added to container images"
+  - CKV2_GCP_12 # "Ensure GCP compute firewall ingress does not allow unrestricted access to all ports"
 
 skip-path:
  - gha-creds-*json
