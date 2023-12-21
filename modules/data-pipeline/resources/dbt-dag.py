@@ -51,7 +51,7 @@ with models.DAG(
         # entrypoint is used. The cmds parameter is templated.
         image_pull_policy="Always",
         cmds=["bash", "-c"],
-        arguments=["git clone https://github.com/mwiewior/tbd-tpc-di.git && cd tbd-tpc-di && git checkout fix/dataproc" 
+        arguments=["git clone https://github.com/mwiewior/tbd-tpc-di.git && cd tbd-tpc-di " 
                    "&& dbt deps && dbt run"],
         # The namespace to run within Kubernetes. In Composer 2 environments
         # after December 2022, the default namespace is
