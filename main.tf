@@ -15,7 +15,7 @@ locals {
 }
 
 module "vpc" {
-  source         = "./modules/vpc"
+  source         = "github.com/bdg-tbd/tbd-workshop-1.git?ref=v1.0.34/modules/vpc"
   project_name   = var.project_name
   region         = var.region
   network_name   = local.notebook_vpc_name
@@ -31,7 +31,7 @@ module "gcr" {
 
 module "jupyter_docker_image" {
   depends_on         = [module.gcr]
-  source             = "./modules/jupyter_docker_image"
+  source             = "github.com/bdg-tbd/tbd-workshop-1.git?ref=v1.0.34/modules/jupyter_docker_image"
   registry_hostname  = module.gcr.registry_hostname
   registry_repo_name = coalesce(var.project_name)
   project_name       = var.project_name
@@ -42,7 +42,7 @@ module "jupyter_docker_image" {
 
 module "vertex_ai_workbench" {
   depends_on   = [module.jupyter_docker_image, module.vpc]
-  source       = "./modules/vertex-ai-workbench"
+  source       = "github.com/bdg-tbd/tbd-workshop-1.git?ref=v1.0.34/modules/vertex-ai-workbench"
   project_name = var.project_name
   region       = var.region
   network      = module.vpc.network.network_id
@@ -59,7 +59,7 @@ module "vertex_ai_workbench" {
 #
 module "dataproc" {
   depends_on   = [module.vpc]
-  source       = "./modules/dataproc"
+  source       = "github.com/bdg-tbd/tbd-workshop-1.git?ref=v1.0.34/modules/dataproc"
   project_name = var.project_name
   region       = var.region
   subnet       = module.vpc.subnets[local.notebook_subnet_id].id
@@ -68,7 +68,7 @@ module "dataproc" {
 
 ## Uncomment for Dataproc batches (serverless)
 #module "metastore" {
-#  source = "./modules/metastore"
+#  source = "github.com/bdg-tbd/tbd-workshop-1.git?ref=v1.0.34/modules/metastore"
 #  project_name   = var.project_name
 #  region         = var.region
 #  network        = module.vpc.network.network_id
@@ -76,7 +76,7 @@ module "dataproc" {
 
 module "composer" {
   depends_on     = [module.vpc]
-  source         = "./modules/composer"
+  source         = "github.com/bdg-tbd/tbd-workshop-1.git?ref=v1.0.34/modules/composer"
   project_name   = var.project_name
   network        = module.vpc.network.network_name
   subnet_address = local.composer_subnet_address
@@ -91,7 +91,7 @@ module "composer" {
 
 module "dbt_docker_image" {
   depends_on         = [module.composer]
-  source             = "./modules/dbt_docker_image"
+  source             = "github.com/bdg-tbd/tbd-workshop-1.git?ref=v1.0.34/modules/dbt_docker_image"
   registry_hostname  = module.gcr.registry_hostname
   registry_repo_name = coalesce(var.project_name)
   project_name       = var.project_name
@@ -101,7 +101,7 @@ module "dbt_docker_image" {
 }
 
 module "data-pipelines" {
-  source               = "./modules/data-pipeline"
+  source               = "github.com/bdg-tbd/tbd-workshop-1.git?ref=v1.0.34/modules/data-pipeline"
   project_name         = var.project_name
   region               = var.region
   bucket_name          = local.code_bucket_name
