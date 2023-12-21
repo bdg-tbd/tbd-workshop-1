@@ -29,6 +29,8 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_dbt_spark_version"></a> [dbt\_spark\_version](#input\_dbt\_spark\_version) | dbt-spark version | `string` | n/a | yes |
+| <a name="input_dbt_version"></a> [dbt\_version](#input\_dbt\_version) | dbt core version | `string` | n/a | yes |
 | <a name="input_gcs_connector_version"></a> [gcs\_connector\_version](#input\_gcs\_connector\_version) | GCS connector version | `string` | `"2.2.17"` | no |
 | <a name="input_jupyterlab_version"></a> [jupyterlab\_version](#input\_jupyterlab\_version) | Jupyterlab version | `string` | `"3.6.3"` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |

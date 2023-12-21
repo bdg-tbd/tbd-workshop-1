@@ -10,6 +10,8 @@ locals {
   spark_version           = "3.3.2"
   spark_driver_port       = 30000
   spark_blockmgr_port     = 30001
+  dbt_version             = "1.7.3"
+  dbt_spark_version       = "1.7.1"
 }
 
 module "vpc" {
@@ -34,6 +36,8 @@ module "jupyter_docker_image" {
   registry_repo_name = coalesce(var.project_name)
   project_name       = var.project_name
   spark_version      = local.spark_version
+  dbt_version        = local.dbt_version
+  dbt_spark_version  = local.dbt_spark_version
 }
 
 module "vertex_ai_workbench" {
@@ -92,6 +96,8 @@ module "dbt_docker_image" {
   registry_repo_name = coalesce(var.project_name)
   project_name       = var.project_name
   spark_version      = local.spark_version
+  dbt_version        = local.dbt_version
+  dbt_spark_version  = local.dbt_spark_version
 }
 
 module "data-pipelines" {
