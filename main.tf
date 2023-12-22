@@ -12,6 +12,8 @@ locals {
   spark_blockmgr_port     = 30001
   dbt_version             = "1.7.3"
   dbt_spark_version       = "1.7.1"
+  dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
+  dbt_git_repo_branch     = "main"
 }
 
 module "vpc" {
@@ -86,6 +88,8 @@ module "composer" {
     "AIRFLOW_VAR_BUCKET_NAME" : local.code_bucket_name
     "AIRFLOW_VAR_PHS_CLUSTER" : module.dataproc.dataproc_cluster_name,
     "AIRFLOW_VAR_WRK_NAMESPACE" : local.composer_work_namespace,
+    "AIRFLOW_VAR_DBT_GIT_REPO" : local.dbt_git_repo,
+    "AIRFLOW_VAR_DBT_GIT_REPO_BRANCH" : local.dbt_git_repo_branch
   }
 }
 
