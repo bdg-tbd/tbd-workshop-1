@@ -89,7 +89,7 @@ module "composer" {
     "AIRFLOW_VAR_PHS_CLUSTER" : module.dataproc.dataproc_cluster_name,
     "AIRFLOW_VAR_WRK_NAMESPACE" : local.composer_work_namespace,
     "AIRFLOW_VAR_DBT_GIT_REPO" : local.dbt_git_repo,
-    "AIRFLOW_VAR_DBT_GIT_REPO_BRANCH" : local.dbt_git_repo_branch,
+    "AIRFLOW_VAR_DBT_GIT_REPO_BRANCH" : local.dbt_git_repo_branch
   }
 }
 
