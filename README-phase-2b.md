@@ -10,7 +10,8 @@ module "dataproc" {
   region       = var.region
   subnet       = module.vpc.subnets[local.notebook_subnet_id].id
   machine_type = "e2-standard-2"
-}```
+}
+```
 
 and subsititute "e2-standard-2" with "e2-standard-4".
 
