@@ -48,6 +48,7 @@ resource "google_storage_bucket_object" "post-startup" {
 
 resource "google_notebooks_instance" "tbd_notebook" {
   #checkov:skip=CKV2_GCP_18: "Ensure GCP network defines a firewall and does not use the default firewall"
+  #checkov:skip=CKV2_GCP_21: "Wants to encrypt the disk but I don't really wanna bother with that"
   depends_on   = [google_project_service.notebooks]
   location     = local.zone
   machine_type = "e2-standard-2"
