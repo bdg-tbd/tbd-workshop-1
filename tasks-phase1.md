@@ -4,15 +4,22 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+Grupa nr 2 w skladzie:
+    - Dumin Konrad
+    - Kiernozek Jakub
+    - Gniewek Aleksandra
 
-   ***link to forked repo***
+Repozytorium nalezy do Konrada:
+https://github.com/Condor-Condorrinsky/tbd-workshop-1
    
 2. Follow all steps in README.md.
 
 3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
   ![img.png](doc/figures/discounts.png)
+
+Ustalony budzet:
+    ![img.png](tasks-phase1-img/budget.png)
 
 5. From avaialble Github Actions select and run destroy on main branch.
    
