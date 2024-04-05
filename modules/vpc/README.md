@@ -6,20 +6,20 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.5.0 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 4.84.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.23.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.84.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_cloud-router"></a> [cloud-router](#module\_cloud-router) | terraform-google-modules/cloud-router/google | ~> 6.0.1 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-google-modules/network/google | ~> 7.4.0 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-google-modules/network/google | ~> 9.0.0 |
 
 ## Resources
 

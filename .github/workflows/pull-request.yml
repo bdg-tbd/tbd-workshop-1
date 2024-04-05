@@ -22,7 +22,7 @@ jobs:
         recursive: true
         verbose: true
     - name: Update Pull Request with hadolint
-      uses: actions/github-script@v6
+      uses: actions/github-script@v7.0.1
       if: github.event_name == 'pull_request'
       with:
         script: |
@@ -68,7 +68,7 @@ jobs:
 
     - name: Terraform Validate
       id: validate
-      run: terraform validate -no-color
+      run: terraform validate -no-color -compact-warnings | grep -v '^`'
 
     - name: Checkov GitHub Action
       uses: bridgecrewio/checkov-action@v12
@@ -81,10 +81,10 @@ jobs:
 
     - name: Terraform Plan
       id: plan
-      run: terraform plan -no-color -var-file env/project.tfvars
+      run: terraform plan -no-color -var-file env/project.tfvars | grep -v '^`'
       continue-on-error: false
 
-    - uses: actions/github-script@v6
+    - uses: actions/github-script@v7.0.1
       if: github.event_name == 'pull_request'
       env:
         PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"

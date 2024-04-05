@@ -33,11 +33,11 @@ gcloud auth application-default login
 ## Project setup
 1. Export shared environment variables
 ```bash
-export TF_VAR_tbd_semester=2023Z
+export TF_VAR_tbd_semester=2024L
 # format: 20xx for teachers, student ID number for students 
 export TF_VAR_user_id=9900
 # use your own billing account id
-export TF_VAR_billing_account=01D435-06DD59-9A00B5
+export TF_VAR_billing_account=01F44C-CA9C7E-587C25
 
 ```
 2. Enter `bootstrap` folder then init project and Terraform state bucket
@@ -139,14 +139,14 @@ terraform destroy -no-color -var-file env/project.tfvars
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.5.0 |
 | <a name="requirement_docker"></a> [docker](#requirement\_docker) | 3.0.2 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 4.84.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.23.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.24.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.84.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.24.0 |
 
 ## Modules

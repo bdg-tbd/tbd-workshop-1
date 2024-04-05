@@ -6,13 +6,13 @@
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.5.0 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 4.84.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.23.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.84.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
 
 ## Modules
 
@@ -22,7 +22,7 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [google_container_registry.registry](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/container_registry) | resource |
+| [google_artifact_registry_repository.registry](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/artifact_registry_repository) | resource |
 | [google_project_service.api](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_service) | resource |
 
 ## Inputs
