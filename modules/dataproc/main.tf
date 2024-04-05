@@ -34,6 +34,8 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
     master_config {
       num_instances = 1
       machine_type  = var.machine_type
+      # Custom machine support - commented out since we don't need that much processing power and it would burn credits too fast
+      # machine_type = "custom-16-92160"
       disk_config {
         boot_disk_type    = "pd-standard"
         boot_disk_size_gb = 100
@@ -47,7 +49,10 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
         boot_disk_type    = "pd-standard"
         boot_disk_size_gb = 100
       }
+    }
 
+    preemptible_worker_config {
+      num_instances = 0
     }
   }
 }
