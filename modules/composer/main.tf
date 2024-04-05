@@ -40,7 +40,7 @@ resource "google_compute_subnetwork" "composer-subnet" {
 module "composer" {
   depends_on = [google_project_service.api, google_project_iam_member.composer-member]
   source     = "terraform-google-modules/composer/google//modules/create_environment_v2"
-  version    = "~> 3.4.0"
+  version    = "~> 5.0.0"
 
   project_id                = var.project_name
   region                    = var.region

@@ -36,3 +36,4 @@ terraform.rc
 .external_modules/
 
 .DS_Store
+bootstrap/terraform.tfstate_*
