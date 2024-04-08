@@ -94,7 +94,7 @@ module "composer" {
 }
 
 module "dbt_docker_image" {
-  depends_on         = [module.composer]
+  depends_on         = [module.composer, module.gcr]
   source             = "./modules/dbt_docker_image"
   registry_hostname  = module.gcr.registry_hostname
   registry_repo_name = coalesce(var.project_name)

@@ -2,8 +2,8 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/google" {
-  version     = "4.84.0"
-  constraints = "~> 4.84.0"
+  version     = "5.23.0"
+  constraints = "~> 5.23.0"
   hashes = [
     "h1:/JoTJdmrba01bXAXhJox4D7HIppGAE8IcdmwrC1+NeI=",
     "h1:1UxlwVhklQbnsyuCelue0dkQZUHA2cMjgYvl8lWRE8Q=",
@@ -18,6 +18,6 @@ provider "registry.terraform.io/hashicorp/google" {
     "zh:c834f88dc8eb21af992871ed13a221015ae3b051aeca7386662071026f1546b4",
     "zh:f3296c8c0d57dc28e23cf91717484264531655ac478d994584ebc73f70679471",
     "zh:f569b65999264a9416862bca5cd2a6177d94ccb0424f3a4ef424428912b9cb3c",
-    "zh:f8efe114ff4891776f48f7d2620b8d6963d3ddac6e42ce25bc761343da964c24",
+    "zh:f663776d79e7e5d131b4fbd68c152f2bef3e899a19c9baabe3a441e3f5e809ea",
   ]
 }

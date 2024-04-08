@@ -27,7 +27,7 @@ module "gcp_vpc" {
   #checkov:skip=CKV2_GCP_18: "Ensure GCP network defines a firewall and does not use the default firewall"
   depends_on   = [google_project_service.compute]
   source       = "terraform-google-modules/network/google"
-  version      = "~> 7.0"
+  version      = "~> 9.0.0"
   project_id   = var.project_name
   network_name = "mlops"
   routing_mode = "GLOBAL"

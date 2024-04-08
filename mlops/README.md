@@ -13,14 +13,14 @@ terraform apply -var-file=../env/project.tfvars
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.5.0 |
 | <a name="requirement_docker"></a> [docker](#requirement\_docker) | 3.0.2 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 4.84.0 |
-| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | ~> 4.84.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.23.0 |
+| <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | ~> 5.23.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 4.84.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
 
 ## Modules
 
@@ -28,7 +28,7 @@ terraform apply -var-file=../env/project.tfvars
 |------|--------|---------|
 | <a name="module_gcp_mlflow_appengine"></a> [gcp\_mlflow\_appengine](#module\_gcp\_mlflow\_appengine) | ./mlflow/gcp/app_engine | n/a |
 | <a name="module_gcp_registry"></a> [gcp\_registry](#module\_gcp\_registry) | ./mlflow/gcp/gcr | n/a |
-| <a name="module_gcp_vpc"></a> [gcp\_vpc](#module\_gcp\_vpc) | terraform-google-modules/network/google | ~> 7.0 |
+| <a name="module_gcp_vpc"></a> [gcp\_vpc](#module\_gcp\_vpc) | terraform-google-modules/network/google | ~> 9.0.0 |
 | <a name="module_mlflow_docker_image"></a> [mlflow\_docker\_image](#module\_mlflow\_docker\_image) | ./mlflow/docker_image | n/a |
 
 ## Resources
