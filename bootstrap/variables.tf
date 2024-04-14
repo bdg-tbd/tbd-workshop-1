@@ -13,6 +13,6 @@ variable "billing_account" {
 }
 variable "region" {
   type        = string
-  default     = "europe-west1"
+  default     = "europe-central2"
   description = "GCP region"
 }
