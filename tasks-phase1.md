@@ -4,17 +4,29 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   ***Grupa nr 8***
 
-   ***link to forked repo***
+   ***[link to forked repo](https://github.com/JakubDziegielewski/tbd-workshop-1)***
    
 2. Follow all steps in README.md.
 
+Przeszliśmy kroki 1-9 opisane w README.md, czego efektem było wypuszczenie pierwszego release'a. Kroki 10-11 wyszczególnione są dalej w tym pliku jako zadania 11 i 14, toteż ich wykonanie opiszemy właśnie tam.
+
+![img.png](doc/figures/first_release.png)
+
 3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
-  ![img.png](doc/figures/discounts.png)
+![img.png](doc/figures/discounts.png)
+
+Stworzyliśmy budżet o nazwie TBD_gr8_budget i ustaliliśmy alerty na odpowiednich poziomach wykorzystania dostępnych środków.
+
+![img.png](doc/figures/budget.png)
 
 5. From avaialble Github Actions select and run destroy on main branch.
+
+Kończąc pierwszą udaną sesję pracy, poprzez GA dokonaliśmy zniszczenia aktualnej infrastruktury.
+
+![img.png](doc/figures/first_destroy.png)
    
 7. Create new git branch and:
     1. Modify tasks-phase1.md file.
