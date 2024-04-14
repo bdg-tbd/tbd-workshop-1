@@ -74,7 +74,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | Billing account a project is attached to | `string` | n/a | yes |
-| <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
+| <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-central2"` | no |
 | <a name="input_tbd_semester"></a> [tbd\_semester](#input\_tbd\_semester) | TBD semester | `string` | n/a | yes |
 | <a name="input_user_id"></a> [user\_id](#input\_user\_id) | TBD project group id | `number` | n/a | yes |
 
