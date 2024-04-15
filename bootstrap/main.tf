@@ -98,3 +98,4 @@ resource "google_storage_bucket" "tbd-state-bucket" {
   #checkov:skip=CKV_GCP_78: "Ensure Cloud storage has versioning enabled"
   public_access_prevention = "enforced"
 }
+
