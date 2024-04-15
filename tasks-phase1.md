@@ -91,7 +91,7 @@ ORC (Optimized Row Columnar) is a columnar storage format for large datasets in 
 
     ***place the screenshot of notebook here***
 
-12.  Find and correct the error in spark-job.py
+13.  Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
