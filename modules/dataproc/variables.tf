@@ -28,7 +28,3 @@ variable "image_version" {
 variable "worker_nodes_number_preemptible" {
   type = number
 }
-
-variable "worker_nodes_number" {
-  type    = number
-}
