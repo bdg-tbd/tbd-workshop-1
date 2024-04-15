@@ -16,14 +16,14 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 5. From avaialble Github Actions select and run destroy on main branch.
 
-7. Create new git branch and:
+6. Create new git branch and:
     1. Modify tasks-phase1.md file.
 
     2. Create PR from this branch to **YOUR** master and merge it to make new release.
 
    ![image](https://github.com/Pinjesz/tbd-workshop-1/assets/61670444/9591b3de-8bcb-40c7-aff4-fe1a62384ffc)
 
-9. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+7. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     data-pipeline module sets up GCP infrastructure for data processing and storage. The module automates bucket creation, access role assignment, and code file uploads. It includes:
 
@@ -36,7 +36,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     ***describe one selected module and put the output of terraform graph for this module here***
 
-10. Reach YARN UI
+8. Reach YARN UI
     ![alt text](hadoop.png)
 
     ```sh
@@ -52,7 +52,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
 
-11. Draw an architecture diagram (e.g. in draw.io) that includes:
+9. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
     3. List of buckets for disposal
@@ -60,7 +60,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     ***place your diagram here***
 
-12. Create a new PR and add costs by entering the expected consumption into Infracost
+10. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
@@ -68,21 +68,21 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    ***place the screenshot from infracost output here***
 
-1. Create a BigQuery dataset and an external table using SQL
+11. Create a BigQuery dataset and an external table using SQL
 
     ***place the code and output here***
 
     ***why does ORC not require a table schema?***
 
-2. Start an interactive session from Vertex AI workbench:
+12. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
 
-3. Find and correct the error in spark-job.py
+13. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-4. Additional tasks using Terraform:
+14. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
