@@ -77,10 +77,10 @@ $ bq show dataset.table1
 
    Table tbd-2024l-303760:dataset.table1
 
-    Last modified           Schema            Type     Total URIs   Expiration   Labels  
-  ----------------- ---------------------- ---------- ------------ ------------ -------- 
-  15 Apr 18:35:15   |- name: string        EXTERNAL   1                                 
-                    |- post_abbr: string    
+    Last modified           Schema            Type     Total URIs   Expiration   Labels
+  ----------------- ---------------------- ---------- ------------ ------------ --------
+  15 Apr 18:35:15   |- name: string        EXTERNAL   1
+                    |- post_abbr: string
  ```
 
 ***place the code and output here***
@@ -91,7 +91,7 @@ ORC (Optimized Row Columnar) is a columnar storage format for large datasets in 
 
 12.  Start an interactive session from Vertex AI workbench:
 
-    ***place the screenshot of notebook here***
+  ![img.png](doc/figures/notebook.png)
 
 13.  Find and correct the error in spark-job.py
 
