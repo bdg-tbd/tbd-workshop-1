@@ -2,7 +2,7 @@
 ddd
 ## Workshop goals
 1. Learn how to provision computing resources for running Big Data analyses using the Infrastructure as Code (IaC) approach.
-2. Learn how to set up opinionated CI/CD pipelines to deploy cloud infrastructure. 
+2. Learn how to set up opinionated CI/CD pipelines to deploy cloud infrastructure.
 3. Learn how to utilize linters for detecting security vulnerabilities in cloud infrastructure.
 4. Learn how to run Apache Spark code in a distributed way on Hadoop cluster using
 Vertex AI notebooks and Dataproc services on GCP.
@@ -34,7 +34,7 @@ gcloud auth application-default login
 1. Export shared environment variables
 ```bash
 export TF_VAR_tbd_semester=2024L
-# format: 20xx for teachers, student ID number for students 
+# format: 20xx for teachers, student ID number for students
 export TF_VAR_user_id=9900
 # use your own billing account id
 export TF_VAR_billing_account=01F44C-CA9C7E-587C25
@@ -86,6 +86,7 @@ If you see a warning like this -- please enable the workflows:
 ...and repush your changes!
 
 Once all Pull Requests checks **have passed** please merge your PR and wait until your release job finishes.
+
 7. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
 the instructions
 ![img.png](doc/figures/workbench.png)
@@ -112,7 +113,7 @@ CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
 
 CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
   OPTIONS (
-  
+
   format = 'ORC',
   uris = ['gs://tbd-2023z-9900-data/data/shakespeare/*.orc']);
 
@@ -130,7 +131,7 @@ SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
 
 ```bash
 terraform init -backend-config=env/backend.tfvars
-terraform destroy -no-color -var-file env/project.tfvars 
+terraform destroy -no-color -var-file env/project.tfvars
 ```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
