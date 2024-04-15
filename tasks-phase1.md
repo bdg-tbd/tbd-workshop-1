@@ -27,10 +27,22 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 9. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
+    ![](graph.svg)
+
     ***describe one selected module and put the output of terraform graph for this module here***
 
 10. Reach YARN UI
+    ![alt text](hadoop.png)
+    ```sh
+    export PROJECT=tbd-2024l-303760
+    export HOSTNAME=tbd-cluster-m
+    export ZONE=europe-west1-d
+    export PORT=8088
 
+    gcloud compute ssh ${HOSTNAME} \
+    --project=${PROJECT} --zone=${ZONE}  -- \
+    -D ${PORT} -N
+    ```
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
 
 11. Draw an architecture diagram (e.g. in draw.io) that includes:
@@ -49,7 +61,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    ***place the screenshot from infracost output here***
 
-11. Create a BigQuery dataset and an external table using SQL
+1.  Create a BigQuery dataset and an external table using SQL
 
     ***place the code and output here***
 
