@@ -70,19 +70,32 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 11. Create a BigQuery dataset and an external table using SQL
 
-    ***place the code and output here***
+```sh
+$ bq mk dataset
+$ bq mk --table --external_table_definition=@ORC=gs://cloud-samples-data/bigquery/us-states/us-states.orc dataset.table1
+$ bq show dataset.table1
 
-    ***why does ORC not require a table schema?***
+    Last modified           Schema            Type     Total URIs   Expiration   Labels  
+  ----------------- ---------------------- ---------- ------------ ------------ -------- 
+  15 Apr 18:35:15   |- name: string        EXTERNAL   1                                 
+                    |- post_abbr: string    
+ ```
 
-12. Start an interactive session from Vertex AI workbench:
+***place the code and output here***
+
+***why does ORC not require a table schema?***
+
+ORC (Optimized Row Columnar) is a columnar storage format for large datasets in Hadoop. In BigQuery, when you create an external table with an ORC file, schema info is embedded in the file, so you don't need to specify it separately. BigQuery can infer schema from the ORC file's metadata, simplifying table creation in Terraform.
+
+12.  Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
 
-13. Find and correct the error in spark-job.py
+12.  Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-14. Additional tasks using Terraform:
+14.  Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
