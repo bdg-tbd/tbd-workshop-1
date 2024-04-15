@@ -6,7 +6,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
    gr-3
 
-   https://github.com/Pinjesz/tbd-workshop-1
+   <https://github.com/Pinjesz/tbd-workshop-1>
 
 2. Follow all steps in README.md.
 
@@ -23,9 +23,14 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
    ![image](https://github.com/Pinjesz/tbd-workshop-1/assets/61670444/9591b3de-8bcb-40c7-aff4-fe1a62384ffc)
 
-
-
 9. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+
+    data-pipeline module sets up GCP infrastructure for data processing and storage. The module automates bucket creation, access role assignment, and code file uploads. It includes:
+
+    - Local Variables: Simplify configuration by splitting and extracting values.
+    - Google Storage Buckets: Create buckets for code and data, enabling versioning and preventing public access.
+    - Google Storage Bucket IAM Members: Assign roles to service accounts for bucket access.
+    - Google Storage Bucket Objects: Upload specific code files to designated bucket locations.
 
     ![](graph.svg)
 
@@ -33,6 +38,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 10. Reach YARN UI
     ![alt text](hadoop.png)
+
     ```sh
     export PROJECT=tbd-2024l-303760
     export HOSTNAME=tbd-cluster-m
@@ -43,6 +49,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     --project=${PROJECT} --zone=${ZONE}  -- \
     -D ${PORT} -N
     ```
+
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
 
 11. Draw an architecture diagram (e.g. in draw.io) that includes:
@@ -61,28 +68,27 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    ***place the screenshot from infracost output here***
 
-1.  Create a BigQuery dataset and an external table using SQL
+1. Create a BigQuery dataset and an external table using SQL
 
     ***place the code and output here***
 
     ***why does ORC not require a table schema?***
 
-
-12. Start an interactive session from Vertex AI workbench:
+2. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
 
-13. Find and correct the error in spark-job.py
+3. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-14. Additional tasks using Terraform:
+4. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
     ***place the link to the modified file and inserted terraform code***
 
-    3. Add support for preemptible/spot instances in a Dataproc cluster
+    2. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
 
