@@ -4,9 +4,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***Grupa nr 8***
+   ***Grupa nr 8 (Jakub Dzięgielewski, Jakub Śliwa, Filip Matysik)***
 
-   ***[link to forked repo](https://github.com/JakubDziegielewski/tbd-workshop-1)***
+   ***[link do sforkowanego repo](https://github.com/JakubDziegielewski/tbd-workshop-1)***
    
 2. Follow all steps in README.md.
 
@@ -33,16 +33,26 @@ Kończąc pierwszą udaną sesję pracy, poprzez GA dokonaliśmy zniszczenia akt
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+Rozpoczynając drugą sesję pracy, zmergowaliśmy gałąź ze zmodyfikowanym plikiem tasks-phase1.md, by ponownie postawić infrastrukturę. Drugi release przeszedł pomyślnie.
 
+![img.png](doc/figures/second_release.png)
 
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
-   
+Moduły terraforma znajdują się przede wszystkim w katalogu modules, są nimi m.in. composer, vertex-ai-workbench,  vpc czy dataproc. Przeanalizowaliśmy ten ostatni, a wynik wywołania `terraform graph` widać poniżej:
+
+![img.png](doc/figures/terraform_graph.png)
+
+Moduł dataproc jako input przyjmuje 5 zmiennych: image_version, machine_type, project_name, region oraz subnet. W module powoływany jest Dataproc service oraz definiowany jest Dataproc cluster, zależny od tego serwisu. Cluster składa się z jednego mastera oraz dwóch worker'ów. Jako output zwracany jest dataproc_cluster_name utworzonego clustra.
+
 9. Reach YARN UI
    
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+Udało nam się dotrzeć do YARN UI za pomocą dwóch komend.
+Najpierw stworzyliśmy tunel ssh: `gcloud compute ssh tbd-cluster-m \   --project=tbd-2024l-335209 \   --zone=europe-west1-d -- -D 1080 -N`. 
+Następnie otworzyliśmy przeglądarkę `/usr/bin/google-chrome \   --proxy-server="socks5://localhost:1080" \   --user-data-dir="/tmp/tbd-cluster-m" http://tbd-cluster-m:8088`.
+
+![img.png](doc/figures/yarn_ui.png)
+
    
 10. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
@@ -69,7 +79,9 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
   
 12. Start an interactive session from Vertex AI workbench:
 
-    ***place the screenshot of notebook here***
+Udało nam się rozpocząć interaktywną sesję z wykorzystaniem naszego notebook'a jupyter'owego z Vertex AI workbench za pomocą komendy `gcloud compute --project "tbd-2024l-335209" ssh --zone "europe-west1-b" "tbd-2024l-335209-notebook" -- -L 8080:localhost:8080`.
+
+![img.png](doc/figures/vertex_ai_workbench.png)
    
 13. Find and correct the error in spark-job.py
 
