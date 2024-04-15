@@ -26,5 +26,5 @@ variable "image_version" {
 }
 
 variable "worker_nodes_number" {
-  type    = number
+  type = number
 }

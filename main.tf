@@ -61,11 +61,11 @@ module "vertex_ai_workbench" {
 
 #
 module "dataproc" {
-  depends_on   = [module.vpc]
-  source       = "./modules/dataproc"
-  project_name = var.project_name
-  region       = var.region
-  subnet       = module.vpc.subnets[local.notebook_subnet_id].id
+  depends_on          = [module.vpc]
+  source              = "./modules/dataproc"
+  project_name        = var.project_name
+  region              = var.region
+  subnet              = module.vpc.subnets[local.notebook_subnet_id].id
   machine_type        = var.dataproc_machine_type
   worker_nodes_number = var.dataproc_num_workers
 }
