@@ -18,3 +18,18 @@ variable "dataproc_num_workers_preemptible" {
   type    = number
   default = 0
 }
+
+variable "dataproc_num_workers" {
+    type    = number
+    default = 2
+}
+
+variable "dataproc_machine_type" {
+    type    = string
+    default = "e2-standard-2"
+}
+
+variable "notebook_machine_type" {
+    type    = string
+    default = "e2-standard-2"
+}
