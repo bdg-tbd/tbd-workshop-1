@@ -24,3 +24,7 @@ variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
 }
+
+variable "worker_nodes_number_preemptible" {
+  type = number
+}
