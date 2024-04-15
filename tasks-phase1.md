@@ -75,6 +75,8 @@ $ bq mk dataset
 $ bq mk --table --external_table_definition=@ORC=gs://cloud-samples-data/bigquery/us-states/us-states.orc dataset.table1
 $ bq show dataset.table1
 
+   Table tbd-2024l-303760:dataset.table1
+
     Last modified           Schema            Type     Total URIs   Expiration   Labels  
   ----------------- ---------------------- ---------- ------------ ------------ -------- 
   15 Apr 18:35:15   |- name: string        EXTERNAL   1                                 
