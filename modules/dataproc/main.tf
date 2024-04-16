@@ -1,5 +1,6 @@
 
 resource "google_project_service" "dataproc" {
+  project            = var.project_name
   provider           = google
   service            = "dataproc.googleapis.com"
   disable_on_destroy = true
