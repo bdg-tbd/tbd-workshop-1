@@ -117,8 +117,9 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     
     ***place the code and output here***
    
-    ***why does ORC not require a table schema?***
+	Tabele w formacie ORC sa *dataframe'ami* w sensie Python'owym (Spark, biblioteka *pandas* etc.) i zawieraja juz w sobie *table schema* "out-of-the-box".
 
+	https://stackoverflow.com/questions/39467068/create-hive-table-from-orc-file-without-specifying-schema
   
 12. Start an interactive session from Vertex AI workbench:
 
