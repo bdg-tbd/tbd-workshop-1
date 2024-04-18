@@ -55,6 +55,7 @@ resource "google_project_iam_member" "tbd-editor-supervisors" {
     "user:tgambin@gmail.com",
     "user:sitekwb@gmail.com",
     "user:sweklej.bartek@gmail.com"
+    "user:magdalena.lutynska98@gmail.com"
   ])
   project = google_project.tbd_project.project_id
   role    = "roles/editor"
