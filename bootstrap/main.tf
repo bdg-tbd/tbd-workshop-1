@@ -53,9 +53,7 @@ resource "google_project_iam_member" "tbd-editor-supervisors" {
   for_each = toset([
     "user:marek.wiewiorka@gmail.com",
     "user:tgambin@gmail.com",
-    "user:sitekwb@gmail.com",
-    "user:sweklej.bartek@gmail.com",
-    "user:magdalena.lutynska98@gmail.com"
+    "user:sitekwb@gmail.com"
   ])
   project = google_project.tbd_project.project_id
   role    = "roles/editor"
@@ -67,6 +65,10 @@ resource "google_project_iam_member" "tbd-editor-member" {
   #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
   #checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
   # This is only used for workshops!!!
+  for_each = toset([
+    "user:sweklej.bartek@gmail.com",
+    "user:magdalena.lutynska98@gmail.com"
+  ])
   project = google_project.tbd_project.project_id
   role    = "roles/owner"
   member  = "serviceAccount:${google_service_account.tbd-terraform.email}"
