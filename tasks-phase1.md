@@ -71,10 +71,14 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    ***place the screenshot from infracost output here***
 
 11. Create a BigQuery dataset and an external table using SQL
+
+Udało nam się stworzyć tabelę shakespeare, jak widać na poniższym zrzucie ekranu. Powodzenie tej operacji było możliwe dopiero po naprawieniu błędu w pliku spark-job.py, gdyż dopiero sukces tego joba gwarantował dane, na podstawie których tworzona była tabela.
     
-    ***place the code and output here***
+![img.png](doc/figures/big_query.png)
    
     ***why does ORC not require a table schema?***
+
+...
 
   
 12. Start an interactive session from Vertex AI workbench:
@@ -85,9 +89,19 @@ Udało nam się rozpocząć interaktywną sesję z wykorzystaniem naszego notebo
    
 13. Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+W konsoli Google'a weszliśmy w logi i przeanalizowaliśmy informacje dotyczące nieudanego joba. Jak widać na zrzucie ekranu poniżej, problemem było odwoływanie się do bucketu, który nie istniał:
 
-14. Additional tasks using Terraform:
+![img.png](doc/figures/error.png)
+
+W momencie, gdy poprawiliśmy nazwę bucketu, job wykonał się poprawnie. Poniżej widać miejsce, w którym należało wprowadzić zmiany:
+
+![img.png](doc/figures/error.png)
+
+oraz dowód, że job przechodzi:
+
+![img.png](doc/figures/success.png)
+
+15. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
