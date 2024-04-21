@@ -40,14 +40,16 @@ RUN pip3 install --no-cache-dir gsutil==5.24
 # pre-commit deps
 RUN pip3 install --no-cache-dir pre-commit==3.3.3 checkov==2.3.294
 
-RUN apt-get update -y && apt-get install unzip -y --no-install-recommends
+RUN apt-get update -y && apt-get install unzip -y --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 RUN curl -L "$(curl -s https://api.github.com/repos/terraform-docs/terraform-docs/releases/latest | grep -o -E -m 1 "https://.+?-linux-amd64.tar.gz")" > terraform-docs.tgz && tar -xzf terraform-docs.tgz terraform-docs && rm terraform-docs.tgz && chmod +x terraform-docs && mv terraform-docs /usr/bin/
 RUN curl -L "$(curl -s https://api.github.com/repos/tenable/terrascan/releases/latest | grep -o -E -m 1 "https://.+?_Linux_x86_64.tar.gz")" > terrascan.tar.gz && tar -xzf terrascan.tar.gz terrascan && rm terrascan.tar.gz && mv terrascan /usr/bin/ && terrascan init
 RUN curl -L "$(curl -s https://api.github.com/repos/terraform-linters/tflint/releases/latest | grep -o -E -m 1 "https://.+?_linux_amd64.zip")" > tflint.zip && unzip tflint.zip && rm tflint.zip && mv tflint /usr/bin/
 RUN curl -L "$(curl -s https://api.github.com/repos/aquasecurity/tfsec/releases/latest | grep -o -E -m 1 "https://.+?tfsec-linux-amd64")" > tfsec && chmod +x tfsec &&  mv tfsec /usr/bin/
 RUN apt-get update -y && apt-get install -y jq --no-install-recommends && \
     curl -L "$(curl -s https://api.github.com/repos/minamijoyo/tfupdate/releases/latest | grep -o -E -m 1 "https://.+?_linux_amd64.tar.gz")" > tfupdate.tar.gz && tar -xzf tfupdate.tar.gz tfupdate && rm tfupdate.tar.gz && mv tfupdate /usr/bin/ && \
-    curl -L "$(curl -s https://api.github.com/repos/minamijoyo/hcledit/releases/latest | grep -o -E -m 1 "https://.+?_linux_amd64.tar.gz")" > hcledit.tar.gz && tar -xzf hcledit.tar.gz hcledit && rm hcledit.tar.gz && mv hcledit /usr/bin/
+    curl -L "$(curl -s https://api.github.com/repos/minamijoyo/hcledit/releases/latest | grep -o -E -m 1 "https://.+?_linux_amd64.tar.gz")" > hcledit.tar.gz && tar -xzf hcledit.tar.gz hcledit && rm hcledit.tar.gz && mv hcledit /usr/bin/ && \
+    rm -rf /var/lib/apt/lists/*
 
 # hadolint
 RUN wget --progress=dot:giga https://github.com/hadolint/hadolint/releases/download/v2.12.1-beta/hadolint-Linux-x86_64 && \
@@ -63,7 +65,8 @@ RUN install -m 0755 -d /etc/apt/keyrings && \
       "$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" | \
       tee /etc/apt/sources.list.d/docker.list > /dev/null && \
     apt-get update -y && \
-    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin --no-install-recommends
+    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN usermod -aG docker openvscode-server
 USER openvscode-server
