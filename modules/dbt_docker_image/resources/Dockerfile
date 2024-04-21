@@ -32,9 +32,14 @@ ENV LANG=C.UTF-8
 
 # Update python and install packages
 RUN pip install --upgrade pip setuptools wheel --no-cache-dir \
-  dbt-core==$DBT_VERSION \
-  dbt-spark==$DBT_SPARK_VERSION \
-  pyspark==$SPARK_VERSION
+    dbt-core==$DBT_VERSION \
+    dbt-spark==$DBT_SPARK_VERSION \
+    pyspark==$SPARK_VERSION \
+    && pip install --upgrade pip setuptools wheel --no-cache-dir \
+    && pip install dbt-core==$DBT_VERSION \
+    && pip install dbt-spark==$DBT_SPARK_VERSION \
+    && pip install pyspark==$SPARK_VERSION
+  
 
 RUN mkdir -p $HADOOP_CONF_DIR
 COPY conf/* $HADOOP_CONF_DIR
