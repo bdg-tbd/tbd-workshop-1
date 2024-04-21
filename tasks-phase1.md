@@ -31,8 +31,6 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
-# TODO - dodać opis
 ![graph](doc/figures/graph.png)
    
 9. Reach YARN UI
@@ -139,11 +137,10 @@ i dostaliśmy takie wyniki
 ![infracost_local.png](doc/figures/infracost_local.png)
 
 11. Create a BigQuery dataset and an external table using SQL
-    
-    ***place the code and output here***
-   
-    ***why does ORC not require a table schema?***
 
+![bigquery](doc/figures/bigquery.png)
+
+ORC nie wymaga schematu, ponieważ konektor jest w stanie go samemu inferować.
   
 12. Start an interactive session from Vertex AI workbench:
 
@@ -157,14 +154,22 @@ pojawił się błąd. Następnie po wczytaniu się w szczegóły, okazało się,
 kubełek nie istnieje (gs://tbd-2024l-9910-data/data/shakespeare/), żeby to naprawić
 podmieniliśmy nazwę kubełka na nasz własny (gs://tbd-2024l-3040540-data/data/shakespeare).
 
+```python
+DATA_BUCKET = "gs://tbd-2024l-3040540-data/data/shakespeare/"
+
+```
+
+![airflow](doc/figures/airflow.png)
+
+
 14. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
     
-    [Link Text](https://github.com/a-s-gorski/tbd-workshop-1/blob/master/modules/dataproc/main.tf)
-    [Link Text](https://github.com/a-s-gorski/tbd-workshop-1/blob/master/modules/dataproc/variables.tf)
-    [Link Text](https://github.com/a-s-gorski/tbd-workshop-1/blob/master/modules/vertex-ai-workbench/main.tf)
-    [Link Text](https://github.com/a-s-gorski/tbd-workshop-1/blob/master/modules/vertex-ai-workbench/variables.tf)
+    [Main dataproc](https://github.com/a-s-gorski/tbd-workshop-1/blob/master/modules/dataproc/main.tf)
+    [Variables dataproc](https://github.com/a-s-gorski/tbd-workshop-1/blob/master/modules/dataproc/variables.tf)
+    [Main vertex_ai](https://github.com/a-s-gorski/tbd-workshop-1/blob/master/modules/vertex-ai-workbench/main.tf)
+    [Variables vertex_ai](https://github.com/a-s-gorski/tbd-workshop-1/blob/master/modules/vertex-ai-workbench/variables.tf)
 
 
     
