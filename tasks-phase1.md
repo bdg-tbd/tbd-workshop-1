@@ -6,8 +6,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 Grupa nr 2 w skladzie:
     - Dumin Konrad 310974
-    - Kiernozek Jakub
-    - Gniewek Aleksandra
+    - Kiernozek Jakub 304503
 
 Repozytorium nalezy do Konrada:
 https://github.com/Condor-Condorrinsky/tbd-workshop-1
@@ -103,7 +102,8 @@ digraph {
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
-    ***place your diagram here***
+	Plik jest duzy, moze nie wczytywac sie poprawnie
+    ![img.png](tasks-phase-1-img/topology.png)
 
 11. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
