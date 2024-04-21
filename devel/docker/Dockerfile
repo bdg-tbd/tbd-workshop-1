@@ -26,7 +26,7 @@ RUN echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.c
 
 # miniconda 3.10
 RUN mkdir -p $MINICONDA_ROOT && \
-    wget  https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh -O $MINICONDA_ROOT/miniconda.sh && \
+    wget --progress=dot:giga https://repo.anaconda.com/miniconda/Miniconda3-py310_23.3.1-0-Linux-x86_64.sh -O $MINICONDA_ROOT/miniconda.sh && \
     bash $MINICONDA_ROOT/miniconda.sh -b -u -p $MINICONDA_ROOT && \
     rm -rf $MINICONDA_ROOT/miniconda.sh && \
     $MINICONDA_ROOT/bin/conda init bash && \
@@ -50,7 +50,7 @@ RUN apt-get update -y && apt-get install -y jq --no-install-recommends && \
     curl -L "$(curl -s https://api.github.com/repos/minamijoyo/hcledit/releases/latest | grep -o -E -m 1 "https://.+?_linux_amd64.tar.gz")" > hcledit.tar.gz && tar -xzf hcledit.tar.gz hcledit && rm hcledit.tar.gz && mv hcledit /usr/bin/
 
 # hadolint
-RUN wget https://github.com/hadolint/hadolint/releases/download/v2.12.1-beta/hadolint-Linux-x86_64 && \
+RUN wget --progress=dot:giga https://github.com/hadolint/hadolint/releases/download/v2.12.1-beta/hadolint-Linux-x86_64 && \
     mv hadolint-Linux-x86_64 /usr/bin/hadolint && \
     chmod +x /usr/bin/hadolint
 
@@ -83,7 +83,7 @@ RUN \
     # Create a tmp dir for downloading
     && tdir=/tmp/exts && mkdir -p "${tdir}" && cd "${tdir}" \
     # Download via wget from $urls array.
-    && wget "${urls[@]}" && \
+    && wget --progress=dot:giga "${urls[@]}" && \
     # List the extensions in this array
     exts=(\
         # From https://open-vsx.org/ registry directly
