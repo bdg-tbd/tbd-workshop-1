@@ -154,7 +154,6 @@ jobs:
     - name: Generate Infracost cost estimate baseline
       run: |
         infracost breakdown --path="." \
-                            --project-name=JakubDziegielewski/tbd-workshop-1/random_name \
                             --usage-file infracost-usage.yml \
                             --format=json \
                             --out-file=/tmp/infracost-base.json \
