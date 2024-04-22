@@ -5,7 +5,6 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 1. Authors:
 
    Grupa 10
-
    https://github.com/iotchenkoarist/tbd-workshop-1
    
 2. Follow all steps in README.md.
