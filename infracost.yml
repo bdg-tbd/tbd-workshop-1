@@ -1,0 +1,26 @@
+version: 0.1
+
+projects:
+  - path: .
+    name: main
+    terraform_var_files:
+      - env/project.tfvars
+      - env/backend.tfvars
+    skip_autodetect: true
+  - path: bootstrap
+    name: bootstrap
+    terraform_var_files:
+      - ../env/project.tfvars
+      - ../env/backend.tfvars
+    skip_autodetect: true
+  - path: cicd_bootstrap
+    name: cicd_bootstrap
+    terraform_var_files:
+      - conf/github_actions.tfvars
+    skip_autodetect: true
+  - path: mlops
+    name: mlops
+    terraform_var_files:
+      - env/project.tfvars
+      - env/backend.tfvars
+    skip_autodetect: true
