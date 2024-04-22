@@ -25,3 +25,16 @@ variable "machine_type_jupyter" {
   default     = "e2-standard-2"
   description = "Arbitrary machine type for jupyter"
 }
+
+variable "number_of_worker_machines" {
+  type        = number
+  default     = 2
+  description = "Number of worker instances in dataproc module"
+}
+
+variable "number_of_preemptible_machines" {
+  type        = number
+  default     = 0
+  description = "Number of spot instances in dataproc module"
+}
+
