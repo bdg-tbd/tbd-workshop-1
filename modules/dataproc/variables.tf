@@ -16,11 +16,20 @@ variable "subnet" {
 
 variable "machine_type" {
   type        = string
-  default     = "e2-medium"
   description = "Machine type to use for both worker and master nodes"
 }
 
 variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
+}
+
+variable "number_of_worker_machines" {
+  type        = number
+  description = "Number of worker instances in dataproc module"
+}
+
+variable "number_of_preemptible_machines" {
+  type        = number
+  description = "Number of preemptible instances in dataproc module"
 }

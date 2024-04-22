@@ -101,18 +101,26 @@ oraz dowód, że job przechodzi:
 
 15. Additional tasks using Terraform:
 
-    1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
+Zamiast linków do plików podajemy linki do commit'ów, ponieważ modyfikowanych jest zawsze kilka plików.
 
-    ***place the link to the modified file and inserted terraform code***
+a) Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
+
+[link do commita](https://github.com/JakubDziegielewski/tbd-workshop-1/commit/644c8f1d7230821ff870540bc66492ab412c67d5)
+
+Aby dodać możliwość określenia rodzaju typów maszyn, podjęliśmy kilka kroków. Zadeklarowaliśmy w `variables.tf` dwie nowe zmienne odpowiadające za typy maszyn dla dataproc oraz instancji jupytera z odpowiednimi wartościami domyślnymi. Następnie w `main.tf` w deklaracji modułów przekazaliśmy wartości tych zmiennych do modułów. W dataproc zmodyfikowaliśmy jedynie `modules/dataproc/variables.tf` usuwając wartość domyślną, gdyż występuje ona już poziom wyżej. W vertex-ai-workbench zdefiniowaliśmy zmienną w `modules/vertex-ai-workbench/variables.tf`, a następnie wykorzystaliśmy ją w `modules/vertex-ai-workbench/main.tf` przy deklaracji instancji notebooka.
+
+b) Add support for preemptible/spot instances in a Dataproc cluster
+
+[link do commita](https://github.com/JakubDziegielewski/tbd-workshop-1/commit/e3a63871a367c9f9d01bb51533fa608b7b1aa77c)
+
+Aby dodać możliwość dodawania instancji preemptible w clustrze dataproc oraz determinowania liczby worker'ów zadeklarowaliśmy w pliku `variables.tf` dwie nowe zmienne numeryczne z odpowiednimi wartościami domyślnymi. Następnie w `main.tf` przy konfiguracji modułu dataproc przekazaliśmy dalej ich wartości. Zdefiniowaliśmy w `modules/dataproc/variables.tf` dwie analogiczne zmienne, które następnie w `main.tf` użyliśmy przy konfiguracji clustra dataproc.
     
-    3. Add support for preemptible/spot instances in a Dataproc cluster
-
-    ***place the link to the modified file and inserted terraform code***
+c) Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
     
-    3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
-    
-    ***place the link to the modified file and inserted terraform code***
+[link do commita](https://github.com/JakubDziegielewski/tbd-workshop-1/commit/8866c0f434c0de55b722bf061d82960c8a45e2c1)
 
-    4. (Optional) Get access to Apache Spark WebUI
+W celu dokonania hardeningu modyfikowaliśmy jedynie plik `modules/vertex-ai-workbench`, gdzie w środku konfiguracji instancji notebook'a dodaliśmy do metadanych flagę `notebook-disable-root = true` oraz umożliwiliśmy secure boot'a `shielded_instance_config { enable_secure_boot = true }`.
 
-    ***place the link to the modified file and inserted terraform code***
+d) (Optional) Get access to Apache Spark WebUI
+
+***place the link to the modified file and inserted terraform code***
