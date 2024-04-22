@@ -25,12 +25,12 @@ jobs:
         token_format: 'access_token'
         workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
         service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
-    - name: Terraform Unlock
-      id: unlock
-      run: terraform force-unlock 1713774622467951
     - name: Terraform Init
       id: init
       run: terraform init -backend-config=env/backend.tfvars
+    - name: Terraform Unlock
+      id: unlock
+      run: terraform force-unlock 1713774622467951
     - name: Terraform Destroy
       id: destroy
       run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
