@@ -159,6 +159,8 @@ jobs:
                             --out-file=/tmp/infracost-base.json \
     - name: Checkout PR branch
       uses: actions/checkout@v3
+    - name: Generate Config File
+      run: infracost generate config --out-file=infracost.yml
     - name: Generate Infracost diff
       run: |
         infracost diff --config-file=infracost.yml \
