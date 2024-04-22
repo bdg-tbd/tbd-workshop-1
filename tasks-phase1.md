@@ -4,7 +4,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***group nr 9***
+   ***Group nr 9***
 
    ***https://github.com/NastyaRush/tbd-workshop-1/tree/master***
    
