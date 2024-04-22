@@ -165,7 +165,8 @@ jobs:
                        --usage-file infracost-usage.yml \
                        --format=json \
                        --compare-to=/tmp/infracost-base.json \
-                       --out-file=/tmp/infracost.json
+                       --out-file=/tmp/infracost.json \
+                       --log-level=debug
     - name: Post Infracost comment
       run: |
           infracost comment github --path=/tmp/infracost.json \
