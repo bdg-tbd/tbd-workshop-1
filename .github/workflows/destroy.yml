@@ -30,5 +30,5 @@ jobs:
       run: terraform init -backend-config=env/backend.tfvars
     - name: Terraform Destroy
       id: destroy
-      run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
+      run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve -lock=false
       continue-on-error: false
