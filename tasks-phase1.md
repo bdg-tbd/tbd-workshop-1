@@ -111,7 +111,7 @@ Aby dodać możliwość określenia rodzaju typów maszyn, podjęliśmy kilka kr
 
 b) Add support for preemptible/spot instances in a Dataproc cluster
 
-    [link do commita](https://github.com/JakubDziegielewski/tbd-workshop-1/commit/e3a63871a367c9f9d01bb51533fa608b7b1aa77c)
+[link do commita](https://github.com/JakubDziegielewski/tbd-workshop-1/commit/e3a63871a367c9f9d01bb51533fa608b7b1aa77c)
 
 Aby dodać możliwość dodawania instancji preemptible w clustrze dataproc oraz determinowania liczby worker'ów zadeklarowaliśmy w pliku `variables.tf` dwie nowe zmienne numeryczne z odpowiednimi wartościami domyślnymi. Następnie w `main.tf` przy konfiguracji modułu dataproc przekazaliśmy dalej ich wartości. Zdefiniowaliśmy w `modules/dataproc/variables.tf` dwie analogiczne zmienne, które następnie w `main.tf` użyliśmy przy konfiguracji clustra dataproc.
     
