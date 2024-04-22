@@ -44,5 +44,5 @@ jobs:
       run: terraform init -backend-config=env/backend.tfvars
     - name: Terraform Apply
       id: apply
-      run: terraform apply -no-color -var-file env/project.tfvars -auto-approve -lock=false
+      run: terraform apply -no-color -var-file env/project.tfvars -auto-approve
       continue-on-error: false
