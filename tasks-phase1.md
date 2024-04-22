@@ -75,10 +75,8 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 Udało nam się stworzyć tabelę shakespeare, jak widać na poniższym zrzucie ekranu. Powodzenie tej operacji było możliwe dopiero po naprawieniu błędu w pliku spark-job.py, gdyż dopiero sukces tego joba gwarantował dane, na podstawie których tworzona była tabela.
     
 ![img.png](doc/figures/big_query.png)
-   
-    ***why does ORC not require a table schema?***
 
-...
+ORC nie potrzebuje schematu tabeli, ponieważ wykorzystuje podejście "schema-on-read". Polega ono na tym, że schemat jest automatycznie dedukowany lub określany w momencie odczytu danych, a nie w chwili ich zapisywania. Podejście to zwiększa elastyczność i jest szczególnie użyteczne, gdy schemat może ulegać częstym zmianom.
 
   
 12. Start an interactive session from Vertex AI workbench:
