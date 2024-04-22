@@ -4,9 +4,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   ***group nr 9***
 
-   ***link to forked repo***
+   ***https://github.com/NastyaRush/tbd-workshop-1/tree/master***
    
 2. Follow all steps in README.md.
 
