@@ -164,6 +164,7 @@ jobs:
       run: |
         infracost diff --path="." \
                        --usage-file infracost-usage.yml \
+                       --project-name=JakubDziegielewski/tbd-workshop-1 \
                        --format=json \
                        --compare-to=/tmp/infracost-base.json \
                        --out-file=/tmp/infracost.json
