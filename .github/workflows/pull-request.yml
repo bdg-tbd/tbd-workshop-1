@@ -153,26 +153,9 @@ jobs:
         ref: '${{ github.event.pull_request.base.ref }}'
     - name: Generate Infracost cost estimate baseline
       run: |
-        infracost breakdown --config-file=infracost.yml \
+        infracost breakdown --path="." \
                             --usage-file infracost-usage.yml \
                             --format=json \
                             --out-file=/tmp/infracost-base.json \
-    - name: Checkout PR branch
-      uses: actions/checkout@v3
-    - name: Generate Config File
-      run: infracost generate config --out-file=infracost.yml
-    - name: Generate Infracost diff
-      run: |
-        infracost diff --config-file=infracost.yml \
-                       --usage-file infracost-usage.yml \
-                       --format=json \
-                       --compare-to=/tmp/infracost-base.json \
-                       --out-file=/tmp/infracost.json
-    - name: Post Infracost comment
-      run: |
-          infracost comment github --path=/tmp/infracost.json \
-                                   --repo=$GITHUB_REPOSITORY \
-                                   --github-token=${{secrets.GITHUB_TOKEN}} \
-                                   --pull-request=${{github.event.pull_request.number}} \
-                                   --behavior=update
+
 
