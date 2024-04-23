@@ -179,4 +179,111 @@ jobs:
                                    --github-token=${{secrets.GITHUB_TOKEN}} \
                                    --pull-request=${{github.event.pull_request.number}} \
                                    --behavior=update
+    - name: Checkout base branch
+      uses: actions/checkout@v3
+      with:
+        ref: '${{ github.event.pull_request.base.ref }}'
+    - name: Generate Infracost cost estimate baseline for bootstrap
+      run: |
+        infracost breakdown --path="./bootstrap" \
+                            --usage-file infracost-usage.yml \
+                            --format=json \
+                            --out-file=/tmp/infracost-base.json
+    - name: Checkout PR branch
+      uses: actions/checkout@v3
+    - name: Generate Infracost diff for bootstrap
+      run: |
+        infracost diff --path="./bootstrap" \
+                       --usage-file infracost-usage.yml \
+                       --format=json \
+                       --compare-to=/tmp/infracost-base.json \
+                       --out-file=/tmp/infracost.json
+    - name: Post Infracost comment for
+      run: |
+          infracost comment github --path=/tmp/infracost.json \
+                                   --repo=$GITHUB_REPOSITORY \
+                                   --github-token=${{secrets.GITHUB_TOKEN}} \
+                                   --pull-request=${{github.event.pull_request.number}} \
+                                   --behavior=update
+    - name: Checkout base branch
+      uses: actions/checkout@v3
+      with:
+        ref: '${{ github.event.pull_request.base.ref }}'
+    - name: Generate Infracost cost estimate baseline for bootstrap
+      run: |
+        infracost breakdown --path="./bootstrap" \
+                            --usage-file infracost-usage.yml \
+                            --format=json \
+                            --out-file=/tmp/infracost-base.json
+    - name: Checkout PR branch
+      uses: actions/checkout@v3
+    - name: Generate Infracost diff for bootstrap
+      run: |
+        infracost diff --path="./bootstrap" \
+                       --usage-file infracost-usage.yml \
+                       --format=json \
+                       --compare-to=/tmp/infracost-base.json \
+                       --out-file=/tmp/infracost.json
+    - name: Post Infracost comment for bootstrap
+      run: |
+          infracost comment github --path=/tmp/infracost.json \
+                                   --repo=$GITHUB_REPOSITORY \
+                                   --github-token=${{secrets.GITHUB_TOKEN}} \
+                                   --pull-request=${{github.event.pull_request.number}} \
+                                   --behavior=update
+    - name: Checkout base branch
+      uses: actions/checkout@v3
+      with:
+        ref: '${{ github.event.pull_request.base.ref }}'
+    - name: Generate Infracost cost estimate baseline for cicd bootstrap
+      run: |
+        infracost breakdown --path="./cicd_bootstrap" \
+                            --usage-file infracost-usage.yml \
+                            --format=json \
+                            --out-file=/tmp/infracost-base.json
+    - name: Checkout PR branch
+      uses: actions/checkout@v3
+    - name: Generate Infracost diff for cicd bootstrap
+      run: |
+        infracost diff --path="./cicd_bootstrap" \
+                       --usage-file infracost-usage.yml \
+                       --format=json \
+                       --compare-to=/tmp/infracost-base.json \
+                       --out-file=/tmp/infracost.json
+    - name: Post Infracost comment for cicd bootstrap
+      run: |
+          infracost comment github --path=/tmp/infracost.json \
+                                   --repo=$GITHUB_REPOSITORY \
+                                   --github-token=${{secrets.GITHUB_TOKEN}} \
+                                   --pull-request=${{github.event.pull_request.number}} \
+                                   --behavior=update
+    - name: Checkout base branch
+      uses: actions/checkout@v3
+      with:
+        ref: '${{ github.event.pull_request.base.ref }}'
+    - name: Generate Infracost cost estimate baseline for mlops
+      run: |
+        infracost breakdown --path="./mlops" \
+                            --usage-file infracost-usage.yml \
+                            --format=json \
+                            --out-file=/tmp/infracost-base.json
+    - name: Checkout PR branch
+      uses: actions/checkout@v3
+    - name: Generate Infracost diff for mlops
+      run: |
+        infracost diff --path="./mlops" \
+                       --usage-file infracost-usage.yml \
+                       --format=json \
+                       --compare-to=/tmp/infracost-base.json \
+                       --out-file=/tmp/infracost.json
+    - name: Post Infracost comment for mlops
+      run: |
+          infracost comment github --path=/tmp/infracost.json \
+                                   --repo=$GITHUB_REPOSITORY \
+                                   --github-token=${{secrets.GITHUB_TOKEN}} \
+                                   --pull-request=${{github.event.pull_request.number}} \
+                                   --behavior=update
 
+                                   
+
+                                   
