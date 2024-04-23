@@ -153,7 +153,8 @@ jobs:
         ref: '${{ github.event.pull_request.base.ref }}'
     - name: Generate Infracost cost estimate baseline
       run: |
-        infracost breakdown --path="./bootstrap" \
+        infracost breakdown --path="." \
+                            --exclude-path "./bootstrap" "./cicd_bootstrap" "./mlops" "./modules"
                             --usage-file infracost-usage.yml \
                             --format=json \
                             --out-file=/tmp/infracost-base.json
@@ -161,7 +162,8 @@ jobs:
       uses: actions/checkout@v3
     - name: Generate Infracost diff
       run: |
-        infracost diff --path="./bootstrap" \
+        infracost diff --path="." \
+                       --exclude-path "./bootstrap" "./cicd_bootstrap" "./mlops" "./modules"
                        --usage-file infracost-usage.yml \
                        --format=json \
                        --compare-to=/tmp/infracost-base.json \
