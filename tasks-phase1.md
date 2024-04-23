@@ -8,9 +8,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
    <https://github.com/Pinjesz/tbd-workshop-1>
 
-2. Follow all steps in README.md.
+3. Follow all steps in README.md.
 
-3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
+4. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
   ![img.png](doc/figures/discounts.png)
 
@@ -101,16 +101,16 @@ ORC (Optimized Row Columnar) is a columnar storage format for large datasets in 
 14.  Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
-
-    ***place the link to the modified file and inserted terraform code***
-
+    
+   <https://github.com/Pinjesz/tbd-workshop-1/commit/16fc51d81e6dc769db94f3564f94bb40b7706b58>
+   
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place the link to the modified file and inserted terraform code***
+   <https://github.com/Pinjesz/tbd-workshop-1/commit/26a55156cb04bf71c003b22668045bc4b996b10a>
 
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
 
-    ***place the link to the modified file and inserted terraform code***
+   <https://github.com/Pinjesz/tbd-workshop-1/commit/3916d1a9df4fa78a610eef01931e368ef380d666)>
 
     4. (Optional) Get access to Apache Spark WebUI
 
