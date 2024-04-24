@@ -37,7 +37,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
-    ![img.png](doc/figures/vpc.png)
+    ![img.png](doc/figures/vpc)
     2. Description of the components of service accounts
        * tbd-2024l-308908-lab@tbd-2024l-308908.iam.gserviceaccount.com (tbd-terraform) - handles Terraform-related
        activities, allows infrastructure management of Google Cloud project from terraform level
