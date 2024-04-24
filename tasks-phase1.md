@@ -96,14 +96,20 @@ ORC (Optimized Row Columnar) is a columnar storage format for large datasets in 
 
 13.  Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+  The path in variable DATA_BUCKET did not exist, it cause the error:
+
+  ![img.png](doc/figures/job-fail.png)
+
+  After changing the variable to DATA_BUCKET = "gs://tbd-2024l-303760-data/data/shakespeare/"
+
+  ![img.png](doc/figures/job-success.png)
 
 14.  Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
-    
+
    <https://github.com/Pinjesz/tbd-workshop-1/commit/16fc51d81e6dc769db94f3564f94bb40b7706b58>
-   
+
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
    <https://github.com/Pinjesz/tbd-workshop-1/commit/26a55156cb04bf71c003b22668045bc4b996b10a>
