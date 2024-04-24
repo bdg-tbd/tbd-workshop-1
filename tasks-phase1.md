@@ -155,12 +155,13 @@ resource_usage:
 13. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
+   ![img.png](doc/figures/error.webp)
    
-14. Find and correct the error in spark-job.py
+15. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-15. Additional tasks using Terraform:
+16. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
