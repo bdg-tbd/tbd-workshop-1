@@ -147,8 +147,16 @@ resource_usage:
 11. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
+    ```
+    CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
+    CREATE OR REPLACE EXTERNAL TABLE `tbd-2024l-300524.demo.shakespeare` OPTIONS ( format = 'ORC', uris = ['gs://tbd-2024l-300524-data/*.orc']);
+    SELECT * FROM demo.shakespeare ORDER BY int1 DESC LIMIT 10;
+    ```
+     ![img.png](doc/figures/query.webp)
    
     ***why does ORC not require a table schema?***
+
+    
    
 
   
