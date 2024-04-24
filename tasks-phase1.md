@@ -46,7 +46,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
-![zad10](doc/figures/zad10.png)
+![architecture_diagram.drawio](doc/figures/architecture_diagram.drawio.png)
+
+W Apache Spark węzeł główny zarządza i dystrybuuje zadania do odpowiednich wykonawców. Dlatego potrzebne jest podanie hosta, aby wykonawcy wiedzieli skąd nasłuchiwać, z kim się komunikować i gdzie wysyłać wyniki swojej pracy.
 
 11. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
