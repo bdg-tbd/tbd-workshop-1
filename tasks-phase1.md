@@ -66,9 +66,27 @@ Następnie otworzyliśmy przeglądarkę `/usr/bin/google-chrome \   --proxy-serv
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   ***place the expected consumption you entered here***
+Na podstawie przykładowego pliku wybraliśmy z niego potrzebne do naszych celów elementy. Plik `infracost-usage.yml`, zawierający spodziewane wartości konsumpcji, dostępny jest pod tym [linkiem](https://github.com/JakubDziegielewski/tbd-workshop-1/blob/master/infracost-usage.yml).
 
-   ***place the screenshot from infracost output here***
+Niestety, zgodnie z naszymi wcześniejszymi komunikatami, nie udało nam się skonfigurować infracosta tak, aby działał poprawnie.
+Próbowaliśmy dodać do komend infracost breakdown oraz infracost diff w `.github/workflows/pull-request.yml` flagę `--usage-file` ze wskazaniem na odpowiedni plik, jednak problemem było to, że różne projekty infracostowe (main, cicd_bootsrap, bootsrap i mlops) występowały pod tą samą nazwą (co obrazuje zrzut ekranu poniżej):
+
+![img.png](doc/figures/infracost_modules.png)
+
+Przez to wyrzucany był błąd przy komendzie diff:
+
+![img.png](doc/figures/infracost_error.png)
+
+Kolejny dowód na to, że z jakiegoś powodu plik `/tmp/infracost-base.json` generowany był niepoprawnie:
+
+![img.png](doc/figures/infracost_json.png)
+
+Rozwiązaniem typu workaround, które udało nam się zastosować, jest robienie infracost breakdown oraz diff dla każdego z infracostowych projektów osobno - jest to nieefektywne, ponieważ zamiast 1 razu należy to zrobić 4 razy (dla każdego projektu osobno), lecz w naszej opinii efekt końcowy jest taki sam jak w przypadku poprawnego działania.
+
+Zostawiamy zatem [PR](https://github.com/JakubDziegielewski/tbd-workshop-1/pull/14) z naszym workaround'em i wrzucamy zrzut ekranu z otrzymanego działania infracost'a:
+
+![img.png](doc/figures/infracost_workaround.png)
+
 
 11. Create a BigQuery dataset and an external table using SQL
 
