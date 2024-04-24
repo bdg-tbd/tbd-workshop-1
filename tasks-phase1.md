@@ -42,7 +42,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
     ![img.png](doc/figures/zad-command.webp)
-   
+    Raz udało nam się zestawić połączenie i uruchomić. Jednakże nie zrobiliśmy screena, ponieważ po destroyu i ponownym zestawieniu środowiska dostajemy błąd podczas zestawiania tunelowania - jest to błąd do rozwiązania, ale zabrakło nam czasu.
+    
 11. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
