@@ -16,6 +16,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
   ![img.png](doc/figures/discounts.png)
+  ![img.png](doc/figures/zad3.webp)
 
 5. From avaialble Github Actions select and run destroy on main branch.
    
@@ -25,17 +26,26 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
     ***place the screenshot from GA after succesfull application of release***
+   ![img.png](doc/figures/zad6.webp)
 
 
-8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+9. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
+   - bootstrap/main.tf:
+     ![img.png](doc/figures/bootstrap-graph.png)
+
+   - grc/main.tf:
+     ![img.png](doc/figures/grc-graph.png)
    
-9. Reach YARN UI
+11. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+    ```bash
+    gcloud compute ssh --zone "europe-west1-d" "tbd-cluster-m" --tunnel-through-iap --project "tbd-2024l-300524" -- -L 8088:localhost:1080
+     ```
    
-10. Draw an architecture diagram (e.g. in draw.io) that includes:
+11. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
     3. List of buckets for disposal
@@ -43,7 +53,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
   
     ***place your diagram here***
 
-11. Create a new PR and add costs by entering the expected consumption into Infracost
+12. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
