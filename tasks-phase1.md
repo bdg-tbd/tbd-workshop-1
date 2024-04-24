@@ -34,11 +34,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 ![graph](doc/figures/graph.png)
 
 8. Check if pyspark kernel exists - if not then in your Jupyterlab enviroment add Python3.8 kernel
-Pyspark kernel nie istniał i został utworzony przy pomocy polecenia: 
+Pyspark kernel nie istniał i został utworzony przy pomocy polecenia:
 
-'''bash
-python3.8 -m ipykernel install --user --name pyspark
-'''   
+
+    ```bash
+    python3.8 -m ipykernel install --user --name pyspark
+    ```   
 
 9. Reach YARN UI
    
