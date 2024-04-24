@@ -53,12 +53,30 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
 
 9. Draw an architecture diagram (e.g. in draw.io) that includes:
-    1. VPC topology with service assignment to subnets
-    2. Description of the components of service accounts
-    3. List of buckets for disposal
+    
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
+    
+    ![alt text](doc/figures/architecture.png)
 
-    ***place your diagram here***
+    2. Description of the components of service accounts:
+      - **tbd-composer-sa Service Account**:
+        - **Roles**: This service account, named "tbd-composer-sa", is granted specific roles on the project resource. These roles include:
+          - Composer Worker: Grants permissions required for Composer worker nodes to execute tasks within the environment.
+          - Dataproc Editor: Provides necessary permissions for managing Dataproc clusters, including creation, deletion, and modification.
+          - Service Account User: Allows the service account to impersonate other service accounts when accessing resources, facilitating secure communication between services.
+
+      - **tbd-terraform Service Account**:
+        - **Roles**: The "tbd-terraform" service account is granted the following role on the project resource:
+          - Owner: Grants full access to all resources and permissions within the project, allowing comprehensive management and control.
+
+      - **iac Service Account**:
+        - **Roles**: The "iac" service account is assigned the following role on the project resource:
+          - Editor: Provides permissions for making changes to project resources, such as creating, updating, and deleting configurations and services.
+          - Service Account Token Creator: Enables the creation of OAuth2 access tokens for service accounts, facilitating secure authentication and authorization processes.
+    
+    4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
+      
+        When Apache Spark runs from Vertex AI Workbench, network communication relies on specified ports such as the Spark driver port (16384), necessary for the driver to connect with the Spark cluster's master node. Specifying the host for the driver ensures seamless connectivity between the driver program and the master node, facilitating distributed data processing within the Spark cluster.
 
 10. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
@@ -69,7 +87,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    ***place the screenshot from infracost output here***
      ![img.png](doc/figures/infracost.png)
 
-11. Create a BigQuery dataset and an external table using SQL
+1.  Create a BigQuery dataset and an external table using SQL
 
 ```sh
 $ bq mk dataset
@@ -96,14 +114,20 @@ ORC (Optimized Row Columnar) is a columnar storage format for large datasets in 
 
 13.  Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+  The path in variable DATA_BUCKET did not exist, it cause the error:
+
+  ![img.png](doc/figures/job-fail.png)
+
+  After changing the variable to DATA_BUCKET = "gs://tbd-2024l-303760-data/data/shakespeare/"
+
+  ![img.png](doc/figures/job-success.png)
 
 14.  Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
-    
+
    <https://github.com/Pinjesz/tbd-workshop-1/commit/16fc51d81e6dc769db94f3564f94bb40b7706b58>
-   
+
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
    <https://github.com/Pinjesz/tbd-workshop-1/commit/26a55156cb04bf71c003b22668045bc4b996b10a>
