@@ -30,8 +30,39 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
-   
-7. Reach YARN UI
+    ![terraform graph](terraform_graph.jpeg)
+    Provider Node:
+
+    The provider["registry.terraform.io/hashicorp/google"] is the Google Cloud provider used by Terraform to manage GCP resources.
+
+
+    Resource Nodes:
+
+    - google_dataproc_metastore_service.demo: Represents a Google Dataproc Metastore service resource to be managed by Terraform. It's shaped like a box, indicating it's a standard resource.
+    - google_project_service.api-metastore: Represents enabling of the Metastore API service for the GCP project, also shaped like a box.
+
+    Variable Nodes:
+
+    - var.metastore_version, var.network, var.project_name, and var.region are variables that provide configurable parameters to Terraform resources. They are shaped like notes, indicating that they are input variables.
+
+    Output Node:
+
+    - output.metastore_name: An output that will display the metastore service's name after the resources are applied.
+
+    Edges (Dependencies):
+
+    - An edge from google_dataproc_metastore_service.demo to google_project_service.api-metastore indicates that the Dataproc Metastore service resource depends on the Metastore API service being enabled.
+    Edges from google_dataproc_metastore_service.demo to the variable nodes (var.metastore_version, var.network, and var.region) indicate that the creation of this resource depends on these variables.
+    - An edge from google_project_service.api-metastore to provider["registry.terraform.io/hashicorp/google"] indicates that enabling the API service depends on the Google provider.
+    - An edge from google_project_service.api-metastore to var.project_name shows a dependency on the project name variable for the API service configuration.
+    - The output node output.metastore_name depends on the successful creation of google_dataproc_metastore_service.demo.
+    - The provider has a lifecycle edge (close) to google_dataproc_metastore_service.demo, indicating a point in the graph where resources managed by the provider may be created or destroyed.
+
+    Root Node:
+
+    - The root node represents the root module in Terraform, which is the entry point of the configuration. It has edges to the output node and the provider node, signaling that it orchestrates their creation and management.
+
+9. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
    
