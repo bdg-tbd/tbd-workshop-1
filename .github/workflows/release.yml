@@ -39,10 +39,10 @@ jobs:
         registry: 'eu.gcr.io'
         username: 'oauth2accesstoken'
         password: '${{ steps.auth.outputs.access_token }}'
-    - name: Terraform Init
-      id: init
-      run: terraform init -backend-config=env/backend.tfvars
-    - name: Terraform Apply
-      id: apply
-      run: terraform apply -no-color -var-file env/project.tfvars -auto-approve
-      continue-on-error: false
+#     - name: Terraform Init
+#       id: init
+#       run: terraform init -backend-config=env/backend.tfvars
+#     - name: Terraform Apply
+#       id: apply
+#       run: terraform apply -no-color -var-file env/project.tfvars -auto-approve
+#       continue-on-error: false
