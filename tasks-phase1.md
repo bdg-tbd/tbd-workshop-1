@@ -32,7 +32,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
 ![graph](doc/figures/graph.png)
-Moduły, które możemy dostrzec na grafie to m.in. composer, vertex-ai-workbench, vpc czy dataproc. Przykładowo dataproc  zarządza klastrami Google Dataproc w Google Cloud, włączając wymagane usługi i korzystając z konfiguracji określonej przez zmienne.
+Moduł, który przeanalizowalśmy to data-pipeline. Tworzy on joby dla dgt i dag oraz trzyma dane wyjściowe z nich w bucketach.
 
 8. Check if pyspark kernel exists - if not then in your Jupyterlab enviroment add Python3.8 kernel 
 
