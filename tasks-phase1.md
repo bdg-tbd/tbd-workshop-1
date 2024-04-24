@@ -14,12 +14,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
   ![img.png](doc/figures/discounts.png)
 
-5. From avaialble Github Actions select and run destroy on main branch.
+4. From avaialble Github Actions select and run destroy on main branch.
 
 
   ![img.png](doc/figures/destroy_resources.png)
    
-7. Create new git branch and:
+5. Create new git branch and:
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
@@ -27,15 +27,15 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
       ![img.png](doc/figures/release.png)
 
 
-8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
    
-9. Reach YARN UI
+7. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
    
-10. Draw an architecture diagram (e.g. in draw.io) that includes:
+8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
     3. List of buckets for disposal
