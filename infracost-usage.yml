@@ -1,0 +1,31 @@
+version: 0.1
+resource_usage:
+  #
+  # Terraform GCP resources
+  #
+  google_artifact_registry_repository.my_artifact_registry:
+    storage_gb: 150 # Total data stored in the repository in GB
+    monthly_egress_data_transfer_gb: # Monthly data delivered from the artifact registry repository in GB. You can specify any number of Google Cloud regions below, replacing - for _ e.g.:
+      europe_west1: 100 # GB of data delivered from the artifact registry to europe-west1.
+
+  google_storage_bucket.my_storage_bucket:
+    storage_gb: 150                   # Total size of bucket in GB.
+    monthly_class_a_operations: 40000 # Monthly number of class A operations (object adds, bucket/object list).
+    monthly_class_b_operations: 20000 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+    monthly_data_retrieval_gb: 500    # Monthly amount of data retrieved in GB.
+    monthly_egress_data_transfer_gb:  # Monthly data transfer from Cloud Storage to the following, in GB:
+      same_continent: 550  # Same continent.
+      worldwide: 12500     # Worldwide excluding Asia, Australia.
+      asia: 1500           # Asia excluding China, but including Hong Kong.
+      china: 50            # China excluding Hong Kong.
+      australia: 250       # Australia.
+
+  google_service_networking_connection.my_connection:
+    monthly_egress_data_transfer_gb: # Monthly VM-VM data transfer from VPN gateway to the following, in GB:
+      same_region: 250                # VMs in the same Google Cloud region.
+      us_or_canada: 100               # From a Google Cloud region in the US or Canada to another Google Cloud region in the US or Canada.
+      europe: 70                      # Between Google Cloud regions within Europe.
+      asia: 50                        # Between Google Cloud regions within Asia.
+      south_america: 100              # Between Google Cloud regions within South America.
+      oceania: 50                     # Indonesia and Oceania to/from any Google Cloud region.
+      worldwide: 200                  # to a Google Cloud region on another continent.
