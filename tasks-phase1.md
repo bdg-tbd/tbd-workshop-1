@@ -60,7 +60,17 @@ Następnie otworzyliśmy przeglądarkę `/usr/bin/google-chrome \   --proxy-serv
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
-    ***place your diagram here***
+    1.  ![img.png](doc/figures/nets.png)
+    2.  tbd-2024l-335209-data@tbd-2024l-335209.iam.gserviceaccount.com	- 	service account that manages the Dataproc and Cloud Composer, assigned to tf local value in composer folder as "composer_account_id" \n
+        tbd-2024l-335209-lab@tbd-2024l-335209.iam.gserviceaccount.com		-	 service account responsible for IaC managment, comunication with terraform, assigned to tf variable "iac_service_account" \n
+        143640390419-compute@developer.gserviceaccount.com - default service account, allows for communication and authentication of other services with Google Cloud and its APIs \n
+    3. ![img.png](doc/figures/buckets.png) \n
+    4. There are 4 Virtual Machines in the project, 3 of them are related to Dataproc clusters (1 Master and 2 Worker nodes) and of them is for running the Jupyter Notebook and Vertex AI. \n
+       
+       ![img.png](doc/figures/vms.png)
+
+       spark_driver_port = 30000, spark_blockmgr_port = 30001 (for spark block management). \n
+       Host must be specified for the driver for it to be able to manage tasks within its worker nodes in the cluster.
 
 11. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
