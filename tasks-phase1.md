@@ -32,7 +32,13 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
 ![graph](doc/figures/graph.png)
-   
+
+8. Check if pyspark kernel exists - if not then in your Jupyterlab enviroment add Python3.8 kernel
+Pyspark kernel nie istniał i został utworzony przy pomocy polecenia:
+'''bash
+python3.8 -m ipykernel install --user --name pyspark
+'''   
+
 9. Reach YARN UI
    
    ```bash
