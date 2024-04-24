@@ -36,7 +36,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
      ![img.png](doc/figures/bootstrap-graph.png)
 
    - grc/main.tf:
-     ![img.png](doc/figures/grc-graph.png)
+     ![img.png](doc/figures/gcr-graph.png)
    
 11. Reach YARN UI
    
