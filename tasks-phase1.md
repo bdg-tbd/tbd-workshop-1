@@ -14,12 +14,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
   ![img.png](doc/figures/discounts.png)
 
-4. From avaialble Github Actions select and run destroy on main branch.
+5. From avaialble Github Actions select and run destroy on main branch.
 
 
   ![img.png](doc/figures/destroy_resources.png)
    
-5. Create new git branch and:
+6. Create new git branch and:
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
@@ -27,7 +27,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
       ![img.png](doc/figures/release.png)
 
 
-6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+7. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
     ![terraform graph](terraform_graph.jpeg)
@@ -62,11 +62,13 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     - The root node represents the root module in Terraform, which is the entry point of the configuration. It has edges to the output node and the provider node, signaling that it orchestrates their creation and management.
 
-9. Reach YARN UI
+8. Reach YARN UI
    
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
-   
-8. Draw an architecture diagram (e.g. in draw.io) that includes:
+   Used command: ***gcloud compute ssh --zone "europe-west1-d" "tbd-cluster-m" --tunnel-through-iap --project "tbd-2024l-308908" -- -L 8088:localhost:8088   ***
+
+      ![img.png](doc/figures/yarn.png)
+
+9. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     ![img.png](doc/figures/vpc)
     2. Description of the components of service accounts
@@ -94,9 +96,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
        * driver port: 30000
        * block manager: 30001
 
-    ***place your diagram here***
-
-11. Create a new PR and add costs by entering the expected consumption into Infracost
+10. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
@@ -136,17 +136,35 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 11. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
+    ![img.png](doc/figures/BigQuery.png)
    
+    The query we executed was based on an example provided in the README. Prior to running the query, it was essential to carry out step 13, as this step involved uploading data to a bucket which the query subsequently accessed.
     ***why does ORC not require a table schema?***
 
-  
+    ORC files don't require a predefined schema because they use a schema-on-read approach, where the data schema is interpreted at read time. ORC files contain a header with metadata about the column schema, allowing the data to be read and understood dynamically. This design provides flexibility for big data systems such as Hadoop
+    
 12. Start an interactive session from Vertex AI workbench:
 
     ![img.png](doc/figures/vertexAI.png)
    
 13. Find and correct the error in spark-job.py
+    Command used: ***gcloud dataproc jobs submit pyspark gs://tbd-2024l-308908-code/spark-job.py --cluster=tbd-cluster --region=europe-west1 --project "tbd-2024l-308908"***
+    Logs output:
+    ![img.png](doc/figures/spark_error.png)
+    Error:
+    {
+      "code" : 404,
+      "errors" : [ {
+        "domain" : "global",
+        "message" : "The specified bucket does not exist.",
+        "reason" : "notFound"
+    } ]}
 
-    ***describe the cause and how to find the error***
+    ***Fix: Change DATA_BUCKET to DATA_BUCKET = "gs://tbd-2024l-308908-data/data/shakespeare/"***
+    
+    Succesfull output:
+    ![img.png](doc/figures/spark_ok.png)
+    
 
 14. Additional tasks using Terraform:
 
