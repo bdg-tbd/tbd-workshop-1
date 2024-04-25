@@ -70,32 +70,10 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
-    ![img.png](doc/figures/vpc)
     2. Description of the components of service accounts
-       * tbd-2024l-308908-lab@tbd-2024l-308908.iam.gserviceaccount.com (tbd-terraform) - handles Terraform-related
-       activities, allows infrastructure management of Google Cloud project from terraform level
-       * tbd-2024l-308908-data@tbd-2024l-308908.iam.gserviceaccount.com (tbd-composer-sa) - manages the
-       Cloud Composer environment, including the orchestration of Dataproc clusters and various jobs within
-       that environment
-       * 973102651483-compute@developer.gserviceaccount.com (iac) - mediator between GitHub and
-       Google Cloud services, manages distribution of access tokens
     3. List of buckets for disposal
-       * tbd-2024l-308908-code - Apache Spark job file
-       * tbd-2024l-308908-conf - Notebook post startup script file
-       * tbd-2024l-308908-data - Files with data from data-pipelines
-       * tbd-2024l-308908-state - Terraform state files
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
-       * 10.10.10.2: tbd-cluster-w-1 - Worker
-       * 10.10.10.3: tbd-cluster-w-0 - Worker
-       * 10.10.10.4: tbd-cluster-m - Master
-       * 10.10.10.5: tbd-2024-308908-notebook - JupyterLab Notebook VM
-
-       In the context of Vertex AI Workbench, the Spark driver may run on a different machine or container than the Spark cluster itself.
-       By specifying the host for the driver, we ensure that the Spark driver knows where to send tasks for execution and where to collect results from the Spark cluster.
-       This information is crucial for establishing communication channels between the driver and the cluster, enabling efficient data processing and computation.
-       * driver port: 30000
-       * block manager: 30001
-
+  
     ***place your diagram here***
 
 11. Create a new PR and add costs by entering the expected consumption into Infracost
@@ -103,37 +81,8 @@ For all the resources of type: `google_artifact_registry`, `google_storage_bucke
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
    ***place the expected consumption you entered here***
-   ```yaml
-    version: 0.1
-    resource_usage:
-      google_artifact_registry_repository:
-        storage_gb: 200 # Total data stored in the repository in GB
-        monthly_egress_data_transfer_gb: # Monthly data delivered from the artifact registry repository in GB. You can specify any number of Google Cloud regions below, replacing - for _ e.g.:
-          europe_west1: 100 # GB of data delivered from the artifact registry to europe-north1.
-      google_storage_bucket:
-        storage_gb: 50                    # Total size of bucket in GB.
-        monthly_class_a_operations: 1000  # Monthly number of class A operations (object adds, bucket/object list).
-        monthly_class_b_operations: 1000  # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
-        monthly_data_retrieval_gb: 50     # Monthly amount of data retrieved in GB.
-        monthly_egress_data_transfer_gb:  # Monthly data transfer from Cloud Storage to the following, in GB:
-          same_continent: 50   # Same continent.
-          worldwide:     0     # Worldwide excluding Asia, Australia.
-          asia: 0              # Asia excluding China, but including Hong Kong.
-          china: 0             # China excluding Hong Kong.
-          australia: 0         # Australia.
-      google_service_networking_connection:
-        monthly_egress_data_transfer_gb: # Monthly VM-VM data transfer from VPN gateway to the following, in GB:
-          same_region: 50                 # VMs in the same Google Cloud region.
-          us_or_canada: 0                 # From a Google Cloud region in the US or Canada to another Google Cloud region in the US or Canada.
-          europe: 0                       # Between Google Cloud regions within Europe.
-          asia: 0                         # Between Google Cloud regions within Asia.
-          south_america: 0                # Between Google Cloud regions within South America.
-          oceania: 0                      # Indonesia and Oceania to/from any Google Cloud region.
-          worldwide: 0                    # to a Google Cloud region on another continent.
-   ```
 
    ***place the screenshot from infracost output here***
-    ![img.png](doc/figures/infracost.png)
 
 11. Create a BigQuery dataset and an external table using SQL
     
@@ -147,8 +96,23 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![img.png](doc/figures/vertexAI.png)
    
 13. Find and correct the error in spark-job.py
+    Command used: ***gcloud dataproc jobs submit pyspark gs://tbd-2024l-308908-code/spark-job.py --cluster=tbd-cluster --region=europe-west1 --project "tbd-2024l-308908"***
+    Logs output:
+    ![img.png](doc/figures/spark_error.png)
+    Error:
+    {
+      "code" : 404,
+      "errors" : [ {
+        "domain" : "global",
+        "message" : "The specified bucket does not exist.",
+        "reason" : "notFound"
+    } ]}
 
-    ***describe the cause and how to find the error***
+    ***Fix: Change DATA_BUCKET to DATA_BUCKET = "gs://tbd-2024l-308908-data/data/shakespeare/"***
+    
+    Succesfull output:
+    ![img.png](doc/figures/spark_ok.png)
+    
 
 14. Additional tasks using Terraform:
 
