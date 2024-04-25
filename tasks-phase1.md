@@ -68,10 +68,32 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
+    ![img.png](doc/figures/vpc)
     2. Description of the components of service accounts
+       * tbd-2024l-308908-lab@tbd-2024l-308908.iam.gserviceaccount.com (tbd-terraform) - handles Terraform-related
+       activities, allows infrastructure management of Google Cloud project from terraform level
+       * tbd-2024l-308908-data@tbd-2024l-308908.iam.gserviceaccount.com (tbd-composer-sa) - manages the
+       Cloud Composer environment, including the orchestration of Dataproc clusters and various jobs within
+       that environment
+       * 973102651483-compute@developer.gserviceaccount.com (iac) - mediator between GitHub and
+       Google Cloud services, manages distribution of access tokens
     3. List of buckets for disposal
+       * tbd-2024l-308908-code - Apache Spark job file
+       * tbd-2024l-308908-conf - Notebook post startup script file
+       * tbd-2024l-308908-data - Files with data from data-pipelines
+       * tbd-2024l-308908-state - Terraform state files
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
-  
+       * 10.10.10.2: tbd-cluster-w-1 - Worker
+       * 10.10.10.3: tbd-cluster-w-0 - Worker
+       * 10.10.10.4: tbd-cluster-m - Master
+       * 10.10.10.5: tbd-2024-308908-notebook - JupyterLab Notebook VM
+
+       In the context of Vertex AI Workbench, the Spark driver may run on a different machine or container than the Spark cluster itself.
+       By specifying the host for the driver, we ensure that the Spark driver knows where to send tasks for execution and where to collect results from the Spark cluster.
+       This information is crucial for establishing communication channels between the driver and the cluster, enabling efficient data processing and computation.
+       * driver port: 30000
+       * block manager: 30001
+
     ***place your diagram here***
 
 11. Create a new PR and add costs by entering the expected consumption into Infracost
