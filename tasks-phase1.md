@@ -167,20 +167,28 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![img.png](doc/figures/spark_ok.png)
     
 
-14. Additional tasks using Terraform:
-
+14. Additional tasks using Terraform: 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
-    ***place the link to the modified file and inserted terraform code***
-    
-    3. Add support for preemptible/spot instances in a Dataproc cluster
+       Modified files  ([commit](https://github.com/bdg-tbd/tbd-workshop-1/commit/54ff467925e74678efa0c3ffa4da46ac31faafdd)):
+        * [main.tf](main.tf)
+        * [modules/dataproc/main.tf](modules/dataproc/main.tf)
+        * [modules/dataproc/variables.tf](modules/dataproc/variables.tf)
+        * [modules/vertex-ai-workbench/main.tf](modules/vertex-ai-workbench/main.tf)
+        * [modules/vertex-ai-workbench/variables.tf](modules/vertex-ai-workbench/variables.tf)
 
-    ***place the link to the modified file and inserted terraform code***
-    
+    2. Add support for preemptible/spot instances in a Dataproc cluster
+
+        Modified files ([commit](https://github.com/bdg-tbd/tbd-workshop-1/commit/c91f75f29f775b61b4caf897eaab10e32fd2cc61)):
+         * [main.tf](main.tf)
+         * [modules/dataproc/main.tf](modules/dataproc/main.tf)
+         * [modules/dataproc/variables.tf](modules/dataproc/variables.tf)
+
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
-    
-    ***place the link to the modified file and inserted terraform code***
+  
+       Modified files ([commit](https://github.com/bdg-tbd/tbd-workshop-1/commit/d5a81a85b1fcbdc00d8c626e533fa2d38fc2ae9f)):
+        * [modules/vertex-ai-workbench/main.tf](modules/vertex-ai-workbench/main.tf)
 
-    4. (Optional) Get access to Apache Spark WebUI
+     4. (Optional) Get access to Apache Spark WebUI
 
-    ***place the link to the modified file and inserted terraform code***
+   ***place the link to the modified file and inserted terraform code***
