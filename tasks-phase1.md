@@ -139,6 +139,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![img.png](doc/figures/BigQuery.png)
    
     The query we executed was based on an example provided in the README. Prior to running the query, it was essential to carry out step 13, as this step involved uploading data to a bucket which the query subsequently accessed.
+    
     ***why does ORC not require a table schema?***
 
     ORC files don't require a predefined schema because they use a schema-on-read approach, where the data schema is interpreted at read time. ORC files contain a header with metadata about the column schema, allowing the data to be read and understood dynamically. This design provides flexibility for big data systems such as Hadoop
