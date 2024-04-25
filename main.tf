@@ -43,12 +43,12 @@ module "jupyter_docker_image" {
 }
 
 module "vertex_ai_workbench" {
-  depends_on   = [module.jupyter_docker_image, module.vpc]
-  source       = "./modules/vertex-ai-workbench"
-  project_name = var.project_name
-  region       = var.region
-  network      = module.vpc.network.network_id
-  subnet       = module.vpc.subnets[local.notebook_subnet_id].id
+  depends_on            = [module.jupyter_docker_image, module.vpc]
+  source                = "./modules/vertex-ai-workbench"
+  project_name          = var.project_name
+  region                = var.region
+  network               = module.vpc.network.network_id
+  subnet                = module.vpc.subnets[local.notebook_subnet_id].id
   notebook_machine_type = "e2-standard-2"
 
   ai_notebook_instance_owner = var.ai_notebook_instance_owner
@@ -61,15 +61,15 @@ module "vertex_ai_workbench" {
 
 #
 module "dataproc" {
-  depends_on   = [module.vpc]
-  source       = "./modules/dataproc"
-  project_name = var.project_name
-  region       = var.region
-  subnet       = module.vpc.subnets[local.notebook_subnet_id].id
-  master_machine_type = "e2-standard-2"
-  worker_machine_type = "e2-standard-2"
+  depends_on                = [module.vpc]
+  source                    = "./modules/dataproc"
+  project_name              = var.project_name
+  region                    = var.region
+  subnet                    = module.vpc.subnets[local.notebook_subnet_id].id
+  master_machine_type       = "e2-standard-2"
+  worker_machine_type       = "e2-standard-2"
   preemptible_num_instances = 2
-  preemptibility = "SPOT"
+  preemptibility            = "SPOT"
 }
 
 ## Uncomment for Dataproc batches (serverless)
