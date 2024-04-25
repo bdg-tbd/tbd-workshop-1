@@ -30,3 +30,15 @@ variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
 }
+
+variable "preemptibility" {
+  description = "Specifies the preemptibility of the worker nodes"
+  type        = string
+  default     = "PREEMPTIBLE"
+}
+
+variable "preemptible_num_instances" {
+  description = "Number of preemptible worker instances to use in the Dataproc cluster"
+  type        = number
+  default     = 0
+}
