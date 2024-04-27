@@ -139,6 +139,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![img.png](doc/figures/BigQuery.png)
    
     The query we executed was based on an example provided in the README. Prior to running the query, it was essential to carry out step 13, as this step involved uploading data to a bucket which the query subsequently accessed.
+    
     ***why does ORC not require a table schema?***
 
     ORC files don't require a predefined schema because they use a schema-on-read approach, where the data schema is interpreted at read time. ORC files contain a header with metadata about the column schema, allowing the data to be read and understood dynamically. This design provides flexibility for big data systems such as Hadoop
@@ -166,20 +167,28 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![img.png](doc/figures/spark_ok.png)
     
 
-14. Additional tasks using Terraform:
-
+14. Additional tasks using Terraform: 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
-    ***place the link to the modified file and inserted terraform code***
-    
-    3. Add support for preemptible/spot instances in a Dataproc cluster
+       Modified files  ([commit](https://github.com/bdg-tbd/tbd-workshop-1/commit/54ff467925e74678efa0c3ffa4da46ac31faafdd)):
+        * [main.tf](main.tf)
+        * [modules/dataproc/main.tf](modules/dataproc/main.tf)
+        * [modules/dataproc/variables.tf](modules/dataproc/variables.tf)
+        * [modules/vertex-ai-workbench/main.tf](modules/vertex-ai-workbench/main.tf)
+        * [modules/vertex-ai-workbench/variables.tf](modules/vertex-ai-workbench/variables.tf)
 
-    ***place the link to the modified file and inserted terraform code***
-    
+    2. Add support for preemptible/spot instances in a Dataproc cluster
+
+        Modified files ([commit](https://github.com/bdg-tbd/tbd-workshop-1/commit/c91f75f29f775b61b4caf897eaab10e32fd2cc61)):
+         * [main.tf](main.tf)
+         * [modules/dataproc/main.tf](modules/dataproc/main.tf)
+         * [modules/dataproc/variables.tf](modules/dataproc/variables.tf)
+
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
-    
-    ***place the link to the modified file and inserted terraform code***
+  
+       Modified files ([commit](https://github.com/bdg-tbd/tbd-workshop-1/commit/d5a81a85b1fcbdc00d8c626e533fa2d38fc2ae9f)):
+        * [modules/vertex-ai-workbench/main.tf](modules/vertex-ai-workbench/main.tf)
 
-    4. (Optional) Get access to Apache Spark WebUI
+     4. (Optional) Get access to Apache Spark WebUI
 
-    ***place the link to the modified file and inserted terraform code***
+   ***place the link to the modified file and inserted terraform code***
