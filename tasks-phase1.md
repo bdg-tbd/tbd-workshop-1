@@ -109,13 +109,98 @@ digraph {
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   ***place the expected consumption you entered here***
+    Dodane przewidywane koszta:
+    ```
+	google_artifact_registry_repository.registry:
+ 	storage_gb: 150
+ 	monthly_egress_data_transfer_gb:
+   	europe_west1: 100
+   	us_central1: 50
+   	asia_east1: 20
 
-   ***place the screenshot from infracost output here***
+	google_storage_bucket.tbd-state-bucket:
+ 	storage_gb: 150
+ 	monthly_class_a_operations: 40000
+ 	monthly_class_b_operations: 20000
+ 	monthly_data_retrieval_gb: 500
+ 	monthly_egress_data_transfer_gb:
+   	same_continent: 550
+   	worldwide: 12500
+   	asia: 1500
+   	china: 50
+   	australia: 250
+
+	google_storage_bucket.tbd-code-bucket:
+ 	storage_gb: 200
+ 	monthly_class_a_operations: 50000
+ 	monthly_class_b_operations: 25000
+ 	monthly_data_retrieval_gb: 750
+ 	monthly_egress_data_transfer_gb:
+   	same_continent: 600
+   	worldwide: 13000
+   	asia: 1600
+   	china: 100
+   	australia: 300
+
+	google_storage_bucket.tbd-data-bucket:
+ 	storage_gb: 250
+ 	monthly_class_a_operations: 45000
+ 	monthly_class_b_operations: 30000
+ 	monthly_data_retrieval_gb: 1000
+ 	monthly_egress_data_transfer_gb:
+   	same_continent: 500
+   	worldwide: 12000
+   	asia: 1400
+   	china: 75
+   	australia: 275
+
+	google_storage_bucket.notebook-conf-bucket:
+ 	storage_gb: 180
+ 	monthly_class_a_operations: 42000
+ 	monthly_class_b_operations: 22000
+ 	monthly_data_retrieval_gb: 550
+ 	monthly_egress_data_transfer_gb:
+   	same_continent: 580
+   	worldwide: 12300
+   	asia: 1550
+   	china: 60
+   	australia: 260
+
+	google_storage_bucket.mlflow_artifacts_bucket:
+ 	storage_gb: 160
+ 	monthly_class_a_operations: 38000
+ 	monthly_class_b_operations: 21000
+ 	monthly_data_retrieval_gb: 600
+ 	monthly_egress_data_transfer_gb:
+   	same_continent: 560
+   	worldwide: 12700
+   	asia: 1500
+   	china: 55
+   	australia: 250
+
+	google_service_networking_connection.private_vpc_connection:
+ 	monthly_egress_data_transfer_gb:
+   	same_region: 250
+   	us_or_canada: 100
+   	europe: 70
+   	asia: 50
+   	south_america: 100
+   	oceania: 50
+   	worldwide: 250
+    ```
+	
+	![img.png](tasks-phase1-img/infracost.png)
 
 11. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
+	CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
+	CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
+  		OPTIONS (
+  		format = 'ORC',
+  		uris = ['gs://tbd-2024l-304503-data/data/shakespeare/*.orc']);
+	SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
+
+	![img.png](tasks-phase1-img/big_query.png)
    
 	Tabele w formacie ORC sa *dataframe'ami* w sensie Python'owym (Spark, biblioteka *pandas* etc.) i zawieraja juz w sobie *table schema* "out-of-the-box".
 
@@ -127,7 +212,18 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    
 13. Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+	Nalezalo zmienic jedna linijke:
+
+	```
+	DATA_BUCKET = "gs://tbd-2024l-9910-data/data/shakespeare/"
+	
+	--->
+
+	DATA_BUCKET = "gs://tbd-2024l-310974-data/data/shakespeare/"
+	```
+
+	Problem byl tej natury, ze zasob, o ktory odpytywal sie spark zwyczajnie nie istnial pod dana sciezka,
+	dlatego kod nie mogl sie poprawnie wykonac.
 
 14. Additional tasks using Terraform:
 
@@ -159,19 +255,23 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 	https://github.com/Condor-Condorrinsky/tbd-workshop-1/blob/master/modules/dataproc/main.tf
     
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
-    
-    ***place the link to the modified file and inserted terraform code***
 
 	Kod do wylaczenia dostepu do sudo:
-
+	```
+	metadata = {
+    	vmDnsSetting : "GlobalDefault"
+    	notebook-disable-root = true
+  }
+	```
 
 	Kod do uruchomienia Secure Boot:
-
 	```
 	shielded_instance_config {
-    enable_secure_boot = true
+    	enable_secure_boot = true
   	}
 	```
+
+	Zmodyfikowany plik:
 	https://github.com/Condor-Condorrinsky/tbd-workshop-1/blob/master/modules/vertex-ai-workbench/main.tf
 	(resource "google_notebooks_instance" "tbd_notebook")
 
