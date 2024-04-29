@@ -24,6 +24,12 @@ variable "ai_notebook_instance_owner" {
   description = "Vertex AI workbench owner"
 }
 
+variable "ai_notebook_instance_type" {
+  type        = string
+  default     = "e2-standard-2"
+  description = "Machine type to use for notebook instance"
+}
+
 variable "ai_notebook_image_repository" {
   type    = string
   default = "gcr.io/deeplearning-platform-release/base-cpu.py310"
