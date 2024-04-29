@@ -31,3 +31,15 @@ variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
 }
+
+variable "preemptible_worker_count" {
+  description = "Number of preemptible worker nodes"
+  type        = number
+  default     = 0  # Defaulting to 0 means no preemptible workers unless specified
+}
+
+variable "preemptible_machine_type" {
+  type        = string
+  default     = "n1-standard-4"
+  description = "Machine type to use for preemptible nodes"
+}
