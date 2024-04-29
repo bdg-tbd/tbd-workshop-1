@@ -41,8 +41,20 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 11. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
-    ![img.png](doc/figures/zad-command.webp)
-    Raz udało nam się zestawić połączenie i uruchomić. Jednakże nie zrobiliśmy screena, ponieważ po destroyu i ponownym zestawieniu środowiska dostajemy błąd podczas zestawiania tunelowania - jest to błąd do rozwiązania, ale zabrakło nam czasu.
+    ![img.png](doc/figures/yarn_ui.png)
+    Zestawienia tunelu:
+    ```
+    gcloud compute ssh tbd-cluster-m \
+      --project=tbd-2024l-300524 \
+      --zone=europe-west1-d -- -D 1080 -N
+    ```
+    Dostęp do YARN UI przez proxy na lokalnej przeglądarce:
+    ```
+    /usr/bin/google-chrome \
+    --proxy-server="socks5://localhost:1080" \
+    --user-data-dir="/tmp/tbd-cluster-m" http://tbd-cluster-m:8088
+    ```
+    
     
 11. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
