@@ -175,7 +175,11 @@ resource_usage:
 13. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
-   ![img.png](doc/figures/error.webp)
+   ![img.png](doc/figures/vertex_ai.png)
+   Zestawienie tunelu do połączenia z Vertex AI:
+   ```
+   gcloud compute --project "tbd-2024l-300524" ssh --zone "europe-west1-b" "tbd-2024l-300524-notebook" -- -L 8080:localhost:8080
+   ```
    
 15. Find and correct the error in spark-job.py
 
