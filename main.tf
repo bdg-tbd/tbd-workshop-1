@@ -77,6 +77,7 @@ module "dataproc" {
 #}
 
 module "composer" {
+  count          = var.enable_composer ? 1 : 0
   depends_on     = [module.vpc]
   source         = "./modules/composer"
   project_name   = var.project_name
@@ -94,7 +95,8 @@ module "composer" {
 }
 
 module "dbt_docker_image" {
-  depends_on         = [module.composer, module.gcr]
+  count              = var.enable_composer ? 1 : 0
+  depends_on         = [module.composer[0], module.gcr]
   source             = "./modules/dbt_docker_image"
   registry_hostname  = module.gcr.registry_hostname
   registry_repo_name = coalesce(var.project_name)
@@ -105,12 +107,13 @@ module "dbt_docker_image" {
 }
 
 module "data-pipelines" {
+  count                = var.enable_composer ? 1 : 0
   source               = "./modules/data-pipeline"
   project_name         = var.project_name
   region               = var.region
   bucket_name          = local.code_bucket_name
-  data_service_account = module.composer.data_service_account
-  dag_bucket_name      = module.composer.gcs_bucket
+  data_service_account = module.composer[0].data_service_account
+  dag_bucket_name      = module.composer[0].gcs_bucket
   data_bucket_name     = local.data_bucket_name
 }
 
@@ -118,6 +121,7 @@ module "data-pipelines" {
 
 
 resource "kubernetes_service" "dbt-task-service" {
+  count = var.enable_composer ? 1 : 0
   metadata {
     name      = "dbt-task-service"
     namespace = local.composer_work_namespace
