@@ -19,3 +19,13 @@ variable "enable_composer" {
   default     = true
   description = "Enable GCP Composer deployment and dependent modules"
 }
+
+variable "jupyter_image_flavour" {
+  type        = string
+  default     = "dataops"
+  description = "Jupyterlab image flavour"
+  validation {
+    condition     = can(regex("^(dataops|mlops)$", var.jupyter_image_flavour))
+    error_message = "Invalid image flavour. Supported values are dataops, mlops"
+  }
+}

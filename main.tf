@@ -14,6 +14,10 @@ locals {
   dbt_spark_version       = "1.7.1"
   dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
   dbt_git_repo_branch     = "main"
+  mlflow_version          = "2.12.2"
+  kedro_version           = "0.19.5"
+  vs_code_version         = "4.23.1"
+  jupyterlab_version      = "4.1.6"
 }
 
 module "vpc" {
@@ -40,10 +44,26 @@ module "jupyter_docker_image" {
   spark_version      = local.spark_version
   dbt_version        = local.dbt_version
   dbt_spark_version  = local.dbt_spark_version
+  jupyterlab_version = local.jupyterlab_version
+}
+
+module "jupyter_mlops_docker_image" {
+  depends_on         = [module.gcr]
+  source             = "./modules/jupyter_mlops_docker_image"
+  registry_hostname  = module.gcr.registry_hostname
+  registry_repo_name = coalesce(var.project_name)
+  project_name       = var.project_name
+  spark_version      = local.spark_version
+  dbt_version        = local.dbt_version
+  dbt_spark_version  = local.dbt_spark_version
+  kedro_version      = local.kedro_version
+  mlflow_version     = local.mlflow_version
+  vs_code_version    = local.vs_code_version
+  jupyterlab_version = local.jupyterlab_version
 }
 
 module "vertex_ai_workbench" {
-  depends_on   = [module.jupyter_docker_image, module.vpc]
+  depends_on   = [module.jupyter_docker_image, module.jupyter_mlops_docker_image, module.vpc]
   source       = "./modules/vertex-ai-workbench"
   project_name = var.project_name
   region       = var.region
@@ -51,11 +71,10 @@ module "vertex_ai_workbench" {
   subnet       = module.vpc.subnets[local.notebook_subnet_id].id
 
   ai_notebook_instance_owner = var.ai_notebook_instance_owner
-  ## To remove before workshop
-  # FIXME:remove
-  ai_notebook_image_repository = element(split(":", module.jupyter_docker_image.jupyter_image_name), 0)
-  ai_notebook_image_tag        = element(split(":", module.jupyter_docker_image.jupyter_image_name), 1)
-  ## To remove before workshop
+
+  ai_notebook_image_repository = var.jupyter_image_flavour == "dataops" ? element(split(":", module.jupyter_docker_image.jupyter_image_name), 0) : element(split(":", module.jupyter_mlops_docker_image.jupyter_image_name), 0)
+  ai_notebook_image_tag        = var.jupyter_image_flavour == "dataops" ? element(split(":", module.jupyter_docker_image.jupyter_image_name), 1) : element(split(":", module.jupyter_mlops_docker_image.jupyter_image_name), 1)
+
 }
 
 #
