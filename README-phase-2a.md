@@ -22,19 +22,7 @@ Worth to read:
 
    ***Link to forked repo***
 
-3. Replace your `main.tf` (in the root module) from the phase 1 with [main.tf](https://github.com/bdg-tbd/tbd-workshop-1/blob/v1.0.36/main.tf)
-and change each module `source` reference from the repo relative path to a github repo tag `v1.0.36` , e.g.:
-```hcl
-module "dbt_docker_image" {
-  depends_on = [module.composer]
-  source             = "github.com/bdg-tbd/tbd-workshop-1.git?ref=v1.0.36/modules/dbt_docker_image"
-  registry_hostname  = module.gcr.registry_hostname
-  registry_repo_name = coalesce(var.project_name)
-  project_name       = var.project_name
-  spark_version      = local.spark_version
-}
-```
-
+3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
 
 4. Provision your infrastructure.
 
