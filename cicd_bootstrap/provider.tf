@@ -3,7 +3,7 @@ provider "google" {
   region  = var.region
 }
 terraform {
-  required_version = "~> 1.5.0"
+  required_version = "~> 1.8.3"
   required_providers {
     google = {
       version = "~> 5.23.0"
