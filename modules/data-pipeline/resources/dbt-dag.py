@@ -63,7 +63,7 @@ with models.DAG(
         # project-id as the gcr.io images and the service account that Composer
         # uses has permission to access the Google Container Registry
         # (the default service account has permission)
-        image="eu.gcr.io/{{ var.value.project_id }}/dbt:1.7.3",
+        image="eu.gcr.io/{{ var.value.project_id }}/dbt:1.7.13",
         # Specifies path to kubernetes config. If no config is specified will
         # default to '~/.kube/config'. The config_file is templated.
         config_file="/home/airflow/composer_kube_config",
