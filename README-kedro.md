@@ -35,7 +35,7 @@ Restart the bash session after running the above command.
 5. Create a new Kedro project
 
 ```bash
-  kedro new --starter  https://github.com/mwiewior/kedro-starters/ --directory spaceflights-pyspark-mlflow --checkout spaceflights-pyspark-mlflow
+kedro new --starter  https://github.com/mwiewior/kedro-starters/ --directory spaceflights-pyspark-mlflow --checkout spaceflights-pyspark-mlflow
 ```
 
 Set the nnme for your new project: `adac-kedro-pyspark`
@@ -60,27 +60,44 @@ Set the nnme for your new project: `adac-kedro-pyspark`
 ```
 
 This step will last for ~10 minutes. Meanwhile, you can explore the kedro project structure and content, and continue with the next steps.
+9. Run the MLflow
 
-9. Create a new bucket in the same region as the rest of the infrastructure
+For running the Mlflow instance,
 
-```bash
-  # instead of XXXX use your user id from the name of the project
-  export USER_ID=XXXX
-  gsutil mb -l europe-west1 gs://adac-kedro-pyspark-${USER_ID}
-```
-
-10. Copy the raw data to the newly created bucket
-
-```bash
-  gsutil cp -r data/01_raw/* gs://adac-kedro-pyspark-${USER_ID}/01_raw/
-```
-
-11. Run the MLflow
-
-For running the Mlflow instance, 
-
-11. Run the Kedro pipeline
+10. Run the Kedro pipeline
 
 ```bash
   kedro run
+```
+11. Check experiment runs in MLflow
+
+
+
+## Running in the Dataproc cluster
+1. Create a new bucket in the same region as the rest of the infrastructure
+
+```bash
+  # instead of XXXX use your user id from the name of the project
+  export USER_ID=mwiewior
+  export MLOPS_ENV=gcp-dev
+  export DEV_BUCKET=gs://adac-mlops-${MLOPS_ENV}-${USER_ID}
+  gsutil mb -l europe-west1 $DEV_BUCKET
+```
+2. Copy the raw data to the newly created bucket
+
+```bash
+  gsutil cp -r data/01_raw/* ${DEV_BUCKET}/data/01_raw/
+```
+
+
+3. Run the Kedro pipeline using `gcp-dev` (ensure that `DEV_BUCKET` environment variable is set correctly)
+
+```bash
+  kedro run --env=gcp-dev
+
+```bash
+  kedro run --env=gcp-dev
+
+```bash
+  kedro run --env=gcp-dev
 ```
