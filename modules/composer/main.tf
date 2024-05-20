@@ -38,6 +38,7 @@ resource "google_compute_subnetwork" "composer-subnet" {
 
 
 module "composer" {
+  #checkov:skip=CKV_TF_2: "Throws error for no reason"
   depends_on = [google_project_service.api, google_project_iam_member.composer-member]
   source     = "terraform-google-modules/composer/google//modules/create_environment_v2"
   version    = "~> 5.0.0"

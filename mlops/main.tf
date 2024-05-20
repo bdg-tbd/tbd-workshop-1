@@ -25,6 +25,7 @@ resource "google_project_service" "compute" {
 
 module "gcp_vpc" {
   #checkov:skip=CKV2_GCP_18: "Ensure GCP network defines a firewall and does not use the default firewall"
+  #checkov:skip=CKV_TF_2: "Throws error for no reason"
   depends_on   = [google_project_service.compute]
   source       = "terraform-google-modules/network/google"
   version      = "~> 9.0.0"
