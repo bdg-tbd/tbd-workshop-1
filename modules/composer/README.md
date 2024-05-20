@@ -16,7 +16,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_composer"></a> [composer](#module\_composer) | terraform-google-modules/composer/google//modules/create_environment_v2 | ~> 5.0.0 |
+| <a name="module_composer"></a> [composer](#module\_composer) | terraform-google-modules/composer/google//modules/create_environment_v2 | 5.0.0 |
 
 ## Resources
 
