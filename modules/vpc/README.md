@@ -19,7 +19,7 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_cloud-router"></a> [cloud-router](#module\_cloud-router) | terraform-google-modules/cloud-router/google | ~> 6.0.1 |
-| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-google-modules/network/google | 9.0.0 |
+| <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-google-modules/network/google | ~> 9.0.0 |
 
 ## Resources
 
