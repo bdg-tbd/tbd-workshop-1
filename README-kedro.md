@@ -105,7 +105,13 @@ gsutil cp -r data/01_raw/* ${DEV_BUCKET}/data/01_raw/
 ```bash
 kedro run --env=gcp-dev
 ```
-4. Check the experiment runs in MLflow and the UI of YARN
+4. Check the experiment runs in MLflow 
+5. Setup tunneling to the Dataproc cluster and port forwarding for YARN console and
+Spark Application UI (VSCode automatically detects 4040 port).
+Hint: Workshop 1
+![img.png](doc/figures/kedro-pyspark-yarn.png)
+![img.png](doc/figures/spark-ui-yarn.png)
+
 
 ## Task 3. Visualize the Kedro pipeline
 1. Run from the command line
