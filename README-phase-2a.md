@@ -19,6 +19,7 @@ Worth to read:
 2. Authors:
 
    ***gr-8***
+   Jakub Dzięgielewski, Filip Matysik, Jakub Śliwa
 
    ***[Link to forked repo](https://github.com/JakubDziegielewski/tbd-workshop-1)***
 
