@@ -1,24 +1,32 @@
 # TBD Workshop 2. Kedro
+[Spaceflights tutorial](https://docs.kedro.org/en/stable/tutorial/spaceflights_tutorial.html)
 
 ## Workshop goals
 
-TODO
+1. Learn how to use Kedro for building reproducible, maintainable, and modular data pipelines.
+2. Learn how to use PySpark (local mode and deployed on YARN) for data processing together with Kedro.
+3. Learn how to use MLflow for tracking experiments and managing machine learning models.
+4. Learn how to use Kedro-Viz for visualizing the data pipeline.
+5. 
+
 ## Prerequisites
 * TBD Workshop 1 infrastructure running - VertexAI Workbench Jupyter Lab accessed
 * Linux/MacOS
 
-1. Create Anaconda environment
-
-```bash 
-  conda create --name mlops-adac python=3.8 -y
-```
-
-2. Initialize Anaconda in terminal
+1. Initialize Anaconda in terminal
 
 ```bash
   conda init
 ```
 Restart the bash session after running the above command.
+
+2. Create Anaconda environment
+
+```bash 
+  conda create --name mlops-adac python=3.8 -y
+```
+
+
 
 3. Activate the conda environment
 
