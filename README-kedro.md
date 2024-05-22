@@ -84,9 +84,9 @@ pip install -r requirements.txt
 ```
 
 This step will last for ~10 minutes. Meanwhile, you can explore the kedro project structure and content, and continue with the next steps.
-9. Run the MLflow
+9. Run the MLflow UI
 
-For running the Mlflow instance,
+For running the Mlflow instance, you need to click the *MLflow* card in the Launcher tab in the JupyterLab environment.
 
 10. Run the Kedro pipeline
 
@@ -191,9 +191,19 @@ Important: Take the screenshot of all runs to the documentation.
 
 To register the model, you need to click the *Register* button in the detailed model view, in the MLflow UI.
 
-4. Run the batch inference using the registered model
+Name of the model: `adac-kedro-model`
 
-To run the batch inference, in the *Models* tab, you need to copy the code snippet for inference, customize it and run it in the VisualStudio Code environment.
+4. Prepare the batch inference pipeline
+
+- create a new pipeline folder in the `src/adac_kedro_pyspark` directory called `batch_inference`
+- copy the code snippet for Pandas predictions from the MLflow UI (*Artifacts* tab) to the `inference_model()` function in `nodes.py`
+- in the configuration of used environment (can be for example `yarn-prd`), add the parameters of the new pipeline to `parameters_batch_inference.yml`
+- create 3 nodes in the `batch_inference` pipeline:
+  - `get_inference_data` - to get X array for making predictions from the `01_raw` directory in a randomized way
+  - `inference_model` - to predict the target values using the loaded model
+  - `save_to_file` - to save the predictions to the `07_model_output` directory
+- connect the nodes in the `batch_inference` pipeline in the `pipeline.py` file (you can use the input variables from outputs of other pipelines)
+- run the batch inference using the `kedro run --env=yarn-prd --pipeline batch_inference` command
 
 Important: Take the screenshot of the batch inference run to the documentation.
 
