@@ -133,9 +133,12 @@ kedro viz
 ```
 2. After around 1 minute, you should see a pop-up window from VSCode prompting you allow port forwarding for port `4141`.
 3. Click on the `Open Browser` button in the pop-up window.
+
 ![img.png](doc/figures/kedro-viz-popup.png)
+
 Hint: there might another pop-up window from VSCode asking you to allow the port forwarding for port 4040 (Spar Application UI). 
-4. To stop kedro viz press `Ctrl+C` in the terminal where you run the `kedro viz` command.
+
+5. To stop kedro viz press `Ctrl+C` in the terminal where you run the `kedro viz` command.
 
 Important: Take the screenshot of the Kedro pipeline visualization to the documentation.
 
@@ -156,16 +159,15 @@ Before executing this command check if the `DEV_BUCKET` and `PRD_BUCKET` environ
 gsutil cp -r ${DEV_BUCKET}/data/01_raw/* ${PRD_BUCKET}/data/01_raw/
 ```
 
-2. Create a new configuration for `yarn-prd` environment
+3. Create a new configuration for `yarn-prd` environment
 
 - in the `adac-kedro-psypark/conf` create new `yarn-prd` directory
 - copy the content of the `yarn-dev` directory to the `yarn-prd` directory
-- change the parameters in the `catalog.yml` and `parameters.yml` to:
+- change the parameters in files of the `yarn-prd` directory to:
   - point to the new bucket
   - increase the number of executors (to 2)
   - increase the driver memory (to 4GB) and executor memory (to 2GB)
   - change the `random_state` to the dirfferent value and the `test_size` to 0.15
-  - add some features to the `features` list
 
 Hint: Configuration files in new directory inherit after the `base` directory. You can overwrite the parameters in the new directory.
 
