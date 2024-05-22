@@ -7,12 +7,25 @@
 2. Learn how to use PySpark (local mode and deployed on YARN) for data processing together with Kedro.
 3. Learn how to use MLflow for tracking experiments and managing machine learning models.
 4. Learn how to use Kedro-Viz for visualizing the data pipeline.
-5. 
 
 ## Prerequisites
 * TBD Workshop 1 infrastructure running - VertexAI Workbench Jupyter Lab accessed
 * Run labs in the VSCode server available in your VertexAI Workbench Jupyter Lab
 
+## Project setup
+
+1. Prepare documentation (during whole workshop)
+
+During the workshop, you are asked to prepare the PDF documentation of the steps you have taken.
+You are asked to shortly describe all done tasks, encountered problems and to include the following information:
+- the screenshot of MLFlow UI with all experiments view
+- the snippets of code that you changed in the `yarn-prd` environment configuration
+- the screenshot of the Kedro pipeline visualization
+- the screenshot of the batch inference run in the VSCode environment
+
+2. Re-run `Release` job in the GitHub Actions
+
+In case of problems, ask the instructor for help.
 
 ## Task 1. Setup Kedro project, run the pipeline locally 
 
@@ -90,8 +103,8 @@ kedro run
 ```bash
 # change the USER_ID to your username
 export USER_ID=mwiewior
-export MLOPS_ENV=gcp-dev
-export DEV_BUCKET=gs://adac-mlops-${MLOPS_ENV}-${USER_ID}
+export DEV_MLOPS_ENV=yarn-dev
+export DEV_BUCKET=gs://adac-mlops-${DEV_MLOPS_ENV}-${USER_ID}
 gsutil mb -l europe-west1 $DEV_BUCKET
 ```
 2. Copy the raw data to the newly created bucket
@@ -100,10 +113,10 @@ gsutil mb -l europe-west1 $DEV_BUCKET
 gsutil cp -r data/01_raw/* ${DEV_BUCKET}/data/01_raw/
 ```
 
-3. Run the Kedro pipeline using `gcp-dev` (ensure that `DEV_BUCKET` environment variable is set correctly)
+3. Run the Kedro pipeline using `yarn-dev` (ensure that `DEV_BUCKET` environment variable is set correctly)
 
 ```bash
-kedro run --env=gcp-dev
+kedro run --env=yarn-dev
 ```
 4. Check the experiment runs in MLflow 
 5. Setup tunneling to the Dataproc cluster and port forwarding for YARN console and
@@ -124,8 +137,68 @@ kedro viz
 Hint: there might another pop-up window from VSCode asking you to allow the port forwarding for port 4040 (Spar Application UI). 
 4. To stop kedro viz press `Ctrl+C` in the terminal where you run the `kedro viz` command.
 
+Important: Take the screenshot of the Kedro pipeline visualization to the documentation.
 
 ## Task 4. Create a new Kedro environment for the Dataproc cluster
-TBD
+
+1. Create an additional bucket for new Kedro environment
+
+```bash
+export PRD_MLOPS_ENV=yarn-prd
+export PRD_BUCKET=gs://adac-mlops-${PRD_MLOPS_ENV}-${USER_ID}
+gsutil mb -l europe-west1 $PRD_BUCKET
+```
+
+2. Copy data from the `yarn-dev` bucket to the `yarn-prd` bucket
+
+Before executing this command check if the `DEV_BUCKET` and `PRD_BUCKET` environment variables are set correctly.
+```bash
+gsutil cp -r ${DEV_BUCKET}/data/01_raw/* ${PRD_BUCKET}/data/01_raw/
+```
+
+2. Create a new configuration for `yarn-prd` environment
+
+- in the `adac-kedro-psypark/conf` create new `yarn-prd` directory
+- copy the content of the `yarn-dev` directory to the `yarn-prd` directory
+- change the parameters in the `catalog.yml` and `parameters.yml` to:
+  - point to the new bucket
+  - increase the number of executors (to 2)
+  - increase the driver memory (to 4GB) and executor memory (to 2GB)
+  - change the `random_state` to the dirfferent value and the `test_size` to 0.15
+  - add some features to the `features` list
+
+Hint: Configuration files in new directory inherit after the `base` directory. You can overwrite the parameters in the new directory.
+
+Important: Gather changed code snippets to the documentation
+
 ## Task 5. Run inference on the Dataproc cluster
-TBD
+
+1. Run the Kedro pipeline using `yarn-prd` environment
+
+```bash
+kedro run --env=yarn-prd
+```
+
+2. Check the experiment runs in MLflow
+
+To open the MLflow UI in the JupyterLab environment, click on the MLFlow card in the Launcher tab.
+
+Important: Take the screenshot of all runs to the documentation.
+
+3. Register the production model in MLflow
+
+To register the model, you need to click the *Register* button in the detailed model view, in the MLflow UI.
+
+4. Run the batch inference using the registered model
+
+To run the batch inference, in the *Models* tab, you need to copy the code snippet for inference, customize it and run it in the VisualStudio Code environment.
+
+Important: Take the screenshot of the batch inference run to the documentation.
+
+## Task 6. Send the prepared documentation
+
+Please send the prepared PDF documentation in the Microsoft Teams assignment.
+
+## Task 7. Destroy the infrastructure
+
+Important step!
