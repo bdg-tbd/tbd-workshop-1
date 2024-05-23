@@ -71,7 +71,7 @@ jobs:
       run: terraform validate -no-color -compact-warnings | grep -v '^`'
 
     - name: Checkov GitHub Action
-      uses: bridgecrewio/checkov-action@v12
+      uses: bridgecrewio/checkov-action@v12.2742.0
       with:
          # This will add both a CLI output to the console and create a results.sarif file
         output_format: cli,sarif

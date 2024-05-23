@@ -12,15 +12,16 @@ data "google_client_config" "provider" {}
 
 
 data "google_container_cluster" "composer-gke-cluster" {
-  name     = reverse(split("/", module.composer.gke_cluster))[0]
+  count    = var.enable_composer ? 1 : 0
+  name     = reverse(split("/", module.composer[0].gke_cluster))[0]
   location = var.region
 }
 
 provider "kubernetes" {
-  host  = "https://${data.google_container_cluster.composer-gke-cluster.endpoint}"
+  host  = var.enable_composer ? "https://${data.google_container_cluster.composer-gke-cluster[0].endpoint}" : ""
   token = data.google_client_config.provider.access_token
   cluster_ca_certificate = base64decode(
-    data.google_container_cluster.composer-gke-cluster.master_auth[0].cluster_ca_certificate,
+    var.enable_composer ? data.google_container_cluster.composer-gke-cluster[0].master_auth[0].cluster_ca_certificate : "",
   )
 }
 
