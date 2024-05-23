@@ -1,0 +1,1 @@
+gcloud compute --project "tbd-2024l-311004" ssh --zone "europe-west1-b" "tbd-2024l-311004-notebook" -- -L 8080:0.0.0.0:8080
