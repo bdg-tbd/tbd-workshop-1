@@ -173,7 +173,7 @@ Hint: Configuration files in new directory inherit after the `base` directory. Y
 
 Important: Gather changed code snippets to the documentation
 
-## Task 5. Run inference on the Dataproc cluster
+## Task 5. Run model training and inference on the Dataproc cluster
 
 1. Run the Kedro pipeline using `yarn-prd` environment
 
@@ -181,13 +181,13 @@ Important: Gather changed code snippets to the documentation
 kedro run --env=yarn-prd
 ```
 
-2. Check the experiment runs in MLflow
+2. Check the experiment runs in MLflow Experiment tracking UI
 
 To open the MLflow UI in the JupyterLab environment, click on the MLFlow card in the Launcher tab.
 
 Important: Take the screenshot of all runs to the documentation.
 
-3. Register the production model in MLflow
+3. Register the production model in MLflow Model Registry UI
 
 To register the model, you need to click the *Register* button in the detailed model view, in the MLflow UI.
 
@@ -203,7 +203,7 @@ Name of the model: `adac-kedro-model`
   - `inference_model` - to predict the target values using the loaded model
   - `save_to_file` - to save the predictions to the `07_model_output` directory
 - connect the nodes in the `batch_inference` pipeline in the `pipeline.py` file (you can use the input variables from outputs of other pipelines)
-- run the batch inference using the `kedro run --env=yarn-prd --pipeline batch_inference` command
+- run the batch inference using the `kedro run --env=yarn-prd --pipeline=batch_inference` command
 
 Important: Take the screenshot of the batch inference run to the documentation.
 
