@@ -1,0 +1,235 @@
+<?xml version="1.0" ?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+<configuration>
+  <!-- Site specific YARN configuration properties -->
+  <property>
+    <name>yarn.nodemanager.remote-app-log-dir</name>
+    <value>gs://dataproc-temp-europe-west1-171578482470-s4xxps9r/f196d014-ed51-409e-92bd-5d2b61cd8ab9/yarn-logs</value>
+    <description>
+      The remote path, on the default FS, to store logs.
+    </description>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.methods-allowed</name>
+    <value>GET,HEAD</value>
+    <description>
+      The HTTP methods allowed by the YARN Resource Manager web UI and REST API.
+    </description>
+  </property>
+  <property>
+    <name>yarn.nodemanager.aux-services</name>
+    <value>mapreduce_shuffle,spark_shuffle</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.local-dirs</name>
+    <value>/hadoop/yarn/nm-local-dir</value>
+    <description>
+      Directories on the local machine in which to application temp files.
+    </description>
+  </property>
+  <property>
+    <name>yarn.nodemanager.aux-services.spark_shuffle.class</name>
+    <value>org.apache.spark.network.yarn.YarnShuffleService</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>tbd-cluster-m</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.bind-host</name>
+    <value>0.0.0.0</value>
+  </property>
+  <property>
+    <description>
+      The maximum allocation for every container request at the RM,       in
+      terms of virtual CPU cores. Requests higher than this won't take
+      effect, and will get capped to this value.
+    </description>
+    <name>yarn.scheduler.maximum-allocation-vcores</name>
+    <value>32000</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>3278</value>
+    <final>false</final>
+    <source>Dataproc Cluster Properties</source>
+  </property>
+  <property>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value>1</value>
+    <final>false</final>
+    <source>Dataproc Cluster Properties</source>
+  </property>
+  <property>
+    <name>yarn.nodemanager.container-executor.os.sched.priority.adjustment</name>
+    <value>1</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.resource.cpu-vcores</name>
+    <value>2</value>
+    <final>false</final>
+    <source>Dataproc Cluster Properties</source>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.fs.state-store.uri</name>
+    <value>file:///hadoop/yarn/system/rmstore</value>
+    <description>
+      URI pointing to the location of the FileSystem path where RM state will
+      be stored. This is set on the local file system to avoid collisions in
+      GCS.
+    </description>
+  </property>
+  <property>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>3278</value>
+    <final>false</final>
+    <source>Dataproc Cluster Properties</source>
+  </property>
+  <property>
+    <name>yarn.application.classpath</name>
+    <value>$HADOOP_CONF_DIR,$HADOOP_COMMON_HOME/*,$HADOOP_COMMON_HOME/lib/*,
+    $HADOOP_HDFS_HOME/*,$HADOOP_HDFS_HOME/lib/*,$HADOOP_MAPRED_HOME/*,
+    $HADOOP_MAPRED_HOME/lib/*,$HADOOP_YARN_HOME/*,$HADOOP_YARN_HOME/lib/*,
+    /usr/local/share/google/dataproc/lib/*</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.recovery.enabled</name>
+    <value>true</value>
+    <description>Enable RM to recover state after starting.</description>
+  </property>
+  <property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+    <description>Enable remote logs aggregation to the default FS.</description>
+  </property>
+  <property>
+    <name>spark.yarn.shuffle.stopOnFailure</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>yarn.nodemanager.env-whitelist</name>
+    <value>PATH,JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME,LD_LIBRARY_PATH,LANG,TZ</value>
+  </property>
+  <property>
+    <name>yarn.nm.liveness-monitor.expiry-interval-ms</name>
+    <value>15000</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.webapp.cross-origin.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.http-cross-origin.enabled</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.enabled</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.hostname</name>
+    <value>tbd-cluster-m</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.bind-host</name>
+    <value>0.0.0.0</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.system-metrics-publisher.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.generic-application-history.enabled</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.nodes.include-path</name>
+    <value>/etc/hadoop/conf/nodes_include</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.nodes.exclude-path</name>
+    <value>/etc/hadoop/conf/nodes_exclude</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.node-removal-untracked.remove-on-refresh</name>
+    <value>true</value>
+    <description>
+      Remove untracked nodes from yarn internal state when refresh nodes is
+      called in mode       GRACEFUL or NORMAL (but not FORCEFUL). Nodes are only
+      removed if they are in state       DECOMMISSIONED, LOST, or SHUTDOWN. The
+      definition of untracked nodes depends on the       value of
+      yarn.resourcemanager.node-removal-untracked.allow-empty-include.
+    </description>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.node-removal-untracked.allow-empty-include</name>
+    <value>true</value>
+    <description>
+      When false, untracked nodes is defined to be the set of nodes that are
+      absent from both the       include file and the exclude file, but only
+      when the include file is non-empty.       When true, untracked nodes is
+      expanded to include nodes that are absent from the exclude       file when
+      the include file is empty.
+    </description>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.node-removal-untracked.timeout-ms</name>
+    <value>60000</value>
+    <description>
+      Timeout after which untracked nodes are removed from yarn internal state.
+      Default is 1 minute.
+    </description>
+  </property>
+  <property>
+    <name>yarn.log.server.url</name>
+    <value>http://tbd-cluster-m:19888/jobhistory/logs</value>
+  </property>
+  <property>
+    <name>yarn.log-aggregation.file-formats</name>
+    <value>IFile,TFile</value>
+  </property>
+  <property>
+    <name>yarn.log-aggregation.file-controller.IFile.class</name>
+    <value>org.apache.hadoop.yarn.logaggregation.filecontroller.ifile.LogAggregationIndexedFileController</value>
+  </property>
+  <property>
+    <name>yarn.resourcemanager.nodemanager-graceful-decommission-timeout-secs</name>
+    <value>86400</value>
+    <final>false</final>
+    <source>Dataproc Cluster Properties</source>
+  </property>
+  <property>
+    <name>yarn.nodemanager.address</name>
+    <value>0.0.0.0:8026</value>
+    <final>false</final>
+    <source>Dataproc Cluster Properties</source>
+  </property>
+  <property>
+    <name>yarn.timeline-service.ui-names</name>
+    <value>tez</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.ui-on-disk-path.tez</name>
+    <value>/usr/lib/tez/tez-ui-0.10.1.war</value>
+  </property>
+  <property>
+    <name>yarn.timeline-service.ui-web-path.tez</name>
+    <value>/tez-ui</value>
+  </property>
+</configuration>
