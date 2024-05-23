@@ -6,6 +6,10 @@ ARG SPARK_VERSION
 ARG GCS_CONNECTOR_VERSION
 ARG DBT_VERSION
 ARG DBT_SPARK_VERSION
+ARG VS_CODE_VERSION
+ENV MLFLOW_ENABLED=true
+ENV VS_CODE_ENABLED=true
+
 #checkov:skip=CKV_DOCKER_2: "Ensure that HEALTHCHECK instructions have been added to container images"
 # to remove to make this image run as non-root user
 #checkov:skip=CKV_DOCKER_3: "Ensure that a user for the container has been created"
