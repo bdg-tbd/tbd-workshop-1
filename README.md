@@ -73,31 +73,34 @@ cd ..
 4. Use output variables for configuring Github Actions workflow: `.github/workflows/pull-request.yml`,e.g. :
 ![img.png](doc/figures/workload-identity.png)
 Please do not edit and hardcode these values in a YAML but set the Github Actions secrets instead
-while preserving the secret names, i.e. `GCP_WORKLOAD_IDENTITY_PROVIDER_NAME` and `GCP_WORKLOAD_IDENTITY_SA_EMAIL`.
+while preserving the secret names, i.e. `GCP_WORKLOAD_IDENTITY_PROVIDER_NAME`, `GCP_WORKLOAD_IDENTITY_SA_EMAIL` and `INFRACOST_API_KEY`.
 ![img.png](doc/figures/secrets.png)
-5. Install and configure `pre-commit`
+
+5. Register on infracost.io, generate Infracost API key and enter it as `INFRACOST_API_KEY` in secrets on GitHub repository settings.
+
+6. Install and configure `pre-commit`
 ```bash
 pre-commit install
 ```
 
-6. Commit changes, push to a branch and open a PR to **YOUR** repository main/master branch.
+7. Commit changes, push to a branch and open a PR to **YOUR** repository main/master branch.
 If you see a warning like this -- please enable the workflows:
 ![img.png](doc/figures/workflow.png)
 ...and repush your changes!
 
 Once all Pull Requests checks **have passed** please merge your PR and wait until your release job finishes.
-7. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
+8. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
 the instructions
 ![img.png](doc/figures/workbench.png)
 
-8. Check if `pyspark` kernel exists - if not then in your Jupyterlab enviroment add Python3.8 kernel:
+9. Check if `pyspark` kernel exists - if not then in your Jupyterlab enviroment add Python3.8 kernel:
 ```bash
 python3.8 -m ipykernel install --user --name pyspark
 ```
-9. Run a `Hello-world` PySpark application in a YARN-client mode:
+10. Run a `Hello-world` PySpark application in a YARN-client mode:
 ![img.png](doc/figures/pyspark.png)
 
-10. Additional tasks using Terraform:
+11. Additional tasks using Terraform:
 <ol type="a">
  <li>Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance</li>
  <li>Add support for preemptible/spot instances in a Dataproc cluster</li>
@@ -105,7 +108,7 @@ python3.8 -m ipykernel install --user --name pyspark
  <li>(Optional) Get access to Apache Spark WebUI</li>
 </ol>
 
-11. Create a BigQuery dataset and an external table (change storage location if needed)
+12. Create a BigQuery dataset and an external table (change storage location if needed)
 
 ```sql
 CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
@@ -122,10 +125,10 @@ SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
 ```
 
 
-12. **Workshop 2** exercises are described in [Jupyter notebook](notebooks/workshop_2_mlops.ipynb)
+13. **Workshop 2** exercises are described in [Jupyter notebook](notebooks/workshop_2_mlops.ipynb)
 
 
-13. **IMPORTANT**
+14. **IMPORTANT**
 :exclamation: :exclamation: :exclamation: Please remember to **destroy all** the resources after the workshop:
 
 ```bash
@@ -159,6 +162,7 @@ terraform destroy -no-color -var-file env/project.tfvars
 | <a name="module_dbt_docker_image"></a> [dbt\_docker\_image](#module\_dbt\_docker\_image) | ./modules/dbt_docker_image | n/a |
 | <a name="module_gcr"></a> [gcr](#module\_gcr) | ./modules/gcr | n/a |
 | <a name="module_jupyter_docker_image"></a> [jupyter\_docker\_image](#module\_jupyter\_docker\_image) | ./modules/jupyter_docker_image | n/a |
+| <a name="module_jupyter_mlops_docker_image"></a> [jupyter\_mlops\_docker\_image](#module\_jupyter\_mlops\_docker\_image) | ./modules/jupyter_mlops_docker_image | n/a |
 | <a name="module_vertex_ai_workbench"></a> [vertex\_ai\_workbench](#module\_vertex\_ai\_workbench) | ./modules/vertex-ai-workbench | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | ./modules/vpc | n/a |
 
@@ -176,6 +180,8 @@ terraform destroy -no-color -var-file env/project.tfvars
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_ai_notebook_instance_owner"></a> [ai\_notebook\_instance\_owner](#input\_ai\_notebook\_instance\_owner) | Vertex AI workbench owner | `string` | n/a | yes |
+| <a name="input_enable_composer"></a> [enable\_composer](#input\_enable\_composer) | Enable GCP Composer deployment and dependent modules | `bool` | `true` | no |
+| <a name="input_jupyter_image_flavour"></a> [jupyter\_image\_flavour](#input\_jupyter\_image\_flavour) | Jupyterlab image flavour | `string` | `"dataops"` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 
