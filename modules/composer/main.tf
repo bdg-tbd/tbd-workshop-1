@@ -57,18 +57,18 @@ module "composer" {
   scheduler = {
     cpu        = 0.5
     memory_gb  = 1.875
-    storage_gb = 5
+    storage_gb = 1
     count      = 1
   }
   web_server = {
     cpu        = 0.5
     memory_gb  = 1.875
-    storage_gb = 5
+    storage_gb = 1
   }
   worker = {
     cpu        = 0.5
     memory_gb  = 1.875
-    storage_gb = 5
+    storage_gb = 1
     min_count  = 1
     max_count  = 3
   }
