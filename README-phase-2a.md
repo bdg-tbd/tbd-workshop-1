@@ -1,20 +1,24 @@
+# Phase 2a
+
 IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
 
 ![img.png](doc/figures/destroy.png)
 
 1. The goal of this phase is to create infrastructure, perform benchmarking/scalability tests of sample three-tier lakehouse solution and analyze the results using:
-* [TPC-DI benchmark](https://www.tpc.org/tpcdi/)
-* [dbt - data transformation tool](https://www.getdbt.com/)
-* [GCP Composer - managed Apache Airflow](https://cloud.google.com/composer?hl=pl)
-* [GCP Dataproc - managed Apache Spark](https://spark.apache.org/)
-* [GCP Vertex AI Workbench - managed JupyterLab](https://cloud.google.com/vertex-ai-notebooks?hl=pl)
 
-Worth to read:
-* https://docs.getdbt.com/docs/introduction
-* https://airflow.apache.org/docs/apache-airflow/stable/index.html
-* https://spark.apache.org/docs/latest/api/python/index.html
-* https://medium.com/snowflake/loading-the-tpc-di-benchmark-dataset-into-snowflake-96011e2c26cf
-* https://www.databricks.com/blog/2023/04/14/how-we-performed-etl-one-billion-records-under-1-delta-live-tables.html
+    * [TPC-DI benchmark](https://www.tpc.org/tpcdi/)
+    * [dbt - data transformation tool](https://www.getdbt.com/)
+    * [GCP Composer - managed Apache Airflow](https://cloud.google.com/composer?hl=pl)
+    * [GCP Dataproc - managed Apache Spark](https://spark.apache.org/)
+    * [GCP Vertex AI Workbench - managed JupyterLab](https://cloud.google.com/vertex-ai-notebooks?hl=pl)
+
+    Worth to read:
+
+    * <https://docs.getdbt.com/docs/introduction>
+    * <https://airflow.apache.org/docs/apache-airflow/stable/index.html>
+    * <https://spark.apache.org/docs/latest/api/python/index.html>
+    * <https://medium.com/snowflake/loading-the-tpc-di-benchmark-dataset-into-snowflake-96011e2c26cf>
+    * <https://www.databricks.com/blog/2023/04/14/how-we-performed-etl-one-billion-records-under-1-delta-live-tables.html>
 
 2. Authors:
 
@@ -22,7 +26,7 @@ Worth to read:
 
    <https://github.com/Pinjesz/tbd-workshop-1>
 
-3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
+3. Sync your repo with <https://github.com/bdg-tbd/tbd-workshop-1>.
 
 4. Provision your infrastructure.
 
@@ -32,7 +36,7 @@ Worth to read:
 
 5. In `tpc-di-setup.ipynb` modify cell under section ***Clone tbd-tpc-di repo***:
 
-   a)first, fork https://github.com/mwiewior/tbd-tpc-di.git to your github organization.
+   a)first, fork <https://github.com/mwiewior/tbd-tpc-di.git> to your github organization.
 
    b)create new branch (e.g. 'notebook') in your fork of tbd-tpc-di and modify profiles.yaml by commenting following lines:
 
@@ -49,87 +53,87 @@ Worth to read:
 
 6. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
 
-   a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
+    a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
 
-   b) in the cell:
-         ```%%bash
-         mkdir -p git && cd git
-         git clone https://github.com/mwiewior/tbd-tpc-di.git
-         cd tbd-tpc-di
-         git pull
-         ```
-      replace repo with your fork. Next checkout to 'notebook' branch.
+    b) in the cell:
+        ```%%bash
+        mkdir -p git && cd git
+        git clone https://github.com/mwiewior/tbd-tpc-di.git
+        cd tbd-tpc-di
+        git pull
+        ```
+        replace repo with your fork. Next checkout to 'notebook' branch.
 
-   c) after running first cells your fork of `tbd-tpc-di` repository will be cloned into Vertex AI  enviroment (see git folder).
+    c) after running first cells your fork of `tbd-tpc-di` repository will be cloned into Vertex AI  enviroment (see git folder).
 
-   d) take a look on `git/tbd-tpc-di/profiles.yaml`. This file includes Spark parameters that can be changed if you need to increase the number of executors and
+    d) take a look on `git/tbd-tpc-di/profiles.yaml`. This file includes Spark parameters that can be changed if you need to increase the number of executors and
 
-  ```terraform
-   server_side_parameters:
-       "spark.driver.memory": "2g"
-       "spark.executor.memory": "4g"
-       "spark.executor.instances": "2"
-       "spark.hadoop.hive.metastore.warehouse.dir": "hdfs:///user/hive/warehouse/"
-  ```
+    ```terraform
+    server_side_parameters:
+        "spark.driver.memory": "2g"
+        "spark.executor.memory": "4g"
+        "spark.executor.instances": "2"
+        "spark.hadoop.hive.metastore.warehouse.dir": "hdfs:///user/hive/warehouse/"
+    ```
 
 7. Explore files created by generator and describe them, including format, content, total size.
 
-   Generator created 217 files:
-      14 text files (txt, csv, xml)
+    Generator created 217 files:
 
-      ![tables](doc/figures/gen-tables.png)
+    14 text files (txt, csv, xml)
 
-      that store data for tables
+    ![tables](doc/figures/gen-tables.png)
 
-      ![table_logs](doc/figures/gen-logs.png)
+    that store data for tables
 
-      203 FINWIRE files, one for each quarter from 1967Q1 to 2017Q3, that contains some data as well, sizing from 163.9 KB to 10.4 MB
+    ![table_logs](doc/figures/gen-logs.png)
 
-      ![finwire](doc/figures/gen-finwire.png)
+    203 FINWIRE files, one for each quarter from 1967Q1 to 2017Q3, that contains some data as well, sizing from 163.9 KB to 10.4 MB
 
+    ![finwire](doc/figures/gen-finwire.png)
 
 8. Analyze tpcdi.py. What happened in the loading stage?
 
-   ***Your answer***
+    This script loads data from FINWIRE files and converts them into
 
 9. Using SparkSQL answer: how many table were created in each layer?
 
-   ![spark-tables](doc/figures/spark-tables.png)
+    ![spark-tables](doc/figures/spark-tables.png)
 
 10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing.
 
-   correct_day_names.sql: checks if day names are correct
+    correct_day_names.sql: checks if day names are correct
 
-   ```sql
-   select *
-   from {{ ref('dim_date') }}
-   where day_of_week_desc not in ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
-   ```
+    ```sql
+    select *
+    from {{ ref('dim_date') }}
+    where day_of_week_desc not in ('Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday')
+    ```
 
-   noncurrent_not_max_end_timestamp.sql: checks if all records with max value in end_timestamp are current (is_current='true')
+    noncurrent_not_max_end_timestamp.sql: checks if all records with max value in end_timestamp are current (is_current='true')
 
-   ```sql
-   select *
-   from {{ ref('dim_account') }}
-   where end_timestamp='9999-12-31 23:59:59.999' and is_current='false'
-   ```
+    ```sql
+    select *
+    from {{ ref('dim_account') }}
+    where end_timestamp='9999-12-31 23:59:59.999' and is_current='false'
+    ```
 
-   date_removed_after_placed.sql: checks date removed is not before placed
+    date_removed_after_placed.sql: checks date removed is not before placed
 
-   ```sql
-   select *
-   from {{ ref('fact_watches') }}
-   where sk_date_placed > sk_date_removed
-   ```
+    ```sql
+    select *
+    from {{ ref('fact_watches') }}
+    where sk_date_placed > sk_date_removed
+    ```
 
 11. In main.tf update
 
-   ```terraform
-   dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
-   dbt_git_repo_branch     = "main"
-   ```
+    ```terraform
+    dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
+    dbt_git_repo_branch     = "main"
+    ```
 
-   so dbt_git_repo points to your fork of tbd-tpc-di.
+    so dbt_git_repo points to your fork of tbd-tpc-di.
 
 12. Redeploy infrastructure and check if the DAG finished with no errors:
 
