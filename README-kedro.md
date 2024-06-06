@@ -9,23 +9,9 @@
 4. Learn how to use Kedro-Viz for visualizing the data pipeline.
 
 ## Prerequisites
-* TBD Workshop 1 infrastructure running - VertexAI Workbench Jupyter Lab accessed
+* Access to the GitHub account
+* 
 * Run labs in the VSCode server available in your VertexAI Workbench Jupyter Lab
-
-## Project setup
-
-1. Prepare documentation (during whole workshop)
-
-During the workshop, you are asked to prepare the PDF documentation of the steps you have taken.
-You are asked to shortly describe all done tasks, encountered problems and to include the following information:
-- the screenshot of MLFlow UI with all experiments view
-- the snippets of code that you changed in the `yarn-prd` environment configuration
-- the screenshot of the Kedro pipeline visualization
-- the screenshot of the batch inference run in the VSCode environment
-
-2. Re-run `Release` job in the GitHub Actions
-
-In case of problems, ask the instructor for help.
 
 ## Task 1. Setup Kedro project, run the pipeline locally 
 
@@ -39,7 +25,7 @@ Restart the bash session after running the above command.
 2. Create Anaconda environment (Python 3.8 because of the compatibility with Python running on Dataproc cluster)
 
 ```bash 
-conda create --name mlops-adac python=3.8 -y
+conda create --name mlops-ds python=3.8 -y
 ```
 
 
@@ -47,7 +33,7 @@ conda create --name mlops-adac python=3.8 -y
 3. Activate the conda environment
 
 ```bash
-conda activate mlops-adac
+conda activate mlops-ds
 ```
 
 4. Install Kedro
@@ -62,12 +48,12 @@ pip install kedro==0.19.3
 kedro new --starter  https://github.com/mwiewior/kedro-starters/ --directory spaceflights-pyspark-mlflow --checkout spaceflights-pyspark-mlflow
 ```
 
-Set the name for your new project: `adac-kedro-pyspark`
+Set the name for your new project: `ds-kedro-pyspark`
 
 6. Change the directory to the newly created project
 
 ```bash
-cd adac-kedro-pyspark
+cd ds-kedro-pyspark
 ```
 
 7. Configure required environment variables
@@ -191,7 +177,7 @@ Important: Take the screenshot of all runs to the documentation.
 
 To register the model, you need to click the *Register* button in the detailed model view, in the MLflow UI.
 
-Name of the model: `adac-kedro-model`
+Name of the model: `ds-kedro-model`
 
 4. Prepare the batch inference pipeline
 
