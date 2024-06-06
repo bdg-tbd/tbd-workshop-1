@@ -94,7 +94,10 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 8. Analyze tpcdi.py. What happened in the loading stage?
 
-    This script loads data from FINWIRE files and converts them into
+    This script loads data from generated files and uploads it into tables.
+    Firstly it starts a spark session and creates a data base on hive for digen, bronze, silver and gold.
+    Sets a digen data base to be used. Then for each file (except FINWIRE, it processes all of them at once) it creates DataFrame
+    and uploads it to blob.
 
 9. Using SparkSQL answer: how many table were created in each layer?
 
@@ -137,4 +140,4 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 12. Redeploy infrastructure and check if the DAG finished with no errors:
 
-***The screenshot of Apache Aiflow UI***
+![alt text](doc/figures/apache_airflow.png)
