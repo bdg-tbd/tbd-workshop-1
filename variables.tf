@@ -26,7 +26,7 @@ variable "dataproc_num_workers_preemptible" {
 
 variable "dataproc_machine_type" {
   type    = string
-  default = "e2-standard-2"
+  default = "e2-standard-4"
 }
 
 variable "notebook_machine_type" {
