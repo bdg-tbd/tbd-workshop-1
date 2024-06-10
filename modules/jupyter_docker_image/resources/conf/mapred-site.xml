@@ -96,7 +96,7 @@
   </property>
   <property>
     <name>mapreduce.reduce.memory.mb</name>
-    <value>3278</value>
+    <value>5000</value>
     <final>false</final>
     <source>Dataproc Cluster Properties</source>
   </property>
