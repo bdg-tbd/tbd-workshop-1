@@ -10,6 +10,6 @@ tbd_tpcdi:
         "spark.master": "yarn"
         "spark.submit.deployMode": "client"
         "spark.driver.memory": "2g"
-        "spark.executor.memory": "2g"
+        "spark.executor.memory": "4g"
         "spark.executor.instances": "2"
         "spark.hadoop.hive.metastore.warehouse.dir": "hdfs:///user/hive/warehouse/"

@@ -18,9 +18,9 @@ Worth to read:
 
 2. Authors:
 
-   ***Enter your group nr***
+   7
 
-   ***Link to forked repo***
+   [***Link to forked repo***](https://github.com/a-s-gorski/tbd-workshop-1)
 
 3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
 
@@ -77,19 +77,87 @@ the running instance of your Vertex AI Workbench
 
 7. Explore files created by generator and describe them, including format, content, total size.
 
-   ***Files desccription***
+   There are 3 directories Batch1 Batch2 and Batch3 with each of them containing multiple csv and text files.
+   The biggest ones are DailyMarket.txt and WatchHistory.txt with sizes of 296MB and 134MB. Directioes contain also multiple FINWIRE files varying in size
+   from 900KB to 70KB.`
 
 8. Analyze tpcdi.py. What happened in the loading stage?
 
-   ***Your answer***
+   During loading as no file_name is specified - all are read and saved to the bucket which has been set up
+   as an environement variable. This includes: DATE, DAILY_MARKET, INDUSTRY, PROSPECT, CUSTOMER_MGMT, 
+   TAX_RATE, HR, WATCH_HISTORY, TRADE, TRADE_HISTORY, STATUS_TYPE, TRADE_TYPE, HOLDING_HISTORY,
+   CASH_TRANSACTION, CMP, SEC and FINwIRE files,
+
 
 9. Using SparkSQL answer: how many table were created in each layer?
+from pyspark.sql import SparkSession
+def get_session():
+    session = SparkSession.builder \
+        .appName("TBD-TPC-DI-setup") \
+        .enableHiveSupport() \
+        .getOrCreate()
+    for db in ['digen', 'bronze', 'silver', 'gold']:
+        session.sql(f"CREATE DATABASE IF NOT EXISTS {db} LOCATION 'hdfs:///user/hive/warehouse/{db}.db'")
+    session.sql('USE digen')
+    return session
 
-   ***SparkSQL command and output***
+query = """
+SHOW TABLES
+"""
+session = get_session()
+result_df = session.sql(query)
+result_df.show()
 
+--
++---------+----------------+-----------+
+|namespace|       tableName|isTemporary|
++---------+----------------+-----------+
+|    digen|cash_transaction|      false|
+|    digen|             cmp|      false|
+|    digen|   customer_mgmt|      false|
+|    digen|    daily_market|      false|
+|    digen|            date|      false|
+|    digen|             fin|      false|
+|    digen| holding_history|      false|
+|    digen|              hr|      false|
+|    digen|        industry|      false|
+|    digen|        prospect|      false|
+|    digen|             sec|      false|
+|    digen|     status_type|      false|
+|    digen|        tax_rate|      false|
+|    digen|           trade|      false|
+|    digen|   trade_history|      false|
+|    digen|      trade_type|      false|
+|    digen|   watch_history|      false|
++---------+----------------+-----------+
+
+There has been 17 tables created.
+
+   
 10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
 
-   ***Code and description of your tests***
+   Testing if transacations are not for a negative value:
+   ```sql
+   select ct_ca_id
+   from {{ source('brokerage', 'cash_transaction') }}
+   WHERE ct_amt < 0
+
+   ```
+   Testing if there are statuses with empty status_name:
+   ```sql
+   select ct_ca_id
+   from {{ source('reference', 'status_type') }}
+   WHERE ST_NAME IS NULL
+   ```
+   Testing if there are no employees who are their own managers:
+   ```sql
+   select *
+   from {{ source('hr', 'hr') }}
+   WHERE employee_id = manager_id
+   ```
+
+
+
 
 11. In main.tf update
    ```

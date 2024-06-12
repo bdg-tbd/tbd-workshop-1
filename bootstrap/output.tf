@@ -11,3 +11,8 @@ output "terraform_service_account" {
   value       = google_service_account.tbd-terraform.email
   description = "Terraform service account"
 }
+
+output "dataproc_cluster_name" {
+  value       = google_dataproc_cluster.tbd_cluster.name
+  description = "Dataproc cluster name"
+}
