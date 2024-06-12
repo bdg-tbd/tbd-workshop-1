@@ -82,7 +82,7 @@ resource "google_storage_bucket" "tbd-state-bucket" {
     prevent_destroy = true
   }
 
-  #checkov:skip=CKV_GCP_91: "Ensure Dataproc cluster is encrypted with Customer Supplied Encryption Keys (CSEK)"
+  checkov:skip=CKV_GCP_91: "Ensure Dataproc cluster is encrypted with Customer Supplied Encryption Keys (CSEK)"
   #checkov:skip=CKV_GCP_62: "Bucket should log access"
   #checkov:skip=CKV_GCP_29: "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
   #checkov:skip=CKV_GCP_78: "Ensure Cloud storage has versioning enabled"
