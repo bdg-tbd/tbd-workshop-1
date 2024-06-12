@@ -53,7 +53,6 @@ resource "google_project_iam_member" "tbd-editor-supervisors" {
   project = google_project.tbd_project.project_id
   role    = "roles/editor"
   member  = each.value
-  checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
 }
 
 resource "google_project_iam_member" "tbd-editor-member" {
@@ -72,7 +71,6 @@ resource "google_storage_bucket" "tbd-state-bucket" {
     prevent_destroy = true
   }
   public_access_prevention = "enforced"
-  checkov:skip=CKV_GCP_103: "Ensure Dataproc Clusters do not have public IPs"
 }
 
 resource "google_dataproc_cluster" "tbd_cluster" {
@@ -85,23 +83,22 @@ resource "google_dataproc_cluster" "tbd_cluster" {
 
     master_config {
       num_instances = 1
-      machine_type  = "n1-highmem-4"  # High memory for master
+      machine_type  = "n1-highmem-4"
     }
 
     worker_config {
       num_instances = 2
-      machine_type  = "n1-highmem-4"  # High memory for workers
+      machine_type  = "n1-highmem-4"
     }
 
     initialization_action {
-      script = "gs://dataproc-initialization-actions/conda/bootstrap-conda.sh"
+      script = "gs://your-bucket-path/configure-yarn.sh"
     }
   }
 
   labels = {
     env = "dev"
   }
-  checkov:skip=CKV_GCP_91: "Ensure Dataproc cluster is encrypted with Customer Supplied Encryption Keys (CSEK)"
 }
 
 resource "google_dataproc_job" "example_pyspark" {
@@ -112,14 +109,14 @@ resource "google_dataproc_job" "example_pyspark" {
     main_python_file_uri = "gs://path-to-your-pyspark-job.py"
 
     properties = {
-      "spark.executor.memory"          = "3g"    # Reduced to fit within worker memory
-      "spark.executor.memoryOverhead"  = "512m"  # Adjusted overhead
+      "spark.executor.memory"          = "4g"   # Increased to fit within new YARN settings
+      "spark.executor.memoryOverhead"  = "512m"
       "spark.executor.cores"           = "1"
-      "spark.driver.memory"            = "2g"    # Ensure driver memory is sufficient
+      "spark.driver.memory"            = "4g"
       "spark.driver.memoryOverhead"    = "512m"
       "spark.dynamicAllocation.enabled" = "true"
       "spark.dynamicAllocation.minExecutors" = "1"
-      "spark.dynamicAllocation.maxExecutors" = "4" # Adjusted to fit within cluster size
+      "spark.dynamicAllocation.maxExecutors" = "4"
     }
   }
 
