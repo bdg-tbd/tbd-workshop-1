@@ -92,7 +92,7 @@ resource "google_dataproc_cluster" "tbd_cluster" {
     }
 
     initialization_action {
-      script = "gs://your-bucket-path/configure-yarn.sh"
+      script = "gs://dataproc-initialization-actions/conda/bootstrap-conda.sh"
     }
   }
 
