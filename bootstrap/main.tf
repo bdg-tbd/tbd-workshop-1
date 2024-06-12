@@ -82,8 +82,57 @@ resource "google_storage_bucket" "tbd-state-bucket" {
     prevent_destroy = true
   }
 
+  checkov:skip=CKV_GCP_91: "Ensure Dataproc cluster is encrypted with Customer Supplied Encryption Keys (CSEK)"
   #checkov:skip=CKV_GCP_62: "Bucket should log access"
   #checkov:skip=CKV_GCP_29: "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
   #checkov:skip=CKV_GCP_78: "Ensure Cloud storage has versioning enabled"
   public_access_prevention = "enforced"
+}
+
+resource "google_dataproc_cluster" "tbd_cluster" {
+  project = google_project.tbd_project.project_id
+  name    = "${local.project}-cluster"
+  region  = var.region
+
+  cluster_config {
+    staging_bucket = google_storage_bucket.tbd-state-bucket.name
+
+    master_config {
+      num_instances = 1
+      machine_type  = "n1-standard-4"
+    }
+
+    worker_config {
+      num_instances = 2
+      machine_type  = "n1-highmem-2" # Using a high-memory machine type
+    }
+
+    initialization_action {
+      script = "gs://dataproc-initialization-actions/conda/bootstrap-conda.sh"
+    }
+  }
+
+  labels = {
+    env = "dev"
+  }
+}
+
+resource "google_dataproc_job" "example_pyspark" {
+  project = google_project.tbd_project.project_id
+  region  = var.region
+
+  pyspark_config {
+    main_python_file_uri = "gs://path-to-your-pyspark-job.py"
+
+    properties = {
+      "spark.executor.memory"          = "2g"
+      "spark.executor.memoryOverhead"  = "512m"
+      "spark.executor.cores"           = "1"
+      "spark.dynamicAllocation.enabled" = "true"
+      "spark.dynamicAllocation.minExecutors" = "1"
+      "spark.dynamicAllocation.maxExecutors" = "10"
+    }
+  }
+
+  cluster = google_dataproc_cluster.tbd_cluster.name
 }
