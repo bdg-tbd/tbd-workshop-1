@@ -72,7 +72,7 @@ with models.DAG(
         env_vars={"HADOOP_CONF_DIR": "/etc/hadoop/conf"},
         container_resources={
             'request_memory': '2048M',
-            'limit_memory': '4096M',
+            'limit_memory': '8192M',
             'request_cpu': '800m',
             'limit_cpu': '1000m'
         }
