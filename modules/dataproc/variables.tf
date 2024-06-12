@@ -16,7 +16,7 @@ variable "subnet" {
 
 variable "machine_type" {
   type        = string
-  default     = "e2-medium"
+  default     = "n1-highmem-4"
   description = "Machine type to use for both worker and master"
 }
 
