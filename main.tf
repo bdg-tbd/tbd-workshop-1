@@ -10,9 +10,9 @@ locals {
   spark_version           = "3.3.2"
   spark_driver_port       = 30000
   spark_blockmgr_port     = 30001
-  dbt_version             = "1.7.13"
+  dbt_version             = "1.7.16"
   dbt_spark_version       = "1.7.1"
-  dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
+  dbt_git_repo            = "https://github.com/a-s-gorski/tbd-tpc-di.git"
   dbt_git_repo_branch     = "main"
 }
 
@@ -65,7 +65,6 @@ module "dataproc" {
   project_name = var.project_name
   region       = var.region
   subnet       = module.vpc.subnets[local.notebook_subnet_id].id
-  machine_type = "e2-standard-2"
 }
 
 ## Uncomment for Dataproc batches (serverless)
@@ -125,6 +124,7 @@ resource "kubernetes_service" "dbt-task-service" {
       app = "dbt-app"
     }
   }
+
 
   spec {
     type = "NodePort"

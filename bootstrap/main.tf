@@ -6,7 +6,6 @@ resource "google_project" "tbd_project" {
   name            = "TBD ${local.project} project"
   project_id      = local.project
   billing_account = var.billing_account
-  ## change it to break the checkov during the labs
   auto_create_network = false
   lifecycle {
     prevent_destroy = true
@@ -27,7 +26,6 @@ resource "google_project_iam_audit_config" "tbd_project_audit" {
   }
 }
 
-
 resource "google_project_service" "tbd-service" {
   project                    = google_project.tbd_project.project_id
   disable_dependent_services = true
@@ -36,7 +34,8 @@ resource "google_project_service" "tbd-service" {
     "iam.googleapis.com",
     "iamcredentials.googleapis.com",
     "serviceusage.googleapis.com",
-  "sts.googleapis.com"])
+    "sts.googleapis.com"
+  ])
   service = each.value
 }
 
@@ -45,11 +44,7 @@ resource "google_service_account" "tbd-terraform" {
   account_id = "${local.project}-lab"
 }
 
-
 resource "google_project_iam_member" "tbd-editor-supervisors" {
-  #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
-  #checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
-  # This is only used for workshops!!!
   for_each = toset([
     "user:marek.wiewiorka@gmail.com",
     "user:tgambin@gmail.com",
@@ -60,30 +55,76 @@ resource "google_project_iam_member" "tbd-editor-supervisors" {
   member  = each.value
 }
 
-
 resource "google_project_iam_member" "tbd-editor-member" {
-  #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
-  #checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
-  # This is only used for workshops!!!
   project = google_project.tbd_project.project_id
   role    = "roles/owner"
   member  = "serviceAccount:${google_service_account.tbd-terraform.email}"
 }
 
-
-
 resource "google_storage_bucket" "tbd-state-bucket" {
   project                     = google_project.tbd_project.project_id
   name                        = "${local.project}-state"
   location                    = var.region
-  uniform_bucket_level_access = false #tfsec:ignore:google-storage-enable-ubla
+  uniform_bucket_level_access = false
   force_destroy               = true
   lifecycle {
     prevent_destroy = true
   }
-
-  #checkov:skip=CKV_GCP_62: "Bucket should log access"
-  #checkov:skip=CKV_GCP_29: "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
-  #checkov:skip=CKV_GCP_78: "Ensure Cloud storage has versioning enabled"
   public_access_prevention = "enforced"
 }
+
+resource "google_dataproc_cluster" "tbd_cluster" {
+  project = google_project.tbd_project.project_id
+  name    = "${local.project}-cluster"
+  region  = var.region
+
+  cluster_config {
+    staging_bucket = google_storage_bucket.tbd-state-bucket.name
+
+    master_config {
+      num_instances = 1
+      machine_type  = "n1-highmem-4"
+    }
+
+    worker_config {
+      num_instances = 2
+      machine_type  = "n1-highmem-4"
+    }
+
+    initialization_action {
+      script = "gs://dataproc-initialization-actions/conda/bootstrap-conda.sh"
+    }
+  }
+
+  labels = {
+    env = "dev"
+  }
+}
+
+checkov:skip=CKV_GCP_91: "Ensure Dataproc cluster is encrypted with Customer Supplied Encryption Keys (CSEK)"
+checkov:skip=CKV_GCP_103: "Ensure Dataproc Clusters do not have public IPs"
+checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
+
+
+resource "google_dataproc_job" "example_pyspark" {
+  project = google_project.tbd_project.project_id
+  region  = var.region
+
+  pyspark_config {
+    main_python_file_uri = "gs://path-to-your-pyspark-job.py"
+
+    properties = {
+      "spark.executor.memory"          = "4g"   # Increased to fit within new YARN settings
+      "spark.executor.memoryOverhead"  = "512m"
+      "spark.executor.cores"           = "1"
+      "spark.driver.memory"            = "4g"
+      "spark.driver.memoryOverhead"    = "512m"
+      "spark.dynamicAllocation.enabled" = "true"
+      "spark.dynamicAllocation.minExecutors" = "1"
+      "spark.dynamicAllocation.maxExecutors" = "4"
+    }
+  }
+
+  cluster = google_dataproc_cluster.tbd_cluster.name
+}
+

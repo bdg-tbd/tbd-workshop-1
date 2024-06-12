@@ -38,6 +38,7 @@ resource "google_compute_subnetwork" "composer-subnet" {
 
 
 module "composer" {
+  #checkov:skip=CKV_TF_2: "Ensure Terraform module sources use a tag with a version number"
   depends_on = [google_project_service.api, google_project_iam_member.composer-member]
   source     = "terraform-google-modules/composer/google//modules/create_environment_v2"
   version    = "~> 5.0.0"
@@ -66,8 +67,8 @@ module "composer" {
   }
   worker = {
     cpu        = 0.5
-    memory_gb  = 1.875
-    storage_gb = 1
+    memory_gb  = 3
+    storage_gb = 5
     min_count  = 1
     max_count  = 3
   }

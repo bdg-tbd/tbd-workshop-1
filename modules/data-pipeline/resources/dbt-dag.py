@@ -63,7 +63,7 @@ with models.DAG(
         # project-id as the gcr.io images and the service account that Composer
         # uses has permission to access the Google Container Registry
         # (the default service account has permission)
-        image="eu.gcr.io/{{ var.value.project_id }}/dbt:1.7.13",
+        image="eu.gcr.io/{{ var.value.project_id }}/dbt:1.7.16",
         # Specifies path to kubernetes config. If no config is specified will
         # default to '~/.kube/config'. The config_file is templated.
         config_file="/home/airflow/composer_kube_config",
@@ -72,7 +72,7 @@ with models.DAG(
         env_vars={"HADOOP_CONF_DIR": "/etc/hadoop/conf"},
         container_resources={
             'request_memory': '2048M',
-            'limit_memory': '4096M',
+            'limit_memory': '8192M',
             'request_cpu': '800m',
             'limit_cpu': '1000m'
         }
