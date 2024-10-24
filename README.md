@@ -32,6 +32,7 @@ gcloud auth application-default revoke
 gcloud auth application-default login
 ```
 ## Project setup
+0. Fork this repository to your own Github account.
 1. Export shared environment variables
 ```bash
 export TF_VAR_tbd_semester=2024L
