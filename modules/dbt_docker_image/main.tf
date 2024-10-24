@@ -8,7 +8,7 @@ resource "docker_image" "dbt" {
       SPARK_VERSION : var.spark_version
       PROJECT_NAME : var.project_name
     }
-    tag = ["${var.registry_hostname}/${var.registry_repo_name}/dbt:latest"]
+    tag      = ["${var.registry_hostname}/${var.registry_repo_name}/dbt:latest"]
     platform = "amd64"
   }
   triggers = {

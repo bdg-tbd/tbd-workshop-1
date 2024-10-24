@@ -139,16 +139,16 @@ terraform destroy -no-color -var-file env/project.tfvars
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.5.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.9.0 |
 | <a name="requirement_docker"></a> [docker](#requirement\_docker) | 3.0.2 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.23.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.44.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.24.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | ~> 5.44.0 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.24.0 |
 
 ## Modules
