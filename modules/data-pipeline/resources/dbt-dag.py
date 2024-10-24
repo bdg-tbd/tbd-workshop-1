@@ -52,7 +52,7 @@ with models.DAG(
         image_pull_policy="Always",
         cmds=["bash", "-c"],
         arguments=["git clone {{ var.value.dbt_git_repo}} && cd tbd-tpc-di && git checkout {{ var.value.dbt_git_repo_branch }}" 
-                   "&& dbt deps && dbt run"],
+                   "&& dbt deps && dbt debug"],
         # The namespace to run within Kubernetes. In Composer 2 environments
         # after December 2022, the default namespace is
         # `composer-user-workloads`.
