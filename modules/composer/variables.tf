@@ -34,7 +34,7 @@ variable "subnet_name" {
 
 variable "image_version" {
   type    = string
-  default = "composer-2.4.6-airflow-2.6.3"
+  default = "composer-2.6.1-airflow-2.5.3"
 }
 
 variable "env_size" {

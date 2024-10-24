@@ -9,6 +9,7 @@ resource "docker_image" "dbt" {
       PROJECT_NAME : var.project_name
     }
     tag = ["${var.registry_hostname}/${var.registry_repo_name}/dbt:latest"]
+    platform = "amd64"
   }
   triggers = {
     dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/**") : filesha1(f)]))
