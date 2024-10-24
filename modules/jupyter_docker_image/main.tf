@@ -10,7 +10,7 @@ resource "docker_image" "jupyter" {
       DBT_VERSION : var.dbt_version
       DBT_SPARK_VERSION : var.dbt_spark_version
     }
-    tag = ["${var.registry_hostname}/${var.registry_repo_name}/jupyter:latest"]
+    tag      = ["${var.registry_hostname}/${var.registry_repo_name}/jupyter:latest"]
     platform = "amd64"
   }
   triggers = {
