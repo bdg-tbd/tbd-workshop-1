@@ -25,10 +25,10 @@ provider "kubernetes" {
 }
 
 terraform {
-  required_version = "~> 1.5.0"
+  required_version = "~> 1.9.0"
   required_providers {
     google = {
-      version = "~> 5.23.0"
+      version = "~> 5.44.0"
     }
     docker = {
       source  = "kreuzwerker/docker"

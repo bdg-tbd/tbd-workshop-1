@@ -11,6 +11,7 @@ resource "docker_image" "jupyter" {
       DBT_SPARK_VERSION : var.dbt_spark_version
     }
     tag = ["${var.registry_hostname}/${var.registry_repo_name}/jupyter:latest"]
+    platform = "amd64"
   }
   triggers = {
     dir_sha1 = sha1(join("", [for f in fileset(path.cwd, "${path.module}/resources/**") : filesha1(f)]))

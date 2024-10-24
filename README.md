@@ -1,5 +1,5 @@
 # TBD Workshop 1.
-ddd
+
 ## Workshop goals
 1. Learn how to provision computing resources for running Big Data analyses using the Infrastructure as Code (IaC) approach.
 2. Learn how to set up opinionated CI/CD pipelines to deploy cloud infrastructure. 
@@ -14,6 +14,7 @@ to Google Cloud.
 ## Prerequisites
 ### Software
 * Google Cloud SDK
+* terraform ~> 1.9.0
 * gsutil
 * pre-commit
 * Terraform ( [Requirements](#Requirements) )
