@@ -4,9 +4,13 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+**z12**
 
-   ***link to forked repo***
+*Jan Budziński*  
+*Marcin Godniak*  
+*Kacper Klassa*  
+
+**https://github.com/kklassa/tbd-workshop-1-24z-z12**
    
 2. Follow all steps in README.md.
 
