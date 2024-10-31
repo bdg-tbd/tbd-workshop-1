@@ -25,12 +25,26 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+    ![Successful application of release workflow](doc/figures/ga-release-workflow-success.png)
 
 
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+    **Data Pipeline module**:
+
+    This module is responsible for creating and configuring Google Cloud Storage buckets which are used for
+    storing scripts that are utilized by the data pipeline based on Apache Airflow. Two buckets are created 
+    by the module - one is storing code for a Spark job (`tbd-code-bucket`) and the other is for storing 
+    pipeline data (`tbd-data-bucket`). Resources responsible for IAM bindings to those buckets for service 
+    accounts are also configured and provisioned, as well as a GCS bucket object for the code bucket.
+
+    The following diagram presents the dependencies between resources created by the module:
+
+    ![Terrafrom Graph output for Data Pipeline module](doc/figures/data-pipeline-graph.png)
+
+    Interestingly not all resources of type `google_storage_bucket_object` are connected to a `google_storage_bucket` resource. That is because the `dag-code` and `dbt-dag-code` bucket objects are a part of a diffreent bucket that is provisioned by [`composer`](modules/composer/) module. These bucket objects contain scripts with DAGs for Apache Airflow.
+
+
    
 9. Reach YARN UI
    
