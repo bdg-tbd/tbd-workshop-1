@@ -69,19 +69,29 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 11. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
-   
+    ``` sql
+    CREATE SCHEMA IF NOT EXISTS task1;
+
+    CREATE EXTERNAL TABLE task1.2015_flights
+    OPTIONS (
+      format = 'parquet',
+      uris = ['gs://bucket-tbd-z12/2015_flights.parquet']
+    );
+    ```
+    ![image](https://github.com/user-attachments/assets/5ed43a3c-eb4e-4317-8a95-3b33453e597e)
+
     ***why does ORC not require a table schema?***
 
   
-12. Start an interactive session from Vertex AI workbench:
+13. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
    
-13. Find and correct the error in spark-job.py
+14. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-14. Additional tasks using Terraform:
+15. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
