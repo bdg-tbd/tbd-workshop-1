@@ -1,3 +1,3 @@
-project_name               = "tbd-2025z-9900"
-iac_service_account        = "tbd-2025z-9900-lab@tbd-2025z-9900.iam.gserviceaccount.com"
-ai_notebook_instance_owner = "marek.wiewiorka@gmail.com"
+project_name               = "tbd-2024z-336369"
+iac_service_account        = "tbd-2024z-336369-lab@tbd-2024z-336369.iam.gserviceaccount.com"
+ai_notebook_instance_owner = "jakub.r.wlodarz@gmail.com"
