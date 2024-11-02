@@ -4,9 +4,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   Group 3
 
-   ***link to forked repo***
+   [***link to forked repo***](https://github.com/TBD-2024/tbd-workshop-1)
    
 2. Follow all steps in README.md.
 
@@ -21,7 +21,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+    ***place the screenshot from GA after successful application of release***
 
 
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
