@@ -37,6 +37,7 @@ No modules.
 | <a name="input_ai_notebook_image_repository"></a> [ai\_notebook\_image\_repository](#input\_ai\_notebook\_image\_repository) | n/a | `string` | `"gcr.io/deeplearning-platform-release/base-cpu.py310"` | no |
 | <a name="input_ai_notebook_image_tag"></a> [ai\_notebook\_image\_tag](#input\_ai\_notebook\_image\_tag) | n/a | `string` | `"latest"` | no |
 | <a name="input_ai_notebook_instance_owner"></a> [ai\_notebook\_instance\_owner](#input\_ai\_notebook\_instance\_owner) | Vertex AI workbench owner | `string` | n/a | yes |
+| <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | Machine type to use for the notebook instance | `string` | `"e2-standard-2"` | no |
 | <a name="input_network"></a> [network](#input\_network) | VPC to use for notebooks | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
