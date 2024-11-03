@@ -31,8 +31,19 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 7. Reach YARN UI
    
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
-   
+    Command:
+
+    ```
+    gcloud compute ssh tbd-cluster-m \
+        --project=tbd-2024z-336369 -- \
+        -L 1080:tbd-cluster-m:8088 -N -n
+    ```
+
+    Port: 1080 \
+    The default SOCKS proxy could not be used, so local port forwarding was applied to view the YARN UI on port 1080 instead of the expected 8088.
+
+    ![img.png](doc/figures/yarn-ui.png)
+    
 8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
