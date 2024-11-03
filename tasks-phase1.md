@@ -85,9 +85,57 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
-    ***place the link to the modified file and inserted terraform code***
+    ### Dataproc cluster
+
+    Arbitraty machine types are already supported via the `machine_type` variable. Added support for arbitrary number of worker nodes by introducing a new variable `worker_count` and using it in the `worker_config` block of the `google_dataproc_cluster` resource.
+
+    ['modules/dataproc/variables.tf'](modules/dataproc/variables.tf)
+
+    ```
+    variable "worker_count" {
+      type        = number
+      default     = 2
+      description = "Number of worker nodes"
+    }
+    ```
+
+    ['modules/dataproc/main.tf'](modules/dataproc/main.tf)
+
+    ```
+    cluster_config {
+      ...
+      worker_config {
+        num_instances = var.worker_count
+        ...
+      }
+    }
+    ```
+
+    ### JupyterLab / Vertex AI Workbench
+
+    Created an additional variable `machine_type` for the the `google_notebooks_instance` resource to support arbitrary machine types for the JupyterLab instance.
+
+    ['modules/vertex-ai-workbench/variables.tf']
+
+    ```
+    variable "machine_type" {
+      type        = string
+      default     = "e2-standard-2"
+      description = "Machine type to use for the notebook instance"
+    }
+    ```
+
+    ['modules/vertex-ai-workbench/main.tf']
+
+    ```
+    resource "google_notebooks_instance" "tbd_notebook" {
+      ...
+      machine_type = var.machine_type
+      ...
+    }
+    ```
     
-    3. Add support for preemptible/spot instances in a Dataproc cluster
+    2. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     

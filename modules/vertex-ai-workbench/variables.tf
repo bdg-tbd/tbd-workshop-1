@@ -33,3 +33,9 @@ variable "ai_notebook_image_tag" {
   type    = string
   default = "latest"
 }
+
+variable "machine_type" {
+  type        = string
+  default     = "e2-standard-2"
+  description = "Machine type to use for the notebook instance"
+}
