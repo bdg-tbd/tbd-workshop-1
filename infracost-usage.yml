@@ -1,0 +1,22 @@
+version: 0.1
+
+resource_type_default_usage:
+  google_artifact_registry_repository:
+    storage_gb: 50 # Total data stored in the repository in GB
+    monthly_egress_data_transfer_gb: # Monthly data delivered from the artifact registry repository in GB. You can specify any number of Google Cloud regions below, replacing - for _ e.g.:
+      same_continent: 25  # Same continent.
+      worldwide: 20     # Worldwide excluding Asia, Australia.
+      asia: 2           # Asia excluding China, but including Hong Kong.
+      china: 1            # China excluding Hong Kong.
+      australia: 2       # Australia.
+  google_storage_bucket:
+    storage_gb: 10 # Total size of bucket in GB.
+    monthly_class_a_operations: 100 # Monthly number of class A operations (object adds, bucket/object list).
+    monthly_class_b_operations: 100 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+    monthly_data_retrieval_gb: 40.0 # Monthly amount of data retrieved in GB.
+    monthly_egress_data_transfer_gb:
+      same_continent: 20.0 # Same continent.
+  google_service_networking_connection:
+    monthly_egress_data_transfer_gb: # Monthly VM-VM data transfer from VPN gateway to the following, in GB:
+      same_region: 30                # VMs in the same Google Cloud region.
+      worldwide: 5 
