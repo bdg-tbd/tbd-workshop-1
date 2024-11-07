@@ -4,9 +4,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   Grupa nr 6:
+      - Piotr Gręda (310704)
+      - Szymon Skarzyński (310893)
+      - Jakub Smela (310900)
 
-   ***link to forked repo***
+   [https://github.com/ptgreda/tbd-workshop-1-pgreda](https://github.com/ptgreda/tbd-workshop-1-pgreda)
    
 2. Follow all steps in README.md.
 
