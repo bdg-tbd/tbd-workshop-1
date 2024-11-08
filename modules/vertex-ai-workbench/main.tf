@@ -57,6 +57,9 @@ resource "google_notebooks_instance" "tbd_notebook" {
     repository = var.ai_notebook_image_repository
     tag        = var.ai_notebook_image_tag
   }
+  shielded_instance_config {
+    enable_secure_boot = true
+  }
   network = var.network
   subnet  = var.subnet
   ## change it to break the checkov during the labs
@@ -66,7 +69,8 @@ resource "google_notebooks_instance" "tbd_notebook" {
   # end
   instance_owners = [var.ai_notebook_instance_owner]
   metadata = {
-    vmDnsSetting : "GlobalDefault"
+    notebook-disable-root      = "true"
+    vmDnsSetting               = "GlobalDefault"
   }
   post_startup_script = "gs://${google_storage_bucket_object.post-startup.bucket}/${google_storage_bucket_object.post-startup.name}"
 }
@@ -79,6 +83,4 @@ resource "google_project_iam_binding" "token_creator_role" {
   project = var.project_name
   role    = "roles/iam.serviceAccountTokenCreator"
   members = toset(["serviceAccount:${local.gce_service_account}"])
-
 }
-

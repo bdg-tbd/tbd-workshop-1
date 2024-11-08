@@ -87,7 +87,18 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
     
-    ***place the link to the modified file and inserted terraform code***
+    [***link to the modified file***](https://github.com/TBD-2024/tbd-workshop-1/blob/master/modules/vertex-ai-workbench/main.tf)
+   
+    ```
+    shielded_instance_config {
+        enable_secure_boot = true
+    }
+    # ...
+    metadata = {
+        notebook-disable-root = "true"
+        vmDnsSetting          = "GlobalDefault"
+    }
+    ```
 
     4. (Optional) Get access to Apache Spark WebUI
 
