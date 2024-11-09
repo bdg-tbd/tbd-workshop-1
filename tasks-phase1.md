@@ -69,7 +69,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
   
 11. Start an interactive session from Vertex AI workbench:
 
-    ***place the screenshot of notebook here***
+    ![img.png](doc/figures/vertex-ai.png)
    
 12. Find and correct the error in spark-job.py
 
@@ -102,4 +102,10 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     4. (Optional) Get access to Apache Spark WebUI
 
-    ***place the link to the modified file and inserted terraform code***
+    [***link to the modified file***](https://github.com/TBD-2024/tbd-workshop-1/blob/master/modules/dataproc/main.tf)
+
+    ```
+    endpoint_config {
+      enable_http_port_access = "true"
+    }
+    ```
