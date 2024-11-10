@@ -24,6 +24,11 @@ to Google Cloud.
 
 ### GCP
 * Redeem a GCP coupon to create a billing account
+
+DONE:
+
+![img.png](doc/figures/phase1/billing-account.png)
+
 * Authenticate to GCP to obtain the default credentials used for running the code
 ```bash
 # first remove the stored credentials if exist
@@ -33,6 +38,8 @@ gcloud auth application-default login
 ```
 ## Project setup
 0. Fork this repository to your own Github account.
+
+DONE: [https://github.com/karolstepanienko/tbd-workshop-1](https://github.com/karolstepanienko/tbd-workshop-1)
 1. Export shared environment variables
 ```bash
 export TF_VAR_tbd_semester=2024L

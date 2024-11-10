@@ -38,3 +38,9 @@ terraform.rc
 .DS_Store
 bootstrap/terraform.tfstate_*
 bin/
+
+# Terraform plan files
+*.tfplan
+
+# pyenv python version for a folder
+.python-version

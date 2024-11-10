@@ -4,9 +4,11 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   <!-- ***enter your group nr*** -->
+   Team 4
 
-   ***link to forked repo***
+   <!-- ***link to forked repo*** -->
+   https://github.com/karolstepanienko/tbd-workshop-1
    
 2. Follow all steps in README.md.
 
