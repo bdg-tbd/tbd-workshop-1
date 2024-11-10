@@ -91,7 +91,6 @@ while preserving the secret names, i.e. `GCP_WORKLOAD_IDENTITY_PROVIDER_NAME` an
 ![img.png](doc/figures/secrets.png)
 DONE: ![img.png](doc/figures/phase1/cicd-repo-secret.png)
 
-<!-- TODO below -->
 
 5. Install and configure `pre-commit`
 ```bash
@@ -102,6 +101,8 @@ DONE:
 ![img.png](doc/figures/phase1/pre-commit-installed.png)
 
 ![img.png](doc/figures/phase1/pre-commit-works.png)
+
+<!-- TODO below -->
 
 6. Commit changes, push to a branch and open a PR to **YOUR** repository main/master branch.
 If you see a warning like this -- please enable the workflows:
