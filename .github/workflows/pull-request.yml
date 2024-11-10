@@ -142,7 +142,7 @@ jobs:
             })
           }
     - name: Fix permissions workaround
-      run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE/tbd-workshop-1/.external_modules
+      run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE/.external_modules
     - name: Setup Infracost
       uses: infracost/actions/setup@v2.1.0
       with:
