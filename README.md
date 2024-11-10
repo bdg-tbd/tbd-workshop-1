@@ -97,6 +97,11 @@ DONE: ![img.png](doc/figures/phase1/cicd-repo-secret.png)
 ```bash
 pre-commit install
 ```
+DONE:
+
+![img.png](doc/figures/phase1/pre-commit-installed.png)
+
+![img.png](doc/figures/phase1/pre-commit-works.png)
 
 6. Commit changes, push to a branch and open a PR to **YOUR** repository main/master branch.
 If you see a warning like this -- please enable the workflows:
