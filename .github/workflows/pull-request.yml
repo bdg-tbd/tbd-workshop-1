@@ -141,8 +141,8 @@ jobs:
               body: output
             })
           }
-    - name: Fix permissions workaround
-      run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+    # - name: Fix permissions workaround
+    #   run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
     - name: Setup Infracost
       uses: infracost/actions/setup@v2.1.0
       with:
