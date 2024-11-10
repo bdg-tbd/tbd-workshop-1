@@ -6,7 +6,7 @@ on: [pull_request]
 permissions: read-all
 jobs:
   iac_checks:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
   # Add "id-token" with the intended permissions.
     permissions:
       contents: read

@@ -5,7 +5,7 @@ on:
 permissions: read-all
 jobs:
   destroy-release:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
   # Add "id-token" with the intended permissions.
     permissions:
       contents: write
