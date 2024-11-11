@@ -48,22 +48,25 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     ***describe one selected module and put the output of terraform graph for this module here***
    Wybranym modułem jest *vertex-ai-workbench*. Po wywołaniu komendy *terraform graph -type=plan | dot -Tpng >graph.png* w *modules/vertex-ai-workbench*
 wygenerowany został plik .png z grafem dla wybranego modułu:
+![graph](https://github.com/user-attachments/assets/ecf1235d-0c30-40c5-a780-6ad582c3567a)
 
    
 10. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
-   export PROJECT=tbd-2024z-310164;export HOSTNAME=tbd-cluster-m;export ZONE=europe-west1-d;PORT=1080
+   Najpierw zdefiniowaliśmy zmienne:\
+   export PROJECT=tbd-2024z-310164;export HOSTNAME=tbd-cluster-m;export ZONE=europe-west1-d;PORT=1080\
+   Następnie postawiliśmy tunel SSH:\
    gcloud compute ssh ${HOSTNAME} \
     --project=${PROJECT} --zone=${ZONE}  -- \
     -D ${PORT} -N
-
+Po czym otworzyliśmy przedglądarkę komendą:
 "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
     --proxy-server="socks5://localhost:${PORT}" \
     --user-data-dir=/tmp/${HOSTNAME} \
+Na końcu przeszliśmy do YARN UI przez poniższy URL (8088 to port dla YARN ResourceManager w daraproc)
 http://tbd-cluster-m:8088/
     
-
   ![image](https://github.com/user-attachments/assets/78f91082-17b0-433a-aa8a-c223c5ececc2)
 
 11. Draw an architecture diagram (e.g. in draw.io) that includes:
@@ -79,8 +82,14 @@ For all the resources of type: `google_artifact_registry`, `google_storage_bucke
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
    ***place the expected consumption you entered here***
-
+   Wykorzystaliśmy podany plik przykładowy i uzupełniliśmy go spodziewanymi wartościami konsumpcji. [here](infracost-usage.yml)
+   <img width="399" alt="image" src="https://github.com/user-attachments/assets/25e29d61-71be-4212-8445-ad3c0e486b7e">
+Zmodyfikowaliśmy również CI/CD pipeline przez dodanie *--usage-file* do taska "Generate Infracost cost estimate baseline"
+<img width="625" alt="image" src="https://github.com/user-attachments/assets/fe4b9251-24ce-474a-8dda-6a1a9c14ef3d">
    ***place the screenshot from infracost output here***
+   Po wywołaniu komendy infracost breakdown --path . --usage-file infracost-usage.yml otrzymaliśmy następujący rezultat:
+![MicrosoftTeams-image](https://github.com/user-attachments/assets/208c38f7-e9b9-45c2-bedd-c6110a98d127)
+<img width="902" alt="image" src="https://github.com/user-attachments/assets/7fb422fc-c494-41c6-afe8-09455d03ac53">
 
 11. Create a BigQuery dataset and an external table using SQL
     
