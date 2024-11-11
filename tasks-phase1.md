@@ -1,4 +1,4 @@
-<img width="1184" alt="MicrosoftTeams-image (34)" src="https://github.com/user-attachments/assets/71c76259-4e8c-4bd9-8d08-ceb018390bd3">IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
+IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
   
 ![img.png](doc/figures/destroy.png)
 
