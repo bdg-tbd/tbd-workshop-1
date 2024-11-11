@@ -1,4 +1,4 @@
-IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
+<img width="1184" alt="MicrosoftTeams-image (34)" src="https://github.com/user-attachments/assets/71c76259-4e8c-4bd9-8d08-ceb018390bd3">IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
   
 ![img.png](doc/figures/destroy.png)
 
@@ -93,18 +93,40 @@ Zmodyfikowaliśmy również CI/CD pipeline przez dodanie *--usage-file* do taska
 
 11. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
+    ***CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
+ 
+CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
+  OPTIONS (
+  
+  format = 'ORC',
+  uris = ['gs://tbd-2024z-310164-data/data/shakespeare/*.orc'])***
+
+   Output:
    
+   <img width="852" alt="MicrosoftTeams-image (30)" src="https://github.com/user-attachments/assets/cca39559-4105-4bd3-a5d4-d97dbe52d07a">
+
     ***why does ORC not require a table schema?***
+Format ORC (Optimized Row Columnar) nie wymaga schematu, ponieważ zawiera wbudowane metadane opisujące strukturę danych, takie jak nazwy pól i typy danych. Dzięki temu BigQuery automatycznie rozpoznaje schemat danych podczas tworzenia tabeli zewnętrznej, bez potrzeby ręcznego definiowania go.
 
   
 12. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
+
+   <img width="1389" alt="MicrosoftTeams-image (31)" src="https://github.com/user-attachments/assets/da67a998-e105-42a8-aa1c-5528dddffbd5">
    
+w celu odpalenia interaktywnej sesji użyto polecenia:
+   gcloud compute --project "tbd-2024z-310164" ssh --zone "europe-west1-b" "tbd-2024z-310164-notebook" -- -L 8080:localhost:8080
 13. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
+Opis oraz 
+<img width="859" alt="MicrosoftTeams-image (32)" src="https://github.com/user-attachments/assets/c54be1d7-fe50-414d-8247-f08b0f704e77">
+<img width="932" alt="MicrosoftTeams-image (33)" src="https://github.com/user-attachments/assets/3c1bd198-b7b4-46b3-ac3c-e9784923f3af">
+
+Aby naprawić występujący błąd należy poprawić początkowy plik spark-job.py, ustawiając odpowienią nazwę, dla naszego projektu:
+DATA_BUCKET = "gs://tbd-2024z-310164-data/data/shakespeare/"
+
 
 14. Additional tasks using Terraform:
 
@@ -121,5 +143,7 @@ Zmodyfikowaliśmy również CI/CD pipeline przez dodanie *--usage-file* do taska
     ***place the link to the modified file and inserted terraform code***
 
     4. (Optional) Get access to Apache Spark WebUI
+
+<img width="1184" alt="MicrosoftTeams-image (34)" src="https://github.com/user-attachments/assets/8573899a-fcaa-483a-a35a-2a6ca590342a">
 
     ***place the link to the modified file and inserted terraform code***
