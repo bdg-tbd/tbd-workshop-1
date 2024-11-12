@@ -147,6 +147,8 @@ DATA_BUCKET = "gs://tbd-2024z-310164-data/data/shakespeare/"
     ***place the link to the modified file and inserted terraform code***
 
     4. (Optional) Get access to Apache Spark WebUI
+    
+    Uzyskałem dostęp do Apache Spark WebUI poprzez puszczenie Joba, a następnie w YARN UI przejście w tym jobie do ApplicationMAster w kolumnie Tracking UI
 
 <img width="1184" alt="MicrosoftTeams-image (34)" src="https://github.com/user-attachments/assets/8573899a-fcaa-483a-a35a-2a6ca590342a">
 
