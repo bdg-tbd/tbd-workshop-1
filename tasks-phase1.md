@@ -26,6 +26,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
     ***place the screenshot from GA after succesfull application of release***
+  ![image](https://github.com/user-attachments/assets/cf176125-9331-4903-87bc-a5a20bbc6076)
 
 
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
