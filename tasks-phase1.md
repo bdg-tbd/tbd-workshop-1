@@ -5,7 +5,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 1. Authors:
 
    ***group 8:***
-     wojciech.dzikon.stud@pw.edu.pl
+    wojciech.dzikon.stud@pw.edu.pl
     radoslaw.kasprzak.stud@pw.edu.pl
     karol.ostrowski.stud@pw.edu.pl
     
