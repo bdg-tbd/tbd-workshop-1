@@ -46,7 +46,14 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
-   Wybranym modułem jest *vertex-ai-workbench*. Po wywołaniu komendy *terraform graph -type=plan | dot -Tpng >graph.png* w *modules/vertex-ai-workbench*
+   
+   Wybranym modułem jest *vertex-ai-workbench*.
+
+   Vertex AI to kompleksowa, w pełni zarządzana platforma Google Cloud, zaprojektowana do tworzenia, wdrażania i        skalowania modeli uczenia maszynowego. Integruje zaawansowane narzędzia ML Google, upraszczając przepływy pracy dla analityków danych i inżynierów ML. Umożliwia pełen cykl życia modelu – od przygotowania danych, przez trenowanie, aż po wdrażanie – w jednym, spójnym środowisku.
+
+   Platforma obsługuje zarówno automatyczne trenowanie modeli (AutoML), jak i szkolenia niestandardowe przy użyciu popularnych frameworków, takich jak TensorFlow czy PyTorch. Vertex AI oferuje także narzędzia do monitorowania, ponownego trenowania oraz wyjaśnialności modeli, co ułatwia budowanie skalowalnych aplikacji AI, przy jednoczesnym obniżeniu kosztów infrastruktury.
+
+   Po wywołaniu komendy *terraform graph -type=plan | dot -Tpng >graph.png* w *modules/vertex-ai-workbench*
 wygenerowany został plik .png z grafem dla wybranego modułu:
 ![graph](https://github.com/user-attachments/assets/ecf1235d-0c30-40c5-a780-6ad582c3567a)
 
