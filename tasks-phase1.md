@@ -143,15 +143,15 @@ DATA_BUCKET = "gs://tbd-2024z-310164-data/data/shakespeare/"
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
-    ***place the link to the modified file and inserted terraform code***
+    [Commit](https://github.com/BartoszWaracki/tbd-workshop-1/commit/2ddbc18715d28a0e0ed800ff1b1c4a0715f3e18f)
     
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place the link to the modified file and inserted terraform code***
+    [Commit](https://github.com/BartoszWaracki/tbd-workshop-1/commit/65027d7378710137a98e3a32bc3eb1d0df059c6c)
     
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
     
-    ***place the link to the modified file and inserted terraform code***
+    [Commit](https://github.com/BartoszWaracki/tbd-workshop-1/commit/aa618ff78a6e4b04a6f192d4260342fd8a904210)
 
     4. (Optional) Get access to Apache Spark WebUI
     
@@ -159,4 +159,4 @@ DATA_BUCKET = "gs://tbd-2024z-310164-data/data/shakespeare/"
 
 <img width="1184" alt="MicrosoftTeams-image (34)" src="https://github.com/user-attachments/assets/8573899a-fcaa-483a-a35a-2a6ca590342a">
 
-    ***place the link to the modified file and inserted terraform code***
+    [Commit](https://github.com/BartoszWaracki/tbd-workshop-1/commit/d8397b55477a564bb5ef20c65ab82fef9fda7a69)
