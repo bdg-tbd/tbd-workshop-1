@@ -88,15 +88,14 @@ http://tbd-cluster-m:8088/
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   ***place the expected consumption you entered here***
-   Wykorzystaliśmy podany plik przykładowy i uzupełniliśmy go spodziewanymi wartościami konsumpcji. [here](infracost-usage.yml)
-   <img width="399" alt="image" src="https://github.com/user-attachments/assets/25e29d61-71be-4212-8445-ad3c0e486b7e">
-Zmodyfikowaliśmy również CI/CD pipeline przez dodanie *--usage-file* do taska "Generate Infracost cost estimate baseline"
+   Wykorzystaliśmy podany plik przykładowy i uzupełniliśmy go spodziewanymi wartościami konsumpcji. [here](infracost-usage.yml) \\
+   <img width="399" alt="image" src="https://github.com/user-attachments/assets/25e29d61-71be-4212-8445-ad3c0e486b7e"> \
+Zmodyfikowaliśmy również CI/CD pipeline przez dodanie *--usage-file* do taska "Generate Infracost cost estimate baseline" \
 <img width="625" alt="image" src="https://github.com/user-attachments/assets/fe4b9251-24ce-474a-8dda-6a1a9c14ef3d">
-   ***place the screenshot from infracost output here***
-   Po wywołaniu komendy infracost breakdown --path . --usage-file infracost-usage.yml otrzymaliśmy następujący rezultat:
-![MicrosoftTeams-image](https://github.com/user-attachments/assets/208c38f7-e9b9-45c2-bedd-c6110a98d127)
-<img width="902" alt="image" src="https://github.com/user-attachments/assets/7fb422fc-c494-41c6-afe8-09455d03ac53">
+
+   Po wywołaniu komendy infracost breakdown --path . --usage-file infracost-usage.yml otrzymaliśmy następujący rezultat: \
+![MicrosoftTeams-image](https://github.com/user-attachments/assets/208c38f7-e9b9-45c2-bedd-c6110a98d127) \
+<img width="902" alt="image" src="https://github.com/user-attachments/assets/7fb422fc-c494-41c6-afe8-09455d03ac53"> \
 
 11. Create a BigQuery dataset and an external table using SQL
     
@@ -159,4 +158,4 @@ DATA_BUCKET = "gs://tbd-2024z-310164-data/data/shakespeare/"
 
 <img width="1184" alt="MicrosoftTeams-image (34)" src="https://github.com/user-attachments/assets/8573899a-fcaa-483a-a35a-2a6ca590342a">
 
-    [Commit](https://github.com/BartoszWaracki/tbd-workshop-1/commit/d8397b55477a564bb5ef20c65ab82fef9fda7a69)
+[Commit](https://github.com/BartoszWaracki/tbd-workshop-1/commit/d8397b55477a564bb5ef20c65ab82fef9fda7a69)
