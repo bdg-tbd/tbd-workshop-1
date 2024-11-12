@@ -47,7 +47,10 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
         boot_disk_type    = "pd-standard"
         boot_disk_size_gb = 100
       }
-
+    }
+    preemptible_worker_config {
+      num_instances  = var.preemptible_workers
+      preemptibility = "SPOT"
     }
   }
 }

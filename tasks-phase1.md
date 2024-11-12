@@ -138,7 +138,7 @@ DATA_BUCKET = "gs://tbd-2024z-310164-data/data/shakespeare/"
 
     ***place the link to the modified file and inserted terraform code***
     
-    3. Add support for preemptible/spot instances in a Dataproc cluster
+    2. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     

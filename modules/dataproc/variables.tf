@@ -26,6 +26,12 @@ variable "worker_nodes" {
   description = "Number of nodes to use for worker nodes"
 }
 
+variable "preemptible_workers" {
+  type        = number
+  default     = 0
+  description = "Number of preemptible workers to use for dataproc cluster"
+}
+
 variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
