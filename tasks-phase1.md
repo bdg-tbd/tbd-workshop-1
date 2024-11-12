@@ -111,20 +111,24 @@ Format ORC (Optimized Row Columnar) nie wymaga schematu, ponieważ zawiera wbudo
   
 12. Start an interactive session from Vertex AI workbench:
 
-    ***place the screenshot of notebook here***
+   
 
    <img width="1389" alt="MicrosoftTeams-image (31)" src="https://github.com/user-attachments/assets/da67a998-e105-42a8-aa1c-5528dddffbd5">
    
 w celu odpalenia interaktywnej sesji użyto polecenia:
-   gcloud compute --project "tbd-2024z-310164" ssh --zone "europe-west1-b" "tbd-2024z-310164-notebook" -- -L 8080:localhost:8080
-13. Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
-Opis oraz 
+   gcloud compute --project "tbd-2024z-310164" ssh --zone "europe-west1-b" "tbd-2024z-310164-notebook" -- -L 8080:localhost:8080
+   
+13. Find and correct the error in spark-job.py
+    
+Opis błędu :
+
 <img width="859" alt="MicrosoftTeams-image (32)" src="https://github.com/user-attachments/assets/c54be1d7-fe50-414d-8247-f08b0f704e77">
 <img width="932" alt="MicrosoftTeams-image (33)" src="https://github.com/user-attachments/assets/3c1bd198-b7b4-46b3-ac3c-e9784923f3af">
 
+Bład wystąpił dlatego, że scieżka do danych w pliku spakr-job.py była błędna.
 Aby naprawić występujący błąd należy poprawić początkowy plik spark-job.py, ustawiając odpowienią nazwę, dla naszego projektu:
+
 DATA_BUCKET = "gs://tbd-2024z-310164-data/data/shakespeare/"
 
 
