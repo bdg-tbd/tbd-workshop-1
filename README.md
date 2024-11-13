@@ -24,6 +24,11 @@ to Google Cloud.
 
 ### GCP
 * Redeem a GCP coupon to create a billing account
+
+DONE:
+
+![img.png](doc/figures/phase1/billing-account.png)
+
 * Authenticate to GCP to obtain the default credentials used for running the code
 ```bash
 # first remove the stored credentials if exist
@@ -33,6 +38,8 @@ gcloud auth application-default login
 ```
 ## Project setup
 0. Fork this repository to your own Github account.
+
+DONE: [https://github.com/karolstepanienko/tbd-workshop-1](https://github.com/karolstepanienko/tbd-workshop-1)
 1. Export shared environment variables
 ```bash
 export TF_VAR_tbd_semester=2024L
@@ -49,6 +56,8 @@ terraform init
 terraform apply
 cd ..
 ```
+DONE: ![img.png](doc/figures/phase1/bootstrap-apply.png)
+
 3. CI/CD (Github Actions setup using [Workload Identity Federation](https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions))
 * Edit `env/backend.tfvars` file and set `bucket` variable with the Terraform state bucket
 * Edit `env/project.tfvars` file and set `project_name`, `iac_service_account` variables using the output from the `bootstrap` phase, e.g.:
@@ -63,6 +72,8 @@ cd ..
 cd cicd_bootstrap
 terraform init -backend-config=../env/backend.tfvars
 ```
+DONE: ![img.png](doc/figures/phase1/bootstrap-cicd.png)
+
 * Apply
 ```bash
 # authenticate Docker backend with GCP
@@ -71,16 +82,27 @@ gcloud auth configure-docker
 terraform apply -var-file ../env/project.tfvars -var-file conf/github_actions.tfvars -compact-warnings
 cd ..
 ```
+DONE:  ![img.png](doc/figures/phase1/cicd-oauth-providers.png)
 
 4. Use output variables for configuring Github Actions workflow: `.github/workflows/pull-request.yml`,e.g. :
 ![img.png](doc/figures/workload-identity.png)
 Please do not edit and hardcode these values in a YAML but set the Github Actions secrets instead
 while preserving the secret names, i.e. `GCP_WORKLOAD_IDENTITY_PROVIDER_NAME` and `GCP_WORKLOAD_IDENTITY_SA_EMAIL`.
 ![img.png](doc/figures/secrets.png)
+DONE: ![img.png](doc/figures/phase1/cicd-repo-secret.png)
+
+
 5. Install and configure `pre-commit`
 ```bash
 pre-commit install
 ```
+DONE:
+
+![img.png](doc/figures/phase1/pre-commit-installed.png)
+
+![img.png](doc/figures/phase1/pre-commit-works.png)
+
+<!-- TODO below -->
 
 6. Commit changes, push to a branch and open a PR to **YOUR** repository main/master branch.
 If you see a warning like this -- please enable the workflows:
@@ -88,6 +110,7 @@ If you see a warning like this -- please enable the workflows:
 ...and repush your changes!
 
 Once all Pull Requests checks **have passed** please merge your PR and wait until your release job finishes.
+
 7. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
 the instructions
 ![img.png](doc/figures/workbench.png)

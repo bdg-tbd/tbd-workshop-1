@@ -6,7 +6,7 @@ on: [pull_request]
 permissions: read-all
 jobs:
   iac_checks:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
   # Add "id-token" with the intended permissions.
     permissions:
       contents: read
@@ -142,7 +142,7 @@ jobs:
             })
           }
     - name: Fix permissions workaround
-      run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE
+      run: sudo chown -R $USER:$USER $GITHUB_WORKSPACE/.external_modules
     - name: Setup Infracost
       uses: infracost/actions/setup@v2.1.0
       with:
@@ -171,4 +171,3 @@ jobs:
                                    --github-token=${{secrets.GITHUB_TOKEN}} \
                                    --pull-request=${{github.event.pull_request.number}} \
                                    --behavior=update
-

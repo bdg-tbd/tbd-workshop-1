@@ -1,27 +1,39 @@
 IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
-  
+
 ![img.png](doc/figures/destroy.png)
 
 1. Authors:
 
-   ***enter your group nr***
+    DONE:
+   <!-- ***enter your group nr*** -->
+   Team 4
 
-   ***link to forked repo***
+   <!-- ***link to forked repo*** -->
+   https://github.com/karolstepanienko/tbd-workshop-1
    
 2. Follow all steps in README.md.
 
+    IN PROGRESS
+
 3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
-  ![img.png](doc/figures/discounts.png)
+    ![img.png](doc/figures/discounts.png)
 
-5. From avaialble Github Actions select and run destroy on main branch.
+    DONE:
+
+    ![img.png](doc/figures/phase1/budget-alerts-percentages.png)
+
+    ![img.png](doc/figures/phase1/budget-alerts.png)
+
+
+5. From available Github Actions select and run destroy on main branch.
    
 7. Create new git branch and:
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+    ***place the screenshot from GA after successful application of release***
 
 
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
