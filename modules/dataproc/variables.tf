@@ -24,3 +24,13 @@ variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
 }
+
+variable "worker_preemptible_count" {
+  type        = number
+  default     = 0
+  description = "Number of preemptible worker nodes in the cluster"
+  validation {
+    condition     = var.worker_preemptible_count >= 0
+    error_message = "The worker_preemptible_count value must be greater than or equal to 0."
+  }
+}
