@@ -4,9 +4,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
-
-   ***link to forked repo***
+   Group number 7
+   * Kasperczak Jonatan: 341208
+   * Kokoszka Jakub: 304154
+   * Będkowski Patryk: 310603
+   
+   https://github.com/j-kokoszka/tbd-workshop-1/tree/master
    
 2. Follow all steps in README.md.
 
