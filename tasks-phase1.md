@@ -4,25 +4,19 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   Group number 7:
-   * Kasperczak Jonatan: 341208
-   * Kokoszka Jakub: 304154
-   * Będkowski Patryk: 310603
-   
-   https://github.com/j-kokoszka/tbd-workshop-1/tree/master
+   ***enter your group nr***
 
+   ***link to forked repo***
+   
 2. Follow all steps in README.md.
 
 3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
   ![img.png](doc/figures/discounts.png)
-    
-Utworzyliśmy budżet:
-  ![img_budget.png](doc/figures/budget_setup.png)
 
-4. From avaialble Github Actions select and run destroy on main branch.
+5. From avaialble Github Actions select and run destroy on main branch.
    
-5. Create new git branch and:
+7. Create new git branch and:
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
