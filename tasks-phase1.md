@@ -75,10 +75,13 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     Specified data bucket was incorrect. Changes applied to spark-job.py:
 
-```
--DATA_BUCKET = "gs://tbd-2025z-9900-data/data/shakespeare/"
-+DATA_BUCKET = "gs://tbd-2024z-336369-data/data/shakespeare/"
-```
+    ```
+    -DATA_BUCKET = "gs://tbd-2025z-9900-data/data/shakespeare/"
+    +DATA_BUCKET = "gs://tbd-2024z-336369-data/data/shakespeare/"
+    ```
+
+    Result:
+    ![img.png](doc/figures/working-spark-job.png)
 
 13. Additional tasks using Terraform:
 
