@@ -4,7 +4,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   Group number 7:
+   Group number 7
    * Kasperczak Jonatan: 341208
    * Kokoszka Jakub: 304154
    * Będkowski Patryk: 310603
