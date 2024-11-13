@@ -17,6 +17,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
   ![img.png](doc/figures/discounts.png)
 
+
 5. From avaialble Github Actions select and run destroy on main branch.
    
 7. Create new git branch and:
