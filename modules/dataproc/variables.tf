@@ -14,13 +14,25 @@ variable "subnet" {
   description = "VPC subnet used for deployment"
 }
 
-variable "machine_type" {
+variable "machine_type_master" {
   type        = string
   default     = "e2-medium"
-  description = "Machine type to use for both worker and master nodes"
+  description = "Machine type used for master nodes"
+}
+
+variable "machine_type_worker" {
+  type        = string
+  default     = "e2-medium"
+  description = "Machine type used for worker nodes"
 }
 
 variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
+}
+
+variable "worker_nodes_number" {
+  type        = number
+  default     = 2
+  description = "Number of worker nodes"
 }
