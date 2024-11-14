@@ -23,6 +23,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 5. From avaialble Github Actions select and run destroy on main branch.
    
+  ![img.png](doc/figures/tbd1_5_destroy.png)
+   
 6. Create new git branch and:
     1. Modify tasks-phase1.md file.
     
