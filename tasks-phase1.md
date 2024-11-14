@@ -190,3 +190,6 @@ resource_usage:
 ```
     https://github.com/j-kokoszka/tbd-workshop-1/commit/9326687b4829473eb4813a7c00174287502abb6b
 ```
+
+  ![img.png](doc/figures/tbd1_14_spark_shell.png)
+   
