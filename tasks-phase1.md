@@ -10,7 +10,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     karol.ostrowski.stud@pw.edu.pl
     
 
-   ***https://github.com/RadoslawKasprzak/tbd-workshop-1***
+    ***https://github.com/RadoslawKasprzak/tbd-workshop-1***
    
 3. Follow all steps in README.md.
 
