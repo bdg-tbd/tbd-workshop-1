@@ -36,8 +36,11 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 9. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+   ![image](https://github.com/user-attachments/assets/b5782c61-f1e8-47a9-a2e2-221e58c86e34)
+   We set up a SSH tunneling via IAP to port 8088 in dataproc cluster -m in through local port 8088.
+
    
-10. Draw an architecture diagram (e.g. in draw.io) that includes:
+11. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
     3. List of buckets for disposal
@@ -45,7 +48,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
   
     ***place your diagram here***
 
-11. Create a new PR and add costs by entering the expected consumption into Infracost
+12. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
@@ -63,12 +66,14 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 12. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
+    ![image](https://github.com/user-attachments/assets/7ccb780a-6fd7-4e2a-a744-11e33e1df83f)
+
    
-13. Find and correct the error in spark-job.py
+14. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-14. Additional tasks using Terraform:
+15. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
