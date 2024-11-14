@@ -12,7 +12,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
 
 ## Modules
 
@@ -30,10 +30,14 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_image_version"></a> [image\_version](#input\_image\_version) | n/a | `string` | `"2.1.27-ubuntu20"` | no |
-| <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | Machine type to use for both worker and master nodes | `string` | `"e2-medium"` | no |
+| <a name="input_machine_type_master"></a> [machine\_type\_master](#input\_machine\_type\_master) | Machine type used for master nodes | `string` | `"e2-medium"` | no |
+| <a name="input_machine_type_worker"></a> [machine\_type\_worker](#input\_machine\_type\_worker) | Machine type used for worker nodes | `string` | `"e2-medium"` | no |
+| <a name="input_preemptibility"></a> [preemptibility](#input\_preemptibility) | Specifies the preemptibility of the secondary workers | `string` | `"PREEMPTIBLE"` | no |
+| <a name="input_preemptible_num_instances"></a> [preemptible\_num\_instances](#input\_preemptible\_num\_instances) | Number of preemptible instances for worker nodes | `number` | `0` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 | <a name="input_subnet"></a> [subnet](#input\_subnet) | VPC subnet used for deployment | `string` | n/a | yes |
+| <a name="input_worker_nodes_number"></a> [worker\_nodes\_number](#input\_worker\_nodes\_number) | Number of worker nodes | `number` | `2` | no |
 
 ## Outputs
 

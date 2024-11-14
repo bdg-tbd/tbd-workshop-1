@@ -12,9 +12,9 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
   region     = var.region
 
   cluster_config {
-    #    endpoint_config {
-    #      enable_http_port_access = "true"
-    #    }
+    endpoint_config {
+      enable_http_port_access = "true"
+    }
     software_config {
       image_version = var.image_version
     }
@@ -33,7 +33,7 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
 
     master_config {
       num_instances = 1
-      machine_type  = var.machine_type
+      machine_type  = var.machine_type_master
       disk_config {
         boot_disk_type    = "pd-standard"
         boot_disk_size_gb = 100
@@ -41,13 +41,18 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
     }
 
     worker_config {
-      num_instances = 2
-      machine_type  = var.machine_type
+      num_instances = var.worker_nodes_number
+      machine_type  = var.machine_type_worker
       disk_config {
         boot_disk_type    = "pd-standard"
         boot_disk_size_gb = 100
       }
 
+    }
+
+    preemptible_worker_config {
+      num_instances  = var.preemptible_num_instances
+      preemptibility = var.preemptibility
     }
   }
 }
