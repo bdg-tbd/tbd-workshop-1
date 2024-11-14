@@ -12,9 +12,9 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
   region     = var.region
 
   cluster_config {
-    #    endpoint_config {
-    #      enable_http_port_access = "true"
-    #    }
+    endpoint_config {
+      enable_http_port_access = "true"
+    }
     software_config {
       image_version = var.image_version
     }
