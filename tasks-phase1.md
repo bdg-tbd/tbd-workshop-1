@@ -16,7 +16,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 2. Follow all steps in README.md.
 
-    DONE: screenshots in [README.md](README.md)
+    IN PROGRESS (pull changes from parent repo): screenshots in [README.md](README.md)
 
 3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
