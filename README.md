@@ -47,7 +47,6 @@ export TF_VAR_tbd_semester=2024L
 export TF_VAR_user_id=9900
 # use your own billing account id
 export TF_VAR_billing_account=01F44C-CA9C7E-587C25
-
 ```
 2. Enter `bootstrap` folder then init project and Terraform state bucket
 ```bash
@@ -109,18 +108,43 @@ If you see a warning like this -- please enable the workflows:
 ![img.png](doc/figures/workflow.png)
 ...and repush your changes!
 
-Once all Pull Requests checks **have passed** please merge your PR and wait until your release job finishes.
+    DONE PR: [https://github.com/karolstepanienko/tbd-workshop-1/pull/2](https://github.com/karolstepanienko/tbd-workshop-1/pull/2)
+
+    Once all Pull Requests checks **have passed** please merge your PR and wait until your release job finishes.
+
+    DONE:
+    Pull request checks: ![img.png](doc/figures/phase1/PR-checks.png)
+    Release job: ![img.png](doc/figures/phase1/release-apply.png)
 
 7. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
 the instructions
 ![img.png](doc/figures/workbench.png)
+    
+    DONE:
+    ```bash
+    gcloud compute --project "tbd-2024z-303772" ssh --zone "europe-west1-b" "tbd-2024z-303772-notebook" -- -L 8080:localhost:8080
+    ```
+    ![img.png](doc/figures/phase1/JupiterLab.png)
 
 8. Check if `pyspark` kernel exists - if not then in your Jupyterlab enviroment add Python3.8 kernel:
-```bash
-python3.8 -m ipykernel install --user --name pyspark
-```
+    <!-- this has to be executed as root user, through terminal in web GUI -->
+    ```bash
+    python3.8 -m ipykernel install --user --name pyspark
+    ```
+    DONE: 
+    ```bash
+    root@a9f1f959fa90:/# python3.8 -m ipykernel install --user --name pyspark
+    Installed kernelspec pyspark in /root/.local/share/jupyter/kernels/pyspark
+    ```
+    ![img.png](doc/figures/phase1/install-kernel.png)
+
+
 9. Run a `Hello-world` PySpark application in a YARN-client mode:
 ![img.png](doc/figures/pyspark.png)
+
+    DONE:
+    ![img.png](doc/figures/phase1/JupiterLab-hello-world.png)
+
 
 10. Additional tasks using Terraform:
 <ol type="a">
