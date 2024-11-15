@@ -41,9 +41,20 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     ***describe one selected module and put the output of terraform graph for this module here***
    
 9. Reach YARN UI
-   
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
-   
+   <!-- ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here*** -->
+   DONE:
+    ```bash
+    # Create an SSH tunnel using local port 1080
+    gcloud compute ssh tbd-cluster-m \
+    --project=tbd-2024z-303772 \
+    --zone=europe-west1-d -- -D 1080 -N
+
+    # Run Chrome and connect through the proxy
+    /usr/bin/google-chrome --proxy-server="socks5://localhost:1080" \
+    --user-data-dir="/tmp/tbd-cluster-m" http://tbd-cluster-m:8088
+    ```
+    ![img.png](doc/figures/phase1/YARN-UI.png)
+
 10. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
