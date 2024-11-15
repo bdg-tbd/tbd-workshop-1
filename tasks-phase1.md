@@ -4,16 +4,19 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-    DONE:
-   <!-- ***enter your group nr*** -->
-   Team 4
+    ***enter your group nr***
 
-   <!-- ***link to forked repo*** -->
-   https://github.com/karolstepanienko/tbd-workshop-1
+    DONE:
+    Team 4
+
+    ***link to forked repo***
+
+    DONE:
+    [https://github.com/karolstepanienko/tbd-workshop-1](https://github.com/karolstepanienko/tbd-workshop-1)
    
 2. Follow all steps in README.md.
 
-    IN PROGRESS
+    DONE: screenshots in [README.md](README.md)
 
 3. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
@@ -27,21 +30,32 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 
 5. From available Github Actions select and run destroy on main branch.
-   
+
+    DONE:
+    ![img.png](doc/figures/phase1/destroy-master.png)
+
 7. Create new git branch and:
     1. Modify tasks-phase1.md file.
+
+        DONE in: [a263ba8](https://github.com/karolstepanienko/tbd-workshop-1/pull/2/commits/a263ba8918de3c80cd2b184b86262ab719b64b47)
     
-    2. Create PR from this branch to **YOUR** master and merge it to make new release. 
+    2. Create PR from this branch to **YOUR** master and merge it to make new release.
+
+        DONE PR: [https://github.com/karolstepanienko/tbd-workshop-1/pull/2](https://github.com/karolstepanienko/tbd-workshop-1/pull/2)
     
     ***place the screenshot from GA after successful application of release***
 
+    DONE:
+    ![img.png](doc/figures/phase1/release-apply.png)
 
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
-   
+
 9. Reach YARN UI
-   <!-- ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here*** -->
+
+   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+
    DONE:
     ```bash
     # Create an SSH tunnel using local port 1080
@@ -72,16 +86,55 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    ***place the screenshot from infracost output here***
 
 11. Create a BigQuery dataset and an external table using SQL
-    
+
     ***place the code and output here***
-   
+
+    DONE:
+    ```SQL
+    CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
+
+    CREATE OR REPLACE EXTERNAL TABLE demo.example (
+    column1 STRING,
+    column2 STRING,
+    column3 STRING,
+    )
+    OPTIONS (
+
+    field_delimiter = ';',
+    skip_leading_rows = 1,
+    format = 'CSV',
+    uris = ['gs://tbd-2024z-303772-data/example-data.csv']);
+
+    SELECT * FROM demo.example;
+    ```
+    Output:
+    ![img.png](doc/figures/phase1/BQ-table.png)
+
+    Data loaded to the table: [example-data.csv](example-data.csv)
+
     ***why does ORC not require a table schema?***
 
+    DONE:
+
+    `When you load ORC files into BigQuery, the table schema is automatically retrieved from the self-describing source data.`
+
+    Source: [https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-orc#orc_schemas](https://cloud.google.com/bigquery/docs/loading-data-cloud-storage-orc#orc_schemas)
   
 12. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
-   
+
+    DONE:
+
+    Web UI:
+    ![img.png](doc/figures/phase1/JupiterLab.png)
+    ```bash
+    # command used to establish a tunnel and open an ssh session to the VM
+    gcloud compute --project "tbd-2024z-303772" ssh --zone "europe-west1-b" "tbd-2024z-303772-notebook" -- -L 8080:localhost:8080
+    ```
+    SSH shell:
+    ![img.png](doc/figures/phase1/VM-vertex-AI-shell.png)
+
 13. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
