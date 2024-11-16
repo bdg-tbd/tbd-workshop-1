@@ -46,3 +46,5 @@ jobs:
       id: apply
       run: terraform apply -no-color -var-file env/project.tfvars -auto-approve
       continue-on-error: false
+    - name: Generate cost breakdown
+      run: infracost breakdown --config-file=infracost-config.yml --usage-file=infracost-usage.yml --format=json --out-file=infracost-report.json

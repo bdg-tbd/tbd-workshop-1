@@ -1,0 +1,32 @@
+version: 0.1
+
+resource_usages:
+  google_storage_bucket.tbd-state-bucket:
+    monthly_storage_gb: 10
+    monthly_class_a_operations: 2000
+    monthly_class_b_operations: 5000
+    monthly_data_retrieval_gb: 5
+
+  google_storage_bucket.mlflow_artifacts_bucket:
+    monthly_storage_gb: 20
+    monthly_class_a_operations: 3000
+    monthly_class_b_operations: 8000
+    monthly_data_retrieval_gb: 10
+
+  google_storage_bucket.tbd-code-bucket:
+    monthly_storage_gb: 10
+    monthly_class_a_operations: 1000
+    monthly_class_b_operations: 2000
+    monthly_data_retrieval_gb: 2
+
+  google_storage_bucket.tbd-data-bucket:
+    monthly_storage_gb: 40
+    monthly_class_a_operations: 5000
+    monthly_class_b_operations: 10000
+    monthly_data_retrieval_gb: 20
+
+  google_storage_bucket.notebook-conf-bucket:
+    monthly_storage_gb: 2
+    monthly_class_a_operations: 500
+    monthly_class_b_operations: 1000
+    monthly_data_retrieval_gb: 1

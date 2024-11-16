@@ -1,0 +1,7 @@
+version: 0.1
+
+projects:
+  - path: ./bootstrap
+  - path: ./mlops/mlflow/gcp/app_engine
+  - path: ./modules/data-pipeline
+  - path: ./modules/vertex-ai-workbench
