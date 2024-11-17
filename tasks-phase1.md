@@ -133,6 +133,19 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ***place the code and output here***
 
     DONE:
+    ```sql
+    CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
+    CREATE OR REPLACE EXTERNAL TABLE demo.shakespeare
+    OPTIONS (
+    
+    format = 'ORC',
+    uris = ['gs://tbd-2024z-303772-data/data/shakespeare/*.orc']);
+    SELECT * FROM demo.shakespeare ORDER BY sum_word_count DESC LIMIT 5;
+    ```
+    Output:
+    ![img.png](doc/figures/phase1/BQ-success.png)
+    ![img.png](doc/figures/phase1/BQ-success-result.png)
+
     ```SQL
     CREATE SCHEMA IF NOT EXISTS demo OPTIONS(location = 'europe-west1');
 
@@ -151,7 +164,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     SELECT * FROM demo.example;
     ```
     Output:
-    ![img.png](doc/figures/phase1/BQ-table.png)
+    ![img.png](doc/figures/phase1/BQ-table-csv.png)
 
     Data loaded to the table: [example-data.csv](example-data.csv)
 
@@ -181,6 +194,50 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 13. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
+
+    DONE:
+
+    CAUSE:
+
+    Error in [spark-job.py](https://github.com/karolstepanienko/tbd-workshop-1/blob/master/modules/data-pipeline/resources/spark-job.py#L21)
+    is caused by an incorrect reference to a GCS bucket, that is no longer
+    available.
+    ```
+    : java.io.IOException: Error accessing gs://tbd-2025z-9900-data/data/shakespeare
+    ...
+    Caused by: com.google.cloud.hadoop.repackaged.gcs.com.google.api.client.googleapis.json.GoogleJsonResponseException: 403 Forbidden
+    GET https://storage.googleapis.com/storage/v1/b/tbd-2025z-9900-data/o/data%2Fshakespeare?fields=bucket,name,timeCreated,updated,generation,metageneration,size,contentType,contentEncoding,md5Hash,crc32c,metadata
+    {
+    "code" : 403,
+    "errors" : [ {
+        "domain" : "global",
+        "location" : "Authorization",
+        "locationType" : "header",
+        "message" : "The billing account for the owning project is disabled in state closed",
+        "reason" : "accountDisabled"
+    } ],
+    "message" : "The billing account for the owning project is disabled in state closed"
+    }
+    ```
+    Error can be found in logs of failed jobs on Dataproc cluster:
+    ![img.png](doc/figures/phase1/dataproc-error.png)
+
+    FIX:
+
+    In order to fix the error, link to the GCS bucket needs to be corrected to
+    an existing one that the service account will be able to access.
+
+    Changed from:
+
+    `DATA_BUCKET = "gs://tbd-2025z-9900-data/data/shakespeare/"`
+
+    to
+
+    `DATA_BUCKET = "gs://tbd-2024z-303772-data/data/shakespeare/"`
+
+    Fixed in commit: [ad97043](https://github.com/karolstepanienko/tbd-workshop-1/commit/ad97043985063b43cf6435e6882185e4dd49d699)
+    which results in a successfully passing job:
+    ![img.png](doc/figures/phase1/dataproc-success.png)
 
 14. Additional tasks using Terraform:
 
