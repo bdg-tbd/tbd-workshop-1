@@ -103,6 +103,8 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
         }
     }
     ```
+    ![img.png](doc/figures/13-2-dataproc1.png)
+    ![img.png](doc/figures/13-2-dataproc2.png)
     
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
     
