@@ -187,8 +187,10 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
     ***place the link to the modified file and inserted terraform code***
+
+    Commit: [3625130](https://github.com/karolstepanienko/tbd-workshop-1/commit/3625130dda5f053f1125383b58add1c06f22c984)
     
-    3. Add support for preemptible/spot instances in a Dataproc cluster
+    2. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     
