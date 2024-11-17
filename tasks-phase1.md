@@ -51,6 +51,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
+
+    DONE:
     <!-- terraform graph -type=plan | dot -Tpng > terraform-plan-graph-composer.png # to big
     terraform graph -type=plan | dot -Tpng > terraform-plan-graph-gcr.png # great
     terraform graph -type=plan | dot -Tpng > terraform-plan-graph-dataproc.png # great -->
