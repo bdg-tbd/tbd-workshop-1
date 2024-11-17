@@ -52,7 +52,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   As we only have 'google_storage_bucket' type existing in code we will procide:
+   As we only have 'google_storage_bucket' type existing in code we will proceed with:
  <!-- ./.terraform/modules/composer.composer/examples/simple_composer_env_v2/main.tf:resource "google_storage_bucket" "my_bucket" {
 ./bootstrap/main.tf:resource "google_storage_bucket" "tbd-state-bucket" {
 ./mlops/mlflow/gcp/app_engine/storage.tf:resource "google_storage_bucket" "mlflow_artifacts_bucket" {
@@ -62,10 +62,12 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 
    ***place the expected consumption you entered here***
+
     Expected consumption saved in infracost-usage.yml
 
     
    ***place the screenshot from infracost output here***
+
    ![alt text](expected_costs.png)
 
 11. Create a BigQuery dataset and an external table using SQL
