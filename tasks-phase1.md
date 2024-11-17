@@ -266,3 +266,12 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     4. (Optional) Get access to Apache Spark WebUI
 
     ***place the link to the modified file and inserted terraform code***
+
+    Maybe DONE:
+
+    Accessing Apache Spark WebUI (Apache Airflow) does not require modifying
+    terraform code. Link is available in Cloud Composer GCP WEB console:
+    ![img.png](doc/figures/phase1/How-to-access-ApacheAirflow-UI.png)
+    which opens Apache Airflow WEB GUI:
+    ![img.png](doc/figures/phase1/ApacheSpark-Airflow-UI.png)
+    Authentication is done through OAuth 2.0 protocol using a federated identity from Google.

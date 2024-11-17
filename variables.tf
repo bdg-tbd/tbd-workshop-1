@@ -45,6 +45,6 @@ variable "ai_notebook_machine_type" {
 
 variable "dataproc_preemptible_worker_num_instances" {
   type        = number
-  default     = 1
+  default     = 0
   description = "Number of preemptible worker nodes in Dataproc cluster"
 }
