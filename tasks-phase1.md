@@ -21,6 +21,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 5. From avaialble Github Actions select and run destroy on main branch.
    
 7. Create new git branch and:
+
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
@@ -74,8 +75,10 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 11. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
+
    
     ***why does ORC not require a table schema?***
+    
 
   
 12. Start an interactive session from Vertex AI workbench:
@@ -87,6 +90,8 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 14. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
+
+
 
 15. Additional tasks using Terraform:
 
