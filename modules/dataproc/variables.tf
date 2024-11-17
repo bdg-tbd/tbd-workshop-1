@@ -38,6 +38,12 @@ variable "worker_machine_type" {
   description = "Machine type to use for worker nodes"
 }
 
+variable "preemptible_worker_num_instances" {
+  type        = number
+  default     = 0
+  description = "Number of preemptible worker nodes"
+}
+
 variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
