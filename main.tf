@@ -119,9 +119,6 @@ module "data-pipelines" {
   data_bucket_name     = local.data_bucket_name
 }
 
-
-
-
 resource "kubernetes_service" "dbt-task-service" {
   metadata {
     name      = "dbt-task-service"
