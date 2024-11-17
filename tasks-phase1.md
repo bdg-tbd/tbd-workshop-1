@@ -72,6 +72,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    ![alt text](expected_costs.png)
 
+    API KEY for Infracost added to github secrets, infracosts steps in testing pipeline CICD checked - works.
 11. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
