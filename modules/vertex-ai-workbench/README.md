@@ -12,7 +12,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
 
 ## Modules
 
@@ -41,6 +41,7 @@ No modules.
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 | <a name="input_subnet"></a> [subnet](#input\_subnet) | VPC subnet to use for notebooks | `string` | n/a | yes |
+| <a name="input_vertex_machine_type"></a> [vertex\_machine\_type](#input\_vertex\_machine\_type) | Vertex Machine type | `string` | `"e2-standard-2"` | no |
 
 ## Outputs
 
