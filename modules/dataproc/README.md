@@ -12,7 +12,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
 
 ## Modules
 
@@ -30,10 +30,13 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_image_version"></a> [image\_version](#input\_image\_version) | n/a | `string` | `"2.1.27-ubuntu20"` | no |
-| <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | Machine type to use for both worker and master nodes | `string` | `"e2-medium"` | no |
+| <a name="input_master_machine_type"></a> [master\_machine\_type](#input\_master\_machine\_type) | Machine type to use for master nodes | `string` | `"e2-medium"` | no |
+| <a name="input_master_num_instances"></a> [master\_num\_instances](#input\_master\_num\_instances) | Number of master nodes | `number` | `1` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 | <a name="input_subnet"></a> [subnet](#input\_subnet) | VPC subnet used for deployment | `string` | n/a | yes |
+| <a name="input_worker_machine_type"></a> [worker\_machine\_type](#input\_worker\_machine\_type) | Machine type to use for worker nodes | `string` | `"e2-medium"` | no |
+| <a name="input_worker_num_instances"></a> [worker\_num\_instances](#input\_worker\_num\_instances) | Number of worker nodes | `number` | `2` | no |
 
 ## Outputs
 

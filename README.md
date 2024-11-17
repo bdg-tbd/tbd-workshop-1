@@ -199,6 +199,11 @@ terraform destroy -no-color -var-file env/project.tfvars
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_ai_notebook_instance_owner"></a> [ai\_notebook\_instance\_owner](#input\_ai\_notebook\_instance\_owner) | Vertex AI workbench owner | `string` | n/a | yes |
+| <a name="input_ai_notebook_machine_type"></a> [ai\_notebook\_machine\_type](#input\_ai\_notebook\_machine\_type) | n/a | `string` | `"e2-standard-2"` | no |
+| <a name="input_dataproc_master_machine_type"></a> [dataproc\_master\_machine\_type](#input\_dataproc\_master\_machine\_type) | Machine type to use for master nodes in Dataproc cluster | `string` | `"e2-standard-2"` | no |
+| <a name="input_dataproc_master_num_instances"></a> [dataproc\_master\_num\_instances](#input\_dataproc\_master\_num\_instances) | Number of master nodes | `number` | `1` | no |
+| <a name="input_dataproc_worker_machine_type"></a> [dataproc\_worker\_machine\_type](#input\_dataproc\_worker\_machine\_type) | Machine type to use for worker nodes in Dataproc cluster | `string` | `"e2-standard-2"` | no |
+| <a name="input_dataproc_worker_num_instances"></a> [dataproc\_worker\_num\_instances](#input\_dataproc\_worker\_num\_instances) | Number of worker nodes | `number` | `2` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 
