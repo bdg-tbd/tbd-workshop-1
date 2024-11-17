@@ -74,8 +74,10 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 11. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
+
    
     ***why does ORC not require a table schema?***
+    
 
   
 12. Start an interactive session from Vertex AI workbench:
