@@ -51,6 +51,47 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
+    <!-- terraform graph -type=plan | dot -Tpng > terraform-plan-graph-composer.png # to big
+    terraform graph -type=plan | dot -Tpng > terraform-plan-graph-gcr.png # great
+    terraform graph -type=plan | dot -Tpng > terraform-plan-graph-dataproc.png # great -->
+
+    ```
+    terraform plan -var-file env/project.tfvars -out main.tfplan
+    ```
+    ![img.png](doc/figures/phase1/terraform-plan.png)
+
+    Module: vertex-ai-workbench
+
+    Description: This module is responsible for creating a Virtual Machine with
+    a preconfigured disk image that will have all the necessary tools for
+    interacting with infrastructure that runs Big Data analyses. It's more
+    efficient and easier to use rather than ensuring that our local private
+    machine has access to all necessary cloud resources. It also has an easily
+    accessible web interface.
+
+    Resources:
+    - `google_notebooks_instance` - creates and configures the VM,
+    - `google_project_service` - allows project access management to services
+        provided by Google (here it's notebooks API),
+    - `google_project_iam_binding` - assigns role (a set of permissions) to
+        a service account (here for creating short-lived credentials for
+        a service account that will be later used for authentication to
+        Google services from Jupyter notebooks)
+    - `google_storage_bucket` - creates a storage bucket, simplest form
+        of file storage in GCS
+    - `google_storage_bucket_iam_binding` - grants read-only access to
+        a storage bucket for a service account (necessary for fetching
+        the post startup script)
+    - `google_storage_bucket_object` - here uploads a notebook post startup
+        config script to GCS when running terraform apply
+
+    Graph:
+    ```
+    cd modules/vertex-ai-workbench
+    terraform init -upgrade
+    terraform graph -type=plan | dot -Tpng > terraform-plan-graph-vertex-ai-workbench.png
+    ```
+    ![img.png](doc/figures/phase1/terraform-plan-graph-vertex-ai-workbench.png)
 
 9. Reach YARN UI
 
