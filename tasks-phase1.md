@@ -21,6 +21,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 5. From avaialble Github Actions select and run destroy on main branch.
    
 7. Create new git branch and:
+
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
