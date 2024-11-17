@@ -148,7 +148,7 @@ terraform destroy -no-color -var-file env/project.tfvars
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | ~> 5.44.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.24.0 |
 
 ## Modules
@@ -185,3 +185,12 @@ terraform destroy -no-color -var-file env/project.tfvars
 
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+<!-- # Additional notes
+
+## Local terraform check - how to set up from scratch
+
+```
+terraform init -backend-config=env/backend.tfvars
+terraform plan -var-file=env/project.tfvars
+``` -->

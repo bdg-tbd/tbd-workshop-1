@@ -33,3 +33,9 @@ variable "ai_notebook_image_tag" {
   type    = string
   default = "latest"
 }
+
+variable "vertex_machine_type" {
+  description = "Vertex Machine type"
+  type        = string
+  default     = "e2-standard-2"
+}

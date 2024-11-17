@@ -51,7 +51,7 @@ resource "google_notebooks_instance" "tbd_notebook" {
   #checkov:skip=CKV2_GCP_21: "Ensure Vertex AI instance disks are encrypted with a Customer Managed Key (CMK)"
   depends_on   = [google_project_service.notebooks]
   location     = local.zone
-  machine_type = "e2-standard-2"
+  machine_type = var.vertex_machine_type
   name         = "${var.project_name}-notebook"
   container_image {
     repository = var.ai_notebook_image_repository
@@ -69,8 +69,8 @@ resource "google_notebooks_instance" "tbd_notebook" {
   # end
   instance_owners = [var.ai_notebook_instance_owner]
   metadata = {
-    notebook-disable-root      = "true"
-    vmDnsSetting               = "GlobalDefault"
+    notebook-disable-root = "true"
+    vmDnsSetting          = "GlobalDefault"
   }
   post_startup_script = "gs://${google_storage_bucket_object.post-startup.bucket}/${google_storage_bucket_object.post-startup.name}"
 }
