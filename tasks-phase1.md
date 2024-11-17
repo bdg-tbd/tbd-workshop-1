@@ -33,8 +33,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 8. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
+
    
-9. Reach YARN UI
+10. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
    ![image](https://github.com/user-attachments/assets/b5782c61-f1e8-47a9-a2e2-221e58c86e34)
