@@ -80,8 +80,14 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     +DATA_BUCKET = "gs://tbd-2024z-336369-data/data/shakespeare/"
     ```
 
-    Result:
+    Result in Composer:
     ![img.png](doc/figures/working-spark-job.png)
+
+    Result in Cloud Storage:
+    ![img.png](doc/figures/12-cloud-storage-result.png)
+
+    Result in Dataproc job:
+    ![img.png](doc/figures/12-dataproc-result.png)
 
 13. Additional tasks using Terraform:
 
@@ -103,6 +109,8 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
         }
     }
     ```
+    ![img.png](doc/figures/13-2-dataproc1.png)
+    ![img.png](doc/figures/13-2-dataproc2.png)
     
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
     
