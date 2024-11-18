@@ -27,13 +27,13 @@ variable "image_version" {
 
 variable "master_machine_type" {
   type        = string
-  default     = "e2-standard-2"
+  default     = "e2-medium"
   description = "Machine type for master nodes"
 }
 
 variable "worker_machine_type" {
   type        = string
-  default     = "e2-standard-4"
+  default     = "e2-medium"
   description = "Machine type for worker nodes"
 }
 
