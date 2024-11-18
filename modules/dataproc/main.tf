@@ -51,9 +51,7 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
 
     preemptible_worker_config {
       num_instances = var.preemptible_worker_count
-      instances_selection_list {
-        machine_types  = var.preemptible_worker_machine_type
-      }
+      preemptibility = "PREEMPTIBLE"
       disk_config {
         boot_disk_type    = "pd-standard"
         boot_disk_size_gb = 100
