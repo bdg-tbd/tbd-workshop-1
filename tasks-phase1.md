@@ -49,9 +49,11 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
    Wybranym modułem jest *vertex-ai-workbench*.
 
-   Vertex AI to kompleksowa, w pełni zarządzana platforma Google Cloud, zaprojektowana do tworzenia, wdrażania i        skalowania modeli uczenia maszynowego. Integruje zaawansowane narzędzia ML Google, upraszczając przepływy pracy dla analityków danych i inżynierów ML. Umożliwia pełen cykl życia modelu – od przygotowania danych, przez trenowanie, aż po wdrażanie – w jednym, spójnym środowisku.
+Moduł służy do tworzenia maszyny wirtualnej z gotowym obrazem dysku, który zawiera wszystkie narzędzia potrzebne do pracy z infrastrukturą przetwarzającą dane w ramach analiz Big Data. Rozwiązanie to upraszcza proces i jest bardziej wydajne niż konfigurowanie lokalnego komputera użytkownika do współpracy z zasobami chmurowymi. Dodatkowo, maszyna wirtualna zapewnia łatwy dostęp do interfejsu webowego, co ułatwia jej obsługę.
 
-   Platforma obsługuje zarówno automatyczne trenowanie modeli (AutoML), jak i szkolenia niestandardowe przy użyciu popularnych frameworków, takich jak TensorFlow czy PyTorch. Vertex AI oferuje także narzędzia do monitorowania, ponownego trenowania oraz wyjaśnialności modeli, co ułatwia budowanie skalowalnych aplikacji AI, przy jednoczesnym obniżeniu kosztów infrastruktury.
+Podstawową funkcjonalnością modułu jest uruchomienie maszyny wirtualnej, realizowane za pomocą zasobu google_notebooks_instance, który odpowiada za jej konfigurację i przygotowanie środowiska pracy. Dostęp do usług Google, takich jak API notebooków, jest zarządzany przy użyciu google_project_service. Aby umożliwić korzystanie z tych usług przez konto serwisowe, za pośrednictwem którego generowane są tymczasowe poświadczenia, wykorzystywany jest zasób google_project_iam_binding.
+
+Ponadto moduł tworzy zasób google_storage_bucket, który zapewnia przestrzeń do przechowywania plików w Google Cloud Storage (GCS). Dostęp do tych danych, ograniczony jedynie do odczytu, jest przyznawany kontu serwisowemu za pomocą google_storage_bucket_iam_binding. Skrypt inicjalizacyjny, który uruchamia się po starcie maszyny, jest przesyłany do przestrzeni GCS poprzez zasób google_storage_bucket_object w trakcie wykonywania polecenia terraform apply.
 
    Po wywołaniu komendy *terraform graph -type=plan | dot -Tpng >graph.png* w *modules/vertex-ai-workbench*
 wygenerowany został plik .png z grafem dla wybranego modułu:
