@@ -1,0 +1,31 @@
+version: 0.1
+resource_type_default_usage:
+  #
+  # The following usage values apply to each resource of the given type, which is useful when you want to define defaults.
+  # All values are commented-out, you can uncomment resource types and customize as needed.
+  #
+  google_artifact_registry_repository.my_artifact_registry:
+    storage_gb: 150 # Total data stored in the repository in GB
+    monthly_egress_data_transfer_gb: # Monthly data delivered from the artifact registry repository in GB. You can specify any number of Google Cloud regions below, replacing - for _ e.g.:
+      europe_north1: 100 # GB of data delivered from the artifact registry to europe-north1.
+      australia_southeast1: 200 # GB of data delivered from the artifact registry to australia-southeast1.
+  google_storage_bucket:
+    storage_gb: 5.0 # Total size of bucket in GB.
+    monthly_class_a_operations: 100 # Monthly number of class A operations (object adds, bucket/object list).
+    monthly_class_b_operations: 1000 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+    monthly_data_retrieval_gb: 20.0 # Monthly amount of data retrieved in GB.
+    monthly_egress_data_transfer_gb:
+      same_continent: 20.0 # Same continent.
+      worldwide: 0.0 # Worldwide excluding Asia, Australia.
+      asia: 0.0 # Asia excluding China, but including Hong Kong.
+      china: 0.0 # China excluding Hong Kong.
+      australia: 0.0 # Australia.
+  google_service_networking_connection.my_connection:
+    monthly_egress_data_transfer_gb: # Monthly VM-VM data transfer from VPN gateway to the following, in GB:
+      same_region: 1                # VMs in the same Google Cloud region.
+      us_or_canada: 0                 # From a Google Cloud region in the US or Canada to another Google Cloud region in the US or Canada.
+      europe: 0                      # Between Google Cloud regions within Europe.
+      asia: 0                        # Between Google Cloud regions within Asia.
+      south_america: 0              # Between Google Cloud regions within South America.
+      oceania: 0                     # Indonesia and Oceania to/from any Google Cloud region.
+      worldwide: 0                  # to a Google Cloud region on another continent.
