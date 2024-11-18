@@ -91,16 +91,27 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 14. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
+    spark-job.py is used by dataproc as a submitted job. Job does not work with predefined data bucket localization. This information can be found in tbd-cluster jobs logs. Changed to tbd-2025z-335202-data.
+    Succesfully submitted job and data saved to gs://tbd-2025z-335202-data/data/shakespeare
+    ![image](https://github.com/user-attachments/assets/e200e63e-746b-404e-88ae-ee1b242e03f2)
 
 
-
-15. Additional tasks using Terraform:
+16. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
     ***place the link to the modified file and inserted terraform code***
-    
-    3. Add support for preemptible/spot instances in a Dataproc cluster
+
+      Changes were made in :  modules\vertex-ai-workbench\main.tf
+                            modules\vertex-ai-workbench\variables.tf
+                            modules\dataproc\main.tf
+                            modules\dataproc\variables.tf
+      ![image](https://github.com/user-attachments/assets/5ff9313a-e1ea-466e-a0e3-b0b84bdd9e37)
+      ![image](https://github.com/user-attachments/assets/84c8821d-701e-4fad-b489-20905661c9d9)
+      ![image](https://github.com/user-attachments/assets/6527db8f-8227-4cb6-808c-7e8aba9cd8f7)
+
+
+    2. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     
