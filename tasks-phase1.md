@@ -134,11 +134,68 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
+
+        Changes were made in: modules\dataproc\main.tf \
+                            modules\dataproc\variables.tf
+        Inserted code in main.tf:
+    
+          preemptible_worker_config {
+            num_instances = var.preemptible_worker_count
+            preemptibility = "PREEMPTIBLE"
+            disk_config {
+              boot_disk_type    = "pd-standard"
+              boot_disk_size_gb = 100
+            }
+          }
+        Inserted code in variables.tf:
+    
+          variable "preemptible_worker_count" {
+            description = "Number of preemptible worker nodes in the Dataproc cluster"
+            type        = number
+            default     = 1
+          }
+        Based on information from https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/dataproc_cluster
+
+        Temporary deleted from code <=> insufficent quotas for CPUs
     
     3. Perform additional hardening of Jupyterlab environment, i.e. disable sudo access and enable secure boot
     
     ***place the link to the modified file and inserted terraform code***
 
+        Changes were made in: modules\vertex-ai-workbench\main.tf \
+                            modules\vertex-ai-workbench\resources\notebook_post_startup_script.sh
+        In modules\vertex-ai-workbench\main.tf:
+          added:
+          shielded_instance_config {
+            enable_secure_boot          = true
+            enable_vtpm                 = true
+            enable_integrity_monitoring = true
+          }
+    
+        In modules\vertex-ai-workbench\resources\notebook_post_startup_script.sh added:
+          USER_TO_REMOVE_SUDO=$(whoami)
+          sudo deluser $USER_TO_REMOVE_SUDO sudo
+
     4. (Optional) Get access to Apache Spark WebUI
 
     ***place the link to the modified file and inserted terraform code***
+
+        Changes were made in: modules\dataproc\main.tf \
+                            modules\vpc\main.tf
+        In modules\vpc\main.tf added resource:
+          resource "google_compute_firewall" "spark_webui" {
+            name    = "allow-spark-webui"
+            network = module.vpc.network_id
+          
+            allow {
+              protocol = "tcp"
+              ports    = ["4040", "8080"]
+            }
+          
+            source_ranges = ["0.0.0.0/0"] # Adjust to restrict access to specific IPs
+            target_tags   = ["spark-webui"]
+          }
+
+        In modules\dataproc\main.tf added:
+          tags             = ["spark-webui"]
+          in gce_cluster_config{}
