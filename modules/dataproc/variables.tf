@@ -24,3 +24,16 @@ variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
 }
+
+variable "master_machine_type" {
+  type        = string
+  default     = "e2-standard-2"
+  description = "Machine type for master nodes"
+}
+
+variable "worker_machine_type" {
+  type        = string
+  default     = "e2-standard-4"
+  description = "Machine type for worker nodes"
+}
+
