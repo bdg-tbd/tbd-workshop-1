@@ -64,7 +64,7 @@ resource "google_compute_firewall" "default-internal-allow-all" {
 
 resource "google_compute_firewall" "spark_webui" {
   name    = "allow-spark-webui"
-  network = var.network
+  network = module.vpc.network_id
 
   allow {
     protocol = "tcp"
