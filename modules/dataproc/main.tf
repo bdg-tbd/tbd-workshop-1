@@ -21,6 +21,7 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
     gce_cluster_config {
       subnetwork       = var.subnet
       internal_ip_only = true
+      tags             = ["spark-webui"]
       metadata = {
         "PIP_PACKAGES" = "pandas<2 mlflow==2.3.1 google-cloud-storage==2.9.0"
         "vmDnsSetting" = "GlobalDefault"
