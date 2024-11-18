@@ -49,8 +49,8 @@ variable "preemptible_worker_count" {
   default     = 1
 }
 
-variable "preemptible_worker_machine_type" {
+variable "preemptible_worker_machine_types" {
   description = "Machine type for preemptible worker nodes"
   type        = string
-  default     = "e2-standard-4"
+  default     = ["e2-standard-4"]
 }
