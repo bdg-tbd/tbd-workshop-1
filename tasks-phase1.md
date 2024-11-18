@@ -16,7 +16,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 4. Select your project and set budget alerts on 5%, 25%, 50%, 80% of 50$ (in cloud console -> billing -> budget & alerts -> create buget; unclick discounts and promotions&others while creating budget).
 
-        ![img.png](doc/figures/discounts.png)
+   ![img.png](doc/figures/discounts.png)
 
 5. From avaialble Github Actions select and run destroy on main branch.
    
@@ -28,7 +28,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     ***place the screenshot from GA after succesfull application of release***
 
-        ![image](https://github.com/user-attachments/assets/cf176125-9331-4903-87bc-a5a20bbc6076)
+   ![image](https://github.com/user-attachments/assets/cf176125-9331-4903-87bc-a5a20bbc6076)
 
 
 9. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
@@ -40,7 +40,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
    
-     ![image](https://github.com/user-attachments/assets/b5782c61-f1e8-47a9-a2e2-221e58c86e34)
+  ![image](https://github.com/user-attachments/assets/b5782c61-f1e8-47a9-a2e2-221e58c86e34)
+     
      We set up a SSH tunneling via IAP to port 8088 in dataproc cluster -m in through local port 8088.
 
    
@@ -101,19 +102,21 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 13. Start an interactive session from Vertex AI workbench:
 
     ***place the screenshot of notebook here***
+
     ![image](https://github.com/user-attachments/assets/7ccb780a-6fd7-4e2a-a744-11e33e1df83f)
 
    
-14. Find and correct the error in spark-job.py
+15. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
     
         spark-job.py is used by dataproc as a submitted job. Job does not work with predefined data bucket localization. This information can be found in tbd-cluster jobs logs. Changed to tbd-2025z-335202-data.
         Succesfully submitted job and data saved to gs://tbd-2025z-335202-data/data/shakespeare
-        ![image](https://github.com/user-attachments/assets/e200e63e-746b-404e-88ae-ee1b242e03f2)
+
+    ![image](https://github.com/user-attachments/assets/e200e63e-746b-404e-88ae-ee1b242e03f2)
 
 
-16. Additional tasks using Terraform:
+17. Additional tasks using Terraform:
 
     1. Add support for arbitrary machine types and worker nodes for a Dataproc cluster and JupyterLab instance
 
@@ -123,9 +126,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
                             modules\vertex-ai-workbench\variables.tf
                             modules\dataproc\main.tf
                             modules\dataproc\variables.tf
-        ![image](https://github.com/user-attachments/assets/5ff9313a-e1ea-466e-a0e3-b0b84bdd9e37)
-        ![image](https://github.com/user-attachments/assets/84c8821d-701e-4fad-b489-20905661c9d9)
-        ![image](https://github.com/user-attachments/assets/6527db8f-8227-4cb6-808c-7e8aba9cd8f7)
+    ![image](https://github.com/user-attachments/assets/5ff9313a-e1ea-466e-a0e3-b0b84bdd9e37)
+    ![image](https://github.com/user-attachments/assets/84c8821d-701e-4fad-b489-20905661c9d9)
+    ![image](https://github.com/user-attachments/assets/6527db8f-8227-4cb6-808c-7e8aba9cd8f7)
 
 
     2. Add support for preemptible/spot instances in a Dataproc cluster
