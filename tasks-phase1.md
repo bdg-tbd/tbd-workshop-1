@@ -85,8 +85,9 @@ http://tbd-cluster-m:8088/
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
     ***place your diagram here***
+    ![diagram](https://github.com/user-attachments/assets/5706968d-5dd6-4109-a357-edf8715e1cee)
 
-12. Create a new PR and add costs by entering the expected consumption into Infracost
+13. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
