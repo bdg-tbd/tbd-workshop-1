@@ -37,6 +37,12 @@ variable "worker_machine_type" {
   description = "Machine type for worker nodes"
 }
 
+variable "worker_count" {
+  type        = string
+  default     = 2
+  description = "Number of instances for worker nodes"
+}
+
 variable "preemptible_worker_count" {
   description = "Number of preemptible worker nodes in the Dataproc cluster"
   type        = number

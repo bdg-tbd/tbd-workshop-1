@@ -41,21 +41,21 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
     }
 
     worker_config {
-      num_instances = 2
+      num_instances = var.worker_count
       machine_type  = var.worker_machine_type
       disk_config {
         boot_disk_type    = "pd-standard"
         boot_disk_size_gb = 100
       }
     }
-    secondary_worker_config {
-      num_instances  = var.preemptible_worker_count
-      machine_type   = var.preemptible_worker_machine_type
-      preemptibility = "PREEMPTIBLE" # Ensure this is set
+
+    preemptible_worker_config {
+      num_instances = var.preemptible_worker_count
+      machine_type  = var.preemptible_worker_machine_type
       disk_config {
         boot_disk_type    = "pd-standard"
         boot_disk_size_gb = 100
       }
     }
-  }
+
 }
