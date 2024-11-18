@@ -39,7 +39,7 @@ variable "worker_machine_type" {
 
 variable "worker_count" {
   type        = string
-  default     = 2
+  default     = 1
   description = "Number of instances for worker nodes"
 }
 
