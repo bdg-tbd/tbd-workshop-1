@@ -20,6 +20,18 @@ variable "machine_type" {
   description = "Machine type to use for both worker and master nodes"
 }
 
+variable "worker_nodes" {
+  type        = number
+  default     = 2
+  description = "Number of nodes to use for worker nodes"
+}
+
+variable "preemptible_workers" {
+  type        = number
+  default     = 0
+  description = "Number of preemptible workers to use for dataproc cluster"
+}
+
 variable "image_version" {
   type    = string
   default = "2.1.27-ubuntu20"
