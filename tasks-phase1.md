@@ -4,13 +4,14 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-    ***group 8:***
-    wojciech.dzikon.stud@pw.edu.pl
-    radoslaw.kasprzak.stud@pw.edu.pl
-    karol.ostrowski.stud@pw.edu.pl
+    **Group 8:**
+   
+    - wojciech.dzikon.stud@pw.edu.pl
+    - radoslaw.kasprzak.stud@pw.edu.pl
+    - karol.ostrowski.stud@pw.edu.pl
     
 
-    ***https://github.com/RadoslawKasprzak/tbd-workshop-1***
+    **https://github.com/RadoslawKasprzak/tbd-workshop-1**
    
 3. Follow all steps in README.md.
 
@@ -46,12 +47,13 @@ The module creates a Dataproc cluster with the specified configuration.
 
        
 11. Reach YARN UI
-   
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
-   
-  ![image](https://github.com/user-attachments/assets/b5782c61-f1e8-47a9-a2e2-221e58c86e34)
-     
-     We set up a SSH tunneling via IAP to port 8088 in dataproc cluster -m in through local port 8088.
+    
+    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+    ![image](https://github.com/user-attachments/assets/b5782c61-f1e8-47a9-a2e2-221e58c86e34)
+
+    We set up a SSH tunneling via IAP to port 8088 in dataproc cluster -m in through local port 8088.
+
+        gcloud compute ssh tbd-cluster-m --project=tbd-2025z-335202 --zone=europe-west1-d --tunnel-through-iap -- -L 8088:localhost:8088
 
    
 11. Draw an architecture diagram (e.g. in draw.io) that includes:
@@ -105,7 +107,7 @@ The module creates a Dataproc cluster with the specified configuration.
    
     ***why does ORC not require a table schema?***
 
-        ORC doesn't require an external table schema because it is a self-describing format that embeds schema and metadata directly within the file, allowing tools to automatically infer the structure. This simplifies integration and     ensures schema consistency.
+      ORC doesn't require an external table schema because it is a self-describing format that embeds schema and metadata directly within the file, allowing tools to automatically infer the structure. This simplifies integration and ensures schema consistency.
 
   
 13. Start an interactive session from Vertex AI workbench:
