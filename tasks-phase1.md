@@ -280,7 +280,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     master_machine_type = "e2-medium"
     ```
 
-    Arbitrary variables are placed in main project directory to enable easier access. It still requires declaring them in modules where they are used and "sending" them from main project to modules.
+    <!-- Arbitrary variables are placed in main project directory to enable easier access. It still requires declaring them in modules where they are used and "sending" them from main project to modules. -->
     
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
