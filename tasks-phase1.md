@@ -62,7 +62,8 @@ The module creates a Dataproc cluster with the specified configuration.
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
   
-    ***place your diagram here***
+    ![tbd-architecture-diagram](https://github.com/user-attachments/assets/272dcd69-ca93-4e46-93a9-22c145020bbc)
+
 
 12. Create a new PR and add costs by entering the expected consumption into Infracost
 
