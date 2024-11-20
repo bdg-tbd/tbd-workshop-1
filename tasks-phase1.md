@@ -35,8 +35,17 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     ***describe one selected module and put the output of terraform graph for this module here***
 
-   
-10. Reach YARN UI
+   **dataproc**
+
+   This Terraform module defines the infrastructure for a **Dataproc cluster** on Google Cloud Platform. Google Cloud Dataproc allows you to use a variety of big data and analytics tools like Apache Spark. Apache Hadoop, Apache Hive.
+The module creates a Dataproc cluster with the specified configuration.
+
+    The `google_project_service` resource ensures the Dataproc service is enabled in the specified Google Cloud project with option ensures that the service is not disabled when the resource is destroyed. The `google_dataproc_cluster` resource provisions the Dataproc cluster (depends on the `google_project_service` resource). The cluster is created in the specified `region` (defaulting to `europe-west1`) and project (`project_name`). The cluster is configured with one master node and two worker nodes, all using the same `machine_type` (default: `e2-medium`) and disk configuration (100 GB standard persistent disk). The cluster uses the specified `image_version` (default: `2.1.27-ubuntu20`). The cluster is deployed in a specified `subnet` with internal IP only access. Also, the cluster includes Python package installations through initialization actions. The module outputs the name of the created Dataproc cluster.
+
+    ![graph](https://github.com/user-attachments/assets/832085a0-1633-43d0-afcd-aef9dbc35b1d)
+
+       
+11. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
    
