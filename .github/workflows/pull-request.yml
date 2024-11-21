@@ -154,6 +154,13 @@ jobs:
     - name: Generate Infracost cost estimate baseline
       run: |
         infracost breakdown --path="." \
+                            --format=json \
+                            --out-file=/tmp/infracost-base.json
+    - name: Checkout PR branch
+      uses: actions/checkout@v3
+    - name: Generate Infracost cost estimate
+      run: |
+        infracost breakdown --path="." \
                             --usage-file infracost-usage.yml \
                             --format=json \
                             --out-file=/tmp/infracost-new.json
@@ -164,11 +171,10 @@ jobs:
                                    --github-token=${{secrets.GITHUB_TOKEN}} \
                                    --pull-request=${{github.event.pull_request.number}} \
                                    --behavior=new
-    - name: Checkout PR branch
-      uses: actions/checkout@v3
     - name: Generate Infracost diff
       run: |
         infracost diff --path="." \
+                        --usage-file infracost-usage.yml \
                         --format=json \
                         --compare-to=/tmp/infracost-base.json \
                         --out-file=/tmp/infracost-diff.json
