@@ -122,6 +122,9 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    ```
 
    ***place the screenshot from infracost output here***
+    ![img.png](doc/figures/infracost.png)
+
+   
 
 10. Create a BigQuery dataset and an external table using SQL
     
