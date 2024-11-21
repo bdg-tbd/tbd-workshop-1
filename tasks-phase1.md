@@ -3,7 +3,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 ![img.png](doc/figures/destroy.png)
 
 1. Authors:
-
+	Aleksandra
    ***enter your group nr***
 
    ***link to forked repo***
