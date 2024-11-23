@@ -1,0 +1,18 @@
+usage:
+  google_artifact_registry.registry:
+    storage_gb: 100
+
+  google_storage_bucket.tbd_code_bucket:
+    storage_gb: 50
+    monthly_class_a_operations: 5000
+    monthly_class_b_operations: 2000
+    monthly_egress_data_gb: 20
+
+  google_storage_bucket.tbd_data_bucket:
+    storage_gb: 500
+    monthly_class_a_operations: 10000
+    monthly_class_b_operations: 5000
+    monthly_egress_data_gb: 200
+
+  google_service_networking_connection.private_vpc_connection:
+    monthly_data_processed_gb: 1000
