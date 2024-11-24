@@ -4,7 +4,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 	Aleksandra
-   <p>Group nr: 13</p>
+   *Group nr: 13*
 
    ***link to forked repo***
    
