@@ -34,5 +34,5 @@ variable "worker_machine_type" {
 variable "master_machine_type" {
   description = "Master Machine type"
   type        = string
-  default     = "e2-standard"
+  default     = "n1-standard-4"
 }
