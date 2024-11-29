@@ -219,71 +219,10 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     variable "master_machine_type"{
       description = "Master Machine type"
       type        = string
-      default     = "e2-medium"
+      default     = "n1-standard-4"
     }
     ```
-    [***project main***](https://github.com/TBD-2024/tbd-workshop-1/blob/master/main.tf)
-    Edited code:
-    ```
-    module "vertex_ai_workbench" {
-      depends_on   = [module.jupyter_docker_image, module.vpc]
-      source       = "./modules/vertex-ai-workbench"
-      project_name = var.project_name
-      region       = var.region
-      network      = module.vpc.network.network_id
-      subnet       = module.vpc.subnets[local.notebook_subnet_id].id
-      ai_notebook_instance_owner = var.ai_notebook_instance_owner
-      ## To remove before workshop
-      # FIXME:remove
-      ai_notebook_image_repository = element(split(":", module.jupyter_docker_image.jupyter_image_name), 0)
-      ai_notebook_image_tag        = element(split(":", module.jupyter_docker_image.jupyter_image_name), 1)
-      vertex_machine_type          = var.vertex_machine_type
-      ## To remove before workshop
-    }
-    module "dataproc" {
-      depends_on          = [module.vpc]
-      source              = "./modules/dataproc"
-      project_name        = var.project_name
-      region              = var.region
-      subnet              = module.vpc.subnets[local.notebook_subnet_id].id
-      machine_type        = "e2-standard-2"
-      worker_machine_type = var.worker_machine_type
-      num_worker_nodes    = var.num_worker_nodes
-      master_machine_type = var.master_machine_type
-    }
-    ```
-    <!-- [***project variables***](https://github.com/TBD-2024/tbd-workshop-1/blob/master/variables.tf)
-    ```
-    variable "num_worker_nodes" {
-      description = "Number of worker nodes in the Dataproc cluster"
-      type        = number
-      default     = 2
-    }
-    variable "worker_machine_type" {
-      description = "Dataproc Worker Machine type"
-      type        = string
-      default     = "n1-standard-8"
-    }
-    variable "master_machine_type" {
-      description = "Dataproc Master Machine type"
-      type        = string
-      default     = "n1-standard-8"
-    }
-    variable "vertex_machine_type" {
-      description = "Vertex Machine type"
-      type        = string
-      default     = "n1-standard-8"
-    }
-    ``` -->
-    [***terraform.tfvars***](https://github.com/TBD-2024/tbd-workshop-1/blob/master/terraform.tfvars)
-    ```
-    worker_machine_type = "e2-medium"
-    num_worker_nodes    = 2
-    vertex_machine_type = "e2-standard-2"
-    master_machine_type = "e2-medium"
-    ```
-
-    <!-- Arbitrary variables are placed in main project directory to enable easier access. It still requires declaring them in modules where they are used and "sending" them from main project to modules. -->
+  
     
     2. Add support for preemptible/spot instances in a Dataproc cluster
 
