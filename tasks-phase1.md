@@ -6,7 +6,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
    Group 3
 
-   [***link to forked repo***](https://github.com/TBD-2024/tbd-workshop-1)
+   [***link to forked repo***](https://github.com/TBD-2024/tbd-workshop-1/tree/phase-1-complete)
    
 2. Follow all steps in README.md.
 

@@ -18,9 +18,9 @@ Worth to read:
 
 2. Authors:
 
-   ***Enter your group nr***
+   Group 3
 
-   ***Link to forked repo***
+   [***link to forked repo***](https://github.com/TBD-2024/tbd-workshop-1/tree/phase-2)
 
 3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
 
