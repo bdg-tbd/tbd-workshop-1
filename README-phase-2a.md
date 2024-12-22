@@ -24,20 +24,22 @@ Worth to read:
    ***Link to forked repo*** \
    https://github.com/BartoszWaracki/tbd-workshop-1
    
-2. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
+3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
 
-3. Provision your infrastructure.
+4. Provision your infrastructure.
 
     a) setup Vertex AI Workbench `pyspark` kernel as described in point [8](https://github.com/bdg-tbd/tbd-workshop-1/tree/v1.0.32#project-setup)
-     <img width="1002" alt="MicrosoftTeams-imagebf22abfdfade1739fe20324ec7d9c922892ed0b7f74f6bcb17ab74815fcd2bd8" src="https://github.com/user-attachments/assets/91de65c6-5532-44a7-8cd7-2140399fdb21" />
+   
+      <img width="1002" alt="MicrosoftTeams-imagebf22abfdfade1739fe20324ec7d9c922892ed0b7f74f6bcb17ab74815fcd2bd8" src="https://github.com/user-attachments/assets/91de65c6-5532-44a7-8cd7-2140399fdb21" />
+   
     b) upload [tpc-di-setup.ipynb](https://github.com/bdg-tbd/tbd-workshop-1/blob/v1.0.36/notebooks/tpc-di-setup.ipynb) to 
 the running instance of your Vertex AI Workbench
 
-4. In `tpc-di-setup.ipynb` modify cell under section ***Clone tbd-tpc-di repo***:
+6. In `tpc-di-setup.ipynb` modify cell under section ***Clone tbd-tpc-di repo***:
 
    a)first, fork https://github.com/mwiewior/tbd-tpc-di.git to your github organization.
 
-     https://github.com/kraszor/tbd-tpc-di
+   Repozytorium znajduje się w [lokalizacji](https://github.com/kraszor/tbd-tpc-di)
 
    b)create new branch (e.g. 'notebook') in your fork of tbd-tpc-di and modify profiles.yaml by commenting following lines:
    ```  
@@ -47,6 +49,8 @@ the running instance of your Vertex AI Workbench
         #"spark.driver.bindAddress": "0.0.0.0"
    ```
    This lines are required to run dbt on airflow but have to be commented while running dbt in notebook.
+
+   Odpowiednie linie zostały zakomentowane:
    
    <img width="900" alt="MicrosoftTeams-image5da315b661262c9930f271790a4df905842b3bf6fe22ab12215c4fc252952c49" src="https://github.com/user-attachments/assets/a73132bd-e0d6-43fa-b4b1-75c87005cff7" />
 
@@ -54,11 +58,11 @@ the running instance of your Vertex AI Workbench
 
    <img width="503" alt="MicrosoftTeams-imagec90083218c24dff5fd4af9cd622de6aab22195054c4214fea313203848878167" src="https://github.com/user-attachments/assets/b6801e81-cc16-4ff4-8c32-c8f66ba9833a" />
 
-5. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
+8. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
 
     a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
    
-  <img width="526" alt="MicrosoftTeams-image82de188d1ba391cd78167a04de502b3e98e42f007a5b76853069ce923de5c78f" src="https://github.com/user-attachments/assets/683710f5-28e4-439b-9290-740cb73fb356" />
+    <img width="526" alt="MicrosoftTeams-image82de188d1ba391cd78167a04de502b3e98e42f007a5b76853069ce923de5c78f" src="https://github.com/user-attachments/assets/683710f5-28e4-439b-9290-740cb73fb356" />
 
    b) in the cell:
          ```%%bash
@@ -69,7 +73,7 @@ the running instance of your Vertex AI Workbench
          ```
       replace repo with your fork. Next checkout to 'notebook' branch.
 
-  <img width="503" alt="MicrosoftTeams-imagec90083218c24dff5fd4af9cd622de6aab22195054c4214fea313203848878167" src="https://github.com/user-attachments/assets/b6801e81-cc16-4ff4-8c32-c8f66ba9833a" />
+    <img width="503" alt="MicrosoftTeams-imagec90083218c24dff5fd4af9cd622de6aab22195054c4214fea313203848878167" src="https://github.com/user-attachments/assets/b6801e81-cc16-4ff4-8c32-c8f66ba9833a" />
    
   c) after running first cells your fork of `tbd-tpc-di` repository will be cloned into Vertex AI  enviroment (see git folder).
 
@@ -84,48 +88,50 @@ the running instance of your Vertex AI Workbench
 
 6. Explore files created by generator and describe them, including format, content, total size.
 
-   Pliki zostały utworzone przez generator w postaci trzech batchy. Każdy z nich zawierał pliki w formatach: .csv, .txt oraz .xml.
-   Łączny rozmiar plików wynosił: 9,6 GiB. Ich tematyka wygenerowanych plików dotyczyła
+   Łączny rozmiar wygenerowanych plików wynosił: 9,6 GiB. \
+   Pliki zostały utworzone przez generator w postaci trzech batchy. \
+   Każdy z batchy zawierał pliki w formatach: csv, txt, xml oraz bez podanego rozszerzenia.
 
-   Statystyki dotyczące rozmiaru poszczególnych typów danych plików:
-   StatusType: 3,6 KiB
-   TaxRate: 16,7 KiB
-   Date: 3,3 MiB
-   Time: 4,6 MiB
-   BatchDate: 88 B
-   HR: 39,6 MiB
-   CustomerMgmt: 298,1 MiB
-   Customer: 205,3 KiB
-   Account: 149,6 KiB
-   Prospect: 300,2 MiB
-   Industry: 2,7 KiB
-   FINWIRE: 1 GiB (Pliki znajdowały się jedynie w pierwszym batchu.)
-   DailyMarket: 3 GiB
-   WatchHistory: 1,3 GiB
-   TradeSource: 3,6 GiB
-   TradeType: 5 rows
+   Statystyki dotyczące łącznego rozmiaru plików dla poszczególnych typów danych:
+     * StatusType: 3,6 KiB
+     * TaxRate: 16,7 KiB
+     * Date: 3,3 MiB
+     * Time: 4,6 MiB
+     * BatchDate: 88 B
+     * HR: 39,6 MiB
+     * CustomerMgmt: 298,1 MiB
+     * Customer: 205,3 KiB
+     * Account: 149,6 KiB
+     * Prospect: 300,2 MiB
+     * Industry: 2,7 KiB
+     * FINWIRE: 1 GiB (Pliki znajdowały się jedynie w pierwszym batchu.)
+     * DailyMarket: 3 GiB
+     * WatchHistory: 1,3 GiB
+     * TradeSource: 3,6 GiB
+     * TradeType: 5 wierszy
 
 Poniższe zrzuty ekranu prezentują statystyki z generacji plików:
-   <img width="986" alt="MicrosoftTeams-imagea77c0b18f4f2037fd91dd4b60cae36a1b0a798869cb4e9625f46f3875cf3804b" src="https://github.com/user-attachments/assets/db35205f-39ea-42b6-ab0a-bba0710375b1" />
 
-   <img width="874" alt="MicrosoftTeams-imageb150ac5873645f8e11d8bf3e915c83669a3a32ec4827c2c1fec5895a7c4f89e5" src="https://github.com/user-attachments/assets/4e5efd2e-6177-4bb4-9192-370cc6659814" />
+<img width="986" alt="MicrosoftTeams-imagea77c0b18f4f2037fd91dd4b60cae36a1b0a798869cb4e9625f46f3875cf3804b" src="https://github.com/user-attachments/assets/db35205f-39ea-42b6-ab0a-bba0710375b1" />
 
-   <img width="730" alt="MicrosoftTeams-imagea607c48e4dbb610a1e47ce479919d9c8d5d9602a7781117cd18cc563a0f6a186" src="https://github.com/user-attachments/assets/8a5a663d-5de3-4104-93a5-5aeec610a4ba" />
+<img width="874" alt="MicrosoftTeams-imageb150ac5873645f8e11d8bf3e915c83669a3a32ec4827c2c1fec5895a7c4f89e5" src="https://github.com/user-attachments/assets/4e5efd2e-6177-4bb4-9192-370cc6659814" />
+
+<img width="730" alt="MicrosoftTeams-imagea607c48e4dbb610a1e47ce479919d9c8d5d9602a7781117cd18cc563a0f6a186" src="https://github.com/user-attachments/assets/8a5a663d-5de3-4104-93a5-5aeec610a4ba" />
 
 Poniższe zrzuty ekranu pokazują dane dla batchy 2 oraz 3. (Z uwagi na dużą ilość plików znajdujących się w folderze dla batcha 1, pominęliśmy zrzut ekranu jego zawartości.)
 
-<img width="926" alt="MicrosoftTeams-image84927a20f36ff39b5b6b2c0c12a698727500a25aaf9de667156f3bbce9b37919" src="https://github.com/user-attachments/assets/159feb36-0bbc-43df-9c8b-c73fab94e718" />
+<img width="926" alt="MicrosoftTeams-image84927a20f36ff39b5b6b2c0c12a698727500a25aaf9de667156f3bbce9b37919" src="https://github.com/user-attachments/assets/159feb36-0bbc-43df-9c8b-c73fab94e718" /> 
 
 <img width="943" alt="MicrosoftTeams-image59b39c875663d19ec039126ee3cede80ca13e68cf68c88e07a444643c8091f26" src="https://github.com/user-attachments/assets/ec2a7886-e865-4737-ad9c-47b7118dc24d" />
 
 7. Analyze tpcdi.py. What happened in the loading stage?
 
    Plik tpcdi.py dotyczy tworzenie tabel na podstawie danych z generatora w fazie loading stage.
-   Początkowo tworzona jest sesja Sparka oraz odpowiednie bazy danych, a baza digen ustawiana jest jako baza domyślna.
+   Początkowo tworzona jest sesja Sparka oraz odpowiednie bazy danych, a baza 'digen' ustawiana jest jako baza domyślna.
    Dla każdej z tabel określona jest struktura, a dane wczytywane są bezpośrednio z plików.
-   Na podstawie danych tworozne są struktury dataframe, które są następnie zapisywane w formacie parquet tworząc tabele w bazie danych digen.
+   Na podstawie danych tworozne są struktury dataframe, które są następnie zapisywane w formacie parquet tworząc tabele w bazie danych 'digen'.
 
-  <img width="941" alt="MicrosoftTeams-imageb5ed0ac1fbd64aae546106539056312c0c45a77ec6ae263cf82f6cb238ac56f6" src="https://github.com/user-  attachments/assets/74ccf2cf-8417-4154-acbc-7fec3f80d685" />
+  <img width="941" alt="MicrosoftTeams-image19870d72dcabaeeb3554d6cf161b48e695d693b40494592e5954744d3cc4f492" src="https://github.com/user-attachments/assets/cfd95451-b896-4eb1-83d8-dd49e6ee9803" />
   <img width="904" alt="MicrosoftTeams-image4bc94f49f98d70734c467e56c7854164d090c769f99015810dd9e53b02d39e89" src="https://github.com/user-attachments/assets/2ff0d989-4e9a-47be-9914-3c47efc226cc" />
   <img width="894" alt="MicrosoftTeams-image11497715aae8953c66ed5e1abea66bc8ba4fb3e7f3c9134c303e86a16bdff947" src="https://github.com/user-attachments/assets/3bff87d9-4cf0-49f4-ac59-9ad1972d76c0" />
 
@@ -143,30 +149,30 @@ Poniższe zrzuty ekranu pokazują dane dla batchy 2 oraz 3. (Z uwagi na dużą i
 
 9. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. 
 
-    Testy znajdują się w tej [lokalizacji](https://github.com/kraszor/tbd-tpc-di/tree/main/tests)
+Testy znajdują się w tej [lokalizacji](https://github.com/kraszor/tbd-tpc-di/tree/main/tests)
 
-    * Test 1 - sprawdzenie, czy w tabeli dim_account nie występują duplikaty primary key (sk_account_id)
+  * Test 1 - sprawdzenie, czy w tabeli dim_account nie występują duplikaty primary key (sk_account_id)
    
-   select 
-    sk_account_id, 
-    count(*) cnt
-from {{ ref('dim_account') }} 
-group by sk_account_id
-having cnt > 1
+       select sk_account_id, count(*) cnt \
+       from {{ ref('dim_account') }} \
+       group by sk_account_id \
+       having cnt > 1 
 
   * Test 2 - sprawdzenie, czy w tabeli dim_account nie występują wartości null w kolumnie sk_account_id (primary key)
 
-select 
-    sk_account_id
-from {{ ref('dim_account') }} 
-where sk_account_id is null
+       select sk_account_id \
+       from {{ ref('dim_account') }} \
+       where sk_account_id is null
 
-* Test 3 - sprawdzenie, czy w tabeli fact_watches nie występują rekordy z datą utworzenia późniejszą niż data skasowania
+  * Test 3 - sprawdzenie, czy w tabeli fact_watches nie występują rekordy z datą utworzenia późniejszą niż data skasowania
 
-select 
-    sk_customer_id
-from {{ ref('fact_watches') }} 
-where sk_date_placed > coalesce(sk_date_removed, sk_date_placed)
+       select sk_customer_id \
+       from {{ ref('fact_watches') }} \
+       where sk_date_placed > coalesce(sk_date_removed, sk_date_placed)
+
+Potwierdzenie przeprowadzenia testów:
+
+<img width="866" alt="MicrosoftTeams-imageafef1b333a21407c9fcff9cadba79f4bd66efc0d8719280f33b7df9b63f752ee" src="https://github.com/user-attachments/assets/de13c4d8-2317-4af8-89e6-eba2ff6a36b3" />
 
 11. In main.tf update
    ```
