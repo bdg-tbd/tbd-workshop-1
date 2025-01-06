@@ -17,7 +17,7 @@ Worth to read:
 * https://www.databricks.com/blog/2023/04/14/how-we-performed-etl-one-billion-records-under-1-delta-live-tables.html
 
 2. Authors:
-
+   Aleksandra
    ***Enter your group nr***
 
    ***Link to forked repo***
