@@ -18,9 +18,13 @@ Worth to read:
 
 2. Authors:
 
-   ***Enter your group nr***
+   ***Z7***
+   - Jakub Kokoszka: 304154
+   - Jonatan Kasperczak: 341208
+   - Będkowski Patryk: 310603
 
    ***Link to forked repo***
+   [https://github.com/j-kokoszka/tbd-workshop-1/tree/master](https://github.com/j-kokoszka/tbd-workshop-1/tree/master)
 
 3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
 
