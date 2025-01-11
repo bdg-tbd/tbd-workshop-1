@@ -111,16 +111,15 @@ the running instance of your Vertex AI Workbench
 
 7. Explore files created by generator and describe them, including format, content, total size.
 
-   ***Files desccription***
 
-All work done
+    All work done
     Data generation finished successfully
     AuditTotalRecordsSummaryWriter - TotalRecords for Batch1: 160873381
     AuditTotalRecordsSummaryWriter - TotalRecords for Batch2: 677582
     AuditTotalRecordsSummaryWriter - TotalRecords for Batch3: 677508
     AuditTotalRecordsSummaryWriter - TotalRecords all Batches: 162228471 220669.47 records/second
     Statistics  
-    =========
+    
     Overall time    0h:12m:15s:164ms
     Generated       9.6 GiB
     Speed           13.4 MiB/s
