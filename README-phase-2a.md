@@ -28,12 +28,15 @@ Worth to read:
 
 4. Provision your infrastructure.
 
-    a) setup Vertex AI Workbench `pyspark` kernel as described in point [8](https://github.com/bdg-tbd/tbd-workshop-1/tree/v1.0.32#project-setup) 
+    a) setup Vertex AI Workbench `pyspark` kernel as described in point [8](https://github.com/bdg-tbd/tbd-workshop-1/tree/v1.0.32#project-setup)
+      pyspark kernel installed:
+     ![image](https://github.com/user-attachments/assets/08872feb-9f8a-4f2c-9c56-a4ddecc7d1f4)
+
 
     b) upload [tpc-di-setup.ipynb](https://github.com/bdg-tbd/tbd-workshop-1/blob/v1.0.36/notebooks/tpc-di-setup.ipynb) to 
 the running instance of your Vertex AI Workbench
 
-5. In `tpc-di-setup.ipynb` modify cell under section ***Clone tbd-tpc-di repo***:
+6. In `tpc-di-setup.ipynb` modify cell under section ***Clone tbd-tpc-di repo***:
 
    a)first, fork https://github.com/mwiewior/tbd-tpc-di.git to your github organization.
 
@@ -51,7 +54,7 @@ the running instance of your Vertex AI Workbench
  
 
 
-6. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
+7. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
 
     a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
 
