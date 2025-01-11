@@ -163,9 +163,67 @@ the running instance of your Vertex AI Workbench
    
 9. Analyze tpcdi.py. What happened in the loading stage?
 
-   ***Your answer***
+        Input:
+          Generated Files: Files from the TPC-DI data generator (DIGen.jar) in various formats, such as:
+            *.txt (e.g., DailyMarket.txt, Trade.txt)
+            *.csv (e.g., Prospect.csv, HR.csv)
+            *.xml (e.g., CustomerMgmt.xml)
+          Command-Line Arguments:
+            *output_directory: Directory containing the generated files.
+            *file_name: Name of the file(s) to process (all for all files or specific names).
+            *stage: The GCS bucket stage to upload files to.
+            *Additional flags (batch, overwrite, skip_upload, etc.).
+        
+        Output:
+          Processed Data:
+            *Tables in Parquet format saved to Hive-compatible storage.
+            *Examples: daily_market, trade, customer_mgmt, etc.
+          Uploaded Files:
+            *Processed files uploaded to a specified Google Cloud Storage bucket.
+          Logs:
+            *Logging of file upload, delimiter detection, and table creation for auditing and debugging.
+        
+        Steps and Key Operations:
+          Spark Session Setup:
+            *Creates databases (digen, bronze, silver, gold) in Hive-compatible storage.
+            *Uses the digen database for processing.
+          File Upload:
+            *Uploads files to Google Cloud Storage (gs://<stage>/tpc-di/<file_name>).
+            *Automatically detects delimiter based on file extension.
+          File Processing:
+            *Reads files in various formats (CSV, TXT, XML).
+            *Applies predefined schemas to parse data fields into structured DataFrames.
+          Table Creation:
+            *Saves processed data as Hive tables in Parquet format using the Spark SQL API.
+            *Supports displaying DataFrames during development (show flag).
+          Custom Logic for Specific Files:
+            *Handles complex files (e.g., CustomerMgmt.xml, FINWIRE) with custom parsing and column extraction.
 
-10. Using SparkSQL answer: how many table were created in each layer?
+       RESULT:
+          DATE table created.
+          DAILY_MARKET table created.
+          INDUSTRY table created.
+          PROSPECT table created.
+          CUSTOMER_MGMT table created.
+          TAX_RATE table created.
+          HR table created.
+          WATCH_HISTORY table created.
+          TRADE table created.
+          TRADE_HISTORY table created.
+          STATUS_TYPE table created.
+          TRADE_TYPE table created.
+          HOLDING_HISTORY table created.
+          CASH_TRANSACTION table created.
+          CMP table created.
+          SEC table created.
+          FIN table created.
+       This script processed and loaded TPC-DI-generated data into a data lakehouse. The raw data files (e.g., .txt, .csv, .xml) were uploaded to a specified bucket and subsequently transformed into structured formats using PySpark. The processed data was saved as Parquet tables in a Hive-compatible database on HDFS.
+     ![image](https://github.com/user-attachments/assets/7f120bba-0e66-47eb-9c11-35e606319c79)
+     ![image](https://github.com/user-attachments/assets/c2e06e13-80d5-4230-abfe-a2f70d7ddb7f)
+
+
+
+11. Using SparkSQL answer: how many table were created in each layer?
 
    ***SparkSQL command and output***
 
