@@ -53,11 +53,19 @@ the running instance of your Vertex AI Workbench
    This lines are required to run dbt on airflow but have to be commented while running dbt in notebook.
 
    c)update git clone command to point to ***your fork***.
+   git clone command updated:
+   ```
+         %%bash
+         mkdir -p git && cd git
+         git clone --branch notebook https://github.com/RadoslawKasprzak/tbd-tpc-di.git
+         cd tbd-tpc-di
+         git pull
+   ```
 
  
 
 
-7. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
+8. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
 
     a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
 
