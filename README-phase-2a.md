@@ -43,6 +43,9 @@ the running instance of your Vertex AI Workbench
 
    a)first, fork https://github.com/mwiewior/tbd-tpc-di.git to your github organization.
 
+   ![image](https://github.com/user-attachments/assets/aec38e47-ff77-4336-810d-a98e53b51013)
+
+
    b)create new branch (e.g. 'notebook') in your fork of tbd-tpc-di and modify profiles.yaml by commenting following lines:
    ```  
         #"spark.driver.port": "30000"
@@ -68,7 +71,11 @@ the running instance of your Vertex AI Workbench
 8. Access Vertex AI Workbench and run cell by cell notebook `tpc-di-setup.ipynb`.
 
     a) in the first cell of the notebook replace: `%env DATA_BUCKET=tbd-2023z-9910-data` with your data bucket.
-
+    ```
+          %env DATA_BUCKET=tbd-2025z-335202-data
+          %env GEN_OUTPUT_DIR=/tmp/tpc-di
+          %env REPO_ROOT=/home/jupyter/git/tbd-tpc-di/
+   ```
 
    b) in the cell:
          ```%%bash
@@ -78,8 +85,18 @@ the running instance of your Vertex AI Workbench
          git pull
          ```
       replace repo with your fork. Next checkout to 'notebook' branch.
-   
+
+   git clone command updated:
+   ```
+         %%bash
+         mkdir -p git && cd git
+         git clone --branch notebook https://github.com/RadoslawKasprzak/tbd-tpc-di.git
+         cd tbd-tpc-di
+         git pull
+   ```
     c) after running first cells your fork of `tbd-tpc-di` repository will be cloned into Vertex AI  enviroment (see git folder).
+    git folder tbd-tpc-di created:
+    ![image](https://github.com/user-attachments/assets/75251741-0f1f-42f3-811b-4bab6d17a522)  
 
     d) take a look on `git/tbd-tpc-di/profiles.yaml`. This file includes Spark parameters that can be changed if you need to increase the number of executors and
   ```
@@ -89,6 +106,7 @@ the running instance of your Vertex AI Workbench
        "spark.executor.instances": "2"
        "spark.hadoop.hive.metastore.warehouse.dir": "hdfs:///user/hive/warehouse/"
   ```
+  ![image](https://github.com/user-attachments/assets/3347555c-e39f-4fb3-8a99-6cb6f34e0ced)
 
 
 7. Explore files created by generator and describe them, including format, content, total size.
