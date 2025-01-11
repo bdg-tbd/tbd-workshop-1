@@ -113,7 +113,7 @@ the running instance of your Vertex AI Workbench
 
    ***Files desccription***
 
-    All work done
+All work done
     Data generation finished successfully
     AuditTotalRecordsSummaryWriter - TotalRecords for Batch1: 160873381
     AuditTotalRecordsSummaryWriter - TotalRecords for Batch2: 677582
