@@ -35,6 +35,9 @@ Worth to read:
 
     b) upload [tpc-di-setup.ipynb](https://github.com/bdg-tbd/tbd-workshop-1/blob/v1.0.36/notebooks/tpc-di-setup.ipynb) to 
 the running instance of your Vertex AI Workbench
+    script uploaded:
+    ![image](https://github.com/user-attachments/assets/95792423-c8c8-44f8-a269-6e5d14410b49)
+
 
 6. In `tpc-di-setup.ipynb` modify cell under section ***Clone tbd-tpc-di repo***:
 
