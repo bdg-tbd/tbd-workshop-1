@@ -112,54 +112,54 @@ the running instance of your Vertex AI Workbench
 7. Explore files created by generator and describe them, including format, content, total size.
 
 
-    All work done
-    Data generation finished successfully
-    AuditTotalRecordsSummaryWriter - TotalRecords for Batch1: 160873381
-    AuditTotalRecordsSummaryWriter - TotalRecords for Batch2: 677582
-    AuditTotalRecordsSummaryWriter - TotalRecords for Batch3: 677508
-    AuditTotalRecordsSummaryWriter - TotalRecords all Batches: 162228471 220669.47 records/second
-    Statistics  
+        All work done
+        Data generation finished successfully
+        AuditTotalRecordsSummaryWriter - TotalRecords for Batch1: 160873381
+        AuditTotalRecordsSummaryWriter - TotalRecords for Batch2: 677582
+        AuditTotalRecordsSummaryWriter - TotalRecords for Batch3: 677508
+        AuditTotalRecordsSummaryWriter - TotalRecords all Batches: 162228471 220669.47 records/second
+        Statistics  
+        
+        Overall time    0h:12m:15s:164ms
+        Generated       9.6 GiB
+        Speed           13.4 MiB/s
+        
+        DIGen completed successfully.
     
-    Overall time    0h:12m:15s:164ms
-    Generated       9.6 GiB
-    Speed           13.4 MiB/s
+        Generated files are stored in /tmp/tcp-di/:
+        drwxr-xr-x 2 root root 20480 Jan 11 18:39 Batch1
+        -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch1_audit.csv
+        drwxr-xr-x 2 root root  4096 Jan 11 18:36 Batch2
+        -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch2_audit.csv
+        drwxr-xr-x 2 root root  4096 Jan 11 18:36 Batch3
+        -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch3_audit.csv
+        -rw-r--r-- 1 root root  3203 Jan 11 18:27 Generator_audit.csv
+        -rw-r--r-- 1 root root   587 Jan 11 18:39 digen_report.txt
+        
+        Folder Batch1:
+        Content: The Batch1 directory contains a mix of generated data files (e.g., CashTransaction.txt, DailyMarket.txt, Trade.txt, WatchHistory.txt) and their corresponding audit files (e.g., CashTransaction_audit.csv, Trade_audit.csv). It includes both large datasets and metadata files for auditing, organized by entities (e.g., FINWIRE, TaxRate, TradeHistory).
+        Total Size: The total size of the directory is approximately 9.4 GB, dominated by large .txt files such as Trade.txt (1.33 GB), WatchHistory.txt (1.43 GB), and TradeHistory.txt (1.11 GB).
+        Format: Data is stored in text files (.txt) and CSV files (.csv), where .txt files likely represent raw generated datasets, and .csv files provide summaries or audit information for validation purposes.
+        
+        Folder Batch2:
+        Content: The Batch2 directory contains generated data files (Account.txt, CashTransaction.txt, DailyMarket.txt, Trade.txt, WatchHistory.txt) representing various entities, alongside their corresponding audit files (e.g., Account_audit.csv, Trade_audit.csv). 
+        Total Size: The total size of the directory is approximately 114 MB, with the largest file being Prospect.csv at ~105 MB, followed by moderately sized files like DailyMarket.txt (~5 MB) and Trade.txt (~1.8 MB).
+        Format: Data files are stored in text files (.txt) for structured data and CSV files (.csv) for audit metadata. The .txt files likely represent the raw datasets, while the .csv files validate the correctness and completeness of the data.
     
-    DIGen completed successfully.
-
-    Generated files are stored in /tmp/tcp-di/:
-    drwxr-xr-x 2 root root 20480 Jan 11 18:39 Batch1
-    -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch1_audit.csv
-    drwxr-xr-x 2 root root  4096 Jan 11 18:36 Batch2
-    -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch2_audit.csv
-    drwxr-xr-x 2 root root  4096 Jan 11 18:36 Batch3
-    -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch3_audit.csv
-    -rw-r--r-- 1 root root  3203 Jan 11 18:27 Generator_audit.csv
-    -rw-r--r-- 1 root root   587 Jan 11 18:39 digen_report.txt
+        Folder Batch3:
+        Content: The Batch2 directory contains data files (Account.txt, Customer.txt, CashTransaction.txt, DailyMarket.txt, Trade.txt, WatchHistory.txt, Prospect.csv) and their corresponding audit files (*_audit.csv). These files represent transactional, market, and customer-related data, alongside metadata for data validation.
+        Total Size: The directory's total size is approximately 114.6 MB, with the largest file being Prospect.csv (~104.9 MB), followed by DailyMarket.txt (~5.3 MB) and WatchHistory.txt (~4.1 MB).
+        Format: The data is stored in text files (.txt) for transactional and structured data, while CSV files (.csv) are used for auditing and validation purposes. These formats support easy integration with data processing pipelines.
     
-    Folder Batch1:
-    Content: The Batch1 directory contains a mix of generated data files (e.g., CashTransaction.txt, DailyMarket.txt, Trade.txt, WatchHistory.txt) and their corresponding audit files (e.g., CashTransaction_audit.csv, Trade_audit.csv). It includes both large datasets and metadata files for auditing, organized by entities (e.g., FINWIRE, TaxRate, TradeHistory).
-    Total Size: The total size of the directory is approximately 9.4 GB, dominated by large .txt files such as Trade.txt (1.33 GB), WatchHistory.txt (1.43 GB), and TradeHistory.txt (1.11 GB).
-    Format: Data is stored in text files (.txt) and CSV files (.csv), where .txt files likely represent raw generated datasets, and .csv files provide summaries or audit information for validation purposes.
-    
-    Folder Batch2:
-    Content: The Batch2 directory contains generated data files (Account.txt, CashTransaction.txt, DailyMarket.txt, Trade.txt, WatchHistory.txt) representing various entities, alongside their corresponding audit files (e.g., Account_audit.csv, Trade_audit.csv). 
-    Total Size: The total size of the directory is approximately 114 MB, with the largest file being Prospect.csv at ~105 MB, followed by moderately sized files like DailyMarket.txt (~5 MB) and Trade.txt (~1.8 MB).
-    Format: Data files are stored in text files (.txt) for structured data and CSV files (.csv) for audit metadata. The .txt files likely represent the raw datasets, while the .csv files validate the correctness and completeness of the data.
-
-    Folder Batch3:
-    Content: The Batch2 directory contains data files (Account.txt, Customer.txt, CashTransaction.txt, DailyMarket.txt, Trade.txt, WatchHistory.txt, Prospect.csv) and their corresponding audit files (*_audit.csv). These files represent transactional, market, and customer-related data, alongside metadata for data validation.
-    Total Size: The directory's total size is approximately 114.6 MB, with the largest file being Prospect.csv (~104.9 MB), followed by DailyMarket.txt (~5.3 MB) and WatchHistory.txt (~4.1 MB).
-    Format: The data is stored in text files (.txt) for transactional and structured data, while CSV files (.csv) are used for auditing and validation purposes. These formats support easy integration with data processing pipelines.
-
-    In /tmp/tpc-di/ there are also:
-    -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch1_audit.csv
-    -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch2_audit.csv
-    -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch3_audit.csv
-    -rw-r--r-- 1 root root  3203 Jan 11 18:27 Generator_audit.csv
-    -rw-r--r-- 1 root root   587 Jan 11 18:39 digen_report.txt
-    Batch1_audit.csv, Batch2_audit.csv, Batch3_audit.csv: Contain DataSet, BatchID ,Date , Attribute , Value, DValue for each data generation batch.
-    Generator_audit.csv: content DataSet, BatchID ,Date , Attribute , Value, DValue
-    digen_report.txt: Report of the TPC-DI Data Generation process - start time, end time, software versions, number of records for every batch
+        In /tmp/tpc-di/ there are also:
+        -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch1_audit.csv
+        -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch2_audit.csv
+        -rw-r--r-- 1 root root   113 Jan 11 18:27 Batch3_audit.csv
+        -rw-r--r-- 1 root root  3203 Jan 11 18:27 Generator_audit.csv
+        -rw-r--r-- 1 root root   587 Jan 11 18:39 digen_report.txt
+        Batch1_audit.csv, Batch2_audit.csv, Batch3_audit.csv: Contain DataSet, BatchID ,Date , Attribute , Value, DValue for each data generation batch.
+        Generator_audit.csv: content DataSet, BatchID ,Date , Attribute , Value, DValue
+        digen_report.txt: Report of the TPC-DI Data Generation process - start time, end time, software versions, number of records for every batch
    
 9. Analyze tpcdi.py. What happened in the loading stage?
 
