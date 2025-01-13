@@ -67,8 +67,8 @@ module "dataproc" {
   region                    = var.region
   subnet                    = module.vpc.subnets[local.notebook_subnet_id].id
   worker_nodes_number       = 2
-  machine_type_master       = "e2-standard-2"
-  machine_type_worker       = "e2-standard-2"
+  machine_type_master       = "e2-standard-4"
+  machine_type_worker       = "e2-standard-4"
   preemptible_num_instances = 2
   preemptibility            = "SPOT"
 }
