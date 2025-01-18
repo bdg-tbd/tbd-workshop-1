@@ -89,7 +89,40 @@ the running instance of your Vertex AI Workbench
 
 10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
 
-   ***Code and description of your tests***
+   1. **fact_trade_date_not_null.sql**  
+   - This test ensures that the `trade_date` column in the `fact_trade` table is never `NULL`.  
+   - If any rows have `NULL` values in this column, it may indicate an issue in the ETL process.
+
+```sql
+SELECT *
+FROM {{ ref('fact_trade') }}
+WHERE trade_date IS NULL;
+```
+
+2. **fact_trade_has_customer.sql**  
+   - This test checks if every trade in the `fact_trade` table is linked to a valid customer in the `dimension_customer` table.  
+   - If any trade has an `sk_customer_id` that does not exist in `dimension_customer`, it suggests potential referential integrity issues.
+
+```sql
+SELECT ft.sk_trade_id, ft.sk_customer_id
+FROM {{ ref('fact_trade') }} ft
+LEFT JOIN {{ ref('dimension_customer') }} dc
+ON ft.sk_customer_id = dc.sk_customer_id
+WHERE dc.sk_customer_id IS NULL;
+```
+
+3. **fact_trade_is_not_null.sql**  
+   - This test verifies that the `fact_trade` table does not contain completely empty records.  
+   - If the table contains rows where all critical columns are `NULL`, it may indicate a data ingestion failure or incorrect transformations.
+
+```sql
+SELECT *
+FROM {{ ref('fact_trade') }}
+WHERE sk_trade_id IS NULL
+  AND trade_date IS NULL
+  AND sk_customer_id IS NULL
+  AND trade_amount IS NULL;
+```
 
 11. In main.tf update
    ```
