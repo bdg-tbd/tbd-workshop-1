@@ -22,7 +22,8 @@ Worth to read:
     - wojciech.dzikon.stud@pw.edu.pl
     - radoslaw.kasprzak.stud@pw.edu.pl
     - karol.ostrowski.stud@pw.edu.pl
-   **https://github.com/RadoslawKasprzak/tbd-workshop-1**
+    
+    **https://github.com/RadoslawKasprzak/tbd-workshop-1**
 
 3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
 
@@ -223,21 +224,23 @@ the running instance of your Vertex AI Workbench
 
 
 
-11. Using SparkSQL answer: how many table were created in each layer?
+9. Using SparkSQL answer: how many table were created in each layer?
 
    ***SparkSQL command and output***
 
-11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing. ***Add new tests to your repository.***
-
-   ***Code and description of your tests***
+10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing.
+  
+    ***Add new tests to your repository.***
+    
+    ***Code and description of your tests***
 
 11. In main.tf update
-   ```
-   dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
-   dbt_git_repo_branch     = "main"
-   ```
-   so dbt_git_repo points to your fork of tbd-tpc-di. 
+    ```
+    dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
+    dbt_git_repo_branch     = "main"
+    ```
+    so dbt_git_repo points to your fork of tbd-tpc-di. 
 
 12. Redeploy infrastructure and check if the DAG finished with no errors:
 
-***The screenshot of Apache Aiflow UI***
+    ***The screenshot of Apache Aiflow UI***
