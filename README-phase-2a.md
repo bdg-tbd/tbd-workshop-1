@@ -22,7 +22,6 @@ Worth to read:
     - wojciech.dzikon.stud@pw.edu.pl
     - radoslaw.kasprzak.stud@pw.edu.pl
     - karol.ostrowski.stud@pw.edu.pl
-    
     **https://github.com/RadoslawKasprzak/tbd-workshop-1**
 
 3. Sync your repo with https://github.com/bdg-tbd/tbd-workshop-1.
