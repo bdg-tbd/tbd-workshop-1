@@ -225,21 +225,57 @@ the running instance of your Vertex AI Workbench
 
 9. Using SparkSQL answer: how many table were created in each layer?
 
-   ***SparkSQL command and output***
+       1.	We got through dbt run and dbt test successfully
+         ![image](https://github.com/user-attachments/assets/a5077c1d-c7b1-47cc-a455-b71e57ba2dad)
+         ![image](https://github.com/user-attachments/assets/0299a5a2-77ba-44d3-be9b-f253392b3400)
+       2.	Using SparkSQL answer: how many table were created in each layer?
+   
+          spark.sql("use demo_bronze")
+          spark.sql("show tables").show()
+         ![image](https://github.com/user-attachments/assets/8dc543d9-b184-426b-ba9e-97e73f84416d)
 
-10. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing.
+          spark.sql("use demo_silver")
+          spark.sql("show tables").show()
+          ![image](https://github.com/user-attachments/assets/72023762-ba30-48f3-beb8-ee7270e7d54e)
+
+          spark.sql("use demo_gold")
+          spark.sql("show tables").show()
+          ![image](https://github.com/user-attachments/assets/a6858c6f-1aac-4b09-8918-08c3f3c873fe)
+
+
+11. Add some 3 more [dbt tests](https://docs.getdbt.com/docs/build/tests) and explain what you are testing.
   
-    ***Add new tests to your repository.***
-    
-    ***Code and description of your tests***
+        Test dim_account__isnull_account_id checks if column account_id in dim_account contains any null value – when it does the test is failed.
 
-11. In main.tf update
+        select 
+            account_id
+        from {{ ref('dim_account') }} 
+        where account_id is null
+
+        test fact_cash_transactions_timestamp_check checks if the transaction_date and transaction_timestamp both contains the same date value. This test is meant to tell us if the transformation of date is valid and can be trusted.
+    
+        select * from {{ ref('fact_cash_transactions') }}
+        where sk_transaction_date != substr(transaction_timestamp,1,10)
+
+
+        test dim_fact_broker_relation_check checks dimension completeness by verifying that every broker_id in the fact_trade table (a fact table) has a corresponding broker_id in the dim_broker table (a dimension table).
+
+        select * from {{ ref('fact_trade') }} fact
+        left join {{ ref('dim_broker') }} dim
+        on fact.sk_broker_id = dim.sk_broker_id
+        where dim.sk_broker_id is NULL
+
+        All test passed:
+        ![image](https://github.com/user-attachments/assets/4378f4e9-a649-4c51-b6f9-5d8b06dd029c)
+
+
+12. In main.tf update
     ```
     dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
     dbt_git_repo_branch     = "main"
     ```
     so dbt_git_repo points to your fork of tbd-tpc-di. 
 
-12. Redeploy infrastructure and check if the DAG finished with no errors:
+13. Redeploy infrastructure and check if the DAG finished with no errors:
 
     ***The screenshot of Apache Aiflow UI***
