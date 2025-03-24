@@ -91,21 +91,8 @@ If you see a warning like this -- please enable the workflows:
 ...and repush your changes!
 
 Once all Pull Requests checks **have passed** please merge your PR and wait until your release job finishes.
-7. Navigate to the Vertex AI Workbench menu item, find your notebook on the list, press **CONNECT** and follow
-the instructions
-![img.png](doc/figures/workbench.png)
 
-8. Check if `pyspark` kernel exists - if not then in your Jupyterlab enviroment add Python3.8 kernel:
-```bash
-python3.8 -m ipykernel install --user --name pyspark
-```
-9. Run a `Hello-world` PySpark application in a YARN-client mode:
-![img.png](doc/figures/pyspark.png)
-
-10. **Workshop 2** exercises are described in [Jupyter notebook](notebooks/workshop_2_mlops.ipynb)
-
-
-11. **IMPORTANT**
+7. **IMPORTANT**
 :exclamation: :exclamation: :exclamation: Please remember to **destroy all** the resources after the workshop:
 
 ```bash
