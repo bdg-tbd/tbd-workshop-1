@@ -44,23 +44,26 @@ No modules.
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.9.0 |
-| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.44.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.11.0 |
+| <a name="requirement_google"></a> [google](#requirement\_google) | ~> 6.26.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
+| <a name="provider_google"></a> [google](#provider\_google) | 6.26.0 |
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_budget"></a> [budget](#module\_budget) | terraform-google-modules/project-factory/google//modules/budget | 18.0.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
+| [google_monitoring_notification_channel.notification_channel](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/monitoring_notification_channel) | resource |
 | [google_project.tbd_project](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project) | resource |
 | [google_project_iam_audit_config.tbd_project_audit](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_audit_config) | resource |
 | [google_project_iam_member.tbd-editor-member](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/project_iam_member) | resource |
@@ -74,6 +77,9 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | Billing account a project is attached to | `string` | n/a | yes |
+| <a name="input_budget_amount"></a> [budget\_amount](#input\_budget\_amount) | Budget amount | `number` | `100` | no |
+| <a name="input_budget_channels"></a> [budget\_channels](#input\_budget\_channels) | Budget notification channels | `map(string)` | <pre>{<br/>  "marek-wiewiorka": "marek.wiewiorka@gmail.com"<br/>}</pre> | no |
+| <a name="input_budget_thresholds"></a> [budget\_thresholds](#input\_budget\_thresholds) | Budget thresholds | `list(number)` | <pre>[<br/>  0.1,<br/>  0.3,<br/>  0.5,<br/>  0.7,<br/>  0.9<br/>]</pre> | no |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 | <a name="input_tbd_semester"></a> [tbd\_semester](#input\_tbd\_semester) | TBD semester | `string` | n/a | yes |
 | <a name="input_user_id"></a> [user\_id](#input\_user\_id) | TBD project group id | `number` | n/a | yes |

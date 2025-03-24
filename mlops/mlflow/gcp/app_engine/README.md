@@ -5,7 +5,7 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.9.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.11.0 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.44.0 |
 | <a name="requirement_google-beta"></a> [google-beta](#requirement\_google-beta) | ~> 5.44.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | 3.1.2 |
@@ -14,8 +14,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
-| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 5.23.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
+| <a name="provider_google-beta"></a> [google-beta](#provider\_google-beta) | 5.44.2 |
 | <a name="provider_random"></a> [random](#provider\_random) | 3.1.2 |
 
 ## Modules
@@ -52,7 +52,7 @@ No modules.
 | <a name="input_env"></a> [env](#input\_env) | n/a | `string` | n/a | yes |
 | <a name="input_machine_type"></a> [machine\_type](#input\_machine\_type) | n/a | `string` | `"db-g1-small"` | no |
 | <a name="input_mlflow_docker_image_uri"></a> [mlflow\_docker\_image\_uri](#input\_mlflow\_docker\_image\_uri) | TBD | `string` | n/a | yes |
-| <a name="input_network"></a> [network](#input\_network) | TBD | <pre>object({ network_id = string<br>  network_name = string })</pre> | n/a | yes |
+| <a name="input_network"></a> [network](#input\_network) | TBD | <pre>object({ network_id = string<br/>  network_name = string })</pre> | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | n/a | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | n/a | `string` | n/a | yes |
 | <a name="input_project_number"></a> [project\_number](#input\_project\_number) | n/a | `string` | n/a | yes |

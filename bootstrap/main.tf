@@ -32,6 +32,8 @@ resource "google_project_service" "tbd-service" {
   project                    = google_project.tbd_project.project_id
   disable_dependent_services = true
   for_each = toset([
+    "billingbudgets.googleapis.com",
+    "monitoring.googleapis.com",
     "cloudresourcemanager.googleapis.com",
     "iam.googleapis.com",
     "iamcredentials.googleapis.com",
@@ -86,4 +88,35 @@ resource "google_storage_bucket" "tbd-state-bucket" {
   #checkov:skip=CKV_GCP_29: "Ensure that Cloud Storage buckets have uniform bucket-level access enabled"
   #checkov:skip=CKV_GCP_78: "Ensure Cloud storage has versioning enabled"
   public_access_prevention = "enforced"
+}
+
+
+resource "google_monitoring_notification_channel" "notification_channel" {
+  depends_on = [google_project_service.tbd-service]
+  for_each   = var.budget_channels
+
+  project      = local.project
+  display_name = each.key
+  type         = "email"
+
+  labels = {
+    email_address = each.value
+  }
+}
+
+
+
+module "budget" {
+
+  source  = "terraform-google-modules/project-factory/google//modules/budget"
+  version = "18.0.0"
+
+  projects               = [local.project]
+  billing_account        = var.billing_account
+  amount                 = var.budget_amount
+  display_name           = "budget-${local.project}"
+  alert_spent_percents   = var.budget_thresholds
+  credit_types_treatment = "EXCLUDE_ALL_CREDITS"
+
+  monitoring_notification_channels = values(google_monitoring_notification_channel.notification_channel)[*].id
 }
