@@ -14,7 +14,7 @@ to Google Cloud.
 ## Prerequisites
 ### Software
 * Google Cloud SDK
-* terraform ~> 1.9.0
+* terraform ~> 1.11.0 
 * gsutil
 * pre-commit
 * Terraform ( [Requirements](#Requirements) )
@@ -35,13 +35,16 @@ gcloud auth application-default login
 0. Fork this repository to your own Github account.
 1. Export shared environment variables
 ```bash
-export TF_VAR_tbd_semester=2024L
+export TF_VAR_tbd_semester=2025L
 # format: 20xx for teachers, student ID number for students 
 export TF_VAR_user_id=9900
 # use your own billing account id
 export TF_VAR_billing_account=01F44C-CA9C7E-587C25
-
+# for budget creation
+export USER_PROJECT_OVERRIDE=true
+export GOOGLE_BILLING_PROJECT=$(echo "tbd-${TF_VAR_tbd_semester}-${TF_VAR_user_id}" | tr '[:upper:]' '[:lower:]')
 ```
+
 2. Enter `bootstrap` folder then init project and Terraform state bucket
 ```bash
 cd bootstrap
@@ -114,7 +117,7 @@ terraform destroy -no-color -var-file env/project.tfvars
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.9.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.11.0 |
 | <a name="requirement_docker"></a> [docker](#requirement\_docker) | 3.0.2 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.44.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.24.0 |
@@ -123,7 +126,7 @@ terraform destroy -no-color -var-file env/project.tfvars
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | ~> 5.44.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.24.0 |
 
 ## Modules

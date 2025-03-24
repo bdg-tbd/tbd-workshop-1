@@ -3,14 +3,14 @@
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.9.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.11.0 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.44.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_google"></a> [google](#provider\_google) | 5.23.0 |
+| <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
 
 ## Modules
 
@@ -36,7 +36,7 @@
 | <a name="input_env_name"></a> [env\_name](#input\_env\_name) | Composer env name | `string` | `"demo-lab"` | no |
 | <a name="input_env_size"></a> [env\_size](#input\_env\_size) | Environment size | `string` | `"ENVIRONMENT_SIZE_SMALL"` | no |
 | <a name="input_env_variables"></a> [env\_variables](#input\_env\_variables) | Apache Airflow variables to set | `map(string)` | n/a | yes |
-| <a name="input_image_version"></a> [image\_version](#input\_image\_version) | n/a | `string` | `"composer-2.6.1-airflow-2.5.3"` | no |
+| <a name="input_image_version"></a> [image\_version](#input\_image\_version) | n/a | `string` | `"composer-2.11.5-airflow-2.9.3"` | no |
 | <a name="input_network"></a> [network](#input\_network) | VPC to use for notebooks | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
