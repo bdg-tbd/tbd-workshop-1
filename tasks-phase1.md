@@ -4,17 +4,19 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   ***TBD Group 3***
 
-   ***link to forked repo***
+   [***link to forked repo***](https://github.com/rafauoo/tbd-workshop-1)
    
 2. Follow all steps in README.md.
 
 3. In boostrap/variables.tf add your emails to variable "budget_channels".
+   ![obraz](https://github.com/user-attachments/assets/99441767-61ae-4ab7-9cb9-f579d1cf9d8a)
 
-4. From avaialble Github Actions select and run destroy on main branch.
-   
-5. Create new git branch and:
+5. From avaialble Github Actions select and run destroy on main branch.
+   ![obraz](https://github.com/user-attachments/assets/7d5b5073-a85f-436f-aeb5-f76cac6c1c1a)
+
+6. Create new git branch and:
     1. Modify tasks-phase1.md file.
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
@@ -22,15 +24,15 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     ***place the screenshot from GA after succesfull application of release***
 
 
-6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+7. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
    
-7. Reach YARN UI
+8. Reach YARN UI
    
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
    
-8. Draw an architecture diagram (e.g. in draw.io) that includes:
+9. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
     3. List of buckets for disposal
@@ -38,7 +40,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
   
     ***place your diagram here***
 
-9. Create a new PR and add costs by entering the expected consumption into Infracost
+10. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
@@ -46,17 +48,17 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    ***place the screenshot from infracost output here***
 
-10. Create a BigQuery dataset and an external table using SQL
+11. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
    
     ***why does ORC not require a table schema?***
 
-11. Find and correct the error in spark-job.py
+12. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-12. Add support for preemptible/spot instances in a Dataproc cluster
+13. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     
