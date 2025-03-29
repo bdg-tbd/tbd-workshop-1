@@ -18,7 +18,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 6. Create new git branch and:
     1. Modify tasks-phase1.md file.
-    
+        ![obraz](https://github.com/user-attachments/assets/505f6a80-cb8f-41a7-a227-7f4b3f114a3f)
+
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
     ***place the screenshot from GA after succesfull application of release***
