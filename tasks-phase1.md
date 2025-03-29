@@ -4,9 +4,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   Group 5
+   Sypuła Aleksandra
+   Szarejko Łukasz
+   Wasilewski Mateusz
 
-   ***link to forked repo***
+   https://github.com/WasilewM/25L-TBD-workshop-1.git
    
 2. Follow all steps in README.md.
 

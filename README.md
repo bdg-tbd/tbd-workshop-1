@@ -58,8 +58,8 @@ cd ..
 ![img.png](doc/figures/bootstrap-output.png)
 * Edit `cicd_bootstrap/conf/github_actions.tfvars` to set `github_org` and `github_repo`, e.g.:
 ```text
-  github_org  = "mwiewior"
-  github_repo = "tbd-workshop-1"
+  github_org  = "WasilewM"
+  github_repo = "25L-TBD-workshop-1"
 ```
 * Init state file and set env variables
 ```bash
