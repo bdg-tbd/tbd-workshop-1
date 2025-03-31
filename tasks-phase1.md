@@ -4,9 +4,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   ***14***
 
-   ***link to forked repo***
+   ***https://github.com/kenjakendi/tbd-workshop-1/***
    
 2. Follow all steps in README.md.
 
