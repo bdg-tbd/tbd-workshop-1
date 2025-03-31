@@ -37,9 +37,9 @@ gcloud auth application-default login
 ```bash
 export TF_VAR_tbd_semester=2025L
 # format: 20xx for teachers, student ID number for students 
-export TF_VAR_user_id=9900
+export TF_VAR_user_id=xxx
 # use your own billing account id
-export TF_VAR_billing_account=01F44C-CA9C7E-587C25
+export TF_VAR_billing_account=xxx
 # for budget creation
 export USER_PROJECT_OVERRIDE=true
 export GOOGLE_BILLING_PROJECT=$(echo "tbd-${TF_VAR_tbd_semester}-${TF_VAR_user_id}" | tr '[:upper:]' '[:lower:]')
@@ -49,9 +49,19 @@ export GOOGLE_BILLING_PROJECT=$(echo "tbd-${TF_VAR_tbd_semester}-${TF_VAR_user_i
 ```bash
 cd bootstrap
 terraform init
+gcloud config set account "aleksandra.sypula@gmail.com"
+gcloud config set project "tbd-2025l-309421"
+terraform import google_project.tbd_project projects/tbd-2025l-309421
 terraform apply
 cd ..
 ```
+
+In order to destroy the resources:
+```bash
+terraform state rm google_project.tbd_project
+terraform destroy
+```
+
 3. CI/CD (Github Actions setup using [Workload Identity Federation](https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions))
 * Edit `env/backend.tfvars` file and set `bucket` variable with the Terraform state bucket
 * Edit `env/project.tfvars` file and set `project_name`, `iac_service_account` variables using the output from the `bootstrap` phase, e.g.:
