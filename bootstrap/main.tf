@@ -32,6 +32,7 @@ resource "google_project_service" "tbd-service" {
   project                    = google_project.tbd_project.project_id
   disable_dependent_services = true
   for_each = toset([
+    "cloudbilling.googleapis.com",
     "billingbudgets.googleapis.com",
     "monitoring.googleapis.com",
     "cloudresourcemanager.googleapis.com",
@@ -107,9 +108,12 @@ resource "google_monitoring_notification_channel" "notification_channel" {
 
 
 module "budget" {
-
-  source  = "terraform-google-modules/project-factory/google//modules/budget"
-  version = "18.0.0"
+  providers = {
+    google = google.billing
+  }
+  depends_on = [google_project_service.tbd-service, google_project.tbd_project]
+  source     = "terraform-google-modules/project-factory/google//modules/budget"
+  version    = "18.0.0"
 
   projects               = [local.project]
   billing_account        = var.billing_account
