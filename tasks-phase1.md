@@ -4,10 +4,12 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   Izabela Lengiewicz, Katarzyna Zaleska, Katarzyna Witowska
 
-   ***link to forked repo***
-   
+   **Group number** - 11
+
+   **Repository link** - https://github.com/IzabelaLee/tbd-zespol-11
+
 2. Follow all steps in README.md.
 
 3. In boostrap/variables.tf add your emails to variable "budget_channels".
