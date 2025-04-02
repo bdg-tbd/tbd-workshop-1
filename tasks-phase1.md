@@ -4,15 +4,23 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
-
-   ***link to forked repo***
+   Group number: 12
+   Repository: https://github.com/bujniasz/tbd-workshop-1
+   Authors:
+   - Aleksander Bujnowski
+   - Bartłomiej Krajewski
+   - Krzysztof Kluczyński
    
 2. Follow all steps in README.md.
 
 3. In boostrap/variables.tf add your emails to variable "budget_channels".
 
+![img.png](doc/figures/budget_channels.png)
+
+
 4. From avaialble Github Actions select and run destroy on main branch.
+
+![img.png](doc/figures/destroy_passed.png)
    
 5. Create new git branch and:
     1. Modify tasks-phase1.md file.
