@@ -4,10 +4,10 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   groupr nr: **z4**
 
-   ***link to forked repo***
-   
+   repo: (github)[https://github.com/MikolajSzawerda/tbd-workshop-1]
+
 2. Follow all steps in README.md.
 
 3. In boostrap/variables.tf add your emails to variable "budget_channels".
