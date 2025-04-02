@@ -41,7 +41,6 @@ export TF_VAR_user_id=9900
 # use your own billing account id
 export TF_VAR_billing_account=01F44C-CA9C7E-587C25
 # for budget creation
-export USER_PROJECT_OVERRIDE=true
 export GOOGLE_BILLING_PROJECT=$(echo "tbd-${TF_VAR_tbd_semester}-${TF_VAR_user_id}" | tr '[:upper:]' '[:lower:]')
 ```
 
