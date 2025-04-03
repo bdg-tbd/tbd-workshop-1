@@ -4,9 +4,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   310866
 
-   ***link to forked repo***
+   [***link to forked repo***](https://github.com/MariuszPaluch2001/TBD-project)
    
 2. Follow all steps in README.md.
 
@@ -20,6 +20,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
     ***place the screenshot from GA after succesfull application of release***
+![img.png](doc/figures/task-phase1-release-destroy-screen.png)
 
 
 6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
