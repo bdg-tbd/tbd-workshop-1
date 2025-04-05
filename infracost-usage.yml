@@ -1,4 +1,4 @@
-version: 1.0
+version: 0.1
 resource_usage:
   google_artifact_registry_repository.registry:
     storage_gb: 50 # Total data stored in the repository in GB
