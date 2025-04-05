@@ -44,8 +44,32 @@ For all the resources of type: `google_artifact_registry`, `google_storage_bucke
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
    ***place the expected consumption you entered here***
+  ```yaml
+    version: 0.1
+    resource_usage:
+    google_artifact_registry_repository.registry:
+        storage_gb: 50 # Total data stored in the repository in GB
+    google_storage_bucket.tbd_data_bucket:
+        storage_gb: 150                   # Total size of bucket in GB.
+        monthly_class_a_operations: 4000 # Monthly number of class A operations (object adds, bucket/object list).
+        monthly_class_b_operations: 2000 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+        monthly_egress_data_transfer_gb:  # Monthly data transfer from Cloud Storage to the following, in GB:
+        same_continent: 40  # Same continent.
+        worldwide: 40     # Worldwide excluding Asia, Australia.
+        asia: 10           # Asia excluding China, but including Hong Kong.
+        china: 10            # China excluding Hong Kong.
+        australia: 10       # Australia.
+    google_storage_bucket.tbd_code_bucket:
+        storage_gb: 100
+        monthly_class_a_operations: 1000
+        monthly_class_b_operations: 500
+        monthly_egress_data_transfer_gb: 100
+    google_service_networking_connection.my_connection:
+        monthly_egress_data_transfer_gb:  250
+  ```
 
    ***place the screenshot from infracost output here***
+![img.png](doc/figures/infracost-output.png)
 
 10. Create a BigQuery dataset and an external table using SQL
     
