@@ -4,9 +4,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   ***Zespół 7***
 
-   ***link to forked repo***
+   ***https://github.com/KarolZebala/tbd-workshop-1-z7https://github.com/KarolZebala/tbd-workshop-1-z7***
    
 2. Follow all steps in README.md.
 
