@@ -6,8 +6,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
    Group nr.: 8
    - Aleksander Świniarski (309423)
-   - Marta Sobol ()
-   - Magda Kalińska ()
+   - Marta Sobol (318723)
+   - Magdalena Kalińska (310242)
 
    [Forked Repo](https://github.com/AleksanderSwiniarski/tbd-workshop-1)
 
