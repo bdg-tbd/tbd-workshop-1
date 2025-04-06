@@ -173,9 +173,5 @@ jobs:
                                    --github-token=${{secrets.GITHUB_TOKEN}} \
                                    --pull-request=${{github.event.pull_request.number}} \
                                    --behavior=update
-    - name: Upload Infracost baseline as artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: infracost-base
-        path: /tmp/infracost-base.json
+
 
