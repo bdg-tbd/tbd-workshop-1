@@ -73,6 +73,8 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 10. Create a BigQuery dataset and an external table using SQL
     
+    apply resources
+
     ***place the code and output here***
    
     ***why does ORC not require a table schema?***
