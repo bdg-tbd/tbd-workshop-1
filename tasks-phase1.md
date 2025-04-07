@@ -37,6 +37,35 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     2. Description of the components of service accounts
     3. List of buckets for disposal
     4. Description of network communication (ports, why it is necessary to specify the host for the driver) of Apache Spark running from Vertex AI Workbech
+
+    ***Service Account Components:***
+
+    - Terraform Service Account (Terraform SA):
+    This account allows Terraform to authenticate with the cloud provider and manage infrastructure resources. It grants Terraform the necessary permissions to create, modify, and delete cloud components.
+
+    - Google Cloud Composer Service Account (Composer SA):
+    Used by Google Cloud Composer to orchestrate workflows. This service account enables access to other Google Cloud services like Cloud Storage and BigQuery, which are essential for running DAGs and handling data processing tasks.
+
+    - Infrastructure as Code Service Account (IaC SA):
+    Utilized by infrastructure automation tools to provision and manage cloud infrastructure. In our setup, this account is used within GitHub Actions to authenticate and perform tasks such as deploying infrastructure automatically when changes are merged into the main branch.
+
+    ***List of buckets for disposal***
+
+    - code-bucket
+    - data-bucket
+    - notebook-conf
+
+    ***Network Communication***
+
+    - Coordinating Resources: The driver communicates with the cluster’s master node to manage and assign resources across the workers. Clearly specifying the host makes sure this connection can happen reliably.
+
+    - Managing Task Execution: The driver is responsible for breaking down the application into tasks and assigning them to the worker nodes. Knowing the driver's address helps streamline this process and maintain proper control over execution.
+
+    - Ensuring Stability: If something goes wrong during execution, the system must know where the driver is running in order to recover tasks or reassign work, helping maintain stability and uptime.
+
+    - Optimizing Data Transfer: To allow efficient communication and data movement between nodes, the system needs to understand the network structure — including the driver's location within it.
+
+
   
     ***place your diagram here***
 
@@ -44,15 +73,32 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   ***place the expected consumption you entered here***
+    **Command**
 
-   ***place the screenshot from infracost output here***
+    infracost breakdown --path=plan.json --usage-file=infracost-usage.yml
+
+   **infracost-usage.yml:**
+
+   ![alt text](image.png)
+
+   **output:**
+
+   ![alt text](image-1.png)
 
 10. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
+    **SQL Query:**
+
+    ![alt text](image-2.png)
+
+    **output:**
+
+    ![alt text](image-3.png)
    
-    ***why does ORC not require a table schema?***
+    **Why does ORC not require a table schema?**
+
+    ORC files embed the table schema directly in their file footer, along with metadata like column types, row count, and statistics. Because of this, tools like BigQuery can automatically detect the schema when reading ORC files, removing the need to manually define it in many cases — especially when using schema autodetection.
+
 
 11. Find and correct the error in spark-job.py
 
@@ -62,4 +108,6 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***place the link to the modified file and inserted terraform code***
     
+
+
     
