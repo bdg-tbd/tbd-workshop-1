@@ -22,6 +22,7 @@ jobs:
       name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v1'
       with:
+        project_id: 'tbd-2025l-310269'
         token_format: 'access_token'
         workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
         service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
