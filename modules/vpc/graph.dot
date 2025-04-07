@@ -1,0 +1,43 @@
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  "google_compute_firewall.default-internal-allow-all" [label="google_compute_firewall.default-internal-allow-all"];
+  "google_compute_firewall.fw-allow-ingress-from-iap" [label="google_compute_firewall.fw-allow-ingress-from-iap"];
+  subgraph "cluster_module.cloud-router" {
+    label = "module.cloud-router"
+    fontname = "sans-serif"
+    "module.cloud-router.google_compute_router.router" [label="google_compute_router.router"];
+    "module.cloud-router.google_compute_router_nat.nats" [label="google_compute_router_nat.nats"];
+  }
+  subgraph "cluster_module.vpc.module.firewall_rules" {
+    label = "module.vpc.module.firewall_rules"
+    fontname = "sans-serif"
+    "module.vpc.module.firewall_rules.google_compute_firewall.rules" [label="google_compute_firewall.rules"];
+    "module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress" [label="google_compute_firewall.rules_ingress_egress"];
+  }
+  subgraph "cluster_module.vpc.module.routes" {
+    label = "module.vpc.module.routes"
+    fontname = "sans-serif"
+    "module.vpc.module.routes.google_compute_route.route" [label="google_compute_route.route"];
+  }
+  subgraph "cluster_module.vpc.module.subnets" {
+    label = "module.vpc.module.subnets"
+    fontname = "sans-serif"
+    "module.vpc.module.subnets.google_compute_subnetwork.subnetwork" [label="google_compute_subnetwork.subnetwork"];
+  }
+  subgraph "cluster_module.vpc.module.vpc" {
+    label = "module.vpc.module.vpc"
+    fontname = "sans-serif"
+    "module.vpc.module.vpc.google_compute_network.network" [label="google_compute_network.network"];
+    "module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host" [label="google_compute_shared_vpc_host_project.shared_vpc_host"];
+  }
+  "google_compute_firewall.default-internal-allow-all" -> "module.vpc.module.vpc.google_compute_network.network";
+  "google_compute_firewall.fw-allow-ingress-from-iap" -> "module.vpc.module.vpc.google_compute_network.network";
+  "module.cloud-router.google_compute_router.router" -> "module.vpc.module.vpc.google_compute_network.network";
+  "module.cloud-router.google_compute_router_nat.nats" -> "module.cloud-router.google_compute_router.router";
+  "module.vpc.module.firewall_rules.google_compute_firewall.rules" -> "module.vpc.module.vpc.google_compute_network.network";
+  "module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress" -> "module.vpc.module.vpc.google_compute_network.network";
+  "module.vpc.module.routes.google_compute_route.route" -> "module.vpc.module.subnets.google_compute_subnetwork.subnetwork";
+  "module.vpc.module.subnets.google_compute_subnetwork.subnetwork" -> "module.vpc.module.vpc.google_compute_network.network";
+  "module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host" -> "module.vpc.module.vpc.google_compute_network.network";
+}
