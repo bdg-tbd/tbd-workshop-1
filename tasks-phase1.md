@@ -25,6 +25,10 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
+    ```bash
+    terraform graph -type=plan | dot -Tpng >graph.png
+    ```
+
     ***describe one selected module and put the output of terraform graph for this module here***
    
 7. Reach YARN UI
