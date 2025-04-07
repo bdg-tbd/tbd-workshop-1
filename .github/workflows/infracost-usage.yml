@@ -1,13 +1,12 @@
 version: 0.1
+
 resource_usage:
-  google_storage_bucket.tbd-state-bucket":
-    storage_gb: 150
-    monthly_class_a_operations: 40000
-    monthly_class_b_operations: 20000
-    monthly_data_retrieval_gb: 500
+  module.gcp_mlflow_appengine.google_service_networking_connection.private_vpc_connection:
     monthly_egress_data_transfer_gb:
-      same_continent: 550
-      worldwide: 12500
-      asia: 1500
-      china: 50
-      australia: 250
+     same_region: 25
+    
+  module.gcp_mlflow_appengine.google_storage_bucket.mlflow_artifacts_bucket:
+    storage_gb: 50
+
+  module.gcr.google_artifact_registry_repository.registry:
+    storage_gb: 10

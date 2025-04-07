@@ -43,8 +43,13 @@ For all the resources of type: `google_artifact_registry`, `google_storage_bucke
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
    ***place the expected consumption you entered here***
+   Zmieniony config w infracost-usage.yml
+   ![img.png](doc/figures/ingracost/infracost-config.png)
+   ***place the screenshot from infracost output here***'
+   Wyniki odpalenia lokalnie `infracost breakdown --path=. --usage-file=.github/workflows/infracost-usage.yml`
+   ![img.png](doc/figures/ingracost/infracost-wynik.png)
 
-   ***place the screenshot from infracost output here***
+   Dodano równie w cicd podsumowanie - trzeba było wskazać na plik infracost-usage.yml oraz na Githubie dodać klucz do api jako sekret `INFRACOST_API_KEY`
 
 10. Create a BigQuery dataset and an external table using SQL
     
