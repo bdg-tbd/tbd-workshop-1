@@ -42,9 +42,17 @@ Zależności w tym module przedstawia poniższy graf:
 ![vpc-graph.jpg](doc/figures/vpc-graph.jpg)
 
 7. Reach YARN UI
-   
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
-   
+    
+Tunel ustawiono przy urzyciu komendy:
+```
+bash gcloud compute ssh cluster-tbd1-m \ 
+--project=tbd-2025l-313577 \ 
+--zone=europe-west1-b \ 
+-- -L 8088:localhost:8088 
+```
+
+![yarn.jpg](doc/figures/yarn.jpg)
+
 8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
     2. Description of the components of service accounts
