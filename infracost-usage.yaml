@@ -1,0 +1,26 @@
+version: 1
+resource_usage:
+  google_artifact_registry_repository:
+    storage_gb: 32
+    monthly_egress_data_transfer_gb:
+      europe_west1: 8
+  google_storage_bucket:
+    storage_gb: 128
+    monthly_class_a_operations: 4096
+    monthly_class_b_operations: 8192
+    monthly_data_retrieval_gb: 64
+    monthly_egress_data_transfer_gb:
+      same_continent: 32
+      worldwide: 32
+      asia: 0
+      china: 0
+      australia: 0
+  google_service_networking_connection:
+    monthly_egress_data_transfer_gb:
+      same_region: 32
+      worldwide: 32
+      europe: 32
+      us_or_canada: 0
+      asia: 0
+      south_america: 0
+      oceania: 0
