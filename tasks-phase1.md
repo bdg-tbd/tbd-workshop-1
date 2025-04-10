@@ -24,34 +24,34 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 6. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-W ramach analizy wybrany został moduł `vpc`, odpowiedzialny za utworzenie podstawowej infrastruktury sieciowej w 
-projekcie GCP.
+   W ramach analizy wybrany został moduł `vpc`, odpowiedzialny za utworzenie podstawowej infrastruktury sieciowej w 
+   projekcie GCP.
 
-Zasoby tworzone przez ten moduł to:
-- `google_compute_network.network` – główna sieć VPC.
-- `google_compute_subnetwork.subnetwork` – jedna lub więcej podsieci (moduł `subnets`).
-- `google_compute_firewall.rules` – reguły firewalla dla ruchu przychodzącego i wychodzącego (`module.firewall_rules`).
-- `google_compute_firewall.default-internal-allow-all` – domyślna reguła dopuszczająca ruch wewnątrz sieci.
-- `google_compute_firewall.fw-allow-ingress-from-iap` – pozwala na dostęp z IAP (Identity-Aware Proxy).
-- `google_compute_shared_vpc_host_project.shared_vpc_host` – ustawia projekt jako host dla Shared VPC.
-- `google_compute_router.router` + `google_compute_router_nat.nats` – umożliwiają dostęp do internetu dla zasobów bez zewnętrznych IP (moduł `cloud-router`).
-- `google_compute_route.route` – niestandardowe trasy (moduł `routes`).
+   Zasoby tworzone przez ten moduł to:
+   - `google_compute_network.network` – główna sieć VPC.
+   - `google_compute_subnetwork.subnetwork` – jedna lub więcej podsieci (moduł `subnets`).
+   - `google_compute_firewall.rules` – reguły firewalla dla ruchu przychodzącego i wychodzącego (`module.firewall_rules`).
+   - `google_compute_firewall.default-internal-allow-all` – domyślna reguła dopuszczająca ruch wewnątrz sieci.
+   - `google_compute_firewall.fw-allow-ingress-from-iap` – pozwala na dostęp z IAP (Identity-Aware Proxy).
+   - `google_compute_shared_vpc_host_project.shared_vpc_host` – ustawia projekt jako host dla Shared VPC.
+   - `google_compute_router.router` + `google_compute_router_nat.nats` – umożliwiają dostęp do internetu dla zasobów bez zewnętrznych IP (moduł `cloud-router`).
+   - `google_compute_route.route` – niestandardowe trasy (moduł `routes`).
 
-Zależności w tym module przedstawia poniższy graf:
-
-![vpc-graph.jpg](doc/figures/vpc-graph.jpg)
+   Zależności w tym module przedstawia poniższy graf:
+   
+   ![vpc-graph.jpg](doc/figures/vpc-graph.jpg)
 
 7. Reach YARN UI
     
-Tunel ustawiono przy urzyciu komendy:
-```
-bash gcloud compute ssh cluster-tbd1-m \ 
---project=tbd-2025l-313577 \ 
---zone=europe-west1-b \ 
--- -L 8088:localhost:8088 
-```
+   Tunel ustawiono przy urzyciu komendy:
+   ```
+   bash gcloud compute ssh cluster-tbd1-m \ 
+   --project=tbd-2025l-313577 \ 
+   --zone=europe-west1-b \ 
+   -- -L 8088:localhost:8088 
+   ```
 
-![yarn.jpg](doc/figures/yarn.jpg)
+   ![yarn.jpg](doc/figures/yarn.jpg)
 
 8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. VPC topology with service assignment to subnets
@@ -70,19 +70,14 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    ***place the screenshot from infracost output here***
 
 10. Create a BigQuery dataset and an external table using SQL
-    
 
     Utworzenie schemy
 
-
     ![create_schema_sql.png](doc/figures/create_schema_sql.png)
-
 
     ![schema_created.png](doc/figures/schema_created.png)
 
-
     Utworzenie tabeli
-
 
     ![create_table_sql.png](doc/figures/create_table_sql.png)
 
@@ -100,22 +95,28 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ![select_result_chart.png](doc/figures/select_result_chart.png)
 
-    ORC jest formatem kolumnowym, który zawiera schemat danych w samym pliku.
+    <br/> 
+    ### ** ORC jest formatem kolumnowym, który zawiera schemat danych w samym pliku. ** 
 
 11. Find and correct the error in spark-job.py
 
-Znaleziono błąd w logach tego joba:
-
-![spark-job-error.jpg](doc/figures/spark-job-error.jpg)
-
-Widnieje tutaj informacja, że "Specified bucket does not exist". Należało 
-poprawić nazwę bucketa w pliku `spark-job.py`, w naszym przypadku na 
-`gs://tbd-2025l-313577-data/data/shakespeare/`. Po uruchomieniu poprawionego joba:
-
-![spark-job-result.jpg](doc/figures/spark-job-result.jpg)
+   Znaleziono błąd w logach tego joba:
+   
+   ![spark-job-error.jpg](doc/figures/spark-job-error.jpg)
+   
+   Widnieje tutaj informacja, że "Specified bucket does not exist". Należało 
+   poprawić nazwę bucketa w pliku `spark-job.py`, w naszym przypadku na 
+   `gs://tbd-2025l-313577-data/data/shakespeare/`. Po uruchomieniu poprawionego joba:
+   
+   ![spark-job-result.jpg](doc/figures/spark-job-result.jpg)
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place the link to the modified file and inserted terraform code***
-    
-    
+   [Zmieniony plik](modules/dataproc/main.tf)
+       
+   Kod dodany do tego pliku:
+   ```
+   preemptible_worker_config {
+     num_instances = 2
+   }
+   ```
