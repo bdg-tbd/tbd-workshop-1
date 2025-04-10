@@ -78,7 +78,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_billing_account"></a> [billing\_account](#input\_billing\_account) | Billing account a project is attached to | `string` | n/a | yes |
 | <a name="input_budget_amount"></a> [budget\_amount](#input\_budget\_amount) | Budget amount | `number` | `100` | no |
-| <a name="input_budget_channels"></a> [budget\_channels](#input\_budget\_channels) | Budget notification channels | `map(string)` | <pre>{<br/>  "marek-wiewiorka": "marek.wiewiorka@gmail.com"<br/>}</pre> | no |
+| <a name="input_budget_channels"></a> [budget\_channels](#input\_budget\_channels) | Budget notification channels | `map(string)` | <pre>{<br/>  "Hubert": "hpogorzelski0@gmail.com",<br/>  "marek-wiewiorka": "marek.wiewiorka@gmail.com"<br/>}</pre> | no |
 | <a name="input_budget_thresholds"></a> [budget\_thresholds](#input\_budget\_thresholds) | Budget thresholds | `list(number)` | <pre>[<br/>  0.1,<br/>  0.3,<br/>  0.5,<br/>  0.7,<br/>  0.9<br/>]</pre> | no |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 | <a name="input_tbd_semester"></a> [tbd\_semester](#input\_tbd\_semester) | TBD semester | `string` | n/a | yes |
