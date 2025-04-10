@@ -77,7 +77,12 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 11. Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+Znaleziono błąd w logach tego joba:
+
+![spark-job-error.jpg](doc/figures/spark-job-error.jpg)
+
+Widnieje tutaj informacja, że "Specified bucket does not exist". Należało 
+poprawić nazwę bucketa w pliku `spark-job.py`.
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
 
