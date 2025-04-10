@@ -96,7 +96,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ![select_result_chart.png](doc/figures/select_result_chart.png)
 
     <br/> 
-    ### ** ORC jest formatem kolumnowym, który zawiera schemat danych w samym pliku. ** 
+    ### **ORC jest formatem kolumnowym, który zawiera schemat danych w samym pliku.** 
 
 11. Find and correct the error in spark-job.py
 
