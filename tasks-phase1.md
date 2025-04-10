@@ -82,7 +82,10 @@ Znaleziono błąd w logach tego joba:
 ![spark-job-error.jpg](doc/figures/spark-job-error.jpg)
 
 Widnieje tutaj informacja, że "Specified bucket does not exist". Należało 
-poprawić nazwę bucketa w pliku `spark-job.py`.
+poprawić nazwę bucketa w pliku `spark-job.py`, w naszym przypadku na 
+`gs://tbd-2025l-313577-data/data/shakespeare/`. Po uruchomieniu poprawionego joba:
+
+![spark-job-result.jpg](doc/figures/spark-job-result.jpg)
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
 
