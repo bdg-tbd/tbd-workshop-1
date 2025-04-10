@@ -71,9 +71,36 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 10. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
-   
-    ***why does ORC not require a table schema?***
+
+    Utworzenie schemy
+
+
+    ![create_schema_sql.png](doc/figures/create_schema_sql.png)
+
+
+    ![schema_created.png](doc/figures/schema_created.png)
+
+
+    Utworzenie tabeli
+
+
+    ![create_table_sql.png](doc/figures/create_table_sql.png)
+
+    ![table_created.png](doc/figures/table_created.png)
+
+    Select z tabeli
+
+    ![select_sql.png](doc/figures/select_sql.png)
+
+    Wyniki
+
+    ![select_result.png](doc/figures/select_result.png)
+
+    Wynik można zobaczyć w różnym formacie, np. histogram
+
+    ![select_result_chart.png](doc/figures/select_result_chart.png)
+
+    ORC jest formatem kolumnowym, który zawiera schemat danych w samym pliku.
 
 11. Find and correct the error in spark-job.py
 
