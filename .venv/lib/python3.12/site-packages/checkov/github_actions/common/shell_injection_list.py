@@ -1,0 +1,20 @@
+# flake8: noqa
+terms = [
+    r"\${{[ ]*github.event.issue.title[ ]*}}",
+    r"\${{[ ]*github.event.issue.body[ ]*}}",
+    r"\${{[ ]*github.event.pull_request.title[ ]*}}",
+    r"\${{[ ]*github.event.pull_request.body[ ]*}}",
+    r"\${{[ ]*github.event.comment.body[ ]*}}",
+    r"\${{[ ]*github.event.review.body[ ]*}}",
+    r"\${{[ ]*github.event.review_comment.body[ ]*}}",
+    r"\${{[ ]*github.event.pages.*.page_name[ ]*}}",
+    r"\${{[ ]*github.event.head_commit.message[ ]*}}",
+    r"\${{[ ]*github.event.head_commit.author.email[ ]*}}",
+    r"\${{[ ]*github.event.head_commit.author.name[ ]*}}",
+    r"\${{[ ]*github.event.commits.*.author.email[ ]*}}",
+    r"\${{[ ]*github.event.commits.*.author.name[ ]*}}",
+    r"\${{[ ]*github.event.pull_request.head.ref[ ]*}}",
+    r"\${{[ ]*github.event.pull_request.head.label[ ]*}}",
+    r"\${{[ ]*github.event.pull_request.head.repo.default_branch[ ]*}}",
+    r"\${{[ ]*github.head_ref[ ]*}}"
+]

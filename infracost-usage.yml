@@ -1,0 +1,52 @@
+version: 0.1
+
+resource_usage:
+  module.gcr.google_artifact_registry_repository.registry:
+    storage_gb: 64
+    monthly_egress_data_transfer_gb:
+      europe_west1: 16
+
+  module.data-pipelines.google_storage_bucket.tbd-code-bucket:
+    storage_gb: 128
+    monthly_class_a_operations: 4096
+    monthly_class_b_operations: 8192
+    monthly_data_retrieval_gb: 32
+    monthly_egress_data_transfer_gb:
+      same_continent: 32
+      worldwide: 8
+      asia: 2
+      china: 1
+      australia: 2
+
+  module.data-pipelines.google_storage_bucket.tbd-data-bucket:
+    storage_gb: 256
+    monthly_class_a_operations: 8192
+    monthly_class_b_operations: 16384
+    monthly_data_retrieval_gb: 64
+    monthly_egress_data_transfer_gb:
+      same_continent: 64
+      worldwide: 16
+      asia: 4
+      china: 2
+      australia: 4
+
+  module.vertex_ai_workbench.google_storage_bucket.notebook-conf-bucket:
+    storage_gb: 64
+    monthly_class_a_operations: 1024
+    monthly_class_b_operations: 2048
+    monthly_egress_data_transfer_gb:
+      same_continent: 8
+      worldwide: 2
+      asia: 1
+      china: 1
+      australia: 1
+
+  module.gcp_mlflow_appengine.google_service_networking_connection.private_vpc_connection:
+    monthly_egress_data_transfer_gb:
+      same_region: 64
+      europe: 32
+      us_or_canada: 8
+      asia: 4
+      south_america: 2
+      oceania: 1
+      worldwide: 4

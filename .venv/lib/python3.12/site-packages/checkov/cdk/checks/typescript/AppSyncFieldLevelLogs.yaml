@@ -1,0 +1,28 @@
+metadata:
+  version: 0.2
+  approach: define failing
+  id: CKV_AWS_194
+  name: Ensure AppSync has Field-Level logs enabled
+  category: LOGGING
+  framework: cdk
+scope:
+  languages:
+    - typescript
+definition:
+  patterns:
+    or:
+    - pattern: |
+        const $logConfig: $IMPORT.LogConfig = $CONFIG;
+    - pattern: |
+        new $IMPORT.GraphqlApi($ARG1, $ARG2, {<ANY>, logConfig: $CONFIG, <ANY>});
+  conditions:
+    - or:
+      - metavariable: $CONFIG
+        not_pattern: |
+          {<ANY>, fieldLogLevel: $ARG, <ANY> }
+      - metavariable:  $CONFIG
+        pattern: |
+          {<ANY>, fieldLogLevel: $ARG, <ANY> }
+        conditions:
+          - metavariable: $ARG
+            regex: (NONE)
