@@ -1,0 +1,84 @@
+[33m9d53f3c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/phase1[m[33m, [m[1;31morigin/feature/phase1[m[33m, [m[1;31morigin/feature/actions[m[33m, [m[1;32mfeature/actions[m[33m)[m next push
+[33m15e9dc8[m actions added
+[33m4481e6c[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m WIF fix (#163)
+[33m89ec0bb[m Budget fix (#162)
+[33mb38a021[m Update README.md
+[33m8cd5149[m Update tasks-phase1.md
+[33m26ec401[m feat: 2025L updates (#158)
+[33mc6a53f4[m 2025z-doc-update (#127) (#137)
+[33m615a953[m 2025z-doc-update (#127)
+[33m20f0fe6[m feat: 2025z updates (#125)
+[33meb5c492[m Update README-phase-2a.md (#93)
+[33m7147d47[m fix:Resolving protobuf error in dbt-core (#90)
+[33mc311993[m feat: Bumping versions of gcp modules and provider (#78)
+[33mafc21ee[m Update tasks-phase1.md
+[33m4197517[m Phase2 (#74)
+[33mca15f2d[m fix: Bump version (#73)
+[33mcd39e04[m Bumping to v1.0.35 (#72)
+[33m9fc07e9[m Fixing command in dbt dag (#71)
+[33m4d79ffe[m feat: git repo dbt (#70)
+[33m3af9974[m Network diagram update (#68)
+[33m9236cc0[m Fixing documentation (#67)
+[33m19024b6[m fix: Composer GKE networking (#66)
+[33m940a661[m Update README-phase-2a.md
+[33mf8bb1c7[m Update README-phase-2a.md
+[33m0bb074b[m feat: Phase 2a manual (#65)
+[33m823d897[m fix: kubernetespodoperator image (#64)
+[33mf82e914[m Feat: dbt composer (#63)
+[33m726fb7e[m feat: dbt-core image (#62)
+[33m8d1a98b[m Feat/mw tasks (#61)
+[33mce1816d[m Fixing Global DNS problem for Jupyter (#57)
+[33m165a17d[m Fix: Bucket protection (#56)
+[33m4222e7f[m Feature: Composer with a demo pipeline (#55)
+[33m28cec58[m feat: Composer (#53)
+[33md548545[m feat: TBD2023Z - version bumping (#52)
+[33m3e22c95[m feat: test PR (#51)
+[33m6cf2d74[m feat: Add scenario README.md (#48)
+[33mc731b50[m feat: infracost for PR (#47)
+[33mcca0e27[m feat: Doc update for deps and expose port 8080 (#46)
+[33maef1715[m fix security_opt in docker-compose.yml (#41)
+[33me1c03e7[m feat: docker build only if needed (#45)
+[33mb576ff8[m fix: Terraform version for destroy (#38)
+[33m75f7489[m Readme update (#37)
+[33m83ada74[m fix: Image build (#36)
+[33m1bd6c78[m feat: Development environment (#35)
+[33md9a03a2[m fix: destroy (#34)
+[33m5f63c63[m Feature/ii workshop (#33)
+[33m56c8532[m Merge pull request #32 from bdg-tbd/workshop_3_spark
+[33m0a759f9[m Add workshop_3_spark.ipynb
+[33m510f37b[m fix: role sa (#31)
+[33m67adce7[m feat: mlflow setup (#30)
+[33mb818a12[m feat:mlflow support (#29)
+[33mac1f9a8[m feat: Doc update (#28)
+[33m73c655d[m fix: reduce disk size (#27)
+[33m74bd884[m feat: Doc updates and Spark WebUI (#26)
+[33m4c2cfea[m fix: setting PYSPARK_DRIVER_PYTHON (#25)
+[33m6081fc1[m feat: post-startup (#24)
+[33m8e08a8c[m fix: Python version comaptibility (#23)
+[33m0e653f3[m fix:docker spark ports (#22)
+[33m598d147[m fix: spark ports (#21)
+[33ma0c9da1[m feat: dataproc support (#20)
+[33m2842187[m fix repo
+[33mda7cffb[m Merge pull request #2 from mwiewior/feat/documentaion-update
+[33m795f15b[m fix: notebook documentation update
+[33mbcc805d[m Merge pull request #1 from mwiewior/dry-run
+[33m977b59a[m fix: documentation secrets
+[33m35476fa[m fix: checkov debug
+[33ma9e6d6e[m fix: checkov debug
+[33mcf80ea8[m feat: Bootstrap project and CICD
+[33me418509[m feat: Bootstrap project and CICD
+[33m4048504[m feat: checkov ga (#17)
+[33mba13a5b[m feat: workshop tasks (#16)
+[33ma030bae[m feat: notebooks (#13)
+[33m4a31568[m feat: Delete source branch on PR merge
+[33m924ba2b[m resolve conflict (#12)
+[33m381734b[m fix: semantic-release bump (#11)
+[33m99b762a[m Feat/network (#10)
+[33mc864d12[m fix: release-6 (#9)
+[33m0d644fe[m fix: release-5 (#8)
+[33mf864f76[m fix: release-4 (#6)
+[33m5d282ea[m fix: release-3 (#5)
+[33m780a8c7[m fix:release-2 (#4)
+[33ma229640[m fix: release (#2)
+[33m4d54935[m feat: CI/CD step configuration (#1)
+[33m31e291a[m Initial commit
