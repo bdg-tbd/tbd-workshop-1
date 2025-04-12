@@ -57,6 +57,8 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ***describe the cause and how to find the error***
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
+![image](https://github.com/user-attachments/assets/f7f9bcab-68ec-4d60-b3b3-8ab3c8a79359)
+![image](https://github.com/user-attachments/assets/1984f661-966a-42a2-bf4a-c667d311d9a2)
 
     ***place the link to the modified file and inserted terraform code***
     
