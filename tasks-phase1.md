@@ -63,7 +63,6 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
    ![image](https://github.com/user-attachments/assets/812fcdeb-2421-4c25-a5fc-e8f414d08d75)
 ![image](https://github.com/user-attachments/assets/73659779-2a6f-4a61-bafc-7fef4c0099a4)
 
-![image](https://github.com/user-attachments/assets/3fc3acec-de3d-45d9-8bd8-a09a9eda61f1)
 
 10. Create a BigQuery dataset and an external table using SQL
     ![image](https://github.com/user-attachments/assets/1b1b4282-c937-4721-8a35-093c192fc3f2)
