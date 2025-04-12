@@ -1,0 +1,5 @@
+project_name  = "tbd-2025l-9923"
+region        = "europe-west1"
+subnet        = "subnet-01"
+image_version = "2.1-debian11"
+machine_type  = "n1-standard-2"

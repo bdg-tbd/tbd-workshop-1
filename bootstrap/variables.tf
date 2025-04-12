@@ -34,5 +34,7 @@ variable "budget_channels" {
   description = "Budget notification channels"
   default = {
     marek-wiewiorka : "marek.wiewiorka@gmail.com"
+    hubert-pogorzelski : "hpogorzelski0@gmail.com"
+    jan-magnuszewski : "01172006@pw.edu.pl"
   }
 }

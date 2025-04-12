@@ -8,6 +8,7 @@ locals {
 }
 
 resource "google_project_service" "notebooks" {
+  project            = var.project_name
   provider           = google
   service            = "notebooks.googleapis.com"
   disable_on_destroy = false
@@ -16,6 +17,7 @@ resource "google_project_service" "notebooks" {
 
 resource "google_storage_bucket" "notebook-conf-bucket" {
   #checkov:skip=CKV_GCP_62: "Bucket should log access"
+  project       = var.project_name
   name          = "${var.project_name}-conf"
   location      = var.region
   force_destroy = true
@@ -45,31 +47,43 @@ resource "google_storage_bucket_object" "post-startup" {
 }
 
 
+resource "google_workbench_instance" "tbd_notebook" {
+  depends_on = [google_project_service.notebooks]
+  location   = local.zone
+  name       = "${var.project_name}-notebook"
+  project    = var.project_name
 
-resource "google_notebooks_instance" "tbd_notebook" {
-  #checkov:skip=CKV2_GCP_18: "Ensure GCP network defines a firewall and does not use the default firewall"
-  #checkov:skip=CKV2_GCP_21: "Ensure Vertex AI instance disks are encrypted with a Customer Managed Key (CMK)"
-  depends_on   = [google_project_service.notebooks]
-  location     = local.zone
-  machine_type = "e2-standard-2"
-  name         = "${var.project_name}-notebook"
-  container_image {
-    repository = var.ai_notebook_image_repository
-    tag        = var.ai_notebook_image_tag
+  gce_setup {
+    machine_type = "e2-standard-2"
+
+    boot_disk {
+      kms_key      = "projects/tbd-2025l-9923/locations/europe-west1/keyRings/tbd-keyring/cryptoKeys/tbd-key"
+      disk_type    = "PD_STANDARD"
+      disk_size_gb = 200
+    }
+
+    container_image {
+      repository = var.ai_notebook_image_repository
+      tag        = var.ai_notebook_image_tag
+    }
+
+    disable_public_ip = true
+
+    network_interfaces {
+      network = var.network
+      subnet  = var.subnet
+    }
+
+    service_accounts {
+      email = local.gce_service_account
+    }
   }
-  network = var.network
-  subnet  = var.subnet
-  ## change it to break the checkov during the labs
-  # FIXME:remove
-  no_public_ip    = true
-  no_proxy_access = true
-  # end
+
   instance_owners = [var.ai_notebook_instance_owner]
-  metadata = {
-    vmDnsSetting : "GlobalDefault"
-  }
-  post_startup_script = "gs://${google_storage_bucket_object.post-startup.bucket}/${google_storage_bucket_object.post-startup.name}"
 }
+
+
+
 
 
 resource "google_project_iam_binding" "token_creator_role" {
