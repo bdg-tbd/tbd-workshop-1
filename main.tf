@@ -7,11 +7,11 @@ locals {
   composer_work_namespace = "composer-user-workloads"
   code_bucket_name        = "${var.project_name}-code"
   data_bucket_name        = "${var.project_name}-data"
-  spark_version           = "3.3.2"
+  spark_version           = "3.5.1"
   spark_driver_port       = 30000
   spark_blockmgr_port     = 30001
-  dbt_version             = "1.7.13"
-  dbt_spark_version       = "1.7.1"
+  dbt_version             = "1.8.7"
+  dbt_spark_version       = "1.8.0"
   dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
   dbt_git_repo_branch     = "main"
 }
@@ -42,30 +42,33 @@ module "jupyter_docker_image" {
   dbt_spark_version  = local.dbt_spark_version
 }
 
-module "vertex_ai_workbench" {
-  depends_on   = [module.jupyter_docker_image, module.vpc]
-  source       = "./modules/vertex-ai-workbench"
-  project_name = var.project_name
-  region       = var.region
-  network      = module.vpc.network.network_id
-  subnet       = module.vpc.subnets[local.notebook_subnet_id].id
-
-  ai_notebook_instance_owner = var.ai_notebook_instance_owner
-  ## To remove before workshop
-  # FIXME:remove
-  ai_notebook_image_repository = element(split(":", module.jupyter_docker_image.jupyter_image_name), 0)
-  ai_notebook_image_tag        = element(split(":", module.jupyter_docker_image.jupyter_image_name), 1)
-  ## To remove before workshop
-}
+## Vertex AI Workbench replaced with Jupyter on Dataproc cluster
+## See Dataproc module configuration for Jupyter optional component
+#module "vertex_ai_workbench" {
+#  depends_on   = [module.jupyter_docker_image, module.vpc]
+#  source       = "./modules/vertex-ai-workbench"
+#  project_name = var.project_name
+#  region       = var.region
+#  network      = module.vpc.network.network_id
+#  subnet       = module.vpc.subnets[local.notebook_subnet_id].id
+#
+#  ai_notebook_instance_owner = var.ai_notebook_instance_owner
+#  ## To remove before workshop
+#  # FIXME:remove
+#  ai_notebook_image_repository = element(split(":", module.jupyter_docker_image.jupyter_image_name), 0)
+#  ai_notebook_image_tag        = element(split(":", module.jupyter_docker_image.jupyter_image_name), 1)
+#  ## To remove before workshop
+#}
 
 #
 module "dataproc" {
-  depends_on   = [module.vpc]
-  source       = "./modules/dataproc"
-  project_name = var.project_name
-  region       = var.region
-  subnet       = module.vpc.subnets[local.notebook_subnet_id].id
-  machine_type = "e2-standard-2"
+  depends_on    = [module.vpc]
+  source        = "./modules/dataproc"
+  project_name  = var.project_name
+  region        = var.region
+  subnet        = module.vpc.subnets[local.notebook_subnet_id].id
+  machine_type  = "e2-standard-2"
+  image_version = "2.2.69-ubuntu22"
 }
 
 ## Uncomment for Dataproc batches (serverless)
