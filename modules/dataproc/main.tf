@@ -17,6 +17,18 @@ resource "google_project_iam_member" "dataproc_worker" {
   member  = "serviceAccount:${google_service_account.dataproc_sa.email}"
 }
 
+resource "google_project_iam_member" "dataproc_bigquery_data_editor" {
+  project = var.project_name
+  role    = "roles/bigquery.dataEditor"
+  member  = "serviceAccount:${google_service_account.dataproc_sa.email}"
+}
+
+resource "google_project_iam_member" "dataproc_bigquery_user" {
+  project = var.project_name
+  role    = "roles/bigquery.user"
+  member  = "serviceAccount:${google_service_account.dataproc_sa.email}"
+}
+
 resource "google_storage_bucket" "dataproc_staging" {
   name                        = "${var.project_name}-dataproc-staging"
   location                    = var.region
@@ -61,6 +73,8 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
     google_project_service.dataproc,
     google_service_account.dataproc_sa,
     google_project_iam_member.dataproc_worker,
+    google_project_iam_member.dataproc_bigquery_data_editor,
+    google_project_iam_member.dataproc_bigquery_user,
     google_storage_bucket_iam_member.staging_bucket_iam,
     google_storage_bucket_iam_member.temp_bucket_iam
   ]

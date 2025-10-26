@@ -31,21 +31,22 @@ module "gcr" {
   project_name = var.project_name
 }
 
-module "jupyter_docker_image" {
-  depends_on         = [module.gcr]
-  source             = "./modules/jupyter_docker_image"
-  registry_hostname  = module.gcr.registry_hostname
-  registry_repo_name = coalesce(var.project_name)
-  project_name       = var.project_name
-  spark_version      = local.spark_version
-  dbt_version        = local.dbt_version
-  dbt_spark_version  = local.dbt_spark_version
-}
+## Jupyter Docker image no longer needed - using Jupyter on Dataproc cluster instead
+#module "jupyter_docker_image" {
+#  depends_on         = [module.gcr]
+#  source             = "./modules/jupyter_docker_image"
+#  registry_hostname  = module.gcr.registry_hostname
+#  registry_repo_name = coalesce(var.project_name)
+#  project_name       = var.project_name
+#  spark_version      = local.spark_version
+#  dbt_version        = local.dbt_version
+#  dbt_spark_version  = local.dbt_spark_version
+#}
 
 ## Vertex AI Workbench replaced with Jupyter on Dataproc cluster
 ## See Dataproc module configuration for Jupyter optional component
 #module "vertex_ai_workbench" {
-#  depends_on   = [module.jupyter_docker_image, module.vpc]
+#  depends_on   = [module.vpc]
 #  source       = "./modules/vertex-ai-workbench"
 #  project_name = var.project_name
 #  region       = var.region
