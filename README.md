@@ -35,11 +35,11 @@ gcloud auth application-default login
 0. Fork this repository to your own Github account.
 1. Export shared environment variables
 ```bash
-export TF_VAR_tbd_semester=2025L
+export TF_VAR_tbd_semester=2025Z
 # format: 20xx for teachers, student ID number for students 
-export TF_VAR_user_id=9900
+export TF_VAR_user_id=9901
 # use your own billing account id
-export TF_VAR_billing_account=01F44C-CA9C7E-587C25
+export TF_VAR_billing_account=01A068-6FDD3F-47FD8C
 # for budget creation
 export GOOGLE_BILLING_PROJECT=$(echo "tbd-${TF_VAR_tbd_semester}-${TF_VAR_user_id}" | tr '[:upper:]' '[:lower:]')
 ```
