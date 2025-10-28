@@ -79,7 +79,10 @@ cd ..
 Please do not edit and hardcode these values in a YAML but set the Github Actions secrets instead
 while preserving the secret names, i.e. `GCP_WORKLOAD_IDENTITY_PROVIDER_NAME` and `GCP_WORKLOAD_IDENTITY_SA_EMAIL`.
 ![img.png](doc/figures/secrets.png)
-5. Install and configure `pre-commit`
+
+Also, set the `INFRACOST_API_KEY` secret. Register at infracost.io to obtain your API key.
+
+6. Install and configure `pre-commit`
 ```bash
 pre-commit install
 ```
