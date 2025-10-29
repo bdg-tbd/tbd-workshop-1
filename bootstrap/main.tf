@@ -104,3 +104,23 @@ resource "google_monitoring_notification_channel" "notification_channel" {
     email_address = each.value
   }
 }
+
+
+
+module "budget" {
+  providers = {
+    google = google.billing
+  }
+  depends_on = [google_project_service.tbd-service, google_project.tbd_project]
+  source     = "terraform-google-modules/project-factory/google//modules/budget"
+  version    = "18.0.0"
+
+  projects               = [local.project]
+  billing_account        = var.billing_account
+  amount                 = var.budget_amount
+  display_name           = "budget-${local.project}"
+  alert_spent_percents   = var.budget_thresholds
+  credit_types_treatment = "EXCLUDE_ALL_CREDITS"
+
+  monitoring_notification_channels = values(google_monitoring_notification_channel.notification_channel)[*].id
+}
