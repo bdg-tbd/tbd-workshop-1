@@ -23,7 +23,7 @@ RUN apt-get -y update && \
 ENV PATH=/usr/bin:/usr/local/bin:$PATH
 ## use JUPYTERLAB_VERSION to pin jupyterlab version
 #FIXME:unpin jupyterlab version
-RUN wget --quiet https://bootstrap.pypa.io/get-pip.py && python3.8 get-pip.py
+RUN pip3 install --no-cache-dir --upgrade pip
 RUN pip3 install --no-cache-dir \
         jupyterlab==$JUPYTERLAB_VERSION \
         pyspark==$SPARK_VERSION \
@@ -34,5 +34,5 @@ RUN mkdir -p $HADOOP_CONF_DIR
 COPY conf/* $HADOOP_CONF_DIR
 ENV HADOOP_CONF_DIR=$HADOOP_CONF_DIR
 RUN wget -q -O /home/jupyter/gcs-connector-hadoop3-${GCS_CONNECTOR_VERSION}-shaded.jar https://repo1.maven.org/maven2/com/google/cloud/bigdataoss/gcs-connector/hadoop3-${GCS_CONNECTOR_VERSION}/gcs-connector-hadoop3-${GCS_CONNECTOR_VERSION}-shaded.jar
-ENV PYSPARK_DRIVER_PYTHON=/usr/bin/python3.8
+ENV PYSPARK_DRIVER_PYTHON=/opt/conda/bin/python3
 EXPOSE 8080 16384 16385 4040

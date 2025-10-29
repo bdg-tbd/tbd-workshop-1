@@ -35,11 +35,11 @@ gcloud auth application-default login
 0. Fork this repository to your own Github account.
 1. Export shared environment variables
 ```bash
-export TF_VAR_tbd_semester=2025L
+export TF_VAR_tbd_semester=2025Z
 # format: 20xx for teachers, student ID number for students 
-export TF_VAR_user_id=9900
+export TF_VAR_user_id=9901
 # use your own billing account id
-export TF_VAR_billing_account=01F44C-CA9C7E-587C25
+export TF_VAR_billing_account=01A068-6FDD3F-47FD8C
 # for budget creation
 export GOOGLE_BILLING_PROJECT=$(echo "tbd-${TF_VAR_tbd_semester}-${TF_VAR_user_id}" | tr '[:upper:]' '[:lower:]')
 ```
@@ -79,7 +79,10 @@ cd ..
 Please do not edit and hardcode these values in a YAML but set the Github Actions secrets instead
 while preserving the secret names, i.e. `GCP_WORKLOAD_IDENTITY_PROVIDER_NAME` and `GCP_WORKLOAD_IDENTITY_SA_EMAIL`.
 ![img.png](doc/figures/secrets.png)
-5. Install and configure `pre-commit`
+
+Also, set the `INFRACOST_API_KEY` secret. Register at infracost.io to obtain your API key.
+
+6. Install and configure `pre-commit`
 ```bash
 pre-commit install
 ```
@@ -124,8 +127,6 @@ terraform destroy -no-color -var-file env/project.tfvars
 | <a name="module_dataproc"></a> [dataproc](#module\_dataproc) | ./modules/dataproc | n/a |
 | <a name="module_dbt_docker_image"></a> [dbt\_docker\_image](#module\_dbt\_docker\_image) | ./modules/dbt_docker_image | n/a |
 | <a name="module_gcr"></a> [gcr](#module\_gcr) | ./modules/gcr | n/a |
-| <a name="module_jupyter_docker_image"></a> [jupyter\_docker\_image](#module\_jupyter\_docker\_image) | ./modules/jupyter_docker_image | n/a |
-| <a name="module_vertex_ai_workbench"></a> [vertex\_ai\_workbench](#module\_vertex\_ai\_workbench) | ./modules/vertex-ai-workbench | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | ./modules/vpc | n/a |
 
 ## Resources
@@ -141,7 +142,6 @@ terraform destroy -no-color -var-file env/project.tfvars
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_ai_notebook_instance_owner"></a> [ai\_notebook\_instance\_owner](#input\_ai\_notebook\_instance\_owner) | Vertex AI workbench owner | `string` | n/a | yes |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 
