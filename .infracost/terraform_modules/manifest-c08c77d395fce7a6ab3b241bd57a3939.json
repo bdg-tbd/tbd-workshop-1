@@ -1,0 +1,1 @@
+{"Path":"mlops","Version":"2.0","Modules":[{"Key":"gcp_vpc","Source":"registry.terraform.io/terraform-google-modules/network/google","Version":"9.0.0","Dir":".infracost/terraform_modules/63e66421f7bc364be39d198600dd293b","DownloadURL":"git::https://github.com/terraform-google-modules/terraform-google-network?ref=c548cb20e2737cfb4615ef0c7351b00ff239db8d"}]}
