@@ -4,9 +4,11 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   gr.2
 
-   ***link to forked repo***
+   https://github.com/kfijalkowski1/tbd-workshop-1
+
+   
    
 2. Follow all steps in README.md.
 
@@ -17,10 +19,48 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+    ![successful application of release](doc/figures/release-success.png)
+
+    First release failed due to Github Actions timeout.
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+
+    
+    ****
+
+    **Result of terraform graph:**
+    ```
+    digraph G {
+        rankdir = "RL";
+        node [shape = rect, fontname = "sans-serif"];
+        "google_monitoring_notification_channel.notification_channel" [label="google_monitoring_notification_channel.notification_channel"];
+        "google_project.tbd_project" [label="google_project.tbd_project"];
+        "google_project_iam_audit_config.tbd_project_audit" [label="google_project_iam_audit_config.tbd_project_audit"];
+        "google_project_iam_member.tbd-editor-member" [label="google_project_iam_member.tbd-editor-member"];
+        "google_project_iam_member.tbd-editor-supervisors" [label="google_project_iam_member.tbd-editor-supervisors"];
+        "google_project_service.tbd-service" [label="google_project_service.tbd-service"];
+        "google_service_account.tbd-terraform" [label="google_service_account.tbd-terraform"];
+        "google_storage_bucket.tbd-state-bucket" [label="google_storage_bucket.tbd-state-bucket"];
+        subgraph "cluster_module.budget" {
+            label = "module.budget"
+            fontname = "sans-serif"
+            "module.budget.data.google_project.project" [label="data.google_project.project"];
+            "module.budget.google_billing_budget.budget" [label="google_billing_budget.budget"];
+        }
+        "google_monitoring_notification_channel.notification_channel" -> "google_project_service.tbd-service";
+        "google_project_iam_audit_config.tbd_project_audit" -> "google_project.tbd_project";
+        "google_project_iam_member.tbd-editor-member" -> "google_service_account.tbd-terraform";
+        "google_project_iam_member.tbd-editor-supervisors" -> "google_project.tbd_project";
+        "google_project_service.tbd-service" -> "google_project.tbd_project";
+        "google_service_account.tbd-terraform" -> "google_project.tbd_project";
+        "google_storage_bucket.tbd-state-bucket" -> "google_project.tbd_project";
+        "module.budget.data.google_project.project" -> "google_project_service.tbd-service";
+        "module.budget.google_billing_budget.budget" -> "google_monitoring_notification_channel.notification_channel";
+        "module.budget.google_billing_budget.budget" -> "module.budget.data.google_project.project";
+    }
+    ```
+    TODO: 
 
     ***describe one selected module and put the output of terraform graph for this module here***
    
