@@ -17,7 +17,7 @@ IMPORTANT ❗ Please remember to destroy all the resources after each work sessi
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ![Successful release](screenshots/release.png)
+    ![Successful release](images/release.png)
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
@@ -66,7 +66,7 @@ IMPORTANT ❗ Please remember to destroy all the resources after each work sessi
     }
     ```
 
-    ![Dataproc graph](dataproc.png)
+    ![Dataproc graph](images/dataproc.png)
 
    
 6. Reach YARN UI
@@ -76,8 +76,10 @@ IMPORTANT ❗ Please remember to destroy all the resources after each work sessi
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
     2. List of buckets for disposal
+
+    Based on diagram generated for solution with terraform graph we created leaner diagram presenting solution modular architecture. The following diagram includes service accounts (blue colored) linked to IAM roles and disposable buckets (yellow colored). We omitted service accounts (visible on diagram) created implicitly - we highlighted only those specified explicitly in terraform code.
     
-    ***place your diagram here***
+    ![Diagram](<images/graphviz.svg>)
 
 8. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
