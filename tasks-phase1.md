@@ -4,9 +4,9 @@ IMPORTANT ❗ Please remember to destroy all the resources after each work sessi
 
 1. Authors:
 
-   ***enter your group nr***
+   ***Group nr: 12***
 
-   ***link to forked repo***
+   ***[Link to forked repo](https://github.com/kubaurban/tbd-workshop)***
    
 2. Follow all steps in README.md.
 
@@ -17,7 +17,7 @@ IMPORTANT ❗ Please remember to destroy all the resources after each work sessi
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+    ![Successful release](screenshots/release.png)
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
