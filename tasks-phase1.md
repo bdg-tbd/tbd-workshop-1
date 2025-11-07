@@ -22,7 +22,52 @@ IMPORTANT ❗ Please remember to destroy all the resources after each work sessi
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+    We analyzed the **dataproc** module, which is responsible for creating a Dataproc cluster.
+
+    The root *main.tf* indicates that this module depends on a VPC module. Indeed, it takes the subnet value as input, which is an output of the VPC module creation. The module output is a newly created Dataproc cluster name.
+
+    Using the following Terraform command, we created a plan file named *dataproc_plan.tfplan*:
+
+    ```sh
+    terraform plan -target=module.dataproc -var-file=env/project.tfvars -out=dataproc_plan.tfplan -input=false -compact-warnings
+    ```
+
+    After converting this plan file into a JSON file, we discovered that the module contains multiple resources, including IAM role assignments (e.g., *bigquery_data_editor*, *bigquery_user*, etc.), a Dataproc service account, GCS buckets, and the Dataproc cluster itself.
+
+    We also generated a dependency diagram of this module using terraform graph within the module folder:
+
+    ```dot
+    digraph G {
+        rankdir = "RL";
+        node [shape = rect, fontname = "sans-serif"];
+        "google_dataproc_cluster.tbd-dataproc-cluster" [label="google_dataproc_cluster.tbd-dataproc-cluster"];
+        "google_project_iam_member.dataproc_bigquery_data_editor" [label="google_project_iam_member.dataproc_bigquery_data_editor"];
+        "google_project_iam_member.dataproc_bigquery_user" [label="google_project_iam_member.dataproc_bigquery_user"];
+        "google_project_iam_member.dataproc_worker" [label="google_project_iam_member.dataproc_worker"];
+        "google_project_service.dataproc" [label="google_project_service.dataproc"];
+        "google_service_account.dataproc_sa" [label="google_service_account.dataproc_sa"];
+        "google_storage_bucket.dataproc_staging" [label="google_storage_bucket.dataproc_staging"];
+        "google_storage_bucket.dataproc_temp" [label="google_storage_bucket.dataproc_temp"];
+        "google_storage_bucket_iam_member.staging_bucket_iam" [label="google_storage_bucket_iam_member.staging_bucket_iam"];
+        "google_storage_bucket_iam_member.temp_bucket_iam" [label="google_storage_bucket_iam_member.temp_bucket_iam"];
+        "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_project_iam_member.dataproc_bigquery_data_editor";
+        "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_project_iam_member.dataproc_bigquery_user";
+        "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_project_iam_member.dataproc_worker";
+        "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_project_service.dataproc";
+        "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_storage_bucket_iam_member.staging_bucket_iam";
+        "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_storage_bucket_iam_member.temp_bucket_iam";
+        "google_project_iam_member.dataproc_bigquery_data_editor" -> "google_service_account.dataproc_sa";
+        "google_project_iam_member.dataproc_bigquery_user" -> "google_service_account.dataproc_sa";
+        "google_project_iam_member.dataproc_worker" -> "google_service_account.dataproc_sa";
+        "google_storage_bucket_iam_member.staging_bucket_iam" -> "google_service_account.dataproc_sa";
+        "google_storage_bucket_iam_member.staging_bucket_iam" -> "google_storage_bucket.dataproc_staging";
+        "google_storage_bucket_iam_member.temp_bucket_iam" -> "google_service_account.dataproc_sa";
+        "google_storage_bucket_iam_member.temp_bucket_iam" -> "google_storage_bucket.dataproc_temp";
+    }
+    ```
+
+    ![Dataproc graph](dataproc.png)
+
    
 6. Reach YARN UI
    
