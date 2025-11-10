@@ -180,7 +180,7 @@ jobs:
                                    --behavior=update
     - name: Post Infracost JSON to PR
       run: |
-          COMMENT_BODY=$(jq -r tostring < infracost-estimate.json)
+          COMMENT_BODY=$(jq -r tostring < /tmp/infracost-estimate.json)
           curl -H "Authorization: token $GITHUB_TOKEN" \
                -X POST \
                -d "{\"body\":$COMMENT_BODY}" \
