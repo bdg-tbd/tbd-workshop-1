@@ -165,5 +165,5 @@ jobs:
       with:
         path: .
         usage-file: infracost-usage.yml
-        github-token: ${{ secrets.GITHUB_TOKEN }
+        github-token: ${{ secrets.GITHUB_TOKEN }}
 
