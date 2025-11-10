@@ -166,7 +166,10 @@ jobs:
                         --out-file=/tmp/infracost.json
     - name: Run Infracost
       run: |
-          infracost breakdown --path . --usage-file infracost-usage.yml --format=json --out-file=/tmp/infracost-estimate.json
+          infracost breakdown --path="." \
+                              --usage-file infracost-usage.yml \
+                              --format=json \
+                              --out-file=/tmp/infracost-estimate.json
 
     - name: Post Infracost comment
       run: |
