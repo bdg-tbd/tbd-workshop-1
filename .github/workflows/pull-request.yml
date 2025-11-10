@@ -168,14 +168,6 @@ jobs:
       run: |
           infracost breakdown --path . --usage-file infracost-usage.yml --format=json --out-file=/tmp/infracost-estimate.json
 
-    - name: Post Infracost comment
-      run: |
-          infracost comment github --path=/tmp/infracost.json \
-                                   --repo=$GITHUB_REPOSITORY \
-                                   --github-token=${{secrets.GITHUB_TOKEN}} \
-                                   --pull-request=${{github.event.pull_request.number}} \
-                                   --behavior=update
-
     - name: Post Infracost estimate
       run: |
           infracost comment github --path=/tmp/infracost-estimate.json \
