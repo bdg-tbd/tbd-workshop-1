@@ -178,3 +178,9 @@ jobs:
                                    --github-token=${{secrets.GITHUB_TOKEN}} \
                                    --pull-request=${{github.event.pull_request.number}} \
                                    --behavior=update
+    - name: Post Infracost comment to PR
+      uses: infracost/infracost-action@v2
+      with:
+        path: .
+        usage-file: infracost-usage.yml
+        github-token: ${{ secrets.GITHUB_TOKEN }}
