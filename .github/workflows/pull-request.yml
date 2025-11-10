@@ -164,6 +164,9 @@ jobs:
                         --format=json \
                         --compare-to=/tmp/infracost-base.json \
                         --out-file=/tmp/infracost.json
+    - name: Run Infracost
+      run: infracost breakdown --path . --usage-file infracost-usage.yml
+
     - name: Post Infracost comment
       run: |
           infracost comment github --path=/tmp/infracost.json \

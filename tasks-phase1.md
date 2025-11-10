@@ -28,13 +28,24 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 6. Reach YARN UI
    
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+    **Port:** 8088
+
+   **Command:**
+   ```
+   gcloud compute ssh tbd-cluster-m \
+         --project=tbd-2025z-318720 \
+         -- -L 8088:localhost:8088
+   ```
+
+    **Screenshot:**
+   ![alt text](./report/yarnui.png)
    
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
     2. List of buckets for disposal
     
-    ***place your diagram here***
+    ![alt text](./report/architecture_diagram.png)
+
 
 8. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`

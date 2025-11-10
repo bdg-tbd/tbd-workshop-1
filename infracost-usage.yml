@@ -1,0 +1,17 @@
+version: 0.1
+projects:
+  - path: .
+    usage:
+      google_artifact_registry.repository.default:
+        storage_gb: 50
+        requests: 100000
+      google_storage_bucket.dataproc_staging:
+        storage_gb: 100
+        operations: 200000
+        network_egress_gb: 10
+      google_storage_bucket.dataproc_temp:
+        storage_gb: 50
+        operations: 100000
+        network_egress_gb: 5
+      google_service_networking_connection.vpc_connection:
+        usage_in_gb: 1000
