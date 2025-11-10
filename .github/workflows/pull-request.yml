@@ -161,7 +161,7 @@ jobs:
                             --out-file=/tmp/infracost-base.json
 
     - name: Run Infracost
-      uses: infracost/actions@v2
+      uses: infracost/actions@v2.1.0
       with:
         path: .
         usage-file: infracost-usage.yml
