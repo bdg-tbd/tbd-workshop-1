@@ -57,9 +57,36 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 1. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
+    **Creating the schema**
+    ```
+    CREATE SCHEMA `tbd-2025z-318720`.TEST_DATASET_1
+    OPTIONS (
+        description = 'This is a description',
+        labels = [('class','tbd'),('stage','first')],
+        location = 'europe-west1',
+        max_time_travel_hours = 48);
+    ```
+    ![alt text](./report/dataset.png)
    
-    ***why does ORC not require a table schema?***
+    **Creating the external table**
+    ```
+    CREATE OR REPLACE EXTERNAL TABLE `tbd-2025z-318720.TEST_DATASET_1.dummy_external`
+    (
+    id INT64,
+    name STRING
+    )
+    OPTIONS (
+    format = 'CSV',
+    uris = ['gs://tbd-2025z-318720-data/dummy.csv'],
+    skip_leading_rows = 1
+    );
+    ```
+
+    ![alt text](./report/external.png)
+
+    ***Why does ORC not require a table schema?***
+    
+    The ORC data format would not require defining a table schema here because it is self-describing, which allows BigQuery to read the schema from .orc file metadata.
 
 2.  Find and correct the error in spark-job.py
 
