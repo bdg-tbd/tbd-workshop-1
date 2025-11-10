@@ -160,9 +160,10 @@ jobs:
                             --format=json \
                             --out-file=/tmp/infracost-base.json
 
-    - uses: infracost/infracost-action@v2
+    - name: Run Infracost
+      uses: infracost/actions@v2
       with:
         path: .
         usage-file: infracost-usage.yml
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+        github-token: ${{ secrets.GITHUB_TOKEN }
 
