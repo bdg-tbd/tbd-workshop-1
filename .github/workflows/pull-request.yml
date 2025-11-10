@@ -159,20 +159,20 @@ jobs:
                             --usage-file infracost-usage.yml \
                             --format=json \
                             --out-file=/tmp/infracost-base.json
-    - name: Generate Infracost diff
+    - name: Generate Infracost breakdown
       run: |
-        infracost diff \
+        infracost breakdown \
                 --path "." \
                 --usage-file infracost-usage.yml \
-                --format json \
-                --out-file /tmp/infracost.json
+                --format=json \
+                --out-file=/tmp/infracost.json
 
     - name: Post Infracost comment
       run: |
         infracost comment github \
-        --path /tmp/infracost.json \
-        --repo $GITHUB_REPOSITORY \
-        --github-token ${{ secrets.GITHUB_TOKEN }} \
-        --pull-request ${{ github.event.pull_request.number }} \
-        --behavior update
+        --path=/tmp/infracost.json \
+        --repo=$GITHUB_REPOSITORY \
+        --github-token=${{ secrets.GITHUB_TOKEN }} \
+        --pull-request=${{ github.event.pull_request.number }} \
+        --behavior=update
 
