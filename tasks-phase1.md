@@ -17,12 +17,14 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+    **Release result:**
+    ![alt text](./report/release.png)
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+    ![alt text](./report/dataproc.png)
+    Dataproc module creates a Google Cloud Dataproc cluster, its infrastructure and permissions. It enables the Dataproc API, creates a dedicated service account with roles for Dataproc and BigQuery, and sets up staging and temporary Cloud Storage buckets with access granted to that service account. It also deploys a Dataproc cluster configured with specific software components, network settings, and initialization scripts for Python package installation.
    
 6. Reach YARN UI
    
@@ -42,21 +44,21 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    ***place the screenshot from infracost output here***
 
-9. Create a BigQuery dataset and an external table using SQL
+1. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
    
     ***why does ORC not require a table schema?***
 
-10. Find and correct the error in spark-job.py
+2.  Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-11. Add support for preemptible/spot instances in a Dataproc cluster
+3.  Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     
-12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+4.  Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
