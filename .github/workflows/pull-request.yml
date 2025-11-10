@@ -178,9 +178,13 @@ jobs:
                                    --github-token=${{secrets.GITHUB_TOKEN}} \
                                    --pull-request=${{github.event.pull_request.number}} \
                                    --behavior=update
-    - name: Post Infracost comment to PR
-      uses: infracost/infracost-action@v2
-      with:
-        path: .
-        usage-file: infracost-usage.yml
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Post Infracost JSON to PR
+      run: |
+          COMMENT_BODY=$(jq -r tostring < infracost.json)
+          curl -H "Authorization: token $GITHUB_TOKEN" \
+               -X POST \
+               -d "{\"body\":$COMMENT_BODY}" \
+               "https://api.github.com/repos/${GITHUB_REPOSITORY}/issues/${{ github.event.pull_request.number }}/comments"
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
