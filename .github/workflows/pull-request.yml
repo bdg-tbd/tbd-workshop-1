@@ -174,5 +174,6 @@ jobs:
             --repo $GITHUB_REPOSITORY \
             --github-token ${{ secrets.GITHUB_TOKEN }} \
             --pull-request ${{ github.event.pull_request.number }} \
-            --behavior update
+            --behavior update \
+            --show-skipped
 
