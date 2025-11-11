@@ -177,4 +177,16 @@ jobs:
                                    --pull-request=${{github.event.pull_request.number}} \
                                    --behavior=update \
                                    --show-skipped
+    - name: Generate Infracost table test
+      run: |
+          infracost breakdown \
+            --path . \
+            --usage-file infracost-usage.yml \
+            --terraform-var-file env/project.tfvars \
+            --terraform-var-file env/backend.tfvars \
+            --format table \
+            --out-file /tmp/infracost_table.txt
+  
+    - name: Print Infracost table to logs
+      run: cat /tmp/infracost_table.txt
 
