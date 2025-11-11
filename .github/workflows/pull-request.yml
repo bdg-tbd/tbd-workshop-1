@@ -161,8 +161,8 @@ jobs:
             --usage-file infracost-usage.yml \
             --terraform-var-file env/project.tfvars \
             --terraform-var-file env/backend.tfvars \
-            --format json \
-            --out-file /tmp/infracost.json
+            --format table \
+            --out-file /tmp/infracost.txt
 
     - name: Debug JSON output
       run: cat /tmp/infracost.json | jq .
@@ -170,7 +170,7 @@ jobs:
     - name: Post Infracost comment
       run: |
           infracost comment github \
-            --path /tmp/infracost.json \
+            --path /tmp/infracost.txt \
             --repo $GITHUB_REPOSITORY \
             --github-token ${{ secrets.GITHUB_TOKEN }} \
             --pull-request ${{ github.event.pull_request.number }} \
