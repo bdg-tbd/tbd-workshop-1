@@ -106,7 +106,7 @@ version: 0.1 resource_usage:
 
 2.  Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+    We've changed the DATA-BUCKET in spark-job.py to ours before running it for the first time due to the comment there. After running it, all signs showed that the job was performed successfully, as there was a _SUCCESS folder in the data bucket. If we were to look for the error ourselves, we would probably use logs from the job to identify the cause.
 
 3.  Add support for preemptible/spot instances in a Dataproc cluster
 
