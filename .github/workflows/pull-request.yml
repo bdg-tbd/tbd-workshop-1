@@ -151,29 +151,26 @@ jobs:
       uses: actions/checkout@v3
       with:
         ref: '${{ github.event.pull_request.base.ref }}'
+    - name: Generate Infracost cost estimate baseline
+      run: |
+        infracost breakdown --path="." \
+                            --format=json \
+                            --out-file=/tmp/infracost-base.json
     - name: Checkout PR branch
       uses: actions/checkout@v3
-      
-    - name: Generate Infracost breakdown
+    - name: Generate Infracost diff
       run: |
-          infracost breakdown \
-            --path . \
-            --usage-file infracost-usage.yml \
-            --terraform-var-file env/project.tfvars \
-            --terraform-var-file env/backend.tfvars \
-            --format table \
-            --out-file /tmp/infracost.txt
-
-    - name: Debug JSON output
-      run: cat /tmp/infracost.json | jq .
-
+        infracost diff --path="." \
+                        --usage-file infracost-usage.yml \
+                        --format=json \
+                        --compare-to=/tmp/infracost-base.json \
+                        --out-file=/tmp/infracost.json
     - name: Post Infracost comment
       run: |
-          infracost comment github \
-            --path /tmp/infracost.txt \
-            --repo $GITHUB_REPOSITORY \
-            --github-token ${{ secrets.GITHUB_TOKEN }} \
-            --pull-request ${{ github.event.pull_request.number }} \
-            --behavior update \
-            --show-skipped
+          infracost comment github --path=/tmp/infracost.json \
+                                   --repo=$GITHUB_REPOSITORY \
+                                   --github-token=${{secrets.GITHUB_TOKEN}} \
+                                   --pull-request=${{github.event.pull_request.number}} \
+                                   --behavior=update \
+                                   --show-skipped
 
