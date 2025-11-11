@@ -182,8 +182,6 @@ jobs:
           infracost breakdown \
             --path . \
             --usage-file infracost-usage.yml \
-            --terraform-var-file env/project.tfvars \
-            --terraform-var-file env/backend.tfvars \
             --format table \
             --out-file /tmp/infracost_table.txt
   
