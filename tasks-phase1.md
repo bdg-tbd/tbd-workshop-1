@@ -27,40 +27,48 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     
-    ****
-
-    **Result of terraform graph:**
+    ## Composer module description
+    - Creates service account for composer and gives it:
+        - `composer-member` [composer.worker](https://docs.cloud.google.com/composer/docs/composer-3/access-control#composer.worker) role
+        - `dataproc-editor-iam` [dataproc.editor](https://docs.cloud.google.com/dataproc/docs/concepts/iam/iam#dataproc.editor) role
+        - `dataproc-sa-user-iam` [iam.serviceAccountUser](https://docs.cloud.google.com/iam/docs/service-account-permissions) role
+    - Enables `composer.googleapis.com` - a fully managed workflow orchestration service from Google Cloud that is built on Apache Airflow
+    - Creates subnet with logs enabled to be aggregated every 10 minutes
+    - Creates Cloud Composer V2 (Apache Airflow) environment based on `terraform-google-modules/composer/google//modules/create_environment_v2`
+    - Outputs:
+        - GCS bucket for storing Apache Airflow DAGs
+        - Apache Airflow service account
+        - Composer underlying GKE cluster
+    
+    ## Composer module graph
     ```
     digraph G {
         rankdir = "RL";
         node [shape = rect, fontname = "sans-serif"];
-        "google_monitoring_notification_channel.notification_channel" [label="google_monitoring_notification_channel.notification_channel"];
-        "google_project.tbd_project" [label="google_project.tbd_project"];
-        "google_project_iam_audit_config.tbd_project_audit" [label="google_project_iam_audit_config.tbd_project_audit"];
-        "google_project_iam_member.tbd-editor-member" [label="google_project_iam_member.tbd-editor-member"];
-        "google_project_iam_member.tbd-editor-supervisors" [label="google_project_iam_member.tbd-editor-supervisors"];
-        "google_project_service.tbd-service" [label="google_project_service.tbd-service"];
-        "google_service_account.tbd-terraform" [label="google_service_account.tbd-terraform"];
-        "google_storage_bucket.tbd-state-bucket" [label="google_storage_bucket.tbd-state-bucket"];
-        subgraph "cluster_module.budget" {
-            label = "module.budget"
+        "google_compute_subnetwork.composer-subnet" [label="google_compute_subnetwork.composer-subnet"];
+        "google_project_iam_member.composer-member" [label="google_project_iam_member.composer-member"];
+        "google_project_iam_member.dataproc-editor-iam" [label="google_project_iam_member.dataproc-editor-iam"];
+        "google_project_iam_member.dataproc-sa-user-iam" [label="google_project_iam_member.dataproc-sa-user-iam"];
+        "google_project_service.api" [label="google_project_service.api"];
+        "google_service_account.tbd-composer-sa" [label="google_service_account.tbd-composer-sa"];
+        subgraph "cluster_module.composer" {
+            label = "module.composer"
             fontname = "sans-serif"
-            "module.budget.data.google_project.project" [label="data.google_project.project"];
-            "module.budget.google_billing_budget.budget" [label="google_billing_budget.budget"];
+            "module.composer.data.google_project.project" [label="data.google_project.project"];
+            "module.composer.google_composer_environment.composer_env" [label="google_composer_environment.composer_env"];
+            "module.composer.google_project_iam_member.composer_agent_service_account" [label="google_project_iam_member.composer_agent_service_account"];
         }
-        "google_monitoring_notification_channel.notification_channel" -> "google_project_service.tbd-service";
-        "google_project_iam_audit_config.tbd_project_audit" -> "google_project.tbd_project";
-        "google_project_iam_member.tbd-editor-member" -> "google_service_account.tbd-terraform";
-        "google_project_iam_member.tbd-editor-supervisors" -> "google_project.tbd_project";
-        "google_project_service.tbd-service" -> "google_project.tbd_project";
-        "google_service_account.tbd-terraform" -> "google_project.tbd_project";
-        "google_storage_bucket.tbd-state-bucket" -> "google_project.tbd_project";
-        "module.budget.data.google_project.project" -> "google_project_service.tbd-service";
-        "module.budget.google_billing_budget.budget" -> "google_monitoring_notification_channel.notification_channel";
-        "module.budget.google_billing_budget.budget" -> "module.budget.data.google_project.project";
+        "google_project_iam_member.composer-member" -> "google_service_account.tbd-composer-sa";
+        "google_project_iam_member.dataproc-editor-iam" -> "google_service_account.tbd-composer-sa";
+        "google_project_iam_member.dataproc-sa-user-iam" -> "google_service_account.tbd-composer-sa";
+        "module.composer.data.google_project.project" -> "google_project_iam_member.composer-member";
+        "module.composer.data.google_project.project" -> "google_project_service.api";
+        "module.composer.google_composer_environment.composer_env" -> "google_compute_subnetwork.composer-subnet";
+        "module.composer.google_composer_environment.composer_env" -> "module.composer.google_project_iam_member.composer_agent_service_account";
+        "module.composer.google_project_iam_member.composer_agent_service_account" -> "module.composer.data.google_project.project";
     }
     ```
-    TODO: 
+
 
     ***describe one selected module and put the output of terraform graph for this module here***
    
