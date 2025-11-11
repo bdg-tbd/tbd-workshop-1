@@ -134,5 +134,9 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
       }
 
     }
+    secondary_worker_config {
+    num_instances   = 2
+    preemptibility  = "PREEMPTIBLE"
+    }
   }
 }
