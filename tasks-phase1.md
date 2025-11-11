@@ -51,16 +51,20 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   version: 0.1
-resource_usage:
+version: 0.1 resource_usage:
+
   module.gcr.google_artifact_registry_repository.registry:
     storage_gb: 50
+    
   module.data-pipelines.google_storage_bucket.tbd-data-bucket:
     storage_gb: 50
+    
   module.dataproc.google_storage_bucket.dataproc_staging:
     storage_gb: 100
+    
   module.dataproc.google_storage_bucket.dataproc_temp:
     storage_gb: 50
+    
   module.vpc.module.cloud-router.google_compute_router_nat.nats["nat-gateway"]: 
     network_egress_gb: 1000
 
