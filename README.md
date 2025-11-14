@@ -2,7 +2,7 @@
 
 ## Workshop goals
 1. Learn how to provision computing resources for running Big Data analyses using the Infrastructure as Code (IaC) approach.
-2. Learn how to set up opinionated CI/CD pipelines to deploy cloud infrastructure. 
+2. Learn how to set up opinionated CI/CD pipelines to deploy cloud infrastructure.
 3. Learn how to utilize linters for detecting security vulnerabilities in cloud infrastructure.
 4. Learn how to run Apache Spark code in a distributed way on Hadoop cluster using
 Vertex AI notebooks and Dataproc services on GCP.
@@ -14,7 +14,7 @@ to Google Cloud.
 ## Prerequisites
 ### Software
 * Google Cloud SDK
-* terraform ~> 1.11.0 
+* terraform ~> 1.11.0
 * gsutil
 * pre-commit
 * Terraform ( [Requirements](#Requirements) )
@@ -36,7 +36,7 @@ gcloud auth application-default login
 1. Export shared environment variables
 ```bash
 export TF_VAR_tbd_semester=2025Z
-# format: 20xx for teachers, student ID number for students 
+# format: 20xx for teachers, student ID number for students
 export TF_VAR_user_id=9901
 # use your own billing account id
 export TF_VAR_billing_account=01A068-6FDD3F-47FD8C
@@ -99,7 +99,7 @@ Once all Pull Requests checks **have passed** please merge your PR and wait unti
 
 ```bash
 terraform init -backend-config=env/backend.tfvars
-terraform destroy -no-color -var-file env/project.tfvars 
+terraform destroy -no-color -var-file env/project.tfvars
 ```
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
@@ -149,3 +149,4 @@ terraform destroy -no-color -var-file env/project.tfvars
 
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
