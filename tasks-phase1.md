@@ -139,12 +139,40 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
       australia: 0       # Australia.
 
    ***place the screenshot from infracost output here***
+   ![Infracost report](infracost-report.png)
 
 9. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
+
+    code for creating dataset:
+    ```sql
+    CREATE SCHEMA `tbd-2025z-318652.dataset_1`
+    OPTIONS (
+        default_partition_expiration_days = 1,
+        default_table_expiration_days = 0.042,
+        description = 'test tbd table',
+        labels = [('users','ids'),('a','b')],
+        location = 'europe-central2',
+        max_time_travel_hours = 48,
+        storage_billing_model = LOGICAL);
+    ```
+
+    ![Create dataset](doc/figures/create_dataset.png)
+
+    added an example csv file to data bucket and executed:
+    code for creating external table:
+    ```sql
+    CREATE EXTERNAL TABLE `tbd-2025z-318652.dataset_1.external_dataset_1`
+    OPTIONS (
+        format ="CSV",
+        uris = ['gs://tbd-2025z-318652-data/*']
+        );
+    ```
+    ![Created external table](doc/figures/create_external_table.png)
    
     ***why does ORC not require a table schema?***
+    The schema description is stored inside the ocr file itself so it is not needed to define it additionally 
 
 10. Find and correct the error in spark-job.py
 
