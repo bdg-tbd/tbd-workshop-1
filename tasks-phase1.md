@@ -4,9 +4,11 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   gr.2
 
-   ***link to forked repo***
+   https://github.com/kfijalkowski1/tbd-workshop-1
+
+   
    
 2. Follow all steps in README.md.
 
@@ -17,10 +19,56 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+    ![successful application of release](doc/figures/release-success.png)
+
+    First release failed due to Github Actions timeout.
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
+
+    
+    ## Composer module description
+    - Creates service account for composer and gives it:
+        - `composer-member` [composer.worker](https://docs.cloud.google.com/composer/docs/composer-3/access-control#composer.worker) role
+        - `dataproc-editor-iam` [dataproc.editor](https://docs.cloud.google.com/dataproc/docs/concepts/iam/iam#dataproc.editor) role
+        - `dataproc-sa-user-iam` [iam.serviceAccountUser](https://docs.cloud.google.com/iam/docs/service-account-permissions) role
+    - Enables `composer.googleapis.com` - a fully managed workflow orchestration service from Google Cloud that is built on Apache Airflow
+    - Creates subnet with logs enabled to be aggregated every 10 minutes
+    - Creates Cloud Composer V2 (Apache Airflow) environment based on `terraform-google-modules/composer/google//modules/create_environment_v2`
+    - Outputs:
+        - GCS bucket for storing Apache Airflow DAGs
+        - Apache Airflow service account
+        - Composer underlying GKE cluster
+    
+    ## Composer module graph
+    ```
+    digraph G {
+        rankdir = "RL";
+        node [shape = rect, fontname = "sans-serif"];
+        "google_compute_subnetwork.composer-subnet" [label="google_compute_subnetwork.composer-subnet"];
+        "google_project_iam_member.composer-member" [label="google_project_iam_member.composer-member"];
+        "google_project_iam_member.dataproc-editor-iam" [label="google_project_iam_member.dataproc-editor-iam"];
+        "google_project_iam_member.dataproc-sa-user-iam" [label="google_project_iam_member.dataproc-sa-user-iam"];
+        "google_project_service.api" [label="google_project_service.api"];
+        "google_service_account.tbd-composer-sa" [label="google_service_account.tbd-composer-sa"];
+        subgraph "cluster_module.composer" {
+            label = "module.composer"
+            fontname = "sans-serif"
+            "module.composer.data.google_project.project" [label="data.google_project.project"];
+            "module.composer.google_composer_environment.composer_env" [label="google_composer_environment.composer_env"];
+            "module.composer.google_project_iam_member.composer_agent_service_account" [label="google_project_iam_member.composer_agent_service_account"];
+        }
+        "google_project_iam_member.composer-member" -> "google_service_account.tbd-composer-sa";
+        "google_project_iam_member.dataproc-editor-iam" -> "google_service_account.tbd-composer-sa";
+        "google_project_iam_member.dataproc-sa-user-iam" -> "google_service_account.tbd-composer-sa";
+        "module.composer.data.google_project.project" -> "google_project_iam_member.composer-member";
+        "module.composer.data.google_project.project" -> "google_project_service.api";
+        "module.composer.google_composer_environment.composer_env" -> "google_compute_subnetwork.composer-subnet";
+        "module.composer.google_composer_environment.composer_env" -> "module.composer.google_project_iam_member.composer_agent_service_account";
+        "module.composer.google_project_iam_member.composer_agent_service_account" -> "module.composer.data.google_project.project";
+    }
+    ```
+
 
     ***describe one selected module and put the output of terraform graph for this module here***
    
