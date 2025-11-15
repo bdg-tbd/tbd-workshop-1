@@ -1,11 +1,14 @@
-name: Release/apply
+name: Auto Destroy
 on:
-  push:
-    branches:
-      - master
+    schedule:
+      - cron: '0 20 * * *'
+    push:
+        branches:
+        - master
+
 permissions: read-all
 jobs:
-  release:
+  destroy-release:
     runs-on: ubuntu-latest
   # Add "id-token" with the intended permissions.
     permissions:
@@ -15,24 +18,18 @@ jobs:
       issues: write
 
     steps:
-    - name: 'Check if commit message contains [CLEANUP]'
+    - name: 'Check if commit message does not contain [CLEANUP]'
       if: github.event_name == 'push'
       id: check-commit
       env:
         COMMIT_MESSAGE: ${{ github.event.head_commit.message }}
       run: |
         echo "Commit Message: $COMMIT_MESSAGE"
-        if [[ "$COMMIT_MESSAGE" == *"[CLEANUP]"* ]]; then
-          echo "Commit message does contain [CLEANUP]. Stopping workflow."
+        if [[ "$COMMIT_MESSAGE" != *"[CLEANUP]"* ]]; then
+          echo "Commit message does not contain [CLEANUP]. Stopping workflow."
           exit 0
         fi
     - uses: 'actions/checkout@v3'
-    - name: Semantic Release
-      uses: cycjimmy/semantic-release-action@v3
-      with:
-        branch: 'master'
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.11.0
@@ -43,17 +40,10 @@ jobs:
         token_format: 'access_token'
         workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
         service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
-    - name: Set up Docker Buildx
-      uses: docker/setup-buildx-action@v1
-    - uses: 'docker/login-action@v2'
-      with:
-        registry: 'eu.gcr.io'
-        username: 'oauth2accesstoken'
-        password: '${{ steps.auth.outputs.access_token }}'
     - name: Terraform Init
       id: init
       run: terraform init -backend-config=env/backend.tfvars
-    - name: Terraform Apply
-      id: apply
-      run: terraform apply -no-color -var-file env/project.tfvars -auto-approve
+    - name: Terraform Destroy
+      id: destroy
+      run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
       continue-on-error: false
