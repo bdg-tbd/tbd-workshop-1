@@ -39,7 +39,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    -- -N -L 8088:localhost:8088
 ![Couldn't load image](images/yarn_ui.png)
 
-8. Draw an architecture diagram (e.g. in draw.io) that includes:
+7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
     2. List of buckets for disposal
 
