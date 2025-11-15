@@ -74,7 +74,32 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 6. Reach YARN UI
    
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+command to open SOCKS proxy
+```
+gcloud compute ssh tbd-cluster-m \
+  --project=tbd-2025z-318652 \
+  --zone=europe-west1-d -- -D 1080 -N
+```
+
+Command to open browser with proxy setup
+```
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --proxy-server="socks5://localhost:1080" \
+  --user-data-dir="/tmp/tbd-cluster-m" http://tbd-cluster-m:8088/
+```
+Opened YARN UI
+![alt text](doc/figures/yarn_ui.png)
+
+
+Or run:
+```
+gcloud compute ssh tbd-cluster-m \
+  --project=tbd-2025z-318652 \
+  --zone=europe-west1-d -- -D 1080 -N
+```
+
+and open in browser: http://127.0.0.1:1080/cluster
+
    
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
