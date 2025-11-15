@@ -74,7 +74,32 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    
 6. Reach YARN UI
    
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+command to open SOCKS proxy
+```
+gcloud compute ssh tbd-cluster-m \
+  --project=tbd-2025z-318652 \
+  --zone=europe-west1-d -- -D 1080 -N
+```
+
+Command to open browser with proxy setup
+```
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --proxy-server="socks5://localhost:1080" \
+  --user-data-dir="/tmp/tbd-cluster-m" http://tbd-cluster-m:8088/
+```
+Opened YARN UI
+![alt text](doc/figures/yarn_ui.png)
+
+
+Or run:
+```
+gcloud compute ssh tbd-cluster-m \
+  --project=tbd-2025z-318652 \
+  --zone=europe-west1-d -- -D 1080 -N
+```
+
+and open in browser: http://127.0.0.1:1080/cluster
+
    
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
@@ -86,15 +111,68 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   ***place the expected consumption you entered here***
+  google_artifact_registry_repository.my_artifact_registry:
+    storage_gb: 50 # Total data stored in the repository in GB
+    monthly_egress_data_transfer_gb:
+      europe_west1: 50
+
+  google_service_networking_connection.my_connection:
+    monthly_egress_data_transfer_gb: # Monthly VM-VM data transfer from VPN gateway to the following, in GB:
+      same_region: 0                # VMs in the same Google Cloud region.
+      us_or_canada: 0               # From a Google Cloud region in the US or Canada to another Google Cloud region in the US or Canada.
+      europe: 15                      # Between Google Cloud regions within Europe.
+      asia: 0                        # Between Google Cloud regions within Asia.
+      south_america: 0              # Between Google Cloud regions within South America.
+      oceania: 0                     # Indonesia and Oceania to/from any Google Cloud region.
+      worldwide: 0                  # to a Google Cloud region on another continent.
+
+  google_storage_bucket.my_storage_bucket:
+    storage_gb: 50                   # Total size of bucket in GB.
+    monthly_class_a_operations: 10000 # Monthly number of class A operations (object adds, bucket/object list).
+    monthly_class_b_operations: 10000 # Monthly number of class B operations (object gets, retrieve bucket/object metadata).
+    monthly_data_retrieval_gb: 100    # Monthly amount of data retrieved in GB.
+    monthly_egress_data_transfer_gb:  # Monthly data transfer from Cloud Storage to the following, in GB:
+      same_continent: 100  # Same continent.
+      worldwide: 0     # Worldwide excluding Asia, Australia.
+      asia: 0           # Asia excluding China, but including Hong Kong.
+      china: 0            # China excluding Hong Kong.
+      australia: 0       # Australia.
 
    ***place the screenshot from infracost output here***
+   ![Infracost report](infracost-report.png)
 
 9. Create a BigQuery dataset and an external table using SQL
     
     ***place the code and output here***
+
+    code for creating dataset:
+    ```sql
+    CREATE SCHEMA `tbd-2025z-318652.dataset_1`
+    OPTIONS (
+        default_partition_expiration_days = 1,
+        default_table_expiration_days = 0.042,
+        description = 'test tbd table',
+        labels = [('users','ids'),('a','b')],
+        location = 'europe-central2',
+        max_time_travel_hours = 48,
+        storage_billing_model = LOGICAL);
+    ```
+
+    ![Create dataset](doc/figures/create_dataset.png)
+
+    added an example csv file to data bucket and executed:
+    code for creating external table:
+    ```sql
+    CREATE EXTERNAL TABLE `tbd-2025z-318652.dataset_1.external_dataset_1`
+    OPTIONS (
+        format ="CSV",
+        uris = ['gs://tbd-2025z-318652-data/*']
+        );
+    ```
+    ![Created external table](doc/figures/create_external_table.png)
    
     ***why does ORC not require a table schema?***
+    The schema description is stored inside the ocr file itself so it is not needed to define it additionally 
 
 10. Find and correct the error in spark-job.py
 
