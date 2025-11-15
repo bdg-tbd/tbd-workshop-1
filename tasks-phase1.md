@@ -32,13 +32,20 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
 
-7. Draw an architecture diagram (e.g. in draw.io) that includes:
+   ```
+   gcloud compute ssh tbd-cluster-m \
+   --zone=europe-west1-c \
+   --project=tbd-2025z-347430 \
+   -- -N -L 8088:localhost:8088
+![Couldn't load image](images/yarn_ui.png)
+
+8. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
     2. List of buckets for disposal
 
     ***place your diagram here***
 
-8. Create a new PR and add costs by entering the expected consumption into Infracost
+9. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
@@ -46,21 +53,21 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    ***place the screenshot from infracost output here***
 
-9. Create a BigQuery dataset and an external table using SQL
+10. Create a BigQuery dataset and an external table using SQL
 
     ***place the code and output here***
 
     ***why does ORC not require a table schema?***
 
-10. Find and correct the error in spark-job.py
+11. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-11. Add support for preemptible/spot instances in a Dataproc cluster
+12. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
 
-12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
