@@ -45,7 +45,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     ***place your diagram here***
 
-    ![Couldn't load image](images/architecture.drawio.png)
+    ![Couldn't load image](images/architecture.drawio1.png)
 
 8. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
