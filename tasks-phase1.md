@@ -23,6 +23,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
     ***describe one selected module and put the output of terraform graph for this module here***
+
     *Budget* module takes care of cost management for GCP project by creating a billing budget that monitors spending and sends alerts when cost thresholds are exceeded
     ![Couldn't load image](images/budget_module.png)
 
