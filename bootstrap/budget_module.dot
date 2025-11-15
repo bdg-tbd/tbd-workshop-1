@@ -1,0 +1,24 @@
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  
+  // External dependencies
+  "google_monitoring_notification_channel.notification_channel" [label="Notification Channel\n(root)", style=filled, fillcolor=lightblue];
+  "google_project_service.tbd-service" [label="Project Service\n(root)", style=filled, fillcolor=lightblue];
+  
+  // Budget module resources
+  subgraph "cluster_module.budget" {
+    label = "module.budget"
+    fontname = "sans-serif"
+    style=filled;
+    fillcolor=lightyellow;
+    
+    "module.budget.data.google_project.project" [label="data: google_project", style=filled, fillcolor=lightgreen];
+    "module.budget.google_billing_budget.budget" [label="billing_budget", style=filled, fillcolor=orange];
+  }
+  
+  // Dependencies
+  "module.budget.data.google_project.project" -> "google_project_service.tbd-service";
+  "module.budget.google_billing_budget.budget" -> "google_monitoring_notification_channel.notification_channel";
+  "module.budget.google_billing_budget.budget" -> "module.budget.data.google_project.project";
+}
