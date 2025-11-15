@@ -187,6 +187,19 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 11. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
+    [modified file](./modules/dataproc/main.tf)
+
+    ```tf
+    preemptible_worker_config {
+      num_instances = 2
+      machine_type  = var.machine_type
+      disk_config {
+        boot_disk_type    = "pd-standard"
+        boot_disk_size_gb = 100
+      }
+      preemptibility = SPOT
+    }
+    ```
     
 12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
