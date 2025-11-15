@@ -1,0 +1,124 @@
+<mxfile host="app.diagrams.net" modified="2024-11-15T12:00:00.000Z" agent="5.0" version="21.0.0" type="device">
+  <diagram name="TBD Architecture" id="tbd-arch">
+    <mxGraphModel dx="1422" dy="794" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Title -->
+        <mxCell id="title" value="TBD Project Architecture (tbd-2025z-347430)" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="600" height="40" as="geometry"/>
+        </mxCell>
+
+        <!-- Service Accounts Container -->
+        <mxCell id="sa-container" value="SERVICE ACCOUNTS" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="380" height="340" as="geometry"/>
+        </mxCell>
+
+        <!-- Terraform SA -->
+        <mxCell id="terraform-sa" value="&lt;b&gt;Terraform Service Account&lt;/b&gt;&lt;br&gt;&lt;br&gt;ID: tbd-2025z-347430-lab@...&lt;br&gt;&lt;br&gt;&lt;b&gt;Purpose:&lt;/b&gt; Terraform automation&lt;br&gt;&lt;br&gt;&lt;b&gt;Roles:&lt;/b&gt;&lt;br&gt;• Editor&lt;br&gt;• Service Account User" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="sa-container">
+          <mxGeometry x="20" y="40" width="340" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- Dataproc SA -->
+        <mxCell id="dataproc-sa" value="&lt;b&gt;Dataproc Service Account&lt;/b&gt;&lt;br&gt;&lt;br&gt;ID: ...dataproc-sa@...&lt;br&gt;&lt;br&gt;&lt;b&gt;Purpose:&lt;/b&gt; Dataproc cluster operations&lt;br&gt;&lt;br&gt;&lt;b&gt;Roles:&lt;/b&gt;&lt;br&gt;• roles/dataproc.worker&lt;br&gt;• roles/bigquery.dataEditor&lt;br&gt;• roles/bigquery.user&lt;br&gt;• roles/storage.objectAdmin" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#6c8ebf;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="sa-container">
+          <mxGeometry x="20" y="190" width="340" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- Storage Buckets Container -->
+        <mxCell id="storage-container" value="STORAGE BUCKETS" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="460" y="80" width="420" height="520" as="geometry"/>
+        </mxCell>
+
+        <!-- State Bucket -->
+        <mxCell id="state-bucket" value="&lt;b&gt;Terraform State Bucket&lt;/b&gt;&lt;br&gt;&lt;br&gt;Name: tbd-2025z-347430-state&lt;br&gt;&lt;br&gt;&lt;b&gt;Purpose:&lt;/b&gt; Store Terraform state&lt;br&gt;&lt;b&gt;Location:&lt;/b&gt; europe-west1&lt;br&gt;&lt;b&gt;Versioning:&lt;/b&gt; Enabled&lt;br&gt;&lt;br&gt;⚠️ &lt;b&gt;KEEP THIS BUCKET!&lt;/b&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="storage-container">
+          <mxGeometry x="20" y="40" width="380" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- Staging Bucket -->
+        <mxCell id="staging-bucket" value="&lt;b&gt;Dataproc Staging Bucket&lt;/b&gt;&lt;br&gt;&lt;br&gt;Name: tbd-2025z-347430-dataproc-staging&lt;br&gt;&lt;br&gt;&lt;b&gt;Purpose:&lt;/b&gt; Job staging area&lt;br&gt;&lt;b&gt;Location:&lt;/b&gt; europe-west1&lt;br&gt;&lt;b&gt;Versioning:&lt;/b&gt; Enabled&lt;br&gt;&lt;b&gt;Access:&lt;/b&gt; Dataproc SA (objectAdmin)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="storage-container">
+          <mxGeometry x="20" y="190" width="380" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- Temp Bucket -->
+        <mxCell id="temp-bucket" value="&lt;b&gt;Dataproc Temp Bucket&lt;/b&gt;&lt;br&gt;&lt;br&gt;Name: tbd-2025z-347430-dataproc-temp&lt;br&gt;&lt;br&gt;&lt;b&gt;Purpose:&lt;/b&gt; Temporary job data&lt;br&gt;&lt;b&gt;Location:&lt;/b&gt; europe-west1&lt;br&gt;&lt;b&gt;Versioning:&lt;/b&gt; Enabled&lt;br&gt;&lt;b&gt;Access:&lt;/b&gt; Dataproc SA (objectAdmin)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#82b366;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="storage-container">
+          <mxGeometry x="20" y="340" width="380" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- Disposal Notice -->
+        <mxCell id="disposal-note" value="&lt;b&gt;📦 BUCKETS FOR DISPOSAL&lt;/b&gt;&lt;br&gt;&lt;br&gt;Safe to delete:&lt;br&gt;✓ dataproc-staging&lt;br&gt;✓ dataproc-temp&lt;br&gt;&lt;br&gt;Keep for recovery:&lt;br&gt;⚠️ state bucket" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;align=left;verticalAlign=top;spacing=10;fontSize=11;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="460" y="620" width="420" height="140" as="geometry"/>
+        </mxCell>
+
+        <!-- Compute Container -->
+        <mxCell id="compute-container" value="DATAPROC CLUSTER" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="920" y="80" width="440" height="380" as="geometry"/>
+        </mxCell>
+
+        <!-- Cluster Info -->
+        <mxCell id="cluster-info" value="&lt;b&gt;Cluster: tbd-cluster&lt;/b&gt;&lt;br&gt;&lt;br&gt;Region: europe-west1&lt;br&gt;Image: 2.2.69-ubuntu22&lt;br&gt;Components: Jupyter, Spark, Hadoop, YARN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="compute-container">
+          <mxGeometry x="20" y="40" width="400" height="90" as="geometry"/>
+        </mxCell>
+
+        <!-- Master Node -->
+        <mxCell id="master-node" value="&lt;b&gt;Master Node&lt;/b&gt;&lt;br&gt;&lt;br&gt;Name: tbd-cluster-m&lt;br&gt;Type: e2-standard-2&lt;br&gt;CPU: 2 vCPU&lt;br&gt;RAM: 8 GB&lt;br&gt;Disk: 100 GB pd-standard&lt;br&gt;&lt;br&gt;YARN UI: Port 8088" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="compute-container">
+          <mxGeometry x="20" y="150" width="400" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Worker Nodes -->
+        <mxCell id="worker-nodes" value="&lt;b&gt;Worker Nodes (2x)&lt;/b&gt;&lt;br&gt;&lt;br&gt;Type: e2-standard-2&lt;br&gt;CPU: 2 vCPU each (4 total)&lt;br&gt;RAM: 8 GB each (16 GB total)&lt;br&gt;Disk: 100 GB pd-standard each&lt;br&gt;&lt;br&gt;Services: HDFS, YARN, Spark" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#d79b00;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="compute-container">
+          <mxGeometry x="20" y="270" width="400" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Network Container -->
+        <mxCell id="network-container" value="NETWORK CONFIGURATION" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="920" y="480" width="440" height="130" as="geometry"/>
+        </mxCell>
+
+        <!-- Network Info -->
+        <mxCell id="network-info" value="&lt;b&gt;VPC Network&lt;/b&gt;&lt;br&gt;&lt;br&gt;Type: Custom VPC (module.vpc)&lt;br&gt;Subnet: Private subnet for Dataproc&lt;br&gt;Internal IP only: true (secure)&lt;br&gt;Region: europe-west1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#b85450;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="network-container">
+          <mxGeometry x="20" y="40" width="400" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Budget Container -->
+        <mxCell id="budget-container" value="MONITORING &amp; BUDGET" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=14;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="440" width="380" height="170" as="geometry"/>
+        </mxCell>
+
+        <!-- Budget Info -->
+        <mxCell id="budget-info" value="&lt;b&gt;Budget Module&lt;/b&gt;&lt;br&gt;&lt;br&gt;Cost monitoring: Configured&lt;br&gt;Notification channels: Active&lt;br&gt;Alerts: On spending thresholds&lt;br&gt;Billing account: Linked&lt;br&gt;&lt;br&gt;See budget module graph for details" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#9673a6;align=left;verticalAlign=top;spacing=10;fontSize=11" vertex="1" parent="budget-container">
+          <mxGeometry x="20" y="40" width="340" height="120" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrows: Dataproc SA to Buckets -->
+        <mxCell id="arrow1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;dashed=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="dataproc-sa" target="staging-bucket">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arrow2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;dashed=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="dataproc-sa" target="temp-bucket">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrows: Dataproc SA to Cluster -->
+        <mxCell id="arrow3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#6c8ebf;dashed=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="dataproc-sa" target="cluster-info">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Arrows: Buckets to Cluster -->
+        <mxCell id="arrow4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#82b366;dashed=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="staging-bucket" target="master-node">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <mxCell id="arrow5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeWidth=2;strokeColor=#82b366;dashed=1;endArrow=classic;endFill=1;" edge="1" parent="1" source="temp-bucket" target="master-node">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Footer -->
+        <mxCell id="footer" value="Project: tbd-2025z-347430 | Region: europe-west1 | Managed by Terraform" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=12;fontColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="400" y="840" width="600" height="30" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
