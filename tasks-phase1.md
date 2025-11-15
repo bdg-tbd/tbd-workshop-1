@@ -177,6 +177,12 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 10. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
+    1. Go to gcp Dataproc > Jobs > Jobs log
+    2. See failed jobs and investigate their logs. See not existing bucket "tbd-2025z-9901-data"
+    3. Replace bucket name to "gs://tbd-2025z-318652-data/data/shakespeare/"
+    4. clone job - see successful run
+    
+    ![](doc/figures/dataproc-successful-run.png)
 
 11. Add support for preemptible/spot instances in a Dataproc cluster
 
