@@ -1,0 +1,18 @@
+version: 0.1
+
+resource_usage:
+
+  module.gcr.google_artifact_registry_repository.registry:
+    storage_gb: 20
+    monthly_egress_data_transfer_gb:
+      europe_west1: 10
+
+  module.data-pipelines.google_storage_bucket.tbd-data-bucket:
+    storage_gb: 100
+    monthly_class_a_operations: 5000
+    monthly_class_b_operations: 10000
+
+  google_service_networking_connection.my_connection:
+    monthly_egress_data_transfer_gb:
+      europe: 15
+      same_region: 0
