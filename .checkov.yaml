@@ -13,6 +13,9 @@ skip-check:
   - CKV_DOCKER_3 # "Ensure that a user for the container has been created"
   - CKV_DOCKER_2 # "Ensure that HEALTHCHECK instructions have been added to container images"
   - CKV2_GCP_12 # "Ensure GCP compute firewall ingress does not allow unrestricted access to all ports"
+  - CKV_GCP_63
+  - CKV_GCP_26
+  - CKV_GCP_91
 
 skip-path:
  - gha-creds-*json

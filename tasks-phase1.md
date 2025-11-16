@@ -92,9 +92,42 @@ IMPORTANT ❗ Please remember to destroy all the resources after each work sessi
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   ***place the expected consumption you entered here***
+    Here is the *infracost-usage.yml* file we added:
+    ```yaml
+    version: 0.1
+    resource_type_default_usage:
 
-   ***place the screenshot from infracost output here***
+        google_artifact_registry_repository:
+            monthly_storage_gb: 50                   
+            monthly_egress_data_gb: 100               
+            monthly_artifact_upload_gb: 20           
+            api_requests: 200000
+
+        google_storage_bucket:
+            storage_gb: 200
+            monthly_class_a_operations: 500000
+            monthly_class_b_operations: 1000000
+            monthly_egress_data_gb: 150
+            monthly_regional_data_transfer_gb: 50  
+
+        google_service_networking_connection:
+            monthly_egress_data_transfer_gb:
+            same_region: 250                
+            us_or_canada: 100              
+            europe: 70          
+    ```
+    Then we included it in our workflow from *pull-request.yml*:
+    ```yaml
+    - name: Generate Infracost cost estimate baseline
+      run: |
+        infracost breakdown --path="." \
+                            --format=json \
+                            --out-file=/tmp/infracost-base.json \
+                            --usage-file=infracost-usage.yml
+    ```
+    And here is the Infracost output. As we can see, usage costs for each project were added:
+
+    ![Usage cost](images/usage_cost.png)
 
 10. Create a BigQuery dataset and an external table using SQL
 
