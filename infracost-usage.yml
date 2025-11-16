@@ -1,17 +1,16 @@
 version: 0.1
+
 resource_usage:
 
-  # Artifact Registry (your real resource)
   module.gcr.google_artifact_registry_repository.registry:
     storage_gb: 50
     monthly_egress_data_transfer_gb:
       europe_west1: 50
 
-  # Storage bucket 1 (data)
   "module.data-pipelines.google_storage_bucket.tbd-data-bucket":
-    storage_gb: 50
+    storage_gb: 100
     monthly_class_a_operations: 10000
-    monthly_class_b_operations: 10000
+    monthly_class_b_operations: 20000
     monthly_data_retrieval_gb: 100
     monthly_egress_data_transfer_gb:
       same_continent: 100
@@ -20,15 +19,48 @@ resource_usage:
       china: 0
       australia: 0
 
-  # Storage bucket 2 (code)
   "module.data-pipelines.google_storage_bucket.tbd-code-bucket":
-    storage_gb: 10
-    monthly_class_a_operations: 5000
+    storage_gb: 20
+    monthly_class_a_operations: 2000
     monthly_class_b_operations: 5000
-    monthly_data_retrieval_gb: 10
+    monthly_data_retrieval_gb: 20
     monthly_egress_data_transfer_gb:
       same_continent: 20
       worldwide: 0
       asia: 0
       china: 0
       australia: 0
+
+  module.dataproc.google_storage_bucket.dataproc_staging:
+    storage_gb: 50
+    monthly_class_a_operations: 3000
+    monthly_class_b_operations: 7000
+    monthly_data_retrieval_gb: 30
+    monthly_egress_data_transfer_gb:
+      same_continent: 30
+      worldwide: 0
+      asia: 0
+      china: 0
+      australia: 0
+
+  module.dataproc.google_storage_bucket.dataproc_temp:
+    storage_gb: 20
+    monthly_class_a_operations: 1000
+    monthly_class_b_operations: 3000
+    monthly_data_retrieval_gb: 10
+    monthly_egress_data_transfer_gb:
+      same_continent: 10
+      worldwide: 0
+      asia: 0
+      china: 0
+      australia: 0
+
+  google_service_networking_connection.my_connection:
+    monthly_egress_data_transfer_gb:
+      same_region: 0
+      us_or_canada: 0
+      europe: 15
+      asia: 0
+      south_america: 0
+      oceania: 0
+      worldwide: 0
