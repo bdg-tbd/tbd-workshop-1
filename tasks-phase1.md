@@ -25,56 +25,22 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     ***describe one selected module and put the output of terraform graph for this module here***
    The Composer module provisions a fully managed Cloud Composer (Apache Airflow) environment on Google Cloud that enables you to create, schedule, monitor, and manage workflow pipelines (DAGs) with no infrastructure-management overhead. It automatically creates a GKE cluster for Airflow components (schedulers, workers, triggerers), a Cloud SQL database for Airflow metadata, and an environment-specific Cloud Storage bucket that stores DAGs, plugins, logs, and data. The module configures associated service accounts, IAM roles, networking (including VPC/subnet integration and optional Private IP setups), and monitoring/logging integrations. By using this module, you get a production-ready Airflow environment including compute, storage, networking and orchestration, fully managed and integrated into your Google Cloud project.
+
 **variables:**
-variable "env_name" {
-  type        = string
-  description = "Composer env name"
-  default     = "demo-lab"
-}
-variable "project_name" {
-  type        = string
-  description = "Project name"
-}
-variable "region" {
-  type        = string
-  default     = "europe-west1"
-  description = "GCP region"
-}
-variable "network" {
-  type        = string
-  description = "VPC to use for notebooks"
-}
-variable "subnet_address" {
-  type        = string
-  description = "VPC subnet used for deployment"
-}
-variable "subnet_name" {
-  type        = string
-  description = "Composer subnet name"
-  default     = "composer-subnet-01"
-}
-variable "image_version" {
-  type    = string
-  default = "composer-2.11.5-airflow-2.9.3"
-}
-variable "env_size" {
-  type        = string
-  description = "Environment size"
-  default     = "ENVIRONMENT_SIZE_SMALL"
-}
-variable "env_variables" {
-  type        = map(string)
-  description = "Apache Airflow variables to set"
+env_name, project_name, region, network, subnet_address, subnet_name, image_version, env_size, env_variables
   
 **outputs:**
+
    output "gcs_bucket" {
   description = "GCS bucket for storing Apache Airflow DAGs"
   value       = module.composer.gcs_bucket
 }
+
 output "data_service_account" {
   description = "Apache Airflow service account"
   value       = google_service_account.tbd-composer-sa.email
 }
+
 output "gke_cluster" {
   description = "Composer underlying GKE cluster"
   value       = module.composer.gke_cluster
