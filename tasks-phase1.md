@@ -51,9 +51,39 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
-   ***place the expected consumption you entered here***
+```
+version: 0.1
 
-   ***place the screenshot from infracost output here***
+resource_usage:
+
+  # ----------------------------------------------------------
+  # google_artifact_registry
+  # ----------------------------------------------------------
+  google_artifact_registry.registry:
+    storage_gb: 40               # ilość przechowywanych artefaktów
+    monthly_egress_data_gb: 5    # niewielki transfer wychodzący
+    monthly_package_uploads: 20  # liczba uploadów miesięcznie
+    monthly_package_downloads: 100  # liczba pobrań miesięcznie
+
+  # ----------------------------------------------------------
+  # google_storage_bucket
+  # ----------------------------------------------------------
+  google_storage_bucket.tbd-state-bucket:
+    storage_gb: 500                                 # Approximate Terraform state size
+    monthly_class_a_operations: 5000               # PUT, POST, LIST operations
+    monthly_class_b_operations: 20000              # GET operations
+    monthly_egress_data_gb: 100                     # Outbound transfer
+    monthly_ingress_data_gb: 50                     # Inbound transfer
+
+  # ----------------------------------------------------------
+  # google_service_networking_connection – niewielki ruch
+  # ----------------------------------------------------------
+  google_service_networking_connection.default:
+     monthly_egress_gb: 5
+     monthly_ingress_gb: 5
+```
+
+ ![Couldn't load image](images/infracost-report.png)
 
 9. Create a BigQuery dataset and an external table using SQL
 
