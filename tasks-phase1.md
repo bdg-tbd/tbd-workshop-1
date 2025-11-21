@@ -115,7 +115,7 @@ resource_usage:
            boot_disk_size_gb = 100
          }
        }
-         ```
+      ```
 13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
