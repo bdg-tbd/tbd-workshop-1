@@ -97,9 +97,26 @@ resource_usage:
 
 11. Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place the link to the modified file and inserted terraform code***
-
-12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+      To the file modules/dataproc/variables.tf added a variable *preeemptible_worker_count*:
+      ```
+      variable "preeemptible_worker_count" {
+        type        = number
+        default     = 0
+        description = "Number of preemptible worker nodes"
+      }
+      ```
+      To the file modules/dataproc/main.tf added a *preemptible_worker_config* block:
+      ```
+       preemptible_worker_config {
+         num_instances  = var.preeemptible_worker_count
+         preemptibility = "SPOT"
+         disk_config {
+           boot_disk_type    = "pd-standard"
+           boot_disk_size_gb = 100
+         }
+       }
+         ```
+13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
