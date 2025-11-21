@@ -97,7 +97,7 @@ resource_usage:
 
 11. Add support for preemptible/spot instances in a Dataproc cluster
 
-      To the file modules/dataproc/variables.tf added a variable *preeemptible_worker_count*:
+      To the file /modules/dataproc/variables.tf added a variable *preeemptible_worker_count*:
       ```
       variable "preeemptible_worker_count" {
         type        = number
@@ -105,7 +105,7 @@ resource_usage:
         description = "Number of preemptible worker nodes"
       }
       ```
-      To the file modules/dataproc/main.tf added a *preemptible_worker_config* block:
+      To the file /modules/dataproc/main.tf added a *preemptible_worker_config* block:
       ```
        preemptible_worker_config {
          num_instances  = var.preeemptible_worker_count
