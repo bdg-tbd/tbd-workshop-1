@@ -130,9 +130,59 @@ Steps:
   1. Create file .github/workflows/auto-destroy.yml
   2. Configure it to authenticate and destroy Terraform resources
   3. Test the trigger (schedule or cleanup-tagged PR)
+```
+name: Auto Destroy
 
-***paste workflow YAML here***
+on:
+  schedule:
+    - cron: "0 2 * * *"   # Run daily at 02:00 UTC, 03:00 Polish winter time
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
 
+permissions: read-all
+
+jobs:
+  destroy:
+    if: |
+      github.event_name == 'schedule' ||
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.merged == true &&
+       contains(github.event.pull_request.title, '[CLEANUP]'))
+
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+      issues: write
+
+    steps:
+    - uses: 'actions/checkout@v3'
+
+    - uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.11.0
+
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        token_format: 'access_token'
+        workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
+        service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
+
+    - name: Terraform Init
+      id: init
+      run: terraform init -backend-config=env/backend.tfvars
+
+    - name: Terraform Destroy
+      id: destroy
+      run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
+      continue-on-error: false
+```
 ***paste screenshot/log snippet confirming the auto-destroy ran***
 
-***write one sentence why scheduling cleanup helps in this workshop***
+Scheduling cleanup helps to insure that we don't burn through all the resources by forgetting to run destroy manually after our work. It was scheduled for 3 a.m. Polish winter time, becuse this is the optimal time between the time we might actively work on the project (which is mostly evening to early night), and time the project was running for too long without work done on it. Adding a destroy on tag in pull-request helps to triger it faster when we now we don't need the system running after, without having to go to actions.
