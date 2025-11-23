@@ -17,16 +17,23 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     2. Create PR from this branch to **YOUR** master and merge it to make new release.
 
-    ***place the screenshot from GA after succesfull application of release***
+    ![img.png](images/task-4.webp)
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+    Moduł dataproc służy do stworzenia i konfiguracji klastera Apache Spark w wykorzystywanej w tym ćwiczeniu usłudze Google Cloud Dataproc. W architekturze naszego projektu pełni rolę środowiska obliczeniowego dla zadań przetwarzania danych oraz środowiska interaktywnego. Moduł ten jest ściśle powiązany z modułem sieciowym vpc (depends_on = [module.vpc]), czyli wymaga on uprzednio utworzonej sieci vpc. Zadaniami modułu jest zapewnienie, że sieć vpc jest gotowa, stworzenie klastra w określonym projekcie (project_name = var.project_name) i regionie (var.region), umieszczenie węzłów klastra w odpowiednej podsieci vpc (subnet = module.vpc.subnets[local.notebook_subnet_id].id). Dodatkowo instaluje on oprogramowanie oparte na obrazie Dataproc w wersji 2.2 z Ubuntu 22 (image_version = "2.2.69-ubuntu22") i używa maszyn wirtualnych typu e2-standard-2 (machine_type  = "e2-standard-2").
+
+    ![img.png](images/task-5.png)
 
 6. Reach YARN UI
 
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+    ~~~
+    gcloud compute ssh --zone "europe-west1-b" "tbd-cluster-m" --tunnel-through-iap --project "tbd-2025z-14" -- -L 8088:localhost:8088
+    ~~~
+
+    ![img.png](images/task-6.webp)
+
 
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
@@ -38,25 +45,36 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
-   ***place the expected consumption you entered here***
+    ![img.png](images/task-8.webp)
 
-   ***place the screenshot from infracost output here***
 
-9. Create a BigQuery dataset and an external table using SQL
+1. Create a BigQuery dataset and an external table using SQL
 
     ***place the code and output here***
 
-    ***why does ORC not require a table schema?***
+    ORC to format plików używany do przechowywania danych w systemach Big Data. Jedną z jego głównych zalet jest to, iż pliki ORC przechowują informacje o swoim schemacie (nazwy kolumn i typy danych) wewnątrz struktury. Dzięki temu systemy takie jak BigQuery mogą odczytać plik i automatycznie odtworzyć strukturę danych, bez konieczności ręcznego definiowania schematu podczas tworzenia tabeli zewnętrznej.
 
-10. Find and correct the error in spark-job.py
+2.  Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-11. Add support for preemptible/spot instances in a Dataproc cluster
+3.  Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place the link to the modified file and inserted terraform code***
+    [modules/dataproc/main.tf](modules/dataproc/main.tf)
 
-12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+    ~~~
+    preemptible_worker_config {
+      num_instances = 2
+      preemptibility = "SPOT"
+
+      disk_config {
+        boot_disk_type    = "pd-standard"
+        boot_disk_size_gb = 100
+      }
+    }
+    ~~~
+
+4.  Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
@@ -71,7 +89,7 @@ Steps:
   2. Configure it to authenticate and destroy Terraform resources
   3. Test the trigger (schedule or cleanup-tagged PR)
 
-***paste workflow YAML here***
+[.github/workflows/auto-destroy.yml](.github/workflows/auto-destroy.yml)
 
 ***paste screenshot/log snippet confirming the auto-destroy ran***
 
