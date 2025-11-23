@@ -24,3 +24,11 @@ variable "image_version" {
   type    = string
   default = "2.2.69-ubuntu22"
 }
+
+variable "preeemptible_worker_count" {
+  type        = number
+  default     = 0
+  description = "Number of preemptible worker nodes"
+}
+
+
