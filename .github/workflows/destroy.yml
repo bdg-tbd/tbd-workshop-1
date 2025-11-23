@@ -1,9 +1,10 @@
 name: Destroy
+
 on:
   workflow_dispatch:
-  workflow_call:
 
 permissions: read-all
+
 jobs:
   destroy-release:
     runs-on: ubuntu-latest
