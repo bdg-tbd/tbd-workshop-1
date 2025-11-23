@@ -17,7 +17,7 @@ jobs:
       issues: write
     if: >
       github.event.pull_request.merged == true &&
-      !contains(github.event.pull_request.title, '[CLEANUP]')
+      !contains(github.event.pull_request.title, 'CLEANUP')
     steps:
     - uses: 'actions/checkout@v3'
     - name: Semantic Release
