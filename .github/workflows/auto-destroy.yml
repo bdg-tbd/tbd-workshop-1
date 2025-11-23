@@ -40,10 +40,6 @@ jobs:
         token_format: 'access_token'
         workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
         service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
-    
-    - name: Remove stale Terraform lock (safe cleanup)
-      run: |
-        gcloud storage rm gs://tbd-2025z-347430-state/project/default.tflock || true
 
     - name: Terraform Init
       id: init
