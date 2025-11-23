@@ -23,9 +23,6 @@ jobs:
 
     steps:
     - uses: 'actions/checkout@v3'
-<<<<<<< HEAD
-    - uses: ./.github/workflows/destroy.yml
-=======
     - uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.11.0
@@ -43,4 +40,3 @@ jobs:
       id: destroy
       run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
       continue-on-error: false
->>>>>>> 831db05 (Updated auto destroy pipeline)
