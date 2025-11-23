@@ -19,5 +19,7 @@ jobs:
       issues: write
     if: >
       github.event.pull_request.merged == true &&
-      contains(github.event.pull_request.title, 'CLEANUP')
-    uses: ./.github/workflows/destroy.yml
+      contains(github.event.pull_request.title, '[CLEANUP]')
+    steps:
+      - name: Destroy resources
+        uses: ./.github/workflows/destroy.yml
