@@ -1,2 +1,2 @@
-github_org  = "florosprout-PL"
-github_repo = "tbd-workshop-1"
+github_org  = "florosprout-pl"
+github_repo = "https://github.com/Cezym/tbd-workshop-1"
