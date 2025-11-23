@@ -14,30 +14,35 @@
 # limitations under the License.
 
 from __future__ import print_function
-import tempfile
+
+
 from pyspark.sql import SparkSession
 
 # change to your data bucket
-DATA_BUCKET = "gs://tbd-2025z-9901-data/data/shakespeare/"
+DATA_BUCKET = "gs://tbd-2025z-347430-data/data/shakespeare/"
 
-spark = SparkSession.builder.appName('Shakespeare WordCount').getOrCreate()
+spark = SparkSession.builder.appName("Shakespeare WordCount").getOrCreate()
 
-table = 'bigquery-public-data.samples.shakespeare'
+table = "bigquery-public-data.samples.shakespeare"
 
-df = spark.read.format('bigquery').load(table)
+df = spark.read.format("bigquery").load(table)
 # Only these columns will be read
-df = df.select('word', 'word_count')
+df = df.select("word", "word_count")
 # The filters that are allowed will be automatically pushed down.
 # Those that are not will be computed client side
 df = df.where("word_count > 0 AND word NOT LIKE '%\\'%'")
 # Further processing is done inside Spark
-df = df.groupBy('word').sum('word_count').withColumnRenamed('sum(word_count)', 'sum_word_count')
-df = df.orderBy(df['sum_word_count'].desc()).cache()
+df = (
+    df.groupBy("word")
+    .sum("word_count")
+    .withColumnRenamed("sum(word_count)", "sum_word_count")
+)
+df = df.orderBy(df["sum_word_count"].desc()).cache()
 
-print('The resulting schema is')
+print("The resulting schema is")
 df.printSchema()
 
-print('The top words in shakespeare are')
+print("The top words in shakespeare are")
 df.show()
 df.write.mode("overwrite").orc(DATA_BUCKET)
 
