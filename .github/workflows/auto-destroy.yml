@@ -11,6 +11,12 @@ permissions: read-all
 
 jobs:
   destroy-release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+      issues: write
     if: >
       github.event.pull_request.merged == true &&
       contains(github.event.pull_request.title, 'CLEANUP')
