@@ -1,0 +1,17 @@
+name: Auto Destroy
+
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+permissions: read-all
+
+jobs:
+  destroy-release:
+    if: >
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.title, '[CLEANUP]')
+    uses: ./.github/workflows/destroy.yml
