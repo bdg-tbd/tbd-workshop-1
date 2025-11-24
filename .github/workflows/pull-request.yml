@@ -64,6 +64,7 @@ jobs:
 
     - name: Terraform Init
       id: init
+      working-directory: ./cicd_bootstrap
       run: terraform init -backend-config=../env/backend.tfvars
 
     - name: Terraform Validate
