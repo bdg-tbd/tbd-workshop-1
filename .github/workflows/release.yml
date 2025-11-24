@@ -41,8 +41,10 @@ jobs:
         password: '${{ steps.auth.outputs.access_token }}'
     - name: Terraform Init
       id: init
+      working-directory: ./cicd_bootstrap
       run: terraform init -backend-config=../env/backend.tfvars
     - name: Terraform Apply
       id: apply
+      working-directory: ./cicd_bootstrap
       run: terraform apply -no-color -var-file ../env/project.tfvars -auto-approve
       continue-on-error: false
