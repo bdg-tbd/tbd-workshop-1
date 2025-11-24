@@ -6,6 +6,9 @@ on:
       - closed
     branches:
       - master
+  
+  schedule:
+    - cron: '10 22 * * *' 
 
 permissions: read-all
 
