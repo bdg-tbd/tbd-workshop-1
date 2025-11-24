@@ -27,8 +27,10 @@ jobs:
         service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
     - name: Terraform Init
       id: init
-      run: terraform init -backend-config=env/backend.tfvars
+      working-directory: ./cicd_bootstrap
+      run: terraform init -backend-config=../env/backend.tfvars
     - name: Terraform Destroy
       id: destroy
-      run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
+      working-directory: ./cicd_bootstrap
+      run: terraform destroy -no-color -var-file ../env/project.tfvars -auto-approve
       continue-on-error: false
