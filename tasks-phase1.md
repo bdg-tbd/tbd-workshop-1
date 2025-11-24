@@ -46,7 +46,21 @@ szukamy: /module.dataproc
    
 6. Reach YARN UI
    
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+   Polecenie do ustawienia tunelu SSH:
+
+gcloud compute ssh tbd-cluster-m \
+  --project=tbd-2025z-2137 \
+  --zone=europe-west1-b \
+  --tunnel-through-iap \
+  -- -L 8088:localhost:8088
+
+Port lokalny: 8088
+
+YARN UI dostępne pod adresem:
+http://localhost:8088
+
+<img width="2879" height="1696" alt="Zrzut ekranu 2025-11-24 210432" src="https://github.com/user-attachments/assets/804e368c-da98-440b-baf6-bcb5a2169ac4" />
+
    
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
