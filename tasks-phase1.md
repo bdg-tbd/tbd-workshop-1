@@ -89,22 +89,22 @@ resource_usage:
 
 ORC file was downloaded from: https://github.com/apache/orc/blob/main/examples/TestOrcFile.test1.orc
 
+```sql
+CREATE SCHEMA IF NOT EXISTS `tbd-2025z-347430.tbd_dataset`
+OPTIONS (
+location = 'europe-west1'
+);
 
-    ```sql
-    CREATE SCHEMA IF NOT EXISTS `tbd-2025z-347430.tbd_dataset`
-    OPTIONS (
-    location = 'europe-west1'
-    );
+CREATE EXTERNAL TABLE IF NOT EXISTS `tbd-2025z-347430.tbd_dataset.tab-ext`
+OPTIONS (
+format = 'ORC',
+uris = ['gs://tbd-2025z-347430-data/data/*.orc']
+);
+```
+    
+***place the code and output here***
 
-    CREATE EXTERNAL TABLE IF NOT EXISTS `tbd-2025z-347430.tbd_dataset.tab-ext`
-    OPTIONS (
-    format = 'ORC',
-    uris = ['gs://tbd-2025z-347430-data/data/*.orc']
-    );
-    ```
-    ***place the code and output here***
-
-    ***why does ORC not require a table schema?***
+***why does ORC not require a table schema?***
 
 ORC (Optimized Row Columnar) files are self-describing, meaning they store metadata such as column names, data types, and structure. This allows systems like BigQuery to automatically interpret the data without requiring a predefined table schema, simplifying data ingestion and processing.
 
