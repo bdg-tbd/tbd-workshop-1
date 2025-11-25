@@ -116,16 +116,12 @@ terraform destroy -no-color -var-file env/project.tfvars
 | Name | Version |
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.24.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_composer"></a> [composer](#module\_composer) | ./modules/composer | n/a |
-| <a name="module_data-pipelines"></a> [data-pipelines](#module\_data-pipelines) | ./modules/data-pipeline | n/a |
 | <a name="module_dataproc"></a> [dataproc](#module\_dataproc) | ./modules/dataproc | n/a |
-| <a name="module_dbt_docker_image"></a> [dbt\_docker\_image](#module\_dbt\_docker\_image) | ./modules/dbt_docker_image | n/a |
 | <a name="module_gcr"></a> [gcr](#module\_gcr) | ./modules/gcr | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | ./modules/vpc | n/a |
 
@@ -134,9 +130,6 @@ terraform destroy -no-color -var-file env/project.tfvars
 | Name | Type |
 |------|------|
 | [google_compute_firewall.allow-all-internal](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall) | resource |
-| [kubernetes_service.dbt-task-service](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/service) | resource |
-| [google_client_config.provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/client_config) | data source |
-| [google_container_cluster.composer-gke-cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/container_cluster) | data source |
 
 ## Inputs
 
