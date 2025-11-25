@@ -212,6 +212,6 @@ As you can see, the above workflow is triggered when:
 - the time is *22:10*
   
 To test if this works we created a PR with *[CLEANUP]* tag and we merged it to *master* branch. *Auto-destroy* workflow was triggered:
+ ![Successful auto destroy](images/auto-destroy.png)
 
-
-***write one sentence why scheduling cleanup helps in this workshop***
+This setup is useful because if any resources are accidentally left behind, it automatically cleans them up at least once a day, preventing unnecessary costs and helping keep expenses under control.
