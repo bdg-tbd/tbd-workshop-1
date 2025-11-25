@@ -79,6 +79,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    
     ***why does ORC not require a table schema?***
+
     ORC files are self-describing. Entire schema with column names and types is stored in the file's metadata. Because of this type of storage, external table definition is not required to read the file's contents. External table definition is only to define the table structure.
     The embedded schema allows readers to correctly interpret the data even if the external table definition changes over time.
 
