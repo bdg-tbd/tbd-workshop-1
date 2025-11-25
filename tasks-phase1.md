@@ -21,6 +21,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     <img width="2118" height="1079" alt="image" src="https://github.com/user-attachments/assets/4a04297f-9c0f-485d-bdd7-0ed40e8d8e1a" />
 
+UPDATE! Po unieruchomieniu composera realase przeszedł po 40 sek.:
+<img width="2082" height="1101" alt="image" src="https://github.com/user-attachments/assets/dfcc8602-f026-47ac-89a5-c77ffe6c3989" />
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
