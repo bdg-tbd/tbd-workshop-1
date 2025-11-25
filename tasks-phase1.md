@@ -87,11 +87,28 @@ resource_usage:
 
 9. Create a BigQuery dataset and an external table using SQL
 
+ORC file was downloaded from: https://github.com/apache/orc/blob/main/examples/TestOrcFile.test1.orc
+
+
+    ```sql
+    CREATE SCHEMA IF NOT EXISTS `tbd-2025z-347430.tbd_dataset`
+    OPTIONS (
+    location = 'europe-west1'
+    );
+
+    CREATE EXTERNAL TABLE IF NOT EXISTS `tbd-2025z-347430.tbd_dataset.tab-ext`
+    OPTIONS (
+    format = 'ORC',
+    uris = ['gs://tbd-2025z-347430-data/data/*.orc']
+    );
+    ```
     ***place the code and output here***
 
     ***why does ORC not require a table schema?***
 
-10. Find and correct the error in spark-job.py
+ORC (Optimized Row Columnar) files are self-describing, meaning they store metadata such as column names, data types, and structure. This allows systems like BigQuery to automatically interpret the data without requiring a predefined table schema, simplifying data ingestion and processing.
+
+11. Find and correct the error in spark-job.py
 
     The error is an incorrect/not specified correctly data bucket number. In the original code it's *9901*. When we submit the code to run on cluster, we can see Error "The specified bucket does not exist" in logs:
     ![Couldn't load image](images/spark-job-error.png)
