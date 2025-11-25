@@ -159,8 +159,58 @@ Steps:
   2. Configure it to authenticate and destroy Terraform resources
   3. Test the trigger (schedule or cleanup-tagged PR)
      
-***paste workflow YAML here***
+Here is the workflow we put into *.github/workflows/auto-destroy.yml*:
+```yaml
+name: Auto Destroy
 
-***paste screenshot/log snippet confirming the auto-destroy ran***
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+  
+  schedule:
+    - cron: '10 22 * * *' 
+
+permissions: read-all
+
+jobs:
+  auto-destroy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+      issues: write
+    if: >
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.title, '[CLEANUP]')
+
+    steps:
+    - uses: 'actions/checkout@v3'
+    - uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.11.0
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        token_format: 'access_token'
+        workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
+        service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
+    - name: Terraform Init
+      id: init
+      run: terraform init -backend-config=env/backend.tfvars
+    - name: Terraform Destroy
+      id: destroy
+      run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
+      continue-on-error: false
+```
+As you can see, the above workflow is triggered when:
+- PR title contains *[CLEANUP]* tag
+- the time is 22:10
+To test if this works we created a PR with *[CLEANUP]* tag and we merged it to *master* branch. *Auto-destroy* workflow was triggered:
+
 
 ***write one sentence why scheduling cleanup helps in this workshop***
