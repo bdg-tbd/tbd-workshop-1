@@ -209,7 +209,8 @@ jobs:
 ```
 As you can see, the above workflow is triggered when:
 - PR title contains *[CLEANUP]* tag
-- the time is 22:10
+- the time is *22:10*
+  
 To test if this works we created a PR with *[CLEANUP]* tag and we merged it to *master* branch. *Auto-destroy* workflow was triggered:
 
 
