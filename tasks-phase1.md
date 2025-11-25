@@ -4,14 +4,13 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
-
-   ***link to forked repo***
+   17
+   https://github.com/utlik/tbd-workshop-1
    
 2. Follow all steps in README.md.
 
 3. From avaialble Github Actions select and run destroy on main branch.
-   
+  
 4. Create new git branch and:
     1. Modify tasks-phase1.md file.
     
