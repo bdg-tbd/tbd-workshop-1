@@ -1,11 +1,10 @@
 version: 0.1
-
-resource_usage:
+resource_type_default_usage:
 
   # ----------------------------------------------------------
   # google_artifact_registry
   # ----------------------------------------------------------
-  google_artifact_registry.registry:
+  google_artifact_registry_repository:
     storage_gb: 40               # ilość przechowywanych artefaktów
     monthly_egress_data_gb: 5    # niewielki transfer wychodzący
     monthly_package_uploads: 20  # liczba uploadów miesięcznie
@@ -14,7 +13,7 @@ resource_usage:
   # ----------------------------------------------------------
   # google_storage_bucket
   # ----------------------------------------------------------
-  google_storage_bucket.tbd-state-bucket:
+  google_storage_bucket:
     storage_gb: 500                                 # Approximate Terraform state size
     monthly_class_a_operations: 5000               # PUT, POST, LIST operations
     monthly_class_b_operations: 20000              # GET operations
@@ -24,6 +23,6 @@ resource_usage:
   # ----------------------------------------------------------
   # google_service_networking_connection – niewielki ruch
   # ----------------------------------------------------------
-  google_service_networking_connection.default:
-     monthly_egress_gb: 5
-     monthly_ingress_gb: 5
+  google_service_networking_connection:
+    monthly_egress_gb: 5
+    monthly_ingress_gb: 5
