@@ -1,1 +1,2 @@
-bucket = "tbd-2025z-9901-state"
+bucket = "tbd-25z-323733-state"
+prefix = "project"
