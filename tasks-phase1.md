@@ -6,7 +6,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
    **_8_**
 
-   **_link to forked repo_**
+   _[\_\_link to forked repo_](https://github.com/Felooo8/tbd-workshop-1/)\*\*
 
 2. Follow all steps in README.md.
 
@@ -17,11 +17,15 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
    2. Create PR from this branch to **YOUR** master and merge it to make new release.
 
-   **_place the screenshot from GA after succesfull application of release_**
+   ![img.png](doc/figures/release.png)
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-   **_describe one selected module and put the output of terraform graph for this module here_**
+   Wybrany moduł: vpc/
+   Moduł vpc odpowiada za utworzenie całej infrastruktury sieciowej projektu. Tworzy główną sieć VPC (main-vpc), podsieci, trasę do internetu oraz reguły firewallowe, dzięki którym zasoby mogą komunikować się wewnętrznie i z internetem. Moduł wykorzystuje również cloud-router i cloud-nat, aby zapewnić dostęp do internetu VM-kom pozbawionym zewnętrznych adresów IP.
+   Wejściami modułu są m.in. region, CIDR podsieci oraz nazwa projektu. Wyjściami są linki do utworzonej sieci i subnetu, które są później wykorzystywane przez moduły Dataproc i Composer.
+
+   ![img.png](doc/figures/graph-vpc.png)
 
 6. Reach YARN UI
 
@@ -32,7 +36,7 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    1. Description of the components of service accounts
    2. List of buckets for disposal
 
-   **_place your diagram here_**
+   ![img.png](doc/figures/diagram.png)
 
 8. Create a new PR and add costs by entering the expected consumption into Infracost
    For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
@@ -63,11 +67,9 @@ Add a new GitHub Actions workflow that:
 1. runs terraform destroy -auto-approve
 2. triggers automatically:
 
-  
- a) on a fixed schedule (e.g. every day at 20:00 UTC)
+a) on a fixed schedule (e.g. every day at 20:00 UTC)
 
-  
- b) when a PR is merged to main containing [CLEANUP] tag in title
+b) when a PR is merged to main containing [CLEANUP] tag in title
 
 Steps:
 
