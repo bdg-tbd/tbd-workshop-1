@@ -80,22 +80,22 @@ module "dataproc" {
 #  network        = module.vpc.network.network_id
 #}
 
-module "composer" {
-  depends_on     = [module.vpc]
-  source         = "./modules/composer"
-  project_name   = var.project_name
-  network        = module.vpc.network.network_name
-  subnet_address = local.composer_subnet_address
-  env_variables = {
-    "AIRFLOW_VAR_PROJECT_ID" : var.project_name,
-    "AIRFLOW_VAR_REGION_NAME" : var.region,
-    "AIRFLOW_VAR_BUCKET_NAME" : local.code_bucket_name
-    "AIRFLOW_VAR_PHS_CLUSTER" : module.dataproc.dataproc_cluster_name,
-    "AIRFLOW_VAR_WRK_NAMESPACE" : local.composer_work_namespace,
-    "AIRFLOW_VAR_DBT_GIT_REPO" : local.dbt_git_repo,
-    "AIRFLOW_VAR_DBT_GIT_REPO_BRANCH" : local.dbt_git_repo_branch
-  }
-}
+#module "composer" {
+#  depends_on     = [module.vpc]
+#  source         = "./modules/composer"
+#  project_name   = var.project_name
+#  network        = module.vpc.network.network_name
+#  subnet_address = local.composer_subnet_address
+#  env_variables = {
+#    "AIRFLOW_VAR_PROJECT_ID" : var.project_name,
+#    "AIRFLOW_VAR_REGION_NAME" : var.region,
+#    "AIRFLOW_VAR_BUCKET_NAME" : local.code_bucket_name
+#    "AIRFLOW_VAR_PHS_CLUSTER" : module.dataproc.dataproc_cluster_name,
+#    "AIRFLOW_VAR_WRK_NAMESPACE" : local.composer_work_namespace,
+#    "AIRFLOW_VAR_DBT_GIT_REPO" : local.dbt_git_repo,
+#    "AIRFLOW_VAR_DBT_GIT_REPO_BRANCH" : local.dbt_git_repo_branch
+#  }
+#}
 
 module "dbt_docker_image" {
   depends_on         = [module.composer, module.gcr]
