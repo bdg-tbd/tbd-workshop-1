@@ -11,10 +11,10 @@ provider "docker" {
 data "google_client_config" "provider" {}
 
 
-data "google_container_cluster" "composer-gke-cluster" {
-  name     = reverse(split("/", module.composer.gke_cluster))[0]
-  location = var.region
-}
+#data "google_container_cluster" "composer-gke-cluster" {
+#  name     = reverse(split("/", module.composer.gke_cluster))[0]
+#  location = var.region
+#}
 
 provider "kubernetes" {
   host  = "https://${data.google_container_cluster.composer-gke-cluster.endpoint}"
