@@ -98,7 +98,7 @@ module "dataproc" {
 #}
 
 module "dbt_docker_image" {
-  depends_on         = [module.composer, module.gcr]
+  depends_on         = [module.gcr]#, module.composer,]
   source             = "./modules/dbt_docker_image"
   registry_hostname  = module.gcr.registry_hostname
   registry_repo_name = coalesce(var.project_name)
@@ -108,15 +108,15 @@ module "dbt_docker_image" {
   dbt_spark_version  = local.dbt_spark_version
 }
 
-module "data-pipelines" {
-  source               = "./modules/data-pipeline"
-  project_name         = var.project_name
-  region               = var.region
-  bucket_name          = local.code_bucket_name
-  data_service_account = module.composer.data_service_account
-  dag_bucket_name      = module.composer.gcs_bucket
-  data_bucket_name     = local.data_bucket_name
-}
+#module "data-pipelines" {
+#  source               = "./modules/data-pipeline"
+#  project_name         = var.project_name
+#  region               = var.region
+#  bucket_name          = local.code_bucket_name
+#  data_service_account = module.composer.data_service_account
+#  dag_bucket_name      = module.composer.gcs_bucket
+#  data_bucket_name     = local.data_bucket_name
+#}
 
 
 
