@@ -5,6 +5,10 @@ on:
   pull_request:
     types: [closed]
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Release/apply"]
+    types:
+      - completed
 
 permissions: read-all
 jobs:
