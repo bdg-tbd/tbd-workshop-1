@@ -97,16 +97,16 @@ module "dataproc" {
 #  }
 #}
 
-module "dbt_docker_image" {
-  depends_on         = [module.gcr]#, module.composer,]
-  source             = "./modules/dbt_docker_image"
-  registry_hostname  = module.gcr.registry_hostname
-  registry_repo_name = coalesce(var.project_name)
-  project_name       = var.project_name
-  spark_version      = local.spark_version
-  dbt_version        = local.dbt_version
-  dbt_spark_version  = local.dbt_spark_version
-}
+#module "dbt_docker_image" {
+#  depends_on         = [module.gcr]#, module.composer,]
+#  source             = "./modules/dbt_docker_image"
+#  registry_hostname  = module.gcr.registry_hostname
+#  registry_repo_name = coalesce(var.project_name)
+#  project_name       = var.project_name
+#  spark_version      = local.spark_version
+#  dbt_version        = local.dbt_version
+#  dbt_spark_version  = local.dbt_spark_version
+#}
 
 #module "data-pipelines" {
 #  source               = "./modules/data-pipeline"
