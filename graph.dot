@@ -1,0 +1,112 @@
+digraph G {
+  rankdir = "RL";
+  node [shape = rect, fontname = "sans-serif"];
+  "data.google_client_config.provider" [label="data.google_client_config.provider"];
+  "google_compute_firewall.allow-all-internal" [label="google_compute_firewall.allow-all-internal"];
+  subgraph "cluster_module.dataproc" {
+    label = "module.dataproc"
+    fontname = "sans-serif"
+    "module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster" [label="google_dataproc_cluster.tbd-dataproc-cluster"];
+    "module.dataproc.google_project_iam_member.dataproc_bigquery_data_editor" [label="google_project_iam_member.dataproc_bigquery_data_editor"];
+    "module.dataproc.google_project_iam_member.dataproc_bigquery_user" [label="google_project_iam_member.dataproc_bigquery_user"];
+    "module.dataproc.google_project_iam_member.dataproc_worker" [label="google_project_iam_member.dataproc_worker"];
+    "module.dataproc.google_project_service.dataproc" [label="google_project_service.dataproc"];
+    "module.dataproc.google_service_account.dataproc_sa" [label="google_service_account.dataproc_sa"];
+    "module.dataproc.google_storage_bucket.dataproc_staging" [label="google_storage_bucket.dataproc_staging"];
+    "module.dataproc.google_storage_bucket.dataproc_temp" [label="google_storage_bucket.dataproc_temp"];
+    "module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam" [label="google_storage_bucket_iam_member.staging_bucket_iam"];
+    "module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam" [label="google_storage_bucket_iam_member.temp_bucket_iam"];
+  }
+  subgraph "cluster_module.gcr" {
+    label = "module.gcr"
+    fontname = "sans-serif"
+    "module.gcr.google_artifact_registry_repository.registry" [label="google_artifact_registry_repository.registry"];
+    "module.gcr.google_project_service.api" [label="google_project_service.api"];
+  }
+  subgraph "cluster_module.vpc" {
+    label = "module.vpc"
+    fontname = "sans-serif"
+    "module.vpc.google_compute_firewall.default-internal-allow-all" [label="google_compute_firewall.default-internal-allow-all"];
+    "module.vpc.google_compute_firewall.fw-allow-ingress-from-iap" [label="google_compute_firewall.fw-allow-ingress-from-iap"];
+  }
+  subgraph "cluster_module.vpc.module.cloud-router" {
+    label = "module.vpc.module.cloud-router"
+    fontname = "sans-serif"
+    "module.vpc.module.cloud-router.google_compute_router.router" [label="google_compute_router.router"];
+    "module.vpc.module.cloud-router.google_compute_router_nat.nats" [label="google_compute_router_nat.nats"];
+  }
+  subgraph "cluster_module.vpc.module.vpc.module.firewall_rules" {
+    label = "module.vpc.module.vpc.module.firewall_rules"
+    fontname = "sans-serif"
+    "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules" [label="google_compute_firewall.rules"];
+    "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress" [label="google_compute_firewall.rules_ingress_egress"];
+  }
+  subgraph "cluster_module.vpc.module.vpc.module.routes" {
+    label = "module.vpc.module.vpc.module.routes"
+    fontname = "sans-serif"
+    "module.vpc.module.vpc.module.routes.google_compute_route.route" [label="google_compute_route.route"];
+  }
+  subgraph "cluster_module.vpc.module.vpc.module.subnets" {
+    label = "module.vpc.module.vpc.module.subnets"
+    fontname = "sans-serif"
+    "module.vpc.module.vpc.module.subnets.google_compute_subnetwork.subnetwork" [label="google_compute_subnetwork.subnetwork"];
+  }
+  subgraph "cluster_module.vpc.module.vpc.module.vpc" {
+    label = "module.vpc.module.vpc.module.vpc"
+    fontname = "sans-serif"
+    "module.vpc.module.vpc.module.vpc.google_compute_network.network" [label="google_compute_network.network"];
+    "module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host" [label="google_compute_shared_vpc_host_project.shared_vpc_host"];
+  }
+  "google_compute_firewall.allow-all-internal" -> "module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster" -> "module.dataproc.google_project_iam_member.dataproc_bigquery_data_editor";
+  "module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster" -> "module.dataproc.google_project_iam_member.dataproc_bigquery_user";
+  "module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster" -> "module.dataproc.google_project_iam_member.dataproc_worker";
+  "module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster" -> "module.dataproc.google_project_service.dataproc";
+  "module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster" -> "module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam";
+  "module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster" -> "module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam";
+  "module.dataproc.google_project_iam_member.dataproc_bigquery_data_editor" -> "module.dataproc.google_service_account.dataproc_sa";
+  "module.dataproc.google_project_iam_member.dataproc_bigquery_user" -> "module.dataproc.google_service_account.dataproc_sa";
+  "module.dataproc.google_project_iam_member.dataproc_worker" -> "module.dataproc.google_service_account.dataproc_sa";
+  "module.dataproc.google_project_service.dataproc" -> "module.vpc.google_compute_firewall.default-internal-allow-all";
+  "module.dataproc.google_project_service.dataproc" -> "module.vpc.google_compute_firewall.fw-allow-ingress-from-iap";
+  "module.dataproc.google_project_service.dataproc" -> "module.vpc.module.cloud-router.google_compute_router_nat.nats";
+  "module.dataproc.google_project_service.dataproc" -> "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules";
+  "module.dataproc.google_project_service.dataproc" -> "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress";
+  "module.dataproc.google_project_service.dataproc" -> "module.vpc.module.vpc.module.routes.google_compute_route.route";
+  "module.dataproc.google_project_service.dataproc" -> "module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.dataproc.google_service_account.dataproc_sa" -> "module.vpc.google_compute_firewall.default-internal-allow-all";
+  "module.dataproc.google_service_account.dataproc_sa" -> "module.vpc.google_compute_firewall.fw-allow-ingress-from-iap";
+  "module.dataproc.google_service_account.dataproc_sa" -> "module.vpc.module.cloud-router.google_compute_router_nat.nats";
+  "module.dataproc.google_service_account.dataproc_sa" -> "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules";
+  "module.dataproc.google_service_account.dataproc_sa" -> "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress";
+  "module.dataproc.google_service_account.dataproc_sa" -> "module.vpc.module.vpc.module.routes.google_compute_route.route";
+  "module.dataproc.google_service_account.dataproc_sa" -> "module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.dataproc.google_storage_bucket.dataproc_staging" -> "module.vpc.google_compute_firewall.default-internal-allow-all";
+  "module.dataproc.google_storage_bucket.dataproc_staging" -> "module.vpc.google_compute_firewall.fw-allow-ingress-from-iap";
+  "module.dataproc.google_storage_bucket.dataproc_staging" -> "module.vpc.module.cloud-router.google_compute_router_nat.nats";
+  "module.dataproc.google_storage_bucket.dataproc_staging" -> "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules";
+  "module.dataproc.google_storage_bucket.dataproc_staging" -> "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress";
+  "module.dataproc.google_storage_bucket.dataproc_staging" -> "module.vpc.module.vpc.module.routes.google_compute_route.route";
+  "module.dataproc.google_storage_bucket.dataproc_staging" -> "module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.dataproc.google_storage_bucket.dataproc_temp" -> "module.vpc.google_compute_firewall.default-internal-allow-all";
+  "module.dataproc.google_storage_bucket.dataproc_temp" -> "module.vpc.google_compute_firewall.fw-allow-ingress-from-iap";
+  "module.dataproc.google_storage_bucket.dataproc_temp" -> "module.vpc.module.cloud-router.google_compute_router_nat.nats";
+  "module.dataproc.google_storage_bucket.dataproc_temp" -> "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules";
+  "module.dataproc.google_storage_bucket.dataproc_temp" -> "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress";
+  "module.dataproc.google_storage_bucket.dataproc_temp" -> "module.vpc.module.vpc.module.routes.google_compute_route.route";
+  "module.dataproc.google_storage_bucket.dataproc_temp" -> "module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host";
+  "module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam" -> "module.dataproc.google_service_account.dataproc_sa";
+  "module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam" -> "module.dataproc.google_storage_bucket.dataproc_staging";
+  "module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam" -> "module.dataproc.google_service_account.dataproc_sa";
+  "module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam" -> "module.dataproc.google_storage_bucket.dataproc_temp";
+  "module.gcr.google_artifact_registry_repository.registry" -> "module.gcr.google_project_service.api";
+  "module.vpc.google_compute_firewall.default-internal-allow-all" -> "module.vpc.module.vpc.module.vpc.google_compute_network.network";
+  "module.vpc.google_compute_firewall.fw-allow-ingress-from-iap" -> "module.vpc.module.vpc.module.vpc.google_compute_network.network";
+  "module.vpc.module.cloud-router.google_compute_router.router" -> "module.vpc.module.vpc.module.vpc.google_compute_network.network";
+  "module.vpc.module.cloud-router.google_compute_router_nat.nats" -> "module.vpc.module.cloud-router.google_compute_router.router";
+  "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules" -> "module.vpc.module.vpc.module.vpc.google_compute_network.network";
+  "module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress" -> "module.vpc.module.vpc.module.vpc.google_compute_network.network";
+  "module.vpc.module.vpc.module.routes.google_compute_route.route" -> "module.vpc.module.vpc.module.subnets.google_compute_subnetwork.subnetwork";
+  "module.vpc.module.vpc.module.subnets.google_compute_subnetwork.subnetwork" -> "module.vpc.module.vpc.module.vpc.google_compute_network.network";
+  "module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host" -> "module.vpc.module.vpc.module.vpc.google_compute_network.network";
+}
