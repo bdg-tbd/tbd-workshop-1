@@ -121,38 +121,38 @@ module "dataproc" {
 
 
 
-resource "kubernetes_service" "dbt-task-service" {
-  metadata {
-    name      = "dbt-task-service"
-    namespace = local.composer_work_namespace
-    labels = {
-      app = "dbt-app"
-    }
-  }
-
-  spec {
-    type = "NodePort"
-    selector = {
-      app = "dbt-app"
-    }
-    port {
-      name        = "spark-driver"
-      protocol    = "TCP"
-      port        = local.spark_driver_port
-      target_port = local.spark_driver_port
-      node_port   = local.spark_driver_port
-
-    }
-    port {
-      name        = "spark-block-mgr"
-      protocol    = "TCP"
-      port        = local.spark_blockmgr_port
-      target_port = local.spark_blockmgr_port
-      node_port   = local.spark_blockmgr_port
-    }
-
-  }
-}
+#resource "kubernetes_service" "dbt-task-service" {
+#  metadata {
+#    name      = "dbt-task-service"
+#    namespace = local.composer_work_namespace
+#    labels = {
+#      app = "dbt-app"
+#    }
+#  }
+#
+#  spec {
+#    type = "NodePort"
+#    selector = {
+#      app = "dbt-app"
+#    }
+#    port {
+#      name        = "spark-driver"
+#      protocol    = "TCP"
+#      port        = local.spark_driver_port
+#      target_port = local.spark_driver_port
+#      node_port   = local.spark_driver_port
+#
+#    }
+#    port {
+#      name        = "spark-block-mgr"
+#      protocol    = "TCP"
+#      port        = local.spark_blockmgr_port
+#      target_port = local.spark_blockmgr_port
+#      node_port   = local.spark_blockmgr_port
+#    }
+#
+#  }
+#}
 
 resource "google_compute_firewall" "allow-all-internal" {
   name    = "allow-all-internal"
