@@ -19,7 +19,7 @@ jobs:
       github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'pull_request' && 
        github.event.pull_request.merged == true && 
-       contains(github.event.pull_request.title, '[CLEANUP]')) ||
+       contains(github.event.pull_request.title, '[CLEANUP]')) &&
       (github.event_name == 'workflow_run' && 
        github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
