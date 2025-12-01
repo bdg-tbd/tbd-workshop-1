@@ -1,17 +1,22 @@
 name: Auto-Destroy
 on:
   schedule:
-    - cron: '0 20 * * *'
+    - cron: "0 20 * * *"
   pull_request:
     types: [closed]
+  workflow_dispatch:
   workflow_run:
     workflows: ["Release/apply"]
-    types: [completed]
+    types:
+      - completed
+
+permissions: read-all
 
 jobs:
   destroy-release:
     if: >
       github.event_name == 'schedule' ||
+      github.event_name == 'workflow_dispatch' ||
       (github.event_name == 'pull_request' && 
        github.event.pull_request.merged == true && 
        contains(github.event.pull_request.title, '[CLEANUP]')) ||
@@ -23,16 +28,17 @@ jobs:
       id-token: write
       pull-requests: write
       issues: write
+
     steps:
-    - uses: 'actions/checkout@v3'
+    - uses: actions/checkout@v3
     - uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: 1.11.0
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v1'
+    - id: auth
+      name: Authenticate to Google Cloud
+      uses: google-github-actions/auth@v1
       with:
-        token_format: 'access_token'
+        token_format: access_token
         workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
         service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
     - name: Terraform Init
