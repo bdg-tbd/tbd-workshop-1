@@ -1,45 +1,44 @@
 name: Auto-Destroy
 on:
   schedule:
-    - cron: "0 20 * * *"   # codziennie 20:00 UTC
+    - cron: '0 20 * * *'
   pull_request:
     types: [closed]
-  workflow_dispatch:
   workflow_run:
     workflows: ["Release/apply"]
-    types:
-      - completed
+    types: [completed]
 
-permissions: read-all
 jobs:
   destroy-release:
-    if: github.event.pull_request.title != '' &&
-        contains(github.event.pull_request.title, '[CLEANUP]') ||
-        github.event_name == 'schedule'
+    if: >
+      github.event_name == 'schedule' ||
+      (github.event_name == 'pull_request' &&
+       github.event.pull_request.merged == true &&
+       contains(toLower(github.event.pull_request.title), '[cleanup]')) ||
+      (github.event_name == 'workflow_run' &&
+       github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
-  # Add "id-token" with the intended permissions.
     permissions:
       contents: write
       id-token: write
       pull-requests: write
       issues: write
-
     steps:
-    - uses: 'actions/checkout@v3'
-    - uses: hashicorp/setup-terraform@v2
-      with:
-        terraform_version: 1.11.0
-    - id: 'auth'
-      name: 'Authenticate to Google Cloud'
-      uses: 'google-github-actions/auth@v1'
-      with:
-        token_format: 'access_token'
-        workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
-        service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
-    - name: Terraform Init
-      id: init
-      run: terraform init -backend-config=env/backend.tfvars
-    - name: Terraform Destroy
-      id: destroy
-      run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
-      continue-on-error: false
+      - uses: actions/checkout@v3
+      - uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.11.0
+      - id: auth
+        name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          token_format: access_token
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
+          service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
+      - name: Terraform Init
+        id: init
+        run: terraform init -backend-config=env/backend.tfvars
+      - name: Terraform Destroy
+        id: destroy
+        run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
+        continue-on-error: false
