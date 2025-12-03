@@ -43,9 +43,46 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 9. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
+    Two ORC files were downloaded:
+    1. https://github.com/apache/orc/blob/main/examples/TestOrcFile.metaData.orc
+    2. https://github.com/apache/orc/blob/main/examples/TestOrcFile.test1.orc
+
+    code used in BigQuery studio:
+
+    ```sql
+    CREATE SCHEMA IF NOT EXISTS `tbd-2025z-319020.tbd_dataset`
+    OPTIONS (
+    location = 'europe-west1'
+    );
+    ```
+
+    Code for file no.1 :
+    ```sql
+    CREATE EXTERNAL TABLE IF NOT EXISTS `tbd-2025z-319020.tbd_dataset.tab_ext`
+    OPTIONS (
+    format = 'ORC',
+    uris = ['gs://europe-west1-demo-lab-202d6e6f-bucket/*.orc']
+    );
+    ```
+
+    code for file no.2 :
+    ```sql
+    CREATE EXTERNAL TABLE IF NOT EXISTS `tbd-2025z-319020.tbd_dataset.testing`
+    OPTIONS (
+    format = 'ORC',
+    uris = ['gs://europe-west1-demo-lab-202d6e6f-bucket/test_data/*.orc']
+    );
+    ```
+
+    Output:
+    ![task9.png](doc/figures/task9.png)
+
    
     ***why does ORC not require a table schema?***
+
+    ORC files are self-describing. Entire schema with column names and types is stored in the file's metadata. Because of this type of storage, external table definition is not required to read the file's contents. External table definition is only to define the table structure.
+    The embedded schema allows readers to correctly interpret the data even if the external table definition changes over time.
+
 
 10. Find and correct the error in spark-job.py
 
