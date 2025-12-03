@@ -167,11 +167,16 @@ spark = (
 
   https://github.com/helacel/tbd-workshop-1-Z3/blob/e02a5a8c898c9641879cd0c212d91daf71b60ea0/modules/dataproc/main.tf)
 
-  secondary_worker_config {
-      num_instances  = 2
-      machine_type   = var.machine_type
-      preemptibility = "PREEMPTIBLE"
+```
+    preemptible_worker_config {
+      num_instances = 4
+
+      disk_config {
+        boot_disk_type    = "pd-standard"
+        boot_disk_size_gb = 100
+      }
     }
+```
     
 12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
