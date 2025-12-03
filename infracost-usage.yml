@@ -1,0 +1,32 @@
+version: 0.1
+
+resource_usage:
+
+  # ------------------------
+  # Google Artifact Registry
+  # ------------------------
+  # Real resource: google_artifact_registry_repository.registry
+  google_artifact_registry_repository.registry:
+    monthly_pull_count: 60000
+    monthly_push_count: 3000
+    storage_gb: 80
+
+
+  # ------------------------
+  # Google Storage Bucket
+  # ------------------------
+  # Real resource: google_storage_bucket.tbd-state-bucket
+  google_storage_bucket.tbd-state-bucket:
+    storage_gb: 300
+    monthly_class_a_operations: 800000
+    monthly_class_b_operations: 500000
+    monthly_egress_gb: 200
+
+
+  # ----------------------------------------------
+  # Google Service Networking Connection
+  # ----------------------------------------------
+  # Real resource: google_service_networking_connection.private_vpc_connection
+  google_service_networking_connection.private_vpc_connection:
+    monthly_ingress_gb: 600
+    monthly_egress_gb: 600
