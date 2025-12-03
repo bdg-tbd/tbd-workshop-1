@@ -165,7 +165,13 @@ spark = (
 
 11. Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place the link to the modified file and inserted terraform code***
+  https://github.com/helacel/tbd-workshop-1-Z3/blob/e02a5a8c898c9641879cd0c212d91daf71b60ea0/modules/dataproc/main.tf)
+
+  secondary_worker_config {
+      num_instances  = 2
+      machine_type   = var.machine_type
+      preemptibility = "PREEMPTIBLE"
+    }
     
 12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
