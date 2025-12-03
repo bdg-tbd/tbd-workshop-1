@@ -67,8 +67,11 @@ http://localhost:8088
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
     2. List of buckets for disposal
+  
+   (ten pkt był zrobiony przed zakomentowaniem composera)
     
-    ***place your diagram here***
+    <img width="1401" height="661" alt="tbd drawio" src="https://github.com/user-attachments/assets/58cc32d2-c90c-4d3d-8499-c474643976ca" />
+
 
 8. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
