@@ -16,16 +16,56 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+![successful-release.png](doc/figures/successful-release.png)
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+## Composer Module
+The module’s main purpose is to create and configure a Cloud Composer environment along with the networking and IAM setup required for it to run. Prepares the service account, activates the Composer API, creates a subnet, and deploys the Composer environment by using defined resources. It does not manage Airflow code, DAGs, or workflows. Only manages the infrastructure needed to run Airflow.
+
+### Inputs
+Input variables for the composer module:
+- env_name - Composer env name
+- env_size - Environment size
+- env_variables - Apache Airflow variables to set
+- image_version - Defined as `composer-2.11.5-airflow-2.9.3`
+- network - VPC to use for notebooks
+- project_name - Project name
+- region - GCP region
+- subnet_address - VPC subnet used for deployment
+- subnet_name - Composer subnet name
+
+### Resources
+Resources in the module:
+- google_compute_subnetwork.composer-subnet – Creates a dedicated subnetwork for the Composer environment.
+- google_project_iam_member.composer-member – Grants Composer service account required project permissions.
+- google_project_iam_member.dataproc-editor-iam – Gives Dataproc Editor role to a member.
+- google_project_iam_member.dataproc-sa-user-iam – Allows a member to act as a Dataproc service account.
+- google_project_service.api – Enables required Google Cloud APIs for Composer.
+- google_service_account.tbd-composer-sa – Creates the service account used by Composer.
+
+### Outputs
+- gcs_bucket - Google Cloud Storage bucket storing Apache Airflow DAGs
+- data_service_account - Apache Airflow service account email
+- gke_cluster - Google Kubernetes Engine cluster to run Apache Airflow components
+
+### Diagram
+![module-composer-diagram.png](doc/figures/module-composer-diagram.png)
+
    
 6. Reach YARN UI
    
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+
+![gcp-console-vms.png](doc/figures/gcp-console-vms.png)
+
+![yarn.png](doc/figures/yarn.png)
+```bash
+gcloud compute ssh tbd-cluster-m \                   255 29s py base gcloud TBD tbd-2025z-319020 project 20:45:06
+  --project=tbd-2025z-319020 \
+  --zone=europe-west1-b \
+  -- -L 8088:localhost:8088
+```
    
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
