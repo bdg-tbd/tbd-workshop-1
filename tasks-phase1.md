@@ -139,15 +139,35 @@ Wynik:
 Why does ORC not require a table schema?:
 Format ORC jest samoopisujący (self-describing), czyli plik ORC zawiera w swoich metadanych pełny schemat danych (nazwy i typy kolumn). BigQuery, tworząc tabelę zewnętrzną lub ładując dane z ORC, odczytuje ten schemat bezpośrednio z pliku i automatycznie mapuje typy na typy BigQuery. Z tego powodu przy tworzeniu tabeli z ORC nie trzeba ręcznie podawać schematu w SQL - BigQuery potrafi go wywnioskować z samego pliku.
 
-11. Find and correct the error in spark-job.py
+10. Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+Po pierwsze trzeba zmienić nazwę bucketa na naszą, czyli na "gs://tbd-2025z-2137-data/data/shakespeare/".
 
-12. Add support for preemptible/spot instances in a Dataproc cluster
+Ale żeby uzyskać dostęp do strony należy również zmienić builder:
+```
+spark = SparkSession.builder.appName('Shakespeare WordCount').getOrCreate()
+```
+
+Spark nie ma wczytanego konektora spark-bigquery, dlatego polecenie format("bigquery") kończy się wyjątkiem ClassNotFoundException: bigquery.DefaultSource. Można to łatwo znaleźć, analizując logi po odpaleniu skryptu - w stack trace pojawia się informacja, że Spark „Failed to find data source: bigquery”. Dodanie brakujących pakietów przez spark.jars.packages lub spark-submit --packages usuwa problem. Więc należy dodać do buildera:
+
+```
+spark = (
+    SparkSession.builder
+    .appName('Shakespeare WordCount')
+    .config(
+        "spark.jars.packages",
+        "com.google.cloud.spark:spark-bigquery-with-dependencies_2.12:0.29.0,"
+        "com.google.cloud.bigdataoss:gcs-connector:hadoop3-2.1.2"
+    )
+    .getOrCreate()
+)
+```
+
+11. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     
-13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
