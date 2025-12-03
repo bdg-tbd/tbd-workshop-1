@@ -136,7 +136,7 @@ resource "google_dataproc_cluster" "tbd-dataproc-cluster" {
     }
 
     secondary_worker_config {
-      num_instances  = 4          # możesz zmienić liczbę na inną, np. 2
+      num_instances  = 2
       machine_type   = var.machine_type
       preemptibility = "PREEMPTIBLE"
   }
