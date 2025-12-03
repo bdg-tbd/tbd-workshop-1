@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: "0 20 * * *"
 
-  # gdy PR do main zostanie ZAMKNIĘTY (i ewentualnie zmergowany)
+  # gdy PR do main zostanie ZAMKNIĘTY (i ew. zmergowany)
   pull_request:
     types: [closed]
     branches:
