@@ -99,20 +99,41 @@ resource_type_default_usage:
 <img width="1854" height="1317" alt="image" src="https://github.com/user-attachments/assets/26de57dd-b5fd-4ce0-9e13-e9444bb50475" />
 
 9. Create a BigQuery dataset and an external table using SQL
-    
-    ***place the code and output here***
-   
-    ***why does ORC not require a table schema?***
 
-10. Find and correct the error in spark-job.py
+Kod:
+
+    CREATE SCHEMA IF NOT EXISTS `tbd-2025z-2137.workshop_dataset`
+    OPTIONS (
+      location = 'europe-west1'
+    );
+    
+    CREATE OR REPLACE EXTERNAL TABLE
+      `tbd-2025z-2137.workshop_dataset.us_states_orc`
+    OPTIONS (
+      format = 'ORC',
+      uris = ['gs://cloud-samples-data/bigquery/us-states/us-states.orc']
+    );
+    
+    SELECT *
+    FROM `tbd-2025z-2137.workshop_dataset.us_states_orc`
+    LIMIT 10;
+
+Wynik:
+
+<img width="1634" height="777" alt="image" src="https://github.com/user-attachments/assets/9e9f68f2-3898-45e1-9918-851f6e8d87fc" />
+
+Why does ORC not require a table schema?:
+Format ORC jest samoopisujący (self-describing), czyli plik ORC zawiera w swoich metadanych pełny schemat danych (nazwy i typy kolumn). BigQuery, tworząc tabelę zewnętrzną lub ładując dane z ORC, odczytuje ten schemat bezpośrednio z pliku i automatycznie mapuje typy na typy BigQuery. Z tego powodu przy tworzeniu tabeli z ORC nie trzeba ręcznie podawać schematu w SQL - BigQuery potrafi go wywnioskować z samego pliku.
+
+11. Find and correct the error in spark-job.py
 
     ***describe the cause and how to find the error***
 
-11. Add support for preemptible/spot instances in a Dataproc cluster
+12. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
     
-12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
