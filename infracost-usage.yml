@@ -5,27 +5,28 @@ resource_usage:
   # ------------------------
   # Google Artifact Registry
   # ------------------------
+  # Real resource: google_artifact_registry_repository.registry
+  google_artifact_registry_repository.registry:
+    monthly_pull_count: 60000
+    monthly_push_count: 3000
+    storage_gb: 80
 
-  google_artifact_registry_repository.my_registry:
-    monthly_pull_count: 50000          # liczba pobrań artefaktów
-    monthly_push_count: 2000           # liczba wgrywanych artefaktów
-    storage_gb: 50                     # GB danych przechowywanych w registry
-
-  # ------------------------
-  # Google Cloud Storage Bucket
-  # ------------------------
-
-  google_storage_bucket.my_bucket:
-    storage_gb: 200                    # GB danych w bucket
-    monthly_class_a_operations: 500000 # PUT, POST, LIST
-    monthly_class_b_operations: 200000 # GET
-    monthly_egress_gb: 100             # wychodzące dane
 
   # ------------------------
+  # Google Storage Bucket
+  # ------------------------
+  # Real resource: google_storage_bucket.tbd-state-bucket
+  google_storage_bucket.tbd-state-bucket:
+    storage_gb: 300
+    monthly_class_a_operations: 800000
+    monthly_class_b_operations: 500000
+    monthly_egress_gb: 200
+
+
+  # ----------------------------------------------
   # Google Service Networking Connection
-  # ------------------------
-
-  google_service_networking_connection.private_connection:
-    monthly_ingress_gb: 500            # dane przychodzące
-    monthly_egress_gb: 500             # dane wychodzące
-
+  # ----------------------------------------------
+  # Real resource: google_service_networking_connection.private_vpc_connection
+  google_service_networking_connection.private_vpc_connection:
+    monthly_ingress_gb: 600
+    monthly_egress_gb: 600
