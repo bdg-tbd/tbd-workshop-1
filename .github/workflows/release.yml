@@ -1,6 +1,8 @@
 name: Release/apply
 on:
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
       - master
 permissions: read-all
@@ -13,7 +15,9 @@ jobs:
       id-token: write
       pull-requests: write
       issues: write
-
+    if: >
+      github.event.pull_request.merged == true &&
+      !contains(github.event.pull_request.title, '[CLEANUP]')
     steps:
     - uses: 'actions/checkout@v3'
     - name: Semantic Release

@@ -1,19 +1,28 @@
-name: Destroy
+name: Auto Destroy
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+  
+  schedule:
+    - cron: '10 22 * * *' 
 
 permissions: read-all
 
 jobs:
-  destroy-release:
+  auto-destroy:
     runs-on: ubuntu-latest
-  # Add "id-token" with the intended permissions.
     permissions:
       contents: write
       id-token: write
       pull-requests: write
       issues: write
+    if: >
+      github.event.pull_request.merged == true &&
+      contains(github.event.pull_request.title, '[CLEANUP]')
 
     steps:
     - uses: 'actions/checkout@v3'

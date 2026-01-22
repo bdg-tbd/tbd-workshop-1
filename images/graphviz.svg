@@ -1,0 +1,580 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2247pt" height="1510pt" viewBox="0.00 0.00 2247.00 1510.00">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1506)">
+<title>G</title>
+<polygon fill="#ffffff" stroke="none" points="-4,4 -4,-1506 2242.71,-1506 2242.71,4 -4,4"/>
+<g id="clust1" class="cluster">
+<title>cluster_module.composer</title>
+<polygon fill="#ffffff" stroke="black" points="570.8,-1255 570.8,-1494 2230.71,-1494 2230.71,-1255 570.8,-1255"/>
+<text xml:space="preserve" text-anchor="middle" x="1400.75" y="-1477.4" font-family="sans-serif" font-size="14.00">module.composer</text>
+</g>
+<g id="clust2" class="cluster">
+<title>cluster_module.data-pipelines</title>
+<polygon fill="#ffffff" stroke="black" points="1561.56,-954 1561.56,-1247 2227.04,-1247 2227.04,-954 1561.56,-954"/>
+<text xml:space="preserve" text-anchor="middle" x="1894.3" y="-1230.4" font-family="sans-serif" font-size="14.00">module.data-pipelines</text>
+</g>
+<g id="clust3" class="cluster">
+<title>cluster_module.dataproc</title>
+<polygon fill="#ffffff" stroke="black" points="900.21,-8 900.21,-355 1832.37,-355 1832.37,-8 900.21,-8"/>
+<text xml:space="preserve" text-anchor="middle" x="1366.29" y="-338.4" font-family="sans-serif" font-size="14.00">module.dataproc</text>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_module.dbt_docker_image</title>
+<polygon fill="#ffffff" stroke="black" points="937.13,-869 937.13,-946 1353.05,-946 1353.05,-869 937.13,-869"/>
+<text xml:space="preserve" text-anchor="middle" x="1145.09" y="-929.4" font-family="sans-serif" font-size="14.00">module.dbt_docker_image</text>
+</g>
+<g id="clust5" class="cluster">
+<title>cluster_module.gcr</title>
+<polygon fill="#ffffff" stroke="black" points="1607.65,-869 1607.65,-946 2173.38,-946 2173.38,-869 1607.65,-869"/>
+<text xml:space="preserve" text-anchor="middle" x="1890.52" y="-929.4" font-family="sans-serif" font-size="14.00">module.gcr</text>
+</g>
+<g id="clust6" class="cluster">
+<title>cluster_module.vpc</title>
+<polygon fill="#ffffff" stroke="black" points="1223.9,-460 1223.9,-861 2189.22,-861 2189.22,-460 1223.9,-460"/>
+<text xml:space="preserve" text-anchor="middle" x="1706.56" y="-844.4" font-family="sans-serif" font-size="14.00">module.vpc</text>
+</g>
+<!-- data.google_client_config.provider -->
+<g id="node1" class="node">
+<title>data.google_client_config.provider</title>
+<polygon fill="#f7f7f7" stroke="black" points="465.21,-1353 313.18,-1353 313.18,-1317 465.21,-1317 465.21,-1353"/>
+<text xml:space="preserve" text-anchor="middle" x="389.2" y="-1332" font-family="DejaVu Sans, sans-serif" font-size="10.00">data.google_client_config.provider</text>
+</g>
+<!-- data.google_container_cluster.composer&#45;gke&#45;cluster -->
+<g id="node2" class="node">
+<title>data.google_container_cluster.composer-gke-cluster</title>
+<polygon fill="#f7f7f7" stroke="black" points="499.64,-1299 278.76,-1299 278.76,-1263 499.64,-1263 499.64,-1299"/>
+<text xml:space="preserve" text-anchor="middle" x="389.2" y="-1278" font-family="DejaVu Sans, sans-serif" font-size="10.00">data.google_container_cluster.composer-gke-cluster</text>
+</g>
+<!-- module.composer.module.composer.google_composer_environment.composer_env -->
+<g id="node12" class="node">
+<title>module.composer.module.composer.google_composer_environment.composer_env</title>
+<polygon fill="#f7f7f7" stroke="black" points="777.77,-1299 578.8,-1299 578.8,-1263 777.77,-1263 777.77,-1299"/>
+<text xml:space="preserve" text-anchor="middle" x="678.29" y="-1278" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_composer_environment.composer_env</text>
+</g>
+<!-- data.google_container_cluster.composer&#45;gke&#45;cluster&#45;&gt;module.composer.module.composer.google_composer_environment.composer_env -->
+<g id="edge1" class="edge">
+<title>data.google_container_cluster.composer-gke-cluster-&gt;module.composer.module.composer.google_composer_environment.composer_env</title>
+<path fill="none" stroke="#555555" d="M499.96,-1281C522.64,-1281 546.51,-1281 569.13,-1281"/>
+<polygon fill="#555555" stroke="#555555" points="568.89,-1283.8 576.89,-1281 568.89,-1278.2 568.89,-1283.8"/>
+<text xml:space="preserve" text-anchor="middle" x="539.22" y="-1285.2" font-family="Times,serif" font-size="14.00">used by</text>
+</g>
+<!-- google_compute_firewall.allow&#45;all&#45;internal -->
+<g id="node3" class="node">
+<title>google_compute_firewall.allow-all-internal</title>
+<polygon fill="#f7f7f7" stroke="black" points="1396.42,-452 1210.24,-452 1210.24,-416 1396.42,-416 1396.42,-452"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-431" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_firewall.allow-all-internal</text>
+</g>
+<!-- module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host -->
+<g id="node44" class="node">
+<title>module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host</title>
+<polygon fill="#f7f7f7" stroke="black" points="1835.17,-612 1582.32,-612 1582.32,-576 1835.17,-576 1835.17,-612"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-591" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_shared_vpc_host_project.shared_vpc_host</text>
+</g>
+<!-- google_compute_firewall.allow&#45;all&#45;internal&#45;&gt;module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host -->
+<g id="edge2" class="edge">
+<title>google_compute_firewall.allow-all-internal-&gt;module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host</title>
+<path fill="none" stroke="#555555" d="M1396.59,-443.85C1408.71,-446.89 1420.72,-450.85 1431.69,-456 1500.41,-488.28 1493.02,-534.32 1561.56,-567 1565.57,-568.91 1569.71,-570.69 1573.93,-572.34"/>
+<polygon fill="#555555" stroke="#555555" points="1572.8,-574.91 1581.28,-575.04 1574.73,-569.65 1572.8,-574.91"/>
+<text xml:space="preserve" text-anchor="middle" x="1500.62" y="-565.18" font-family="Times,serif" font-size="14.00">applies to</text>
+</g>
+<!-- kubernetes_service.dbt&#45;task&#45;service -->
+<g id="node4" class="node">
+<title>kubernetes_service.dbt-task-service</title>
+<polygon fill="#f7f7f7" stroke="black" points="154.51,-1326 0,-1326 0,-1290 154.51,-1290 154.51,-1326"/>
+<text xml:space="preserve" text-anchor="middle" x="77.26" y="-1305" font-family="DejaVu Sans, sans-serif" font-size="10.00">kubernetes_service.dbt-task-service</text>
+</g>
+<!-- kubernetes_service.dbt&#45;task&#45;service&#45;&gt;data.google_client_config.provider -->
+<g id="edge3" class="edge">
+<title>kubernetes_service.dbt-task-service-&gt;data.google_client_config.provider</title>
+<path fill="none" stroke="#555555" d="M154.87,-1314.67C199.9,-1318.6 256.91,-1323.56 303.3,-1327.6"/>
+<polygon fill="#555555" stroke="#555555" points="303.01,-1330.39 311.22,-1328.29 303.5,-1324.81 303.01,-1330.39"/>
+<text xml:space="preserve" text-anchor="middle" x="216.64" y="-1327.32" font-family="Times,serif" font-size="14.00">uses credentials</text>
+</g>
+<!-- kubernetes_service.dbt&#45;task&#45;service&#45;&gt;data.google_container_cluster.composer&#45;gke&#45;cluster -->
+<g id="edge4" class="edge">
+<title>kubernetes_service.dbt-task-service-&gt;data.google_container_cluster.composer-gke-cluster</title>
+<path fill="none" stroke="#555555" d="M154.87,-1298.06C160.83,-1297.39 166.77,-1296.76 172.51,-1296.2 203.8,-1293.14 237.69,-1290.46 269.14,-1288.23"/>
+<polygon fill="#555555" stroke="#555555" points="269.08,-1291.04 276.87,-1287.69 268.69,-1285.46 269.08,-1291.04"/>
+<text xml:space="preserve" text-anchor="middle" x="216.64" y="-1300.4" font-family="Times,serif" font-size="14.00">runs on</text>
+</g>
+<!-- module.composer.google_compute_subnetwork.composer&#45;subnet -->
+<g id="node5" class="node">
+<title>module.composer.google_compute_subnetwork.composer-subnet</title>
+<polygon fill="#f7f7f7" stroke="black" points="1104.95,-1299 904.3,-1299 904.3,-1263 1104.95,-1263 1104.95,-1299"/>
+<text xml:space="preserve" text-anchor="middle" x="1004.63" y="-1278" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_subnetwork.composer-subnet</text>
+</g>
+<!-- module.vpc.google_compute_firewall.default&#45;internal&#45;allow&#45;all -->
+<g id="node35" class="node">
+<title>module.vpc.google_compute_firewall.default-internal-allow-all</title>
+<polygon fill="#f7f7f7" stroke="black" points="1817.38,-504 1600.11,-504 1600.11,-468 1817.38,-468 1817.38,-504"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-483" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_firewall.default-internal-allow-all</text>
+</g>
+<!-- module.composer.google_compute_subnetwork.composer&#45;subnet&#45;&gt;module.vpc.google_compute_firewall.default&#45;internal&#45;allow&#45;all -->
+<g id="edge6" class="edge">
+<title>module.composer.google_compute_subnetwork.composer-subnet-&gt;module.vpc.google_compute_firewall.default-internal-allow-all</title>
+<path fill="none" stroke="#555555" d="M1019.33,-1255C1047.4,-1200.33 1111.04,-1068.68 1137.98,-950 1151.77,-889.21 1129.47,-432.8 1174.98,-390.2 1216.62,-351.21 1375.43,-380.72 1431.69,-390.2 1506.2,-402.76 1587.45,-433.14 1642.38,-456.34"/>
+<polygon fill="#555555" stroke="#555555" points="1641.12,-458.85 1649.57,-459.41 1643.31,-453.7 1641.12,-458.85"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-394.4" font-family="Times,serif" font-size="14.00">uses VPC firewall</text>
+</g>
+<!-- module.composer.google_project_iam_member.composer&#45;member -->
+<g id="node6" class="node">
+<title>module.composer.google_project_iam_member.composer-member</title>
+<polygon fill="#f7f7f7" stroke="black" points="1812.11,-1407 1605.38,-1407 1605.38,-1371 1812.11,-1371 1812.11,-1407"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-1386" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_iam_member.composer-member</text>
+</g>
+<!-- module.composer.google_service_account.tbd&#45;composer&#45;sa -->
+<g id="node10" class="node">
+<title>module.composer.google_service_account.tbd-composer-sa</title>
+<ellipse fill="#cfeefc" stroke="black" cx="2105.62" cy="-1308" rx="117.09" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="2105.62" y="-1305" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_service_account.tbd-composer-sa</text>
+</g>
+<!-- module.composer.google_project_iam_member.composer&#45;member&#45;&gt;module.composer.google_service_account.tbd&#45;composer&#45;sa -->
+<g id="edge11" class="edge">
+<title>module.composer.google_project_iam_member.composer-member-&gt;module.composer.google_service_account.tbd-composer-sa</title>
+<path fill="none" stroke="#555555" d="M1805.3,-1370.51C1819.59,-1367.7 1834.15,-1364.79 1847.92,-1362 1907.8,-1349.85 1975.41,-1335.61 2026.21,-1324.8"/>
+<polygon fill="#555555" stroke="#555555" points="2026.77,-1327.54 2034.01,-1323.14 2025.6,-1322.07 2026.77,-1327.54"/>
+</g>
+<!-- module.composer.google_project_iam_member.dataproc&#45;editor&#45;iam -->
+<g id="node7" class="node">
+<title>module.composer.google_project_iam_member.dataproc-editor-iam</title>
+<polygon fill="#f7f7f7" stroke="black" points="1814.33,-1299 1603.16,-1299 1603.16,-1263 1814.33,-1263 1814.33,-1299"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-1278" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_iam_member.dataproc-editor-iam</text>
+</g>
+<!-- module.composer.google_project_iam_member.dataproc&#45;editor&#45;iam&#45;&gt;module.composer.google_service_account.tbd&#45;composer&#45;sa -->
+<g id="edge12" class="edge">
+<title>module.composer.google_project_iam_member.dataproc-editor-iam-&gt;module.composer.google_service_account.tbd-composer-sa</title>
+<path fill="none" stroke="#555555" d="M1814.78,-1288.18C1868.24,-1291.84 1933.36,-1296.29 1988.33,-1300.05"/>
+<polygon fill="#555555" stroke="#555555" points="1988.08,-1302.84 1996.25,-1300.59 1988.46,-1297.25 1988.08,-1302.84"/>
+</g>
+<!-- module.composer.google_project_iam_member.dataproc&#45;sa&#45;user&#45;iam -->
+<g id="node8" class="node">
+<title>module.composer.google_project_iam_member.dataproc-sa-user-iam</title>
+<polygon fill="#f7f7f7" stroke="black" points="1816.82,-1353 1600.66,-1353 1600.66,-1317 1816.82,-1317 1816.82,-1353"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-1332" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_iam_member.dataproc-sa-user-iam</text>
+</g>
+<!-- module.composer.google_project_iam_member.dataproc&#45;sa&#45;user&#45;iam&#45;&gt;module.composer.google_service_account.tbd&#45;composer&#45;sa -->
+<g id="edge13" class="edge">
+<title>module.composer.google_project_iam_member.dataproc-sa-user-iam-&gt;module.composer.google_service_account.tbd-composer-sa</title>
+<path fill="none" stroke="#555555" d="M1817.12,-1327.66C1870.23,-1324.03 1934.4,-1319.64 1988.64,-1315.93"/>
+<polygon fill="#555555" stroke="#555555" points="1988.64,-1318.74 1996.43,-1315.4 1988.26,-1313.15 1988.64,-1318.74"/>
+</g>
+<!-- module.composer.google_project_service.api -->
+<g id="node9" class="node">
+<title>module.composer.google_project_service.api</title>
+<polygon fill="#f7f7f7" stroke="black" points="1768.51,-1461 1648.98,-1461 1648.98,-1425 1768.51,-1425 1768.51,-1461"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-1440" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_service.api</text>
+</g>
+<!-- module.composer.module.composer.data.google_project.project -->
+<g id="node11" class="node">
+<title>module.composer.module.composer.data.google_project.project</title>
+<polygon fill="#f7f7f7" stroke="black" points="1363.79,-1407 1242.87,-1407 1242.87,-1371 1363.79,-1371 1363.79,-1407"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-1386" font-family="DejaVu Sans, sans-serif" font-size="10.00">data.google_project.project</text>
+</g>
+<!-- module.composer.module.composer.data.google_project.project&#45;&gt;module.composer.google_project_iam_member.composer&#45;member -->
+<g id="edge14" class="edge">
+<title>module.composer.module.composer.data.google_project.project-&gt;module.composer.google_project_iam_member.composer-member</title>
+<path fill="none" stroke="#555555" d="M1364.29,-1389C1425.12,-1389 1520.73,-1389 1595.64,-1389"/>
+<polygon fill="#555555" stroke="#555555" points="1595.62,-1391.8 1603.62,-1389 1595.62,-1386.2 1595.62,-1391.8"/>
+</g>
+<!-- module.composer.module.composer.data.google_project.project&#45;&gt;module.composer.google_project_service.api -->
+<g id="edge15" class="edge">
+<title>module.composer.module.composer.data.google_project.project-&gt;module.composer.google_project_service.api</title>
+<path fill="none" stroke="#555555" d="M1364.29,-1397.03C1437.9,-1406.88 1562.44,-1423.55 1639.6,-1433.88"/>
+<polygon fill="#555555" stroke="#555555" points="1638.97,-1436.62 1647.27,-1434.9 1639.71,-1431.07 1638.97,-1436.62"/>
+</g>
+<!-- module.composer.module.composer.google_composer_environment.composer_env&#45;&gt;module.composer.google_compute_subnetwork.composer&#45;subnet -->
+<g id="edge16" class="edge">
+<title>module.composer.module.composer.google_composer_environment.composer_env-&gt;module.composer.google_compute_subnetwork.composer-subnet</title>
+<path fill="none" stroke="#555555" d="M777.92,-1281C814.77,-1281 856.83,-1281 894.57,-1281"/>
+<polygon fill="#555555" stroke="#555555" points="894.55,-1283.8 902.55,-1281 894.55,-1278.2 894.55,-1283.8"/>
+</g>
+<!-- module.composer.module.composer.google_project_iam_member.composer_agent_service_account -->
+<g id="node13" class="node">
+<title>module.composer.module.composer.google_project_iam_member.composer_agent_service_account</title>
+<polygon fill="#f7f7f7" stroke="black" points="1137.98,-1369 871.28,-1369 871.28,-1333 1137.98,-1333 1137.98,-1369"/>
+<text xml:space="preserve" text-anchor="middle" x="1004.63" y="-1348" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_iam_member.composer_agent_service_account</text>
+</g>
+<!-- module.composer.module.composer.google_composer_environment.composer_env&#45;&gt;module.composer.module.composer.google_project_iam_member.composer_agent_service_account -->
+<g id="edge17" class="edge">
+<title>module.composer.module.composer.google_composer_environment.composer_env-&gt;module.composer.module.composer.google_project_iam_member.composer_agent_service_account</title>
+<path fill="none" stroke="#555555" d="M764.93,-1299.48C809.17,-1309.03 863.28,-1320.71 908.79,-1330.53"/>
+<polygon fill="#555555" stroke="#555555" points="908.18,-1333.26 916.59,-1332.22 909.36,-1327.79 908.18,-1333.26"/>
+</g>
+<!-- module.dataproc.google_dataproc_cluster.tbd&#45;dataproc&#45;cluster -->
+<g id="node21" class="node">
+<title>module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster</title>
+<polygon fill="#f7f7f7" stroke="black" points="1101.04,-214 908.21,-214 908.21,-178 1101.04,-178 1101.04,-214"/>
+<text xml:space="preserve" text-anchor="middle" x="1004.63" y="-193" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_dataproc_cluster.tbd-dataproc-cluster</text>
+</g>
+<!-- module.composer.module.composer.google_composer_environment.composer_env&#45;&gt;module.dataproc.google_dataproc_cluster.tbd&#45;dataproc&#45;cluster -->
+<g id="edge7" class="edge">
+<title>module.composer.module.composer.google_composer_environment.composer_env-&gt;module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster</title>
+<path fill="none" stroke="#555555" d="M687.06,-1255C722.86,-1135.22 873.59,-631 953.46,-363.81"/>
+<polygon fill="#555555" stroke="#555555" points="956.05,-364.92 955.66,-356.45 950.69,-363.31 956.05,-364.92"/>
+<text xml:space="preserve" text-anchor="middle" x="824.52" y="-871.79" font-family="Times,serif" font-size="14.00">references</text>
+</g>
+<!-- module.composer.module.composer.google_project_iam_member.composer_agent_service_account&#45;&gt;module.composer.module.composer.data.google_project.project -->
+<g id="edge18" class="edge">
+<title>module.composer.module.composer.google_project_iam_member.composer_agent_service_account-&gt;module.composer.module.composer.data.google_project.project</title>
+<path fill="none" stroke="#555555" d="M1138.36,-1368C1171.07,-1372.19 1204.81,-1376.51 1233.12,-1380.14"/>
+<polygon fill="#555555" stroke="#555555" points="1232.71,-1382.91 1241,-1381.14 1233.42,-1377.35 1232.71,-1382.91"/>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket.tbd&#45;code&#45;bucket -->
+<g id="node14" class="node">
+<title>module.data-pipelines.google_storage_bucket.tbd-code-bucket</title>
+<ellipse fill="#fff2b8" stroke="black" cx="2105.62" cy="-1003" rx="113.42" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="2105.62" y="-1000" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket.tbd-code-bucket</text>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket.tbd&#45;data&#45;bucket -->
+<g id="node15" class="node">
+<title>module.data-pipelines.google_storage_bucket.tbd-data-bucket</title>
+<ellipse fill="#fff2b8" stroke="black" cx="2105.62" cy="-1196" rx="111.96" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="2105.62" y="-1193" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket.tbd-data-bucket</text>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket_iam_member.tbd&#45;code&#45;bucket&#45;iam&#45;viewer -->
+<g id="node16" class="node">
+<title>module.data-pipelines.google_storage_bucket_iam_member.tbd-code-bucket-iam-viewer</title>
+<polygon fill="#f7f7f7" stroke="black" points="1847.92,-1052 1569.56,-1052 1569.56,-1016 1847.92,-1016 1847.92,-1052"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-1031" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket_iam_member.tbd-code-bucket-iam-viewer</text>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket_iam_member.tbd&#45;code&#45;bucket&#45;iam&#45;viewer&#45;&gt;module.composer.google_service_account.tbd&#45;composer&#45;sa -->
+<g id="edge5" class="edge">
+<title>module.data-pipelines.google_storage_bucket_iam_member.tbd-code-bucket-iam-viewer-&gt;module.composer.google_service_account.tbd-composer-sa</title>
+<path fill="none" stroke="#555555" d="M1984.34,-1247C1985.13,-1247.72 1985.93,-1248.44 1986.74,-1249.16"/>
+<polygon fill="#555555" stroke="#555555" points="1984.48,-1250.91 1992.37,-1254.01 1988.13,-1246.67 1984.48,-1250.91"/>
+<text xml:space="preserve" text-anchor="middle" x="1918.23" y="-1235.05" font-family="Times,serif" font-size="14.00">grants permissions</text>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket_iam_member.tbd&#45;code&#45;bucket&#45;iam&#45;viewer&#45;&gt;module.data&#45;pipelines.google_storage_bucket.tbd&#45;code&#45;bucket -->
+<g id="edge19" class="edge">
+<title>module.data-pipelines.google_storage_bucket_iam_member.tbd-code-bucket-iam-viewer-&gt;module.data-pipelines.google_storage_bucket.tbd-code-bucket</title>
+<path fill="none" stroke="#555555" d="M1848.41,-1023.11C1896.02,-1019.38 1948.64,-1015.25 1993.75,-1011.7"/>
+<polygon fill="#555555" stroke="#555555" points="1993.7,-1014.52 2001.45,-1011.1 1993.26,-1008.93 1993.7,-1014.52"/>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket_iam_member.tbd&#45;data&#45;bucket&#45;iam&#45;editor -->
+<g id="node17" class="node">
+<title>module.data-pipelines.google_storage_bucket_iam_member.tbd-data-bucket-iam-editor</title>
+<polygon fill="#f7f7f7" stroke="black" points="1844.87,-1214 1572.61,-1214 1572.61,-1178 1844.87,-1178 1844.87,-1214"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-1193" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket_iam_member.tbd-data-bucket-iam-editor</text>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket_iam_member.tbd&#45;data&#45;bucket&#45;iam&#45;editor&#45;&gt;module.data&#45;pipelines.google_storage_bucket.tbd&#45;data&#45;bucket -->
+<g id="edge20" class="edge">
+<title>module.data-pipelines.google_storage_bucket_iam_member.tbd-data-bucket-iam-editor-&gt;module.data-pipelines.google_storage_bucket.tbd-data-bucket</title>
+<path fill="none" stroke="#555555" d="M1845.36,-1196C1890.37,-1196 1940.14,-1196 1983.94,-1196"/>
+<polygon fill="#555555" stroke="#555555" points="1983.68,-1198.8 1991.68,-1196 1983.68,-1193.2 1983.68,-1198.8"/>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket_object.dag&#45;code -->
+<g id="node18" class="node">
+<title>module.data-pipelines.google_storage_bucket_object.dag-code</title>
+<polygon fill="#f7f7f7" stroke="black" points="1795.17,-1106 1622.32,-1106 1622.32,-1070 1795.17,-1070 1795.17,-1106"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-1085" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket_object.dag-code</text>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket_object.dbt&#45;dag&#45;code -->
+<g id="node19" class="node">
+<title>module.data-pipelines.google_storage_bucket_object.dbt-dag-code</title>
+<polygon fill="#f7f7f7" stroke="black" points="1803.22,-1160 1614.27,-1160 1614.27,-1124 1803.22,-1124 1803.22,-1160"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-1139" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket_object.dbt-dag-code</text>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket_object.job&#45;code -->
+<g id="node20" class="node">
+<title>module.data-pipelines.google_storage_bucket_object.job-code</title>
+<polygon fill="#f7f7f7" stroke="black" points="1794.34,-998 1623.15,-998 1623.15,-962 1794.34,-962 1794.34,-998"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-977" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket_object.job-code</text>
+</g>
+<!-- module.data&#45;pipelines.google_storage_bucket_object.job&#45;code&#45;&gt;module.data&#45;pipelines.google_storage_bucket.tbd&#45;code&#45;bucket -->
+<g id="edge21" class="edge">
+<title>module.data-pipelines.google_storage_bucket_object.job-code-&gt;module.data-pipelines.google_storage_bucket.tbd-code-bucket</title>
+<path fill="none" stroke="#555555" d="M1794.45,-984.93C1851.25,-988.24 1926.77,-992.64 1989.06,-996.27"/>
+<polygon fill="#555555" stroke="#555555" points="1988.89,-999.06 1997.04,-996.73 1989.21,-993.47 1988.89,-999.06"/>
+</g>
+<!-- module.dataproc.google_project_iam_member.dataproc_bigquery_data_editor -->
+<g id="node22" class="node">
+<title>module.dataproc.google_project_iam_member.dataproc_bigquery_data_editor</title>
+<polygon fill="#f7f7f7" stroke="black" points="1431.69,-160 1174.98,-160 1174.98,-124 1431.69,-124 1431.69,-160"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-139" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_iam_member.dataproc_bigquery_data_editor</text>
+</g>
+<!-- module.dataproc.google_dataproc_cluster.tbd&#45;dataproc&#45;cluster&#45;&gt;module.dataproc.google_project_iam_member.dataproc_bigquery_data_editor -->
+<g id="edge22" class="edge">
+<title>module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster-&gt;module.dataproc.google_project_iam_member.dataproc_bigquery_data_editor</title>
+<path fill="none" stroke="#555555" d="M1101.14,-178.62C1130,-173.36 1161.93,-167.55 1191.7,-162.14"/>
+<polygon fill="#555555" stroke="#555555" points="1192,-164.93 1199.37,-160.74 1191,-159.42 1192,-164.93"/>
+</g>
+<!-- module.dataproc.google_project_iam_member.dataproc_bigquery_user -->
+<g id="node23" class="node">
+<title>module.dataproc.google_project_iam_member.dataproc_bigquery_user</title>
+<polygon fill="#f7f7f7" stroke="black" points="1417.53,-52 1189.14,-52 1189.14,-16 1417.53,-16 1417.53,-52"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-31" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_iam_member.dataproc_bigquery_user</text>
+</g>
+<!-- module.dataproc.google_dataproc_cluster.tbd&#45;dataproc&#45;cluster&#45;&gt;module.dataproc.google_project_iam_member.dataproc_bigquery_user -->
+<g id="edge23" class="edge">
+<title>module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster-&gt;module.dataproc.google_project_iam_member.dataproc_bigquery_user</title>
+<path fill="none" stroke="#555555" d="M1022.5,-177.93C1050.99,-148.59 1111.73,-90.85 1174.98,-61 1179.04,-59.08 1183.24,-57.3 1187.54,-55.64"/>
+<polygon fill="#555555" stroke="#555555" points="1188.47,-58.28 1195.04,-52.93 1186.57,-53.01 1188.47,-58.28"/>
+</g>
+<!-- module.dataproc.google_project_iam_member.dataproc_worker -->
+<g id="node24" class="node">
+<title>module.dataproc.google_project_iam_member.dataproc_worker</title>
+<polygon fill="#f7f7f7" stroke="black" points="1403.08,-106 1203.58,-106 1203.58,-70 1403.08,-70 1403.08,-106"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-85" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_iam_member.dataproc_worker</text>
+</g>
+<!-- module.dataproc.google_dataproc_cluster.tbd&#45;dataproc&#45;cluster&#45;&gt;module.dataproc.google_project_iam_member.dataproc_worker -->
+<g id="edge24" class="edge">
+<title>module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster-&gt;module.dataproc.google_project_iam_member.dataproc_worker</title>
+<path fill="none" stroke="#555555" d="M1038.07,-177.62C1071.46,-159.39 1125.45,-131.83 1174.98,-115 1181.3,-112.85 1187.87,-110.84 1194.53,-108.96"/>
+<polygon fill="#555555" stroke="#555555" points="1195.21,-111.67 1202.2,-106.87 1193.75,-106.27 1195.21,-111.67"/>
+</g>
+<!-- module.dataproc.google_project_service.dataproc -->
+<g id="node25" class="node">
+<title>module.dataproc.google_project_service.dataproc</title>
+<polygon fill="#f7f7f7" stroke="black" points="1374.2,-322 1232.46,-322 1232.46,-286 1374.2,-286 1374.2,-322"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-301" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_service.dataproc</text>
+</g>
+<!-- module.dataproc.google_dataproc_cluster.tbd&#45;dataproc&#45;cluster&#45;&gt;module.dataproc.google_project_service.dataproc -->
+<g id="edge25" class="edge">
+<title>module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster-&gt;module.dataproc.google_project_service.dataproc</title>
+<path fill="none" stroke="#555555" d="M1038.07,-214.38C1071.46,-232.61 1125.45,-260.17 1174.98,-277 1190.32,-282.21 1207.07,-286.63 1223.22,-290.28"/>
+<polygon fill="#555555" stroke="#555555" points="1222.23,-292.93 1230.64,-291.9 1223.43,-287.46 1222.23,-292.93"/>
+</g>
+<!-- module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam -->
+<g id="node29" class="node">
+<title>module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam</title>
+<polygon fill="#f7f7f7" stroke="black" points="1425.86,-214 1180.8,-214 1180.8,-178 1425.86,-178 1425.86,-214"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-193" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket_iam_member.staging_bucket_iam</text>
+</g>
+<!-- module.dataproc.google_dataproc_cluster.tbd&#45;dataproc&#45;cluster&#45;&gt;module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam -->
+<g id="edge26" class="edge">
+<title>module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster-&gt;module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam</title>
+<path fill="none" stroke="#555555" d="M1101.14,-196C1123.42,-196 1147.54,-196 1171.07,-196"/>
+<polygon fill="#555555" stroke="#555555" points="1170.89,-198.8 1178.89,-196 1170.89,-193.2 1170.89,-198.8"/>
+</g>
+<!-- module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam -->
+<g id="node30" class="node">
+<title>module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam</title>
+<polygon fill="#f7f7f7" stroke="black" points="1421.42,-268 1185.25,-268 1185.25,-232 1421.42,-232 1421.42,-268"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-247" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket_iam_member.temp_bucket_iam</text>
+</g>
+<!-- module.dataproc.google_dataproc_cluster.tbd&#45;dataproc&#45;cluster&#45;&gt;module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam -->
+<g id="edge27" class="edge">
+<title>module.dataproc.google_dataproc_cluster.tbd-dataproc-cluster-&gt;module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam</title>
+<path fill="none" stroke="#555555" d="M1101.14,-213.38C1130,-218.64 1161.93,-224.45 1191.7,-229.86"/>
+<polygon fill="#555555" stroke="#555555" points="1191,-232.58 1199.37,-231.26 1192,-227.07 1191,-232.58"/>
+</g>
+<!-- module.dataproc.google_service_account.dataproc_sa -->
+<g id="node26" class="node">
+<title>module.dataproc.google_service_account.dataproc_sa</title>
+<ellipse fill="#cfeefc" stroke="black" cx="1708.74" cy="-142" rx="104.61" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-139" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_service_account.dataproc_sa</text>
+</g>
+<!-- module.dataproc.google_project_iam_member.dataproc_bigquery_data_editor&#45;&gt;module.dataproc.google_service_account.dataproc_sa -->
+<g id="edge28" class="edge">
+<title>module.dataproc.google_project_iam_member.dataproc_bigquery_data_editor-&gt;module.dataproc.google_service_account.dataproc_sa</title>
+<path fill="none" stroke="#555555" d="M1431.97,-142C1484.13,-142 1543.95,-142 1594.52,-142"/>
+<polygon fill="#555555" stroke="#555555" points="1594.34,-144.8 1602.34,-142 1594.34,-139.2 1594.34,-144.8"/>
+</g>
+<!-- module.dataproc.google_project_iam_member.dataproc_bigquery_user&#45;&gt;module.dataproc.google_service_account.dataproc_sa -->
+<g id="edge29" class="edge">
+<title>module.dataproc.google_project_iam_member.dataproc_bigquery_user-&gt;module.dataproc.google_service_account.dataproc_sa</title>
+<path fill="none" stroke="#555555" d="M1395.66,-52.48C1407.81,-55.19 1420.07,-58.07 1431.69,-61 1506.92,-79.98 1592.51,-105.76 1648.17,-123.09"/>
+<polygon fill="#555555" stroke="#555555" points="1647.27,-125.74 1655.74,-125.45 1648.94,-120.39 1647.27,-125.74"/>
+</g>
+<!-- module.dataproc.google_project_iam_member.dataproc_worker&#45;&gt;module.dataproc.google_service_account.dataproc_sa -->
+<g id="edge30" class="edge">
+<title>module.dataproc.google_project_iam_member.dataproc_worker-&gt;module.dataproc.google_service_account.dataproc_sa</title>
+<path fill="none" stroke="#555555" d="M1403.53,-101.28C1468.35,-109.96 1552.4,-121.21 1615.73,-129.68"/>
+<polygon fill="#555555" stroke="#555555" points="1615.11,-132.43 1623.41,-130.71 1615.86,-126.88 1615.11,-132.43"/>
+</g>
+<!-- module.dataproc.google_project_service.dataproc&#45;&gt;module.vpc.google_compute_firewall.default&#45;internal&#45;allow&#45;all -->
+<g id="edge8" class="edge">
+<title>module.dataproc.google_project_service.dataproc-&gt;module.vpc.google_compute_firewall.default-internal-allow-all</title>
+<path fill="none" stroke="#555555" d="M1557.68,-355C1558.69,-356.16 1559.8,-357.45 1561.56,-359 1598.69,-391.46 1641.26,-428.42 1670.85,-454.06"/>
+<polygon fill="#555555" stroke="#555555" points="1668.68,-455.89 1676.56,-459.01 1672.35,-451.66 1668.68,-455.89"/>
+<text xml:space="preserve" text-anchor="middle" x="1500.62" y="-354.4" font-family="Times,serif" font-size="14.00">uses VPC firewall</text>
+</g>
+<!-- module.dataproc.google_storage_bucket.dataproc_staging -->
+<g id="node27" class="node">
+<title>module.dataproc.google_storage_bucket.dataproc_staging</title>
+<ellipse fill="#fff2b8" stroke="black" cx="1708.74" cy="-196" rx="115.63" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-193" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket.dataproc_staging</text>
+</g>
+<!-- module.dataproc.google_storage_bucket.dataproc_temp -->
+<g id="node28" class="node">
+<title>module.dataproc.google_storage_bucket.dataproc_temp</title>
+<ellipse fill="#fff2b8" stroke="black" cx="1708.74" cy="-250" rx="109.76" ry="18"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-247" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_storage_bucket.dataproc_temp</text>
+</g>
+<!-- module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam&#45;&gt;module.dataproc.google_service_account.dataproc_sa -->
+<g id="edge31" class="edge">
+<title>module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam-&gt;module.dataproc.google_service_account.dataproc_sa</title>
+<path fill="none" stroke="#555555" d="M1426.07,-179.2C1434.06,-178.11 1441.99,-177.04 1449.69,-176 1504.38,-168.63 1565.62,-160.56 1614.71,-154.13"/>
+<polygon fill="#555555" stroke="#555555" points="1614.98,-156.92 1622.55,-153.1 1614.25,-151.36 1614.98,-156.92"/>
+</g>
+<!-- module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam&#45;&gt;module.dataproc.google_storage_bucket.dataproc_staging -->
+<g id="edge32" class="edge">
+<title>module.dataproc.google_storage_bucket_iam_member.staging_bucket_iam-&gt;module.dataproc.google_storage_bucket.dataproc_staging</title>
+<path fill="none" stroke="#555555" d="M1426.19,-196C1475.98,-196 1533.5,-196 1583.53,-196"/>
+<polygon fill="#555555" stroke="#555555" points="1583.26,-198.8 1591.26,-196 1583.26,-193.2 1583.26,-198.8"/>
+</g>
+<!-- module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam&#45;&gt;module.dataproc.google_service_account.dataproc_sa -->
+<g id="edge33" class="edge">
+<title>module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam-&gt;module.dataproc.google_service_account.dataproc_sa</title>
+<path fill="none" stroke="#555555" d="M1400.43,-231.56C1411.04,-228.95 1421.64,-226.09 1431.69,-223 1486.7,-206.07 1499.15,-197.78 1551.56,-174 1556.09,-171.95 1556.85,-170.58 1561.56,-169 1578.83,-163.22 1597.69,-158.57 1615.95,-154.87"/>
+<polygon fill="#555555" stroke="#555555" points="1616.34,-157.65 1623.66,-153.37 1615.27,-152.15 1616.34,-157.65"/>
+</g>
+<!-- module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam&#45;&gt;module.dataproc.google_storage_bucket.dataproc_temp -->
+<g id="edge34" class="edge">
+<title>module.dataproc.google_storage_bucket_iam_member.temp_bucket_iam-&gt;module.dataproc.google_storage_bucket.dataproc_temp</title>
+<path fill="none" stroke="#555555" d="M1421.83,-250C1474.49,-250 1536.49,-250 1589.26,-250"/>
+<polygon fill="#555555" stroke="#555555" points="1589.15,-252.8 1597.15,-250 1589.15,-247.2 1589.15,-252.8"/>
+</g>
+<!-- module.dbt_docker_image.docker_image.dbt -->
+<g id="node31" class="node">
+<title>module.dbt_docker_image.docker_image.dbt</title>
+<polygon fill="#f7f7f7" stroke="black" points="1345.05,-913 1261.61,-913 1261.61,-877 1345.05,-877 1345.05,-913"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-892" font-family="DejaVu Sans, sans-serif" font-size="10.00">docker_image.dbt</text>
+</g>
+<!-- module.dbt_docker_image.docker_image.dbt&#45;&gt;module.composer.google_project_iam_member.dataproc&#45;editor&#45;iam -->
+<g id="edge9" class="edge">
+<title>module.dbt_docker_image.docker_image.dbt-&gt;module.composer.google_project_iam_member.dataproc-editor-iam</title>
+<path fill="none" stroke="#555555" d="M1326.18,-946C1362.06,-1023.25 1441.53,-1169.41 1560.67,-1250.03"/>
+<polygon fill="#555555" stroke="#555555" points="1558.72,-1252.1 1566.93,-1254.17 1561.8,-1247.42 1558.72,-1252.1"/>
+<text xml:space="preserve" text-anchor="middle" x="1500.62" y="-1241.82" font-family="Times,serif" font-size="14.00">via IAM role</text>
+</g>
+<!-- module.gcr.google_artifact_registry_repository.registry -->
+<g id="node33" class="node">
+<title>module.gcr.google_artifact_registry_repository.registry</title>
+<polygon fill="#f7f7f7" stroke="black" points="1801.84,-913 1615.65,-913 1615.65,-877 1801.84,-877 1801.84,-913"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-892" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_artifact_registry_repository.registry</text>
+</g>
+<!-- module.dbt_docker_image.docker_image.dbt&#45;&gt;module.gcr.google_artifact_registry_repository.registry -->
+<g id="edge10" class="edge">
+<title>module.dbt_docker_image.docker_image.dbt-&gt;module.gcr.google_artifact_registry_repository.registry</title>
+<path fill="none" stroke="#555555" d="M1353.05,-895C1415.39,-895 1524.98,-895 1605.89,-895"/>
+<polygon fill="#555555" stroke="#555555" points="1598.14,-897.8 1606.14,-895 1598.14,-892.2 1598.14,-897.8"/>
+<text xml:space="preserve" text-anchor="middle" x="1500.62" y="-899.2" font-family="Times,serif" font-size="14.00">pushes image</text>
+</g>
+<!-- module.dbt_docker_image.docker_registry_image.dbt -->
+<g id="node32" class="node">
+<title>module.dbt_docker_image.docker_registry_image.dbt</title>
+<polygon fill="#f7f7f7" stroke="black" points="1064.12,-913 945.13,-913 945.13,-877 1064.12,-877 1064.12,-913"/>
+<text xml:space="preserve" text-anchor="middle" x="1004.63" y="-892" font-family="DejaVu Sans, sans-serif" font-size="10.00">docker_registry_image.dbt</text>
+</g>
+<!-- module.dbt_docker_image.docker_registry_image.dbt&#45;&gt;module.dbt_docker_image.docker_image.dbt -->
+<g id="edge35" class="edge">
+<title>module.dbt_docker_image.docker_registry_image.dbt-&gt;module.dbt_docker_image.docker_image.dbt</title>
+<path fill="none" stroke="#555555" d="M1064.6,-895C1119.33,-895 1199.93,-895 1251.79,-895"/>
+<polygon fill="#555555" stroke="#555555" points="1251.61,-897.8 1259.61,-895 1251.61,-892.2 1251.61,-897.8"/>
+</g>
+<!-- module.gcr.google_project_service.api -->
+<g id="node34" class="node">
+<title>module.gcr.google_project_service.api</title>
+<polygon fill="#f7f7f7" stroke="black" points="2165.38,-913 2045.85,-913 2045.85,-877 2165.38,-877 2165.38,-913"/>
+<text xml:space="preserve" text-anchor="middle" x="2105.62" y="-892" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_project_service.api</text>
+</g>
+<!-- module.gcr.google_artifact_registry_repository.registry&#45;&gt;module.gcr.google_project_service.api -->
+<g id="edge36" class="edge">
+<title>module.gcr.google_artifact_registry_repository.registry-&gt;module.gcr.google_project_service.api</title>
+<path fill="none" stroke="#555555" d="M1802.32,-895C1873.91,-895 1971.42,-895 2036.11,-895"/>
+<polygon fill="#555555" stroke="#555555" points="2035.89,-897.8 2043.89,-895 2035.89,-892.2 2035.89,-897.8"/>
+</g>
+<!-- module.vpc.module.vpc.module.vpc.google_compute_network.network -->
+<g id="node43" class="node">
+<title>module.vpc.module.vpc.module.vpc.google_compute_network.network</title>
+<polygon fill="#f7f7f7" stroke="black" points="2181.22,-666 2030.01,-666 2030.01,-630 2181.22,-630 2181.22,-666"/>
+<text xml:space="preserve" text-anchor="middle" x="2105.62" y="-645" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_network.network</text>
+</g>
+<!-- module.vpc.google_compute_firewall.default&#45;internal&#45;allow&#45;all&#45;&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network -->
+<g id="edge37" class="edge">
+<title>module.vpc.google_compute_firewall.default-internal-allow-all-&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network</title>
+<path fill="none" stroke="#555555" d="M1817.49,-504.48C1827.86,-507.03 1838.15,-509.86 1847.92,-513 1932.22,-540.07 2021.81,-593.64 2069.66,-624.54"/>
+<polygon fill="#555555" stroke="#555555" points="2068.04,-626.82 2076.27,-628.84 2071.09,-622.13 2068.04,-626.82"/>
+</g>
+<!-- module.vpc.google_compute_firewall.fw&#45;allow&#45;ingress&#45;from&#45;iap -->
+<g id="node36" class="node">
+<title>module.vpc.google_compute_firewall.fw-allow-ingress-from-iap</title>
+<polygon fill="#f7f7f7" stroke="black" points="1820.16,-558 1597.32,-558 1597.32,-522 1820.16,-522 1820.16,-558"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-537" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_firewall.fw-allow-ingress-from-iap</text>
+</g>
+<!-- module.vpc.google_compute_firewall.fw&#45;allow&#45;ingress&#45;from&#45;iap&#45;&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network -->
+<g id="edge38" class="edge">
+<title>module.vpc.google_compute_firewall.fw-allow-ingress-from-iap-&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network</title>
+<path fill="none" stroke="#555555" d="M1811.16,-558.45C1823.59,-561.12 1836.08,-563.98 1847.92,-567 1915.78,-584.28 1992.14,-609.08 2043.8,-626.68"/>
+<polygon fill="#555555" stroke="#555555" points="2042.6,-629.23 2051.08,-629.16 2044.42,-623.93 2042.6,-629.23"/>
+</g>
+<!-- module.vpc.module.cloud&#45;router.google_compute_router.router -->
+<g id="node37" class="node">
+<title>module.vpc.module.cloud-router.google_compute_router.router</title>
+<polygon fill="#f7f7f7" stroke="black" points="1775.46,-774 1642.03,-774 1642.03,-738 1775.46,-738 1775.46,-774"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-753" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_router.router</text>
+</g>
+<!-- module.vpc.module.cloud&#45;router.google_compute_router.router&#45;&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network -->
+<g id="edge39" class="edge">
+<title>module.vpc.module.cloud-router.google_compute_router.router-&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network</title>
+<path fill="none" stroke="#555555" d="M1775.8,-744.66C1798.76,-740.31 1824.59,-734.94 1847.92,-729 1915.78,-711.72 1992.14,-686.92 2043.8,-669.32"/>
+<polygon fill="#555555" stroke="#555555" points="2044.42,-672.07 2051.08,-666.84 2042.6,-666.77 2044.42,-672.07"/>
+</g>
+<!-- module.vpc.module.cloud&#45;router.google_compute_router_nat.nats -->
+<g id="node38" class="node">
+<title>module.vpc.module.cloud-router.google_compute_router_nat.nats</title>
+<polygon fill="#f7f7f7" stroke="black" points="1374.77,-774 1231.9,-774 1231.9,-738 1374.77,-738 1374.77,-774"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-753" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_router_nat.nats</text>
+</g>
+<!-- module.vpc.module.cloud&#45;router.google_compute_router_nat.nats&#45;&gt;module.vpc.module.cloud&#45;router.google_compute_router.router -->
+<g id="edge40" class="edge">
+<title>module.vpc.module.cloud-router.google_compute_router_nat.nats-&gt;module.vpc.module.cloud-router.google_compute_router.router</title>
+<path fill="none" stroke="#555555" d="M1375.06,-756C1447.22,-756 1558.79,-756 1632.53,-756"/>
+<polygon fill="#555555" stroke="#555555" points="1632.27,-758.8 1640.27,-756 1632.27,-753.2 1632.27,-758.8"/>
+</g>
+<!-- module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules -->
+<g id="node39" class="node">
+<title>module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules</title>
+<polygon fill="#f7f7f7" stroke="black" points="1776.84,-666 1640.64,-666 1640.64,-630 1776.84,-630 1776.84,-666"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-645" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_firewall.rules</text>
+</g>
+<!-- module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules&#45;&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network -->
+<g id="edge41" class="edge">
+<title>module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules-&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network</title>
+<path fill="none" stroke="#555555" d="M1777.18,-648C1844.46,-648 1947.99,-648 2020.58,-648"/>
+<polygon fill="#555555" stroke="#555555" points="2020.21,-650.8 2028.21,-648 2020.21,-645.2 2020.21,-650.8"/>
+</g>
+<!-- module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress -->
+<g id="node40" class="node">
+<title>module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress</title>
+<polygon fill="#f7f7f7" stroke="black" points="1808.5,-720 1608.98,-720 1608.98,-684 1808.5,-684 1808.5,-720"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-699" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_firewall.rules_ingress_egress</text>
+</g>
+<!-- module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress&#45;&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network -->
+<g id="edge42" class="edge">
+<title>module.vpc.module.vpc.module.firewall_rules.google_compute_firewall.rules_ingress_egress-&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network</title>
+<path fill="none" stroke="#555555" d="M1808.88,-688.44C1874.07,-679.53 1958.45,-667.99 2020.39,-659.52"/>
+<polygon fill="#555555" stroke="#555555" points="2020.7,-662.3 2028.25,-658.44 2019.94,-656.75 2020.7,-662.3"/>
+</g>
+<!-- module.vpc.module.vpc.module.routes.google_compute_route.route -->
+<g id="node41" class="node">
+<title>module.vpc.module.vpc.module.routes.google_compute_route.route</title>
+<polygon fill="#f7f7f7" stroke="black" points="1366.71,-828 1239.95,-828 1239.95,-792 1366.71,-792 1366.71,-828"/>
+<text xml:space="preserve" text-anchor="middle" x="1303.33" y="-807" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_route.route</text>
+</g>
+<!-- module.vpc.module.vpc.module.subnets.google_compute_subnetwork.subnetwork -->
+<g id="node42" class="node">
+<title>module.vpc.module.vpc.module.subnets.google_compute_subnetwork.subnetwork</title>
+<polygon fill="#f7f7f7" stroke="black" points="1798.24,-828 1619.25,-828 1619.25,-792 1798.24,-792 1798.24,-828"/>
+<text xml:space="preserve" text-anchor="middle" x="1708.74" y="-807" font-family="DejaVu Sans, sans-serif" font-size="10.00">google_compute_subnetwork.subnetwork</text>
+</g>
+<!-- module.vpc.module.vpc.module.routes.google_compute_route.route&#45;&gt;module.vpc.module.vpc.module.subnets.google_compute_subnetwork.subnetwork -->
+<g id="edge43" class="edge">
+<title>module.vpc.module.vpc.module.routes.google_compute_route.route-&gt;module.vpc.module.vpc.module.subnets.google_compute_subnetwork.subnetwork</title>
+<path fill="none" stroke="#555555" d="M1366.92,-810C1431.79,-810 1534.07,-810 1609.68,-810"/>
+<polygon fill="#555555" stroke="#555555" points="1609.25,-812.8 1617.25,-810 1609.25,-807.2 1609.25,-812.8"/>
+</g>
+<!-- module.vpc.module.vpc.module.subnets.google_compute_subnetwork.subnetwork&#45;&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network -->
+<g id="edge44" class="edge">
+<title>module.vpc.module.vpc.module.subnets.google_compute_subnetwork.subnetwork-&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network</title>
+<path fill="none" stroke="#555555" d="M1798.49,-796.63C1815.15,-793.01 1832.25,-788.52 1847.92,-783 1930.76,-753.83 2019.87,-701.75 2068.26,-671.51"/>
+<polygon fill="#555555" stroke="#555555" points="2069.68,-673.93 2074.96,-667.3 2066.69,-669.19 2069.68,-673.93"/>
+</g>
+<!-- module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host&#45;&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network -->
+<g id="edge45" class="edge">
+<title>module.vpc.module.vpc.module.vpc.google_compute_shared_vpc_host_project.shared_vpc_host-&gt;module.vpc.module.vpc.module.vpc.google_compute_network.network</title>
+<path fill="none" stroke="#555555" d="M1835.5,-611.2C1895.9,-619.46 1966.65,-629.13 2020.45,-636.49"/>
+<polygon fill="#555555" stroke="#555555" points="2019.81,-639.23 2028.11,-637.54 2020.56,-633.68 2019.81,-639.23"/>
+</g>
+</g>
+</svg>
