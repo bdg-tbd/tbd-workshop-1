@@ -4,9 +4,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
-
-   ***link to forked repo***
+    gr.15
+    https://github.com/FilipBudzynski/tbd-workshop-1
    
 2. Follow all steps in README.md.
 
@@ -17,16 +16,56 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     
     2. Create PR from this branch to **YOUR** master and merge it to make new release. 
     
-    ***place the screenshot from GA after succesfull application of release***
+![successful-release.png](doc/figures/successful-release.png)
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+## Composer Module
+The module’s main purpose is to create and configure a Cloud Composer environment along with the networking and IAM setup required for it to run. Prepares the service account, activates the Composer API, creates a subnet, and deploys the Composer environment by using defined resources. It does not manage Airflow code, DAGs, or workflows. Only manages the infrastructure needed to run Airflow.
+
+### Inputs
+Input variables for the composer module:
+- env_name - Composer env name
+- env_size - Environment size
+- env_variables - Apache Airflow variables to set
+- image_version - Defined as `composer-2.11.5-airflow-2.9.3`
+- network - VPC to use for notebooks
+- project_name - Project name
+- region - GCP region
+- subnet_address - VPC subnet used for deployment
+- subnet_name - Composer subnet name
+
+### Resources
+Resources in the module:
+- google_compute_subnetwork.composer-subnet – Creates a dedicated subnetwork for the Composer environment.
+- google_project_iam_member.composer-member – Grants Composer service account required project permissions.
+- google_project_iam_member.dataproc-editor-iam – Gives Dataproc Editor role to a member.
+- google_project_iam_member.dataproc-sa-user-iam – Allows a member to act as a Dataproc service account.
+- google_project_service.api – Enables required Google Cloud APIs for Composer.
+- google_service_account.tbd-composer-sa – Creates the service account used by Composer.
+
+### Outputs
+- gcs_bucket - Google Cloud Storage bucket storing Apache Airflow DAGs
+- data_service_account - Apache Airflow service account email
+- gke_cluster - Google Kubernetes Engine cluster to run Apache Airflow components
+
+### Diagram
+![module-composer-diagram.png](doc/figures/module-composer-diagram.png)
+
    
 6. Reach YARN UI
    
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+
+![gcp-console-vms.png](doc/figures/gcp-console-vms.png)
+
+![yarn.png](doc/figures/yarn.png)
+```bash
+gcloud compute ssh tbd-cluster-m \
+  --project=tbd-2025z-319020 \
+  --zone=europe-west1-b \
+  -- -L 8088:localhost:8088
+```
    
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
@@ -38,19 +77,78 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 For all the resources of type: `google_artifact_registry`, `google_storage_bucket`, `google_service_networking_connection`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml) 
 
-   ***place the expected consumption you entered here***
+Enetered consumption:
+```yml
+  google_artifact_registry_repository.registry:
+    storage_gb: 150
+    monthly_egress_data_transfer_gb: 50
+  google_storage_bucket.dataproc_staging:
+    storage_gb: 150
+  google_storage_bucket.dataproc_temp:
+    storage_gb: 150
+    monthly_egress_data_transfer_gb: 150
+  google_service_networking_connection.private_vpc_connection:
+    monthly_egress_data_transfer_gb: 150
+```
 
-   ***place the screenshot from infracost output here***
+![infracost-update.png](doc/figures/infracost-update.png)
 
 9. Create a BigQuery dataset and an external table using SQL
     
-    ***place the code and output here***
+    Two ORC files were downloaded:
+    1. https://github.com/apache/orc/blob/main/examples/TestOrcFile.metaData.orc
+    2. https://github.com/apache/orc/blob/main/examples/TestOrcFile.test1.orc
+
+    code used in BigQuery studio:
+
+    ```sql
+    CREATE SCHEMA IF NOT EXISTS `tbd-2025z-319020.tbd_dataset`
+    OPTIONS (
+    location = 'europe-west1'
+    );
+    ```
+
+    Code for file no.1 :
+    ```sql
+    CREATE EXTERNAL TABLE IF NOT EXISTS `tbd-2025z-319020.tbd_dataset.tab_ext`
+    OPTIONS (
+    format = 'ORC',
+    uris = ['gs://europe-west1-demo-lab-202d6e6f-bucket/*.orc']
+    );
+    ```
+
+    code for file no.2 :
+    ```sql
+    CREATE EXTERNAL TABLE IF NOT EXISTS `tbd-2025z-319020.tbd_dataset.testing`
+    OPTIONS (
+    format = 'ORC',
+    uris = ['gs://europe-west1-demo-lab-202d6e6f-bucket/test_data/*.orc']
+    );
+    ```
+
+    Output:
+    ![task9.png](doc/figures/task9.png)
+
    
     ***why does ORC not require a table schema?***
 
+    ORC files are self-describing. Entire schema with column names and types is stored in the file's metadata. Because of this type of storage, external table definition is not required to read the file's contents. External table definition is only to define the table structure.
+    The embedded schema allows readers to correctly interpret the data even if the external table definition changes over time.
+
+
 10. Find and correct the error in spark-job.py
 
-    ***describe the cause and how to find the error***
+Error:
+```
+Google Cloud Dataproc Agent reports job failure. If logs are available, they can be found at: https://console.cloud.google.com/dataproc/jobs/3e5e9056c4d64046aa87f79e03c4195a?project=tbd-2025z-319020&region=europe-west1 gcloud dataproc jobs wait '3e5e9056c4d64046aa87f79e03c4195a' --region 'europe-west1' --project 'tbd-2025z-319020' https://console.cloud.google.com/storage/browser/tbd-2025z-319020-dataproc-staging/google-cloud-dataproc-metainfo/180160d5-4b16-4369-8e74-9e4277376bfa/jobs/3e5e9056c4d64046aa87f79e03c4195a/ gs://tbd-2025z-319020-dataproc-staging/google-cloud-dataproc-metainfo/180160d5-4b16-4369-8e74-9e4277376bfa/jobs/3e5e9056c4d64046aa87f79e03c4195a/driveroutput.*
+```
+How to find and fix:
+1. Go to gcp dataproc jobs 
+2. See the failing job and investigate logs. 
+3. There is not existing bucket "tbd-2025z-9901-data"
+4. Replace bucket name to "gs://tbd-2025z-319020-data/data/shakespeare/"
+5. clone job 
+6. successful run
 
 11. Add support for preemptible/spot instances in a Dataproc cluster
 
