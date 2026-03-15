@@ -10,18 +10,18 @@ provider "docker" {
 }
 data "google_client_config" "provider" {}
 
-
-data "google_container_cluster" "composer-gke-cluster" {
-  name     = reverse(split("/", module.composer.gke_cluster))[0]
-  location = var.region
+provider "kubernetes" {
+  host                   = "https://${module.airflow.cluster_endpoint}"
+  token                  = data.google_client_config.provider.access_token
+  cluster_ca_certificate = base64decode(module.airflow.cluster_ca_certificate)
 }
 
-provider "kubernetes" {
-  host  = "https://${data.google_container_cluster.composer-gke-cluster.endpoint}"
-  token = data.google_client_config.provider.access_token
-  cluster_ca_certificate = base64decode(
-    data.google_container_cluster.composer-gke-cluster.master_auth[0].cluster_ca_certificate,
-  )
+provider "helm" {
+  kubernetes {
+    host                   = "https://${module.airflow.cluster_endpoint}"
+    token                  = data.google_client_config.provider.access_token
+    cluster_ca_certificate = base64decode(module.airflow.cluster_ca_certificate)
+  }
 }
 
 terraform {
@@ -38,6 +38,10 @@ terraform {
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "2.24.0"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.12.0"
     }
   }
 }

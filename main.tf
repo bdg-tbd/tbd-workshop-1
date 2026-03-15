@@ -80,77 +80,319 @@ module "dataproc" {
 #  network        = module.vpc.network.network_id
 #}
 
-module "composer" {
-  depends_on     = [module.vpc]
-  source         = "./modules/composer"
-  project_name   = var.project_name
-  network        = module.vpc.network.network_name
-  subnet_address = local.composer_subnet_address
-  env_variables = {
-    "AIRFLOW_VAR_PROJECT_ID" : var.project_name,
-    "AIRFLOW_VAR_REGION_NAME" : var.region,
-    "AIRFLOW_VAR_BUCKET_NAME" : local.code_bucket_name
-    "AIRFLOW_VAR_PHS_CLUSTER" : module.dataproc.dataproc_cluster_name,
-    "AIRFLOW_VAR_WRK_NAMESPACE" : local.composer_work_namespace,
-    "AIRFLOW_VAR_DBT_GIT_REPO" : local.dbt_git_repo,
-    "AIRFLOW_VAR_DBT_GIT_REPO_BRANCH" : local.dbt_git_repo_branch
-  }
+## Composer disabled — SSD quota on student billing accounts (250 GB) is too low
+## for Composer 2 GKE Autopilot. Using lightweight GKE Standard + Helm Airflow instead.
+#module "composer" {
+#  depends_on     = [module.vpc]
+#  source         = "./modules/composer"
+#  project_name   = var.project_name
+#  network        = module.vpc.network.network_name
+#  subnet_address = local.composer_subnet_address
+#  env_variables = {
+#    "AIRFLOW_VAR_PROJECT_ID" : var.project_name,
+#    "AIRFLOW_VAR_REGION_NAME" : var.region,
+#    "AIRFLOW_VAR_BUCKET_NAME" : local.code_bucket_name
+#    "AIRFLOW_VAR_PHS_CLUSTER" : module.dataproc.dataproc_cluster_name,
+#    "AIRFLOW_VAR_WRK_NAMESPACE" : local.composer_work_namespace,
+#    "AIRFLOW_VAR_DBT_GIT_REPO" : local.dbt_git_repo,
+#    "AIRFLOW_VAR_DBT_GIT_REPO_BRANCH" : local.dbt_git_repo_branch
+#  }
+#}
+
+## Airflow on GKE Standard (pd-standard disks, no SSD quota issues)
+module "airflow" {
+  depends_on   = [module.vpc]
+  source       = "./modules/airflow"
+  project_name = var.project_name
+  region       = var.region
+  network      = module.vpc.network.network_name
+  subnet       = module.vpc.subnets[local.notebook_subnet_id].id
+  machine_type = "e2-standard-2"
 }
 
-module "dbt_docker_image" {
-  depends_on         = [module.composer, module.gcr]
-  source             = "./modules/dbt_docker_image"
-  registry_hostname  = module.gcr.registry_hostname
-  registry_repo_name = coalesce(var.project_name)
-  project_name       = var.project_name
-  spark_version      = local.spark_version
-  dbt_version        = local.dbt_version
-  dbt_spark_version  = local.dbt_spark_version
-}
+#module "dbt_docker_image" {
+#  depends_on         = [module.airflow, module.gcr]
+#  source             = "./modules/dbt_docker_image"
+#  registry_hostname  = module.gcr.registry_hostname
+#  registry_repo_name = coalesce(var.project_name)
+#  project_name       = var.project_name
+#  spark_version      = local.spark_version
+#  dbt_version        = local.dbt_version
+#  dbt_spark_version  = local.dbt_spark_version
+#}
 
 module "data-pipelines" {
   source               = "./modules/data-pipeline"
   project_name         = var.project_name
   region               = var.region
   bucket_name          = local.code_bucket_name
-  data_service_account = module.composer.data_service_account
-  dag_bucket_name      = module.composer.gcs_bucket
+  data_service_account = module.dataproc.dataproc_service_account
   data_bucket_name     = local.data_bucket_name
 }
 
+resource "helm_release" "airflow" {
+  depends_on = [kubernetes_job.airflow_db_migrate]
+  name       = "airflow"
+  repository = "https://airflow.apache.org"
+  chart      = "airflow"
+  version    = "1.16.0"
+  namespace  = "airflow"
 
+  create_namespace = true
+  timeout          = 900
+  wait             = true
 
-
-resource "kubernetes_service" "dbt-task-service" {
-  metadata {
-    name      = "dbt-task-service"
-    namespace = local.composer_work_namespace
-    labels = {
-      app = "dbt-app"
-    }
+  # Disable bundled bitnami PostgreSQL (image tags removed from DockerHub)
+  # Use standalone postgres:16-alpine instead
+  set {
+    name  = "postgresql.enabled"
+    value = "false"
+  }
+  set {
+    name  = "data.metadataConnection.host"
+    value = "airflow-pg"
+  }
+  set {
+    name  = "data.metadataConnection.db"
+    value = "airflow"
+  }
+  set {
+    name  = "data.metadataConnection.user"
+    value = "postgres"
+  }
+  set {
+    name  = "data.metadataConnection.pass"
+    value = "postgres"
   }
 
+  # Use LocalExecutor — tasks run in scheduler process, no separate pods needed
+  set {
+    name  = "executor"
+    value = "LocalExecutor"
+  }
+  set {
+    name  = "webserver.service.type"
+    value = "LoadBalancer"
+  }
+  # Reduce resource requests to fit on small nodes
+  set {
+    name  = "scheduler.resources.requests.cpu"
+    value = "250m"
+  }
+  set {
+    name  = "scheduler.resources.requests.memory"
+    value = "512Mi"
+  }
+  set {
+    name  = "webserver.resources.requests.cpu"
+    value = "250m"
+  }
+  set {
+    name  = "webserver.resources.requests.memory"
+    value = "512Mi"
+  }
+  # Increase startup probe timeout — Gunicorn needs >60s on e2-standard-2
+  set {
+    name  = "webserver.startupProbe.failureThreshold"
+    value = "12"
+  }
+  set {
+    name  = "webserver.startupProbe.periodSeconds"
+    value = "15"
+  }
+  set {
+    name  = "triggerer.resources.requests.cpu"
+    value = "250m"
+  }
+  set {
+    name  = "triggerer.resources.requests.memory"
+    value = "256Mi"
+  }
+  # Airflow variables for DAGs
+  set {
+    name  = "env[0].name"
+    value = "AIRFLOW_VAR_PROJECT_ID"
+  }
+  set {
+    name  = "env[0].value"
+    value = var.project_name
+  }
+  set {
+    name  = "env[1].name"
+    value = "AIRFLOW_VAR_REGION_NAME"
+  }
+  set {
+    name  = "env[1].value"
+    value = var.region
+  }
+  set {
+    name  = "env[2].name"
+    value = "AIRFLOW_VAR_BUCKET_NAME"
+  }
+  set {
+    name  = "env[2].value"
+    value = local.code_bucket_name
+  }
+  set {
+    name  = "env[3].name"
+    value = "AIRFLOW_VAR_PHS_CLUSTER"
+  }
+  set {
+    name  = "env[3].value"
+    value = module.dataproc.dataproc_cluster_name
+  }
+}
+
+# Standalone PostgreSQL for Airflow (bitnami images removed from DockerHub)
+resource "kubernetes_namespace" "airflow" {
+  depends_on = [module.airflow]
+  metadata {
+    name = "airflow"
+  }
+}
+
+resource "kubernetes_stateful_set" "airflow_pg" {
+  depends_on = [kubernetes_namespace.airflow]
+  metadata {
+    name      = "airflow-pg"
+    namespace = "airflow"
+  }
   spec {
-    type = "NodePort"
+    service_name = "airflow-pg"
+    replicas     = 1
+    selector {
+      match_labels = {
+        app = "airflow-pg"
+      }
+    }
+    volume_claim_template {
+      metadata {
+        name = "pg-data"
+      }
+      spec {
+        access_modes = ["ReadWriteOnce"]
+        resources {
+          requests = {
+            storage = "5Gi"
+          }
+        }
+      }
+    }
+    template {
+      metadata {
+        labels = {
+          app = "airflow-pg"
+        }
+      }
+      spec {
+        container {
+          name  = "postgres"
+          image = "postgres:16-alpine"
+          port {
+            container_port = 5432
+          }
+          env {
+            name  = "POSTGRES_DB"
+            value = "airflow"
+          }
+          env {
+            name  = "POSTGRES_USER"
+            value = "postgres"
+          }
+          env {
+            name  = "POSTGRES_PASSWORD"
+            value = "postgres"
+          }
+          env {
+            name  = "PGDATA"
+            value = "/var/lib/postgresql/data/pgdata"
+          }
+          volume_mount {
+            name       = "pg-data"
+            mount_path = "/var/lib/postgresql/data"
+          }
+        }
+      }
+    }
+  }
+}
+
+resource "kubernetes_service" "airflow_pg" {
+  depends_on = [kubernetes_namespace.airflow]
+  metadata {
+    name      = "airflow-pg"
+    namespace = "airflow"
+  }
+  spec {
     selector = {
-      app = "dbt-app"
+      app = "airflow-pg"
     }
     port {
-      name        = "spark-driver"
-      protocol    = "TCP"
-      port        = local.spark_driver_port
-      target_port = local.spark_driver_port
-      node_port   = local.spark_driver_port
-
+      port        = 5432
+      target_port = 5432
     }
-    port {
-      name        = "spark-block-mgr"
-      protocol    = "TCP"
-      port        = local.spark_blockmgr_port
-      target_port = local.spark_blockmgr_port
-      node_port   = local.spark_blockmgr_port
-    }
+  }
+}
 
+# DB migration job — Helm hooks disabled because PostgreSQL is external
+resource "kubernetes_job" "airflow_db_migrate" {
+  depends_on = [kubernetes_stateful_set.airflow_pg, kubernetes_service.airflow_pg]
+  metadata {
+    name      = "airflow-db-migrate"
+    namespace = "airflow"
+  }
+  spec {
+    template {
+      metadata {}
+      spec {
+        container {
+          name    = "migrate"
+          image   = "apache/airflow:2.10.5"
+          command = ["airflow", "db", "migrate"]
+          env {
+            name  = "AIRFLOW__DATABASE__SQL_ALCHEMY_CONN"
+            value = "postgresql+psycopg2://postgres:postgres@airflow-pg:5432/airflow"
+          }
+        }
+        restart_policy = "Never"
+      }
+    }
+    backoff_limit = 2
+  }
+  wait_for_completion = true
+  timeouts {
+    create = "5m"
+  }
+}
+
+# Create admin user after Helm installs Airflow
+resource "kubernetes_job" "airflow_create_user" {
+  depends_on = [helm_release.airflow]
+  metadata {
+    name      = "airflow-create-user"
+    namespace = "airflow"
+  }
+  spec {
+    template {
+      metadata {}
+      spec {
+        container {
+          name    = "create-user"
+          image   = "apache/airflow:2.10.5"
+          command = ["airflow", "users", "create", "--username", "admin", "--password", "admin", "--firstname", "Admin", "--lastname", "User", "--role", "Admin", "--email", "admin@example.com"]
+          env {
+            name  = "AIRFLOW__DATABASE__SQL_ALCHEMY_CONN"
+            value = "postgresql+psycopg2://postgres:postgres@airflow-pg:5432/airflow"
+          }
+        }
+        restart_policy = "Never"
+      }
+    }
+    backoff_limit = 2
+  }
+  wait_for_completion = true
+  timeouts {
+    create = "5m"
   }
 }
 

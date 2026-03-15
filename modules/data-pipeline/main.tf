@@ -1,11 +1,3 @@
-locals {
-  dag_bucket_name_levels = split("/", var.dag_bucket_name)
-  dag_bucket_name_length = length(local.dag_bucket_name_levels)
-  dag_folder             = element(local.dag_bucket_name_levels, local.dag_bucket_name_length - 1)
-  dag_bucket_name        = element(local.dag_bucket_name_levels, 2)
-}
-
-
 resource "google_storage_bucket" "tbd-code-bucket" {
   project                     = var.project_name
   name                        = var.bucket_name
@@ -36,14 +28,6 @@ resource "google_storage_bucket_object" "job-code" {
 }
 
 
-resource "google_storage_bucket_object" "dag-code" {
-  for_each = toset(["data-dag.py"])
-  bucket   = local.dag_bucket_name
-  name     = "${local.dag_folder}/${each.value}"
-  source   = "${path.module}/resources/${each.value}"
-}
-
-
 resource "google_storage_bucket" "tbd-data-bucket" {
   project                     = var.project_name
   name                        = var.data_bucket_name
@@ -60,11 +44,4 @@ resource "google_storage_bucket_iam_member" "tbd-data-bucket-iam-editor" {
   bucket = google_storage_bucket.tbd-data-bucket.name
   role   = "roles/storage.objectUser"
   member = "serviceAccount:${var.data_service_account}"
-}
-
-resource "google_storage_bucket_object" "dbt-dag-code" {
-  for_each = toset(["dbt-dag.py"])
-  bucket   = local.dag_bucket_name
-  name     = "${local.dag_folder}/${each.value}"
-  source   = "${path.module}/resources/${each.value}"
 }
