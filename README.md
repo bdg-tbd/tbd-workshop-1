@@ -163,3 +163,85 @@ terraform destroy -no-color -var-file env/project.tfvars
 
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+
+## Prerequisites — what you need to know before starting the TBD workshop                                                                                                                                    
+                                                                                                                                                                                                               
+  ### 1. Terraform (Infrastructure as Code)                                                                                                                                                                    
+   
+  Core concepts: providers, resources, modules, variables, outputs, state, `plan`/`apply`/`destroy`.                                                                                                           
+   
+  - [Official Getting Started](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started)                                                                                                            
+  - [Terraform with GCP — tutorial](https://developer.hashicorp.com/terraform/tutorials/gcp-get-started/google-cloud-platform-build)
+  - [Modules](https://developer.hashicorp.com/terraform/language/modules)                                                                                                                                      
+  - [`terraform graph` — visualizing infrastructure](https://developer.hashicorp.com/terraform/cli/commands/graph)                                                                                             
+                                                                                                                                                                                                               
+  ### 2. GitHub Actions (CI/CD)                                                                                                                                                                                
+                                                                                                                                                                                                               
+  Understand workflows, jobs, steps, triggers (`on: push`, `pull_request`, `schedule`, `workflow_dispatch`), secrets, and permissions.                                                                         
+   
+  - [GitHub Actions Quickstart](https://docs.github.com/en/actions/quickstart)                                                                                                                                 
+  - [Workflow syntax reference](https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions)
+  - [Using secrets in workflows](https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions)                                                               
+  - [Scheduled events (`cron`)](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule)                                                                                     
+                                                                                                                                                                                                               
+  ### 3. Workload Identity Federation (keyless GCP auth from GitHub Actions)                                                                                                                                   
+                                                                                                                                                                                                               
+  This replaces service account keys with short-lived tokens. Understand why it's more secure.                                                                                                                 
+   
+  - [Google Cloud blog — Enabling keyless authentication from GitHub Actions](https://cloud.google.com/blog/products/identity-security/enabling-keyless-authentication-from-github-actions)                    
+  - [google-github-actions/auth](https://github.com/google-github-actions/auth#workload-identity-federation-through-a-service-account)
+                                                                                                                                                                                                               
+  ### 4. Checkov (IaC security scanning)                                                                                                                                                                       
+                                                                                                                                                                                                               
+  Static analysis tool that detects misconfigurations in Terraform code (e.g. public buckets, missing encryption).                                                                                             
+   
+  - [Checkov Getting Started](https://www.checkov.io/1.Welcome/Quick%20Start.html)                                                                                                                             
+  - [Suppressing checks with inline comments](https://www.checkov.io/2.Basics/Suppressing%20and%20Skipping%20Policies.html)                                                                                    
+                                                                                                                                                                                                               
+  ### 5. Infracost (cloud cost estimation)                                                                                                                                                                     
+                                                                                                                                                                                                               
+  Estimates infrastructure costs from Terraform code and posts diffs on pull requests.                                                                                                                         
+   
+  - [Infracost Getting Started](https://www.infracost.io/docs/)                                                                                                                                                
+  - [Usage-based resources](https://www.infracost.io/docs/features/usage_based_resources/)
+  - [Usage file example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)                                                                                                       
+                                                                                                                                                                                                               
+  ### 6. Pre-commit hooks                                                                                                                                                                                      
+                                                                                                                                                                                                               
+  Automated code quality checks that run before each commit (formatting, linting, docs generation).                                                                                                            
+   
+  - [pre-commit framework](https://pre-commit.com/)                                                                                                                                                            
+  - [pre-commit-terraform](https://github.com/antonbabenko/pre-commit-terraform) — used in this project for `terraform fmt`, `terraform validate`, `terraform-docs`
+                                                                                                                                                                                                               
+  ### 7. Hadolint (Dockerfile linting)                                                                                                                                                                         
+                                                                                                                                                                                                               
+  Lints Dockerfiles against best practices.                                                                                                                                                                    
+
+  - [Hadolint on GitHub](https://github.com/hadolint/hadolint)                                                                                                                                                 
+   
+  ### 8. Apache Spark / PySpark (distributed data processing)                                                                                                                                                  
+   
+  Basics: SparkSession, DataFrames, reading/writing data (BigQuery, ORC format).                                                                                                                               
+   
+  - [PySpark Getting Started](https://spark.apache.org/docs/latest/api/python/getting_started/index.html)                                                                                                      
+  - [Spark on Dataproc](https://cloud.google.com/dataproc/docs/tutorials/spark-scala)
+                                                                                                                                                                                                               
+  ### 9. Apache Airflow (workflow orchestration)                                                                                                                                                               
+                                                                                                                                                                                                               
+  Understand DAGs, operators (especially `DataprocSubmitJobOperator`), variables, connections.                                                                                                                 
+   
+  - [Airflow Core Concepts](https://airflow.apache.org/docs/apache-airflow/stable/core-concepts/index.html)                                                                                                    
+  - [DataprocSubmitJobOperator](https://airflow.apache.org/docs/apache-airflow-providers-google/stable/operators/cloud/dataproc.html#submit-a-job-to-a-dataproc-cluster)
+                                                                                                                                                                                                               
+  ### 10. BigQuery (data warehouse)
+                                                                                                                                                                                                               
+  Creating datasets, external tables, querying ORC files stored in GCS.                                                                                                                                        
+   
+  - [BigQuery Quickstart (bq CLI)](https://cloud.google.com/bigquery/docs/bq-command-line-tool)                                                                                                                
+  - [External tables over Cloud Storage](https://cloud.google.com/bigquery/docs/external-data-cloud-storage)
+                                                                                                                                                                                                               
+  ### 11. Semantic Release (automated versioning)                                                                                                                                                              
+                                                                                                                                                                                                               
+  Generates version numbers and releases from commit messages (used in the `release.yml` workflow).                                                                                                             
+  - [semantic-release](https://github.com/semantic-release/semantic-release)                                                                                                                                   
+  
