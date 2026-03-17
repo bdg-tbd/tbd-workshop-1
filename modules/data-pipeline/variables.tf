@@ -19,12 +19,7 @@ variable "data_service_account" {
   description = "Service account with READER role to the bucket storing code"
 }
 
-variable "dag_bucket_name" {
-  type        = string
-  description = "Apache Airflow bucket for storing DAGs"
-}
-
 variable "data_bucket_name" {
   type        = string
-  description = "Apache Airflow bucket for storing and processing data"
+  description = "Bucket for storing and processing data"
 }
