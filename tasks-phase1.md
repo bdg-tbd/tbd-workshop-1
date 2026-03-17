@@ -1,6 +1,59 @@
 IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each work session. You can recreate infrastructure by creating new PR and merging it to master.
 
 ![img.png](doc/figures/destroy.png)
+                                                                                                                                                                                                                                                                                                                                                                                  
+## Phase 1 Exercise Overview
+
+  ```mermaid
+  flowchart TD
+      A[🔧 Step 0: Fork repository] --> B[🔧 Step 1: Environment variables\nexport TF_VAR_*]
+      B --> C[🔧 Step 2: Bootstrap\nterraform init/apply\n→ GCP project + state bucket]
+      C --> D[🔧 Step 3: Quota increase\nCPUS_ALL_REGIONS ≥ 24]
+      D --> E[🔧 Step 4: CI/CD Bootstrap\nWorkload Identity Federation\n→ keyless auth GH→GCP]
+      E --> F[🔧 Step 5: GitHub Secrets\nGCP_WORKLOAD_IDENTITY_*\nINFRACOST_API_KEY]
+      F --> G[🔧 Step 6: pre-commit install]
+      G --> H[🔧 Step 7: Push + PR + Merge\n→ release workflow\n→ terraform apply]
+
+      H --> I{Infrastructure\nrunning on GCP}
+
+      I --> J[📋 Task 3: Destroy\nGitHub Actions → workflow_dispatch]
+      I --> K[📋 Task 4: New branch\nModify tasks-phase1.md\nPR → merge → new release]
+      I --> L[📋 Task 5: Analyze Terraform\nterraform plan/graph\nDescribe selected module]
+      I --> M[📋 Task 6: YARN UI\ngcloud compute ssh\nIAP tunnel → port 8088]
+      I --> N[📋 Task 7: Architecture diagram\nService accounts + buckets]
+      I --> O[📋 Task 8: Infracost\nUsage profiles for\nartifact_registry + storage_bucket]
+      I --> P[📋 Task 9: Spark job fix\nAirflow UI → DAG → debug\nFix spark-job.py]
+      I --> Q[📋 Task 10: BigQuery\nDataset + external table\non ORC files]
+      I --> R[📋 Task 11: Spot instances\npreemptible_worker_config\nin Dataproc module]
+      I --> S[📋 Task 12: Auto-destroy\nNew GH Actions workflow\nschedule + cleanup tag]
+
+      style A fill:#4a9eff,color:#fff
+      style B fill:#4a9eff,color:#fff
+      style C fill:#4a9eff,color:#fff
+      style D fill:#ff9f43,color:#fff
+      style E fill:#4a9eff,color:#fff
+      style F fill:#ff9f43,color:#fff
+      style G fill:#4a9eff,color:#fff
+      style H fill:#4a9eff,color:#fff
+      style I fill:#2ed573,color:#fff
+      style J fill:#a55eea,color:#fff
+      style K fill:#a55eea,color:#fff
+      style L fill:#a55eea,color:#fff
+      style M fill:#a55eea,color:#fff
+      style N fill:#a55eea,color:#fff
+      style O fill:#a55eea,color:#fff
+      style P fill:#a55eea,color:#fff
+      style Q fill:#a55eea,color:#fff
+      style R fill:#a55eea,color:#fff
+      style S fill:#a55eea,color:#fff
+```
+
+  Legend
+
+  - 🔵 Blue — setup steps (one-time configuration)
+  - 🟠 Orange — manual steps (GCP Console / GitHub UI)
+  - 🟢 Green — infrastructure ready
+  - 🟣 Purple — tasks to complete and document in tasks-phase1.md
 
 1. Authors:
 
