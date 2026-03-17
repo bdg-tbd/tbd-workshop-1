@@ -48,22 +48,19 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 9. Find and correct the error in spark-job.py
 
-    First, set up Airflow to work with your project. After `terraform apply` completes:
+    After `terraform apply` completes, connect to the Airflow cluster and copy the DAG file:
     ```bash
     # Get cluster credentials
     gcloud container clusters get-credentials airflow-cluster --zone europe-west1-b --project PROJECT_NAME
-    # Copy DAG file to scheduler and webserver pods
-    kubectl cp modules/data-pipeline/resources/data-dag.py airflow/$(kubectl get pods -n airflow -l component=scheduler -o jsonpath='{.items[0].metadata.name}'):/opt/airflow/dags/data-dag.py -c scheduler
-    kubectl cp modules/data-pipeline/resources/data-dag.py airflow/$(kubectl get pods -n airflow -l component=webserver -o jsonpath='{.items[0].metadata.name}'):/opt/airflow/dags/data-dag.py
-    # Create GCP connection and set Airflow variables
-    kubectl exec -n airflow $(kubectl get pods -n airflow -l component=scheduler -o jsonpath='{.items[0].metadata.name}') -c scheduler -- bash -c '
-    airflow connections add google_cloud_default --conn-type google_cloud_platform --conn-extra "{\"project\": \"PROJECT_NAME\"}"
-    airflow variables set project_id PROJECT_NAME
-    airflow variables set region_name europe-west1
-    airflow variables set bucket_name PROJECT_NAME-code
-    airflow variables set phs_cluster tbd-cluster
-    '
+
+    # Copy DAG file to the shared DAGs volume (mounted by both scheduler and webserver)
+    kubectl cp modules/data-pipeline/resources/data-dag.py \
+      airflow/$(kubectl get pods -n airflow -l component=scheduler -o jsonpath='{.items[0].metadata.name}'):/opt/airflow/dags/data-dag.py \
+      -c scheduler
     ```
+
+    Note: Airflow variables (`project_id`, `region_name`, `bucket_name`, `phs_cluster`) and the
+    `google_cloud_default` GCP connection are already configured by Terraform.
 
     a) In the Airflow UI (http://AIRFLOW_EXTERNAL_IP:8080, login: admin/admin), find the `dataproc_job` DAG, unpause it and trigger it manually.
 

@@ -14,6 +14,14 @@ locals {
   dbt_spark_version       = "1.8.0"
   dbt_git_repo            = "https://github.com/mwiewior/tbd-tpc-di.git"
   dbt_git_repo_branch     = "main"
+
+  # Airflow credentials — declared once, referenced everywhere
+  airflow_db_user    = "postgres"
+  airflow_db_name    = "airflow"
+  airflow_db_host    = "airflow-pg"
+  airflow_db_conn    = "postgresql+psycopg2://${local.airflow_db_user}:${var.airflow_db_password}@${local.airflow_db_host}:5432/${local.airflow_db_name}"
+  airflow_admin_user = "admin"
+  airflow_image      = "apache/airflow:2.10.5"
 }
 
 module "vpc" {
@@ -138,7 +146,7 @@ resource "helm_release" "airflow" {
   version    = "1.16.0"
   namespace  = "airflow"
 
-  create_namespace = true
+  create_namespace = false
   timeout          = 900
   wait             = true
 
@@ -150,19 +158,29 @@ resource "helm_release" "airflow" {
   }
   set {
     name  = "data.metadataConnection.host"
-    value = "airflow-pg"
+    value = local.airflow_db_host
   }
   set {
     name  = "data.metadataConnection.db"
-    value = "airflow"
+    value = local.airflow_db_name
   }
   set {
     name  = "data.metadataConnection.user"
-    value = "postgres"
+    value = local.airflow_db_user
+  }
+  set_sensitive {
+    name  = "data.metadataConnection.pass"
+    value = var.airflow_db_password
+  }
+
+  # Shared PVC for DAG files — scheduler and webserver mount the same volume
+  set {
+    name  = "dags.persistence.enabled"
+    value = "true"
   }
   set {
-    name  = "data.metadataConnection.pass"
-    value = "postgres"
+    name  = "dags.persistence.size"
+    value = "1Gi"
   }
 
   # Use LocalExecutor — tasks run in scheduler process, no separate pods needed
@@ -293,15 +311,15 @@ resource "kubernetes_stateful_set" "airflow_pg" {
           }
           env {
             name  = "POSTGRES_DB"
-            value = "airflow"
+            value = local.airflow_db_name
           }
           env {
             name  = "POSTGRES_USER"
-            value = "postgres"
+            value = local.airflow_db_user
           }
           env {
             name  = "POSTGRES_PASSWORD"
-            value = "postgres"
+            value = var.airflow_db_password
           }
           env {
             name  = "PGDATA"
@@ -347,11 +365,11 @@ resource "kubernetes_job" "airflow_db_migrate" {
       spec {
         container {
           name    = "migrate"
-          image   = "apache/airflow:2.10.5"
+          image   = local.airflow_image
           command = ["airflow", "db", "migrate"]
           env {
             name  = "AIRFLOW__DATABASE__SQL_ALCHEMY_CONN"
-            value = "postgresql+psycopg2://postgres:postgres@airflow-pg:5432/airflow"
+            value = local.airflow_db_conn
           }
         }
         restart_policy = "Never"
@@ -378,11 +396,11 @@ resource "kubernetes_job" "airflow_create_user" {
       spec {
         container {
           name    = "create-user"
-          image   = "apache/airflow:2.10.5"
-          command = ["airflow", "users", "create", "--username", "admin", "--password", "admin", "--firstname", "Admin", "--lastname", "User", "--role", "Admin", "--email", "admin@example.com"]
+          image   = local.airflow_image
+          command = ["airflow", "users", "create", "--username", local.airflow_admin_user, "--password", var.airflow_admin_password, "--firstname", "Admin", "--lastname", "User", "--role", "Admin", "--email", "admin@example.com"]
           env {
             name  = "AIRFLOW__DATABASE__SQL_ALCHEMY_CONN"
-            value = "postgresql+psycopg2://postgres:postgres@airflow-pg:5432/airflow"
+            value = local.airflow_db_conn
           }
         }
         restart_policy = "Never"
@@ -396,12 +414,63 @@ resource "kubernetes_job" "airflow_create_user" {
   }
 }
 
-resource "google_compute_firewall" "allow-all-internal" {
-  name    = "allow-all-internal"
+# Create google_cloud_default connection for DataprocSubmitJobOperator
+resource "kubernetes_job" "airflow_gcp_connection" {
+  depends_on = [helm_release.airflow]
+  metadata {
+    name      = "airflow-gcp-connection"
+    namespace = "airflow"
+  }
+  spec {
+    template {
+      metadata {}
+      spec {
+        container {
+          name    = "create-connection"
+          image   = local.airflow_image
+          command = ["airflow", "connections", "add", "google_cloud_default", "--conn-type", "google_cloud_platform", "--conn-extra", "{\"project\": \"${var.project_name}\"}"]
+          env {
+            name  = "AIRFLOW__DATABASE__SQL_ALCHEMY_CONN"
+            value = local.airflow_db_conn
+          }
+        }
+        restart_policy = "Never"
+      }
+    }
+    backoff_limit = 2
+  }
+  wait_for_completion = true
+  timeouts {
+    create = "5m"
+  }
+}
+
+resource "google_compute_firewall" "allow-internal-tcp" {
+  name    = "allow-internal-tcp"
   project = var.project_name
   network = module.vpc.network.network_name
   allow {
-    protocol = "all"
+    protocol = "tcp"
+  }
+  source_ranges = ["10.0.0.0/8"]
+}
+
+resource "google_compute_firewall" "allow-internal-udp" {
+  name    = "allow-internal-udp"
+  project = var.project_name
+  network = module.vpc.network.network_name
+  allow {
+    protocol = "udp"
+  }
+  source_ranges = ["10.0.0.0/8"]
+}
+
+resource "google_compute_firewall" "allow-internal-icmp" {
+  name    = "allow-internal-icmp"
+  project = var.project_name
+  network = module.vpc.network.network_name
+  allow {
+    protocol = "icmp"
   }
   source_ranges = ["10.0.0.0/8"]
 }
