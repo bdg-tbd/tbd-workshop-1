@@ -34,6 +34,12 @@ variable "github_repo" {
   description = "GitHub repository name for the forked workshop repo"
 }
 
+variable "github_branch" {
+  type        = string
+  default     = "master"
+  description = "GitHub branch for Airflow git-sync DAG syncing"
+}
+
 ## Vertex AI Workbench has been replaced with Jupyter on Dataproc
 #variable "ai_notebook_instance_owner" {
 #  type        = string

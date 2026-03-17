@@ -188,7 +188,7 @@ resource "helm_release" "airflow" {
   }
   set {
     name  = "dags.gitSync.branch"
-    value = "master"
+    value = var.github_branch
   }
   set {
     name  = "dags.gitSync.subPath"
