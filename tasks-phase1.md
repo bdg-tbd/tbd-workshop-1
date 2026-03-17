@@ -52,6 +52,12 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ```bash
     gcloud container clusters get-credentials airflow-cluster --zone europe-west1-b --project PROJECT_NAME
     ```
+    
+    Then check the external IP (AIRFLOW_EXTERNAL_IP) of the webserver service:
+    kubectl get svc -n airflow airflow-webserver                                                                                                                                                                 
+                                              
+                                                                                                                                                                                                               
+    ▎ Note: If EXTERNAL-IP shows <pending>, wait a moment and retry — LoadBalancer IP allocation may take 1-2 minutes.  
 
     DAG files are synced automatically from your GitHub repo via git-sync sidecar.
     Airflow variables and the `google_cloud_default` GCP connection are also configured by Terraform.
@@ -81,7 +87,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***place a screenshot of the successful DAG run in Airflow UI***
 
-10. Create a BigQuery dataset and an external table using SQL
+11. Create a BigQuery dataset and an external table using SQL
 
     Using the ORC data produced by the Spark job in task 9, create a BigQuery dataset and an external table.
 
@@ -94,11 +100,11 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***why does ORC not require a table schema?***
 
-11. Add support for preemptible/spot instances in a Dataproc cluster
+12. Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
 
-12. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
