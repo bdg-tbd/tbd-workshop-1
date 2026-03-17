@@ -1,2 +1,5 @@
-project_name        = "tbd-2026l-9991"
-iac_service_account = "tbd-2026l-9991-lab@tbd-2026l-9991.iam.gserviceaccount.com"
+project_name        = "tbd-2026l-9010"
+iac_service_account = "tbd-2026l-9010-lab@tbd-2026l-9010.iam.gserviceaccount.com"
+github_org          = "mwiewior"
+github_repo         = "tbd-workshop-2"
+github_branch       = "feat/workshop-2026l-fixes"

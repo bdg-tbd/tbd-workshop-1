@@ -61,6 +61,13 @@ Go to GCP Console → IAM & Admin → Quotas and request increase for:
 * Edit `env/backend.tfvars` file and set `bucket` variable with the Terraform state bucket
 * Edit `env/project.tfvars` file and set `project_name` and `iac_service_account` using the output from the `bootstrap` phase, e.g.:
 ![img.png](doc/figures/bootstrap-output.png)
+* In the same `env/project.tfvars` file, set the GitHub variables for Airflow git-sync (DAG files are synced automatically from your repo):
+```text
+  github_org    = "your-github-username"
+  github_repo   = "tbd-workshop-1"
+  github_branch = "master"
+```
+  `github_org` and `github_repo` should match your forked repository. `github_branch` controls which branch Airflow syncs DAGs from (default: `master`).
 * Edit `cicd_bootstrap/conf/github_actions.tfvars` to set `github_org` and `github_repo`, e.g.:
 ```text
   github_org  = "your-github-username"
