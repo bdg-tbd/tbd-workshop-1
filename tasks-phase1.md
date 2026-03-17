@@ -48,19 +48,13 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
 9. Find and correct the error in spark-job.py
 
-    After `terraform apply` completes, connect to the Airflow cluster and copy the DAG file:
+    After `terraform apply` completes, connect to the Airflow cluster:
     ```bash
-    # Get cluster credentials
     gcloud container clusters get-credentials airflow-cluster --zone europe-west1-b --project PROJECT_NAME
-
-    # Copy DAG file to the shared DAGs volume (mounted by both scheduler and webserver)
-    kubectl cp modules/data-pipeline/resources/data-dag.py \
-      airflow/$(kubectl get pods -n airflow -l component=scheduler -o jsonpath='{.items[0].metadata.name}'):/opt/airflow/dags/data-dag.py \
-      -c scheduler
     ```
 
-    Note: Airflow variables (`project_id`, `region_name`, `bucket_name`, `phs_cluster`) and the
-    `google_cloud_default` GCP connection are already configured by Terraform.
+    DAG files are synced automatically from your GitHub repo via git-sync sidecar.
+    Airflow variables and the `google_cloud_default` GCP connection are also configured by Terraform.
 
     a) In the Airflow UI (http://AIRFLOW_EXTERNAL_IP:8080, login: admin/admin), find the `dataproc_job` DAG, unpause it and trigger it manually.
 

@@ -23,6 +23,17 @@ variable "airflow_admin_password" {
   description = "Password for Airflow web UI admin user"
 }
 
+variable "github_org" {
+  type        = string
+  description = "GitHub organization or user owning the forked workshop repo"
+}
+
+variable "github_repo" {
+  type        = string
+  default     = "tbd-workshop-1"
+  description = "GitHub repository name for the forked workshop repo"
+}
+
 ## Vertex AI Workbench has been replaced with Jupyter on Dataproc
 #variable "ai_notebook_instance_owner" {
 #  type        = string

@@ -173,14 +173,30 @@ resource "helm_release" "airflow" {
     value = var.airflow_db_password
   }
 
-  # Shared PVC for DAG files — scheduler and webserver mount the same volume
+  # git-sync sidecar — pulls DAGs from the student's GitHub fork automatically
   set {
     name  = "dags.persistence.enabled"
+    value = "false"
+  }
+  set {
+    name  = "dags.gitSync.enabled"
     value = "true"
   }
   set {
-    name  = "dags.persistence.size"
-    value = "1Gi"
+    name  = "dags.gitSync.repo"
+    value = "https://github.com/${var.github_org}/${var.github_repo}.git"
+  }
+  set {
+    name  = "dags.gitSync.branch"
+    value = "master"
+  }
+  set {
+    name  = "dags.gitSync.subPath"
+    value = "modules/data-pipeline/resources"
+  }
+  set {
+    name  = "dags.gitSync.wait"
+    value = "60"
   }
 
   # Use LocalExecutor — tasks run in scheduler process, no separate pods needed
