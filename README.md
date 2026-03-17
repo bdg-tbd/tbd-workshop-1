@@ -9,8 +9,7 @@ Jupyter notebooks and Dataproc services on GCP.
 5. Learn how to use Workload Identity Federation for a secure authentication from GitHub Actions
 to Google Cloud.
 ![img.png](doc/figures/workload_id_federation.png)
-## High level architecture
-![img.png](doc/figures/hla.png)
+
 ## Prerequisites
 ### Software
 * Google Cloud SDK
@@ -164,7 +163,7 @@ terraform destroy -no-color -var-file env/project.tfvars
 No outputs.
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 
-## Prerequisites — what you need to know before starting the TBD workshop                                                                                                                                    
+## What you need to know before starting the TBD workshop                                                                                                                                    
                                                                                                                                                                                                                
   ### 1. Terraform (Infrastructure as Code)                                                                                                                                                                    
    
