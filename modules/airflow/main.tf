@@ -1,13 +1,3 @@
-terraform {
-  required_version = "~> 1.11.0"
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
-      version = "~> 6.26.0"
-    }
-  }
-}
-
 resource "google_project_service" "container" {
   project            = var.project_name
   service            = "container.googleapis.com"
