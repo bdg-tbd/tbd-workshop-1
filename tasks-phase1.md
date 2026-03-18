@@ -75,7 +75,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+    Module [airflow](./modules/airflow/) configures an account with IAM roles and configures a Kubernetes cluster with 2 nodes where Airflow will be deployed
+
+    ![Terraform graph for airflow module](./doc/report/task-5-terraform-graph.png)
 
 6. Reach YARN UI
 
