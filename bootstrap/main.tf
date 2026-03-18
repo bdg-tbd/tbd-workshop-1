@@ -63,6 +63,16 @@ resource "google_project_iam_member" "tbd-editor-supervisors" {
   member  = each.value
 }
 
+resource "google_project_iam_member" "tbd-team-members" {
+  #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
+  #checkov:skip=CKV_GCP_117: "Ensure basic roles are not used at project level."
+  # This is only used for workshops!!!
+  for_each = var.team_member_emails
+  project  = google_project.tbd_project.project_id
+  role     = "roles/editor"
+  member   = each.value
+}
+
 
 resource "google_project_iam_member" "tbd-editor-member" {
   #checkov:skip=CKV_GCP_49: "Ensure no roles that enable to impersonate and manage all service accounts are used at a project level"
