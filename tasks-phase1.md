@@ -57,9 +57,9 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   Group z4
 
-   ***link to forked repo***
+   https://github.com/mGarbowski/tbd-workshop-1
 
 2. Follow all steps in README.md.
 
