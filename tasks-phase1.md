@@ -341,4 +341,5 @@ Hint: use the existing `.github/workflows/destroy.yml` as a starting point.
 
 ***paste screenshot/log snippet confirming the auto-destroy ran***
 
-***write one sentence why scheduling cleanup helps in this workshop***
+A workflow like this that runs on cron schedule could prevent unwanted costs if I were to forget to manually run the destroy workflow.
+Then, the cloud infrastructure would still be online and generating costs.

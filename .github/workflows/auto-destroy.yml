@@ -1,0 +1,43 @@
+name: Auto Destroy
+description: Automatically destroy GCP infrastructure on schedule or on merging PR to master that contains "[CLEANUP]" in the title in order to prevent accidental costs.
+on:
+  schedule:
+    - cron: '0 0 * * *' # Every day at midnight
+  pull_request:
+    types:
+      - closed
+    branches:
+      - master
+
+
+permissions: read-all
+jobs:
+  destroy-release:
+    if: github.event.pull_request.merged == true && contains(github.event.pull_request.title, '[CLEANUP]')
+    runs-on: ubuntu-latest
+  # Add "id-token" with the intended permissions.
+    permissions:
+      contents: write
+      id-token: write
+      pull-requests: write
+      issues: write
+
+    steps:
+    - uses: 'actions/checkout@v3'
+    - uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: 1.11.0
+    - id: 'auth'
+      name: 'Authenticate to Google Cloud'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        token_format: 'access_token'
+        workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER_NAME }}
+        service_account: ${{ secrets.GCP_WORKLOAD_IDENTITY_SA_EMAIL }}
+    - name: Terraform Init
+      id: init
+      run: terraform init -backend-config=env/backend.tfvars
+    - name: Terraform Destroy
+      id: destroy
+      run: terraform destroy -no-color -var-file env/project.tfvars -auto-approve
+      continue-on-error: false
