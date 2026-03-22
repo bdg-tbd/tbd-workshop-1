@@ -237,6 +237,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     gs://tbd-2026l-325157-code/spark-job.py
 
     d) Verify the DAG completes successfully and check that ORC files were written to the data bucket:
+    
     ```bash
     gsutil ls gs://PROJECT_NAME-data/data/shakespeare/
     ```
@@ -248,13 +249,45 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     Using the ORC data produced by the Spark job in task 9, create a BigQuery dataset and an external table.
 
     Note: the dataset must be created in the same region as the GCS bucket (`europe-west1`), e.g.:
+
     ```bash
     bq mk --dataset --location=europe-west1 shakespeare
     ```
 
-    ***place the SQL code and query output here***
+    Executed in the web GCP console:
 
-    ***why does ORC not require a table schema?***
+    ```sql
+    CREATE EXTERNAL TABLE `shakespeare.orc_table`
+    OPTIONS (
+        format = 'ORC',
+        uris = ['gs://tbd-2026l-325157-data/data/shakespeare/*.orc']
+    );
+    ```
+
+    ```sql
+    SELECT word, sum_word_count
+    FROM shakespeare.orc_table
+    ORDER BY sum_word_count DESC
+    LIMIT 10;
+    ```
+
+    ```
+    word	sum_word_count
+    the	25568
+    I	21028
+    and	19649
+    to	17361
+    of	16438
+    a	13409
+    you	12527
+    my	11291
+    in	10589
+    is	8735
+    ```
+
+    Why does ORC not require a table schema: as per [docs](https://orc.apache.org/docs/)
+
+    > ORC is a **self-describing** type-aware columnar file format designed for Hadoop workloads.
 
 11.  Add support for preemptible/spot instances in a Dataproc cluster
 
