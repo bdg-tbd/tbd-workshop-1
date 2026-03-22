@@ -81,19 +81,38 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 6. Reach YARN UI
 
-   ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
-
    Hint: the Dataproc cluster has `internal_ip_only = true`, so you need to use an IAP tunnel.
    See: `gcloud compute ssh` with `-- -L <local_port>:localhost:<remote_port>` and `--tunnel-through-iap` flag.
    YARN ResourceManager UI runs on port **8088**.
 
-7. Draw an architecture diagram (e.g. in draw.io) that includes:
+![Yarn UI screenshot](./doc/report/task-6-yarn-ui.png)
+
+Command to setup SSH tunnel using IAP
+
+```bash
+gcloud compute ssh tbd-cluster-m --project=tbd-2026l-325157 --zone=europe-west1-b --tunnel-through-iap -- -L 8088:localhost:8088
+```
+
+To check node name and zone
+
+```bash
+    ➜  tbd-workshop-1 git:(task-5) gcloud compute instances list --project=tbd-2026l-325157                                                                  
+NAME                                            ZONE            MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP     STATUS
+gke-airflow-cluster-airflow-pool-ede3a231-89w6  europe-west1-b  e2-standard-2               10.10.10.5   34.76.166.60    RUNNING
+gke-airflow-cluster-airflow-pool-ede3a231-ccdf  europe-west1-b  e2-standard-2               10.10.10.4   104.155.45.179  RUNNING
+tbd-cluster-m                                   europe-west1-b  e2-standard-2               10.10.10.7                   RUNNING
+tbd-cluster-w-0                                 europe-west1-b  e2-standard-2               10.10.10.6                   RUNNING
+tbd-cluster-w-1                                 europe-west1-b  e2-standard-2               10.10.10.8                   RUNNING
+```
+
+
+1. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
     2. List of buckets for disposal
 
     ***place your diagram here***
 
-8. Create a new PR and add costs by entering the expected consumption into Infracost
+2. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry_repository`, `google_storage_bucket`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
