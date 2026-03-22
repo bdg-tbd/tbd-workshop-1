@@ -112,7 +112,52 @@ tbd-cluster-w-1                                 europe-west1-b  e2-standard-2   
 
     ***place your diagram here***
 
-2. Create a new PR and add costs by entering the expected consumption into Infracost
+Buckets
+```bash
+gcloud storage buckets list --format="table(name, location)"
+gcloud iam service-accounts list
+```
+
+![Component diagram with service accounts and buckets](./doc/report/task-7-component-diagram.png)
+
+```puml
+@startuml
+
+' Define Components
+component "Dataproc Cluster" as dataproc_cluster
+component "Airflow Nodes" as airflow_nodes
+component "Composer" as composer
+
+' Define Buckets
+component "Staging Bucket" as staging_bucket
+component "Temp Bucket" as temp_bucket
+component "Code Bucket" as code_bucket
+component "Data Bucket" as data_bucket
+component "State Bucket" as state_bucket
+
+' Define Service Accounts
+component "Dataproc Service Account" as dataproc_sa
+component "Terraform Service Account" as terraform_sa
+component "IAC Service Account" as iac_sa
+component "Airflow Service Account" as airflow_sa
+component "Composer Service Account" as composer_sa
+
+' Connect Service Accounts to Components and Buckets
+dataproc_sa --> staging_bucket
+        dataproc_sa --> temp_bucket
+        dataproc_sa --> data_bucket
+        dataproc_sa --> code_bucket
+        dataproc_sa --> dataproc_cluster
+
+airflow_sa --> airflow_nodes
+
+composer_sa --> composer
+
+@enduml
+```
+
+
+1. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry_repository`, `google_storage_bucket`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
