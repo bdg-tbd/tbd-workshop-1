@@ -163,6 +163,7 @@ jobs:
       run: |
         infracost diff --path="." \
                         --format=json \
+                        --usage-file=infracost-usage.yml \
                         --compare-to=/tmp/infracost-base.json \
                         --out-file=/tmp/infracost.json
     - name: Post Infracost comment
