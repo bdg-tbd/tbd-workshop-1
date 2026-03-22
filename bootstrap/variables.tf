@@ -36,3 +36,12 @@ variable "budget_channels" {
     marek-wiewiorka : "marek.wiewiorka@gmail.com"
   }
 }
+
+variable "team_member_emails" {
+  type        = set(string)
+  description = "Set of gmail addresses of team members"
+  default = [
+    "user:mateusz.baran3007@gmail.com",
+    "user:kubaleman1@gmail.com",
+  ]
+}

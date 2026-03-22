@@ -70,12 +70,14 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
     2. Create PR from this branch to **YOUR** master and merge it to make new release.
 
-    ***place the screenshot from GA after successful application of release***
+    ![GitHub Actions screenshot](./doc/report/task-4-release-screenshot.png)
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+    Module [airflow](./modules/airflow/) configures an account with IAM roles and configures a Kubernetes cluster with 2 nodes where Airflow will be deployed
+
+    ![Terraform graph for airflow module](./doc/report/task-5-terraform-graph.png)
 
 6. Reach YARN UI
 
@@ -99,7 +101,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
    ***place the screenshot from infracost output here***
 
-9. Find and correct the error in spark-job.py
+1. Find and correct the error in spark-job.py
 
     After `terraform apply` completes, connect to the Airflow cluster:
     ```bash
@@ -140,7 +142,7 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***place a screenshot of the successful DAG run in Airflow UI***
 
-11. Create a BigQuery dataset and an external table using SQL
+2.  Create a BigQuery dataset and an external table using SQL
 
     Using the ORC data produced by the Spark job in task 9, create a BigQuery dataset and an external table.
 
@@ -153,11 +155,11 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     ***why does ORC not require a table schema?***
 
-12. Add support for preemptible/spot instances in a Dataproc cluster
+3.  Add support for preemptible/spot instances in a Dataproc cluster
 
     ***place the link to the modified file and inserted terraform code***
 
-13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
+4.  Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 
 Add a new GitHub Actions workflow that:
   1. runs terraform destroy -auto-approve
