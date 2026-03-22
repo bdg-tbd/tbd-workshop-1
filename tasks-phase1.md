@@ -161,9 +161,17 @@ composer_sa --> composer
 For all the resources of type: `google_artifact_registry_repository`, `google_storage_bucket`
 create a sample usage profiles and add it to the Infracost task in CI/CD pipeline. Usage file [example](https://github.com/infracost/infracost/blob/master/infracost-usage-example.yml)
 
-   ***place the expected consumption you entered here***
+```yml
+version: 0.1
+resource_type_default_usage:
+  google_artifact_registry_repository:
+    storage_gb: 10
 
-   ***place the screenshot from infracost output here***
+  google_storage_bucket:
+    storage_gb: 100
+```
+
+![Infracost gitHub PR comment](./doc/report/task-8-infracost.png)
 
 1. Find and correct the error in spark-job.py
 
