@@ -1,0 +1,7 @@
+version: 0.1
+resource_type_default_usage:
+  google_artifact_registry_repository:
+    storage_gb: 10
+
+  google_storage_bucket:
+    storage_gb: 100
