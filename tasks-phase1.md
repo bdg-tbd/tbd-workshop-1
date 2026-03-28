@@ -130,6 +130,34 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
    See: `gcloud compute ssh` with `-- -L <local_port>:localhost:<remote_port>` and `--tunnel-through-iap` flag.
    YARN ResourceManager UI runs on port **8088**.
 
+   #### Command used to create the tunnel
+
+    ```bash
+    PROJECT="tbd-2026l-5"
+    REGION="europe-west1"
+    CLUSTER="tbd-cluster"
+
+    ZONE=$(gcloud dataproc clusters describe "$CLUSTER" \
+    --region="$REGION" \
+    --project="$PROJECT" \
+    --format='value(config.gceClusterConfig.zoneUri.basename())')
+
+    gcloud compute ssh "${CLUSTER}-m" \
+    --project="$PROJECT" \
+    --zone="$ZONE" \
+    --tunnel-through-iap -- \
+    -NL 1080:localhost:8088
+    ```
+
+    #### Port used
+
+    Local port: 1080
+    
+    Remote YARN ResourceManager port: 8088
+
+    ![Figure: YARN ResourceManager UI reached through an IAP SSH tunnel.](img/task_6_phase1.png)
+    Figure: YARN ResourceManager UI reached through an IAP SSH tunnel.
+
 7. Draw an architecture diagram (e.g. in draw.io) that includes:
     1. Description of the components of service accounts
     2. List of buckets for disposal
