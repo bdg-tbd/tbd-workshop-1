@@ -1,6 +1,8 @@
 # Local .terraform directories
 **/.terraform/*
 
+.config/gcloud/
+
 # .tfstate files
 *.tfstate
 *.tfstate.*
