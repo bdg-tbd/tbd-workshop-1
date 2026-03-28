@@ -57,13 +57,19 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 1. Authors:
 
-   ***enter your group nr***
+   ***group nr 5***
 
-   ***link to forked repo***
+   ***link to forked repo: https://github.com/kusmierzrafal/tbd-workshop-1***
 
 2. Follow all steps in README.md.
 
+    ***completed here: https://github.com/kusmierzrafal/tbd-workshop-1/pull/1***
+
 3. From available Github Actions select and run destroy on master branch.
+
+    
+
+![Release apply success](img/task_3_phase1.png)
 
 4. Create new git branch and:
     1. Modify tasks-phase1.md file.

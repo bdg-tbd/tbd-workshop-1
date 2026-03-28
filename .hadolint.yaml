@@ -10,5 +10,5 @@ ignored:
 override:
   info:
     - DL3013
-failure-threshold: warning
+failure-threshold: error
 # end remove section
