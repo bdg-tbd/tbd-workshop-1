@@ -85,7 +85,42 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
 
-    ***describe one selected module and put the output of terraform graph for this module here***
+    I ran `terraform init -backend-config=env/backend.tfvars` and `terraform plan -var-file env/project.tfvars` in the root module. Terraform successfully initialized the backend and compared the deployed infrastructure with the code. The result was `No changes. Your infrastructure matches the configuration.`  <br>
+    <br>
+
+    ### Selected module: `modules/dataproc`
+
+    I selected the `dataproc` module.
+
+    The `dataproc` module creates a managed Spark cluster used to run data processing jobs in the workshop. It reads data from BigQuery, processes it with Spark, and stores the results in Cloud Storage as ORC files.
+
+    This module is responsible for creating the Dataproc environment used in the project. It:
+    - enables the Dataproc API,
+    - creates a dedicated service account for Dataproc,
+    - grants IAM roles required for Dataproc and BigQuery access,
+    - creates two Cloud Storage buckets used by Dataproc (`<project>-dataproc-staging` and `<project>-dataproc-temp`),
+    - grants the service account permissions to use these buckets,
+    - and finally creates the Dataproc cluster `tbd-cluster`.
+
+    The module takes the following input variables:
+    - `project_name`
+    - `region`
+    - `subnet`
+    - `machine_type`
+    - `image_version`
+
+    The generated Terraform graph shows the dependency order between resources in this module. In particular, the Dataproc cluster depends on:
+    - enabling the Dataproc API,
+    - creating the Dataproc service account,
+    - assigning IAM roles,
+    - and granting permissions to the staging and temp buckets.
+
+    ### Terraform graph output for the selected module
+
+    ![Terraform graph for dataproc module](img/task_5_phase1_dataproc-graph.png)
+
+    Figure: Terraform dependency graph for the selected `dataproc` module.
+
 
 6. Reach YARN UI
 
