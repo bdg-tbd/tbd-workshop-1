@@ -74,12 +74,66 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
 
 
 5. Analyze terraform code. Play with terraform plan, terraform graph to investigate different modules.
-
     ***describe one selected module and put the output of terraform graph for this module here***
+    
+    The module dataproc creates the Dataproc cluster used for distributed Spark processing. 
+    It enables the Dataproc API, creates a dedicated Dataproc service account, creates temporary 
+    and staging GCS buckets, and grants the service account IAM permissions for Dataproc worker operation, 
+    BigQuery access, and access to the buckets. The module also requires an existing subnet, so it depends on the networking layer.
+
+    Graph for dataproc module
+
+    digraph DataprocModule {
+    rankdir=LR;
+    node [shape=box];
+    
+    "google_project_service.dataproc";
+    "google_service_account.dataproc_sa";
+    "google_storage_bucket.dataproc_staging";
+    "google_storage_bucket.dataproc_temp";
+    "google_storage_bucket_iam_member.staging_bucket_iam";
+    "google_storage_bucket_iam_member.temp_bucket_iam";
+    "google_project_iam_member.dataproc_worker";
+    "google_project_iam_member.dataproc_bigquery_user";
+    "google_project_iam_member.dataproc_bigquery_data_editor";
+    "google_dataproc_cluster.tbd-dataproc-cluster";
+    
+    "google_project_iam_member.dataproc_worker" -> "google_service_account.dataproc_sa";
+    "google_project_iam_member.dataproc_bigquery_user" -> "google_service_account.dataproc_sa";
+    "google_project_iam_member.dataproc_bigquery_data_editor" -> "google_service_account.dataproc_sa";
+    
+    "google_storage_bucket_iam_member.staging_bucket_iam" -> "google_service_account.dataproc_sa";
+    "google_storage_bucket_iam_member.staging_bucket_iam" -> "google_storage_bucket.dataproc_staging";
+    
+    "google_storage_bucket_iam_member.temp_bucket_iam" -> "google_service_account.dataproc_sa";
+    "google_storage_bucket_iam_member.temp_bucket_iam" -> "google_storage_bucket.dataproc_temp";
+    
+    "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_project_service.dataproc";
+    "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_project_iam_member.dataproc_worker";
+    "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_project_iam_member.dataproc_bigquery_user";
+    "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_project_iam_member.dataproc_bigquery_data_editor";
+    "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_storage_bucket_iam_member.staging_bucket_iam";
+    "google_dataproc_cluster.tbd-dataproc-cluster" -> "google_storage_bucket_iam_member.temp_bucket_iam";
+    }
+    
+    Whole graph:
+    ![img.png](whole_graph.png)
+    
+    Graph for dataproc module:
+    ![img_1.png](graph_for_dataproc_module.png)
 
 6. Reach YARN UI
 
    ***place the command you used for setting up the tunnel, the port and the screenshot of YARN UI here***
+    
+**command:**
+    gcloud compute ssh tbd-cluster-m --zone=europe-west1-b --project=tbd-2026l-347310 --tunnel-through-iap --ssh-flag="-L 8088:localhost:8088"
+
+**port:**
+    8088
+
+**screenshot**
+    ![img_2.png](YARN.png)
 
    Hint: the Dataproc cluster has `internal_ip_only = true`, so you need to use an IAP tunnel.
    See: `gcloud compute ssh` with `-- -L <local_port>:localhost:<remote_port>` and `--tunnel-through-iap` flag.
@@ -90,6 +144,8 @@ IMPORTANT ❗ ❗ ❗ Please remember to destroy all the resources after each wo
     2. List of buckets for disposal
 
     ***place your diagram here***
+
+    ![img_3.png](diagram.png)
 
 8. Create a new PR and add costs by entering the expected consumption into Infracost
 For all the resources of type: `google_artifact_registry_repository`, `google_storage_bucket`
