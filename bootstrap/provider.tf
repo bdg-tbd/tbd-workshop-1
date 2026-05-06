@@ -8,6 +8,7 @@ provider "google" {
   project               = local.project
   region                = var.region
   user_project_override = true
+  billing_project       = local.project
 }
 terraform {
   required_version = "~> 1.11.0"

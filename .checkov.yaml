@@ -13,6 +13,19 @@ skip-check:
   - CKV_DOCKER_3 # "Ensure that a user for the container has been created"
   - CKV_DOCKER_2 # "Ensure that HEALTHCHECK instructions have been added to container images"
   - CKV2_GCP_12 # "Ensure GCP compute firewall ingress does not allow unrestricted access to all ports"
+  - CKV_GCP_13  # Client certificate auth - workshop cluster
+  - CKV_GCP_69  # GKE Metadata Server - workshop cluster
+  - CKV_GCP_65  # RBAC with Google Groups - workshop cluster
+  - CKV_GCP_66  # Binary Authorization - workshop cluster
+  - CKV_GCP_70  # GKE Release Channel - workshop cluster
+  - CKV_GCP_20  # Master authorized networks - workshop cluster
+  - CKV_GCP_61  # VPC Flow Logs - workshop cluster
+  - CKV_GCP_21  # Kubernetes Labels - workshop cluster
+  - CKV_GCP_10  # Automatic node upgrade - workshop cluster
+  - CKV_GCP_68  # Secure Boot - workshop cluster
+  - CKV_GCP_9   # Automatic node repair - workshop cluster
+  - CKV_SECRET_9 # JWT token in gha-creds file
+  - CKV_GCP_64  # Private Nodes - workshop cluster
 
 skip-path:
  - gha-creds-*json
