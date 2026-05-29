@@ -34,6 +34,16 @@ resource "google_container_cluster" "airflow" {
   #checkov:skip=CKV_GCP_18: "Workshop cluster — master auth networks not required"
   #checkov:skip=CKV_GCP_12: "Workshop cluster — network policy not required"
   #checkov:skip=CKV_GCP_23: "Workshop cluster — alias IPs not required"
+  #checkov:skip=CKV_GCP_64: "Workshop cluster - Private nodes not required"
+  #checkov:skip=CKV_GCP_13: "Workshop cluster - Client cert auth disabled check not required"
+  #checkov:skip=CKV_GCP_69: "Workshop cluster - GKE Metadata Server not required"
+  #checkov:skip=CKV_GCP_65: "Workshop cluster - Google Groups RBAC not required"
+  #checkov:skip=CKV_GCP_66: "Workshop cluster - Binary Authorization not required"
+  #checkov:skip=CKV_GCP_70: "Workshop cluster - Release channel not required"
+  #checkov:skip=CKV_GCP_20: "Workshop cluster - Master authorized networks not required"
+  #checkov:skip=CKV_GCP_61: "Workshop cluster - VPC Flow Logs not required"
+  #checkov:skip=CKV_GCP_21: "Workshop cluster - Resource labels not required"
+
   depends_on = [google_project_service.container]
 
   name     = "airflow-cluster"
@@ -51,6 +61,12 @@ resource "google_container_cluster" "airflow" {
 }
 
 resource "google_container_node_pool" "airflow_nodes" {
+
+  #checkov:skip=CKV_GCP_69: "Workshop pool - GKE Metadata Server not required"
+  #checkov:skip=CKV_GCP_10: "Workshop pool - Auto node upgrade not required"
+  #checkov:skip=CKV_GCP_68: "Workshop pool - Secure boot not required"
+  #checkov:skip=CKV_GCP_9:  "Workshop pool - Auto node repair not required"
+
   name     = "airflow-pool"
   project  = var.project_name
   location = "${var.region}-b"

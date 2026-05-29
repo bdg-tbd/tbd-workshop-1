@@ -2,6 +2,9 @@ provider "google" {
   project = var.project_name
   region  = var.region
 }
+
+
+
 provider "docker" {
   registry_auth {
     address     = try(module.gcr.registry_hostname, "docker.io")
