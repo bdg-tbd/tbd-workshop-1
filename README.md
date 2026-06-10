@@ -122,6 +122,7 @@ terraform destroy -no-color -var-file env/project.tfvars
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.11.0 |
 | <a name="requirement_docker"></a> [docker](#requirement\_docker) | 3.0.2 |
 | <a name="requirement_google"></a> [google](#requirement\_google) | ~> 5.44.0 |
+| <a name="requirement_helm"></a> [helm](#requirement\_helm) | ~> 2.12.0 |
 | <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | 2.24.0 |
 
 ## Providers
@@ -129,16 +130,16 @@ terraform destroy -no-color -var-file env/project.tfvars
 | Name | Version |
 |------|---------|
 | <a name="provider_google"></a> [google](#provider\_google) | 5.44.2 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 2.12.1 |
 | <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | 2.24.0 |
 
 ## Modules
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_composer"></a> [composer](#module\_composer) | ./modules/composer | n/a |
+| <a name="module_airflow"></a> [airflow](#module\_airflow) | ./modules/airflow | n/a |
 | <a name="module_data-pipelines"></a> [data-pipelines](#module\_data-pipelines) | ./modules/data-pipeline | n/a |
 | <a name="module_dataproc"></a> [dataproc](#module\_dataproc) | ./modules/dataproc | n/a |
-| <a name="module_dbt_docker_image"></a> [dbt\_docker\_image](#module\_dbt\_docker\_image) | ./modules/dbt_docker_image | n/a |
 | <a name="module_gcr"></a> [gcr](#module\_gcr) | ./modules/gcr | n/a |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | ./modules/vpc | n/a |
 
@@ -146,15 +147,27 @@ terraform destroy -no-color -var-file env/project.tfvars
 
 | Name | Type |
 |------|------|
-| [google_compute_firewall.allow-all-internal](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall) | resource |
-| [kubernetes_service.dbt-task-service](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/service) | resource |
+| [google_compute_firewall.allow-internal-icmp](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall) | resource |
+| [google_compute_firewall.allow-internal-tcp](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall) | resource |
+| [google_compute_firewall.allow-internal-udp](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_firewall) | resource |
+| [helm_release.airflow](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [kubernetes_job.airflow_create_user](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/job) | resource |
+| [kubernetes_job.airflow_db_migrate](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/job) | resource |
+| [kubernetes_job.airflow_gcp_connection](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/job) | resource |
+| [kubernetes_namespace.airflow](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/namespace) | resource |
+| [kubernetes_service.airflow_pg](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/service) | resource |
+| [kubernetes_stateful_set.airflow_pg](https://registry.terraform.io/providers/hashicorp/kubernetes/2.24.0/docs/resources/stateful_set) | resource |
 | [google_client_config.provider](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/client_config) | data source |
-| [google_container_cluster.composer-gke-cluster](https://registry.terraform.io/providers/hashicorp/google/latest/docs/data-sources/container_cluster) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_airflow_admin_password"></a> [airflow\_admin\_password](#input\_airflow\_admin\_password) | Password for Airflow web UI admin user | `string` | `"admin"` | no |
+| <a name="input_airflow_db_password"></a> [airflow\_db\_password](#input\_airflow\_db\_password) | Password for Airflow metadata PostgreSQL database | `string` | `"postgres"` | no |
+| <a name="input_github_branch"></a> [github\_branch](#input\_github\_branch) | GitHub branch for Airflow git-sync DAG syncing | `string` | `"master"` | no |
+| <a name="input_github_org"></a> [github\_org](#input\_github\_org) | GitHub organization or user owning the forked workshop repo | `string` | n/a | yes |
+| <a name="input_github_repo"></a> [github\_repo](#input\_github\_repo) | GitHub repository name for the forked workshop repo | `string` | `"tbd-workshop-1"` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | Project name | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | GCP region | `string` | `"europe-west1"` | no |
 

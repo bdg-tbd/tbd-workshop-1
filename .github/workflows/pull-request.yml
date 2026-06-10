@@ -77,7 +77,7 @@ jobs:
         output_format: cli,sarif
         output_file_path: console,results.sarif
         config_file: .checkov.yaml
-        skip_path: gha-creds-*json
+        skip_path: gha-creds
 
     - name: Terraform Plan
       id: plan
@@ -154,6 +154,7 @@ jobs:
     - name: Generate Infracost cost estimate baseline
       run: |
         infracost breakdown --path="." \
+			    --usage-file=infracost-usage.yml \
                             --format=json \
                             --out-file=/tmp/infracost-base.json
     - name: Checkout PR branch
@@ -161,6 +162,7 @@ jobs:
     - name: Generate Infracost diff
       run: |
         infracost diff --path="." \
+			--usage-file=infracost-usage.yml \
                         --format=json \
                         --compare-to=/tmp/infracost-base.json \
                         --out-file=/tmp/infracost.json
