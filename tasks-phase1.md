@@ -117,13 +117,29 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
 
     a) In the Airflow UI (http://AIRFLOW_EXTERNAL_IP:8080, login: admin/admin), find the `dataproc_job` DAG, unpause it and trigger it manually.
 
-    ***place a screenshot of the DAG in the Airflow UI***
+    ![img.png](doc/tasks/9_1.PNG)
 
     b) The DAG will fail. Examine the task logs in the Airflow UI to find the root cause.
 
-    ***paste the relevant error message from the Airflow task log***
+    The relevant part of the log seems to be:
 
-    ***describe what the error is and how you found it***
+    >state: ERROR
+    details: "Google Cloud Dataproc Agent reports job failure. If logs are available, they can be found at:\nhttps://console.cloud.google.com/dataproc/jobs/17d1784c-b972-4519-b41d-6e051cf73370?project=tbd-2026l-3474255&region=europe-west1\ngcloud dataproc jobs wait \'17d1784c-b972-4519-b41d-6e051cf73370\' --region \'europe-west1\' --project \'tbd-2026l-3474255\'\nhttps://console.cloud.google.com/storage/browser/tbd-2026l-3474255-dataproc-staging/google-cloud-dataproc-metainfo/318a37c3-cf3a-4c51-8449-c73556413422/jobs/17d1784c-b972-4519-b41d-6e051cf73370/\ngs://tbd-2026l-3474255-dataproc-staging/google-cloud-dataproc-metainfo/318a37c3-cf3a-4c51-8449-c73556413422/jobs/17d1784c-b972-4519-b41d-6e051cf73370/driveroutput.*"
+    state_start_time {
+    seconds: 1776201427
+    nanos: 167773000
+    }
+
+    The error says that a Dataproc (spark) job failed running. When looking at the DAG code I can see it triggers a Dataproc (spark) job. So I scanned the failure logs for things related to that.
+
+    Then in the Dataproc job logs I can see the actuall error
+
+    >File "/tmp/17d1784c-b972-4519-b41d-6e051cf73370/spark-job.py", line 42, in <module>
+    df.write.mode("overwrite").orc(DATA_BUCKET)
+    "message": "The specified bucket does not exist.",
+
+    So it writes to a bucket which doses not exist.
+
 
     c) Fix the error in `modules/data-pipeline/resources/spark-job.py` and re-upload the file to GCS:
     ```bash
@@ -131,14 +147,13 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     ```
     Then trigger the DAG again from the Airflow UI.
 
-    ***paste the link to the fixed file***
+    URL to fixed file: https://storage.cloud.google.com/tbd-2026l-3474255-code/spark-job.py
 
     d) Verify the DAG completes successfully and check that ORC files were written to the data bucket:
     ```bash
     gsutil ls gs://PROJECT_NAME-data/data/shakespeare/
     ```
-
-    ***place a screenshot of the successful DAG run in Airflow UI***
+    ![img.png](doc/tasks/9_1_d.PNG)
 
 11. Create a BigQuery dataset and an external table using SQL
 
@@ -149,13 +164,49 @@ create a sample usage profiles and add it to the Infracost task in CI/CD pipelin
     bq mk --dataset --location=europe-west1 shakespeare
     ```
 
-    ***place the SQL code and query output here***
+    External table creation SQL:
+    ```SQL
+    CREATE OR REPLACE EXTERNAL TABLE `shakespeare.wordcount_orc`
+    OPTIONS (
+    format = 'ORC',
+    uris = ['gs://tbd-2026l-3474255-data/data/shakespeare/*']
+    );
+    ```
+    Dataset Query result:
+    ```
+    1	dearest	56
+    2	Only	56
+    3	kneel	56
+    4	mend	56
+    5	below	56
+    6	kindness56
+    7	lover	56
+    8	despair	56
+    9	DIANA	56
+    10	Hostess	56	
+    ```
 
     ***why does ORC not require a table schema?***
+    
+    As per the ORC Apache docs:
+
+    >ORC files are completely self-describing and do not depend on the Hive Metastore or any other external metadata. The file includes all of the type and encoding information for the objects stored in the file. Because the file is self-contained, it does not depend on the user’s environment to correctly interpret the file’s contents.
 
 12. Add support for preemptible/spot instances in a Dataproc cluster
 
-    ***place the link to the modified file and inserted terraform code***
+    Here is the addded TF code
+
+    ```Bash
+    preemptible_worker_config {
+      num_instances = 1
+
+      disk_config {
+        boot_disk_type    = "pd-standard"
+        boot_disk_size_gb = 500
+      }
+    }
+    ```
+    link to the changed file: https://github.com/BrunoKedzierski/tbd-workshop-1/blob/master/modules/dataproc/main.tf
 
 13. Triggered Terraform Destroy on Schedule or After PR Merge. Goal: make sure we never forget to clean up resources and burn money.
 

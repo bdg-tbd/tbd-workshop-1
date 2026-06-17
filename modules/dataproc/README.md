@@ -48,4 +48,5 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_dataproc_cluster_name"></a> [dataproc\_cluster\_name](#output\_dataproc\_cluster\_name) | Dataproc cluster name |
+| <a name="output_dataproc_service_account"></a> [dataproc\_service\_account](#output\_dataproc\_service\_account) | Dataproc service account email |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
